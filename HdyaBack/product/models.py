@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from authentication.models import Profile
+
 # Create your models here.
 
 
@@ -8,8 +9,22 @@ class Category(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=50,null = True)
 
-    def _str_(self):
+    def __str__(self):
         return self.title
+
+class Occassion(models.Model):
+    # product_id = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)   
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+class RelationShip(models.Model):
+    # product_id = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)   
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     name = models.CharField(max_length=45)
@@ -33,16 +48,19 @@ class Product(models.Model):
         null=True,
         max_length=50 ,
         choices=[
-            ('m' , 'Mail'),
-            ('f' , 'femail')
+            ('m' , 'Male'),
+            ('f' , 'female'),
+            ('b' , 'both')
         ])
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    occassion_id = models.ForeignKey(Occassion, on_delete=models.CASCADE)
+    relationship_id = models.ForeignKey(RelationShip, on_delete=models.CASCADE )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     
     
-    def _str_(self):
+    def __str__(self):
         return self.name
 
 
@@ -50,20 +68,9 @@ class ProductPicture(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)   
     img_url = models.ImageField(upload_to='static/products/images/' , verbose_name='Image')
 
+    def __str__(self):
+        return self.product_id.name
 
-class Occassion(models.Model):
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)   
-    name = models.CharField(max_length=50)
-
-    def _str_(self):
-        return self.name
-
-class RelationShip(models.Model):
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)   
-    name = models.CharField(max_length=50)
-
-    def _str_(self):
-        return self.name
 
 
 class Review(models.Model):
