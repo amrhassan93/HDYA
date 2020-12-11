@@ -4,13 +4,12 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'products', views.ProductViewSet , basename = 'products')
+# router.register(r'occassions', views.OccassionViewSet , basename = 'occassion')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    # path('', views.Products.as_view() , name = 'products')
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
-# urlpatterns = urlpatterns + router.urls

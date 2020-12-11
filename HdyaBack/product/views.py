@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets , generics
-from .serializers import ProductSerializer
-from .models import Product
+from .serializers import ProductSerializer , OccassionSerializer
+from .models import *
 
 # Create your views here.
 
@@ -14,3 +14,8 @@ from .models import Product
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+    
+# class OccassionViewSet(viewsets.ModelViewSet):
+#     queryset = Occassion.objects.all()
+#     serializer_class = OccassionSerializer

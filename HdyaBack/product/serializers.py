@@ -11,11 +11,15 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = Category
         fields = '__all__'
 
+
+
 class OccassionSerializer(serializers.HyperlinkedModelSerializer):
+    product_id = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
     class Meta:
         model = Occassion
         fields = '__all__'
@@ -25,53 +29,51 @@ class RelationShipSerializer(serializers.HyperlinkedModelSerializer):
         model = RelationShip
         fields = '__all__'
 
-class ProductSerializer(serializers.ModelSerializer):
-    # category_id = CategorySerializer()
-    # category_id = serializers.CharField(source="category.title")
-    # category_id = serializers.CharField()
-    # user_id = ProfileSerializer()
-    # user_id = serializers.CharField(source="profile.user.username")
-    
-    # occassion_id = OccassionSerializer()
-    # occassion_id = serializers.CharField(source="occassion.name")
 
-    # relationship_id = RelationShipSerializer()
-    # relationship_id = serializers.CharField(source="relationship.name")
-    
-    # categories = CategorySerializer( many=True , read_only=True, required = False )
-    # users = ProfileSerializer( many=True , read_only=True , required = False)
-    # occassions = OccassionSerializer( many=True , read_only=True , required = False)
-    # relationships = RelationShipSerializer( many=True , read_only=True , required = False)
+# class ProductOccassionSerializer(serializers.HyperlinkedModelSerializer):
+#     class Meta:
+#         model = ProductOccassion
+#         fields = '__all__'
+
+
+class ProductSerializer(serializers.ModelSerializer):
 
     category_id = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     user_id = serializers.PrimaryKeyRelatedField(queryset=Profile.objects.all())
-    occassion_id = serializers.PrimaryKeyRelatedField(queryset=Occassion.objects.all())
-    relationship_id = serializers.PrimaryKeyRelatedField(queryset=RelationShip.objects.all())
 
+    category_name =  serializers.CharField(source = "category_id.title" , read_only=True)
+    user_name =  serializers.CharField(source = "user_id.user.username" , read_only=True)
+
+    # occassions_name = serializers.CharField(source ='occassions')
+
+    occassions = serializers.SlugRelatedField(
+    many=True,
+    read_only=True,
+    slug_field='name'
+    )
+    relationships = serializers.SlugRelatedField(
+    many=True,
+    read_only=True,
+    slug_field='name'
+    )
+
+    # occassion_id = serializers.PrimaryKeyRelatedField(queryset=Occassion.objects.all())
+    # relationship_id = serializers.PrimaryKeyRelatedField(queryset=RelationShip.objects.all())
+    # category_name = serializers.CharField(source=category_id.field_name)
+    
+    # relations =RelationShipSerializer(many = True , read_only = True )
+    
+    # relations = serializers.ListField(source = "relationships.name")
+    # occassions_name = serializers.ReadOnlyField(source = "occassions")
+
+    # occassions_name = serializers.ReadOnlyField(source ='occassions' , many)
+    # occassions_name = OccassionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Product
         fields = '__all__'
-        # fields = (
-        #     'id',
-        #     'name',
-        #     'details',
-        #     'price',
-        #     'age',
-        #     'gender',
-        #     'category_id',
-        #     'user_id',
-        #     'occassion_id',
-        #     'relationship_id',
-        #     'created_at',
-        #     'updated_at',
-        #     # 'categories',
-        #     # 'users',
-        #     # 'occassions',
-        #     # 'relationships'
-        # ) 
-
-
+        read_only_fields = ('is_featured',)
+       
 class ProductPictureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ProductPicture
