@@ -57,7 +57,8 @@
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
-
+import "jquery";
+import "owl.carousel/dist/owl.carousel.min";
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
