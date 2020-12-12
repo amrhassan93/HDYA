@@ -8,10 +8,10 @@
 .card {
     border-radius: 4px;
     border: 1px solid #eee;
-    background-color: rgb(37,42,51);
+    background-color: rgb(37, 42, 51);
     height: 40px;
     width: 150px;
-    color:white;
+    color: white;
     margin: 0 8px 16px;
     padding: 16px;
     display: flex;
@@ -22,9 +22,10 @@
     line-height: 24px;
 }
 
-.card-small-rd{
-    background-color: rgb(210,57,59);
+.card-small-rd {
+    background-color: rgb(210, 57, 59);
 }
+
 .card-container .card:not(:last-child) {
     margin-right: 0;
 }
@@ -37,8 +38,8 @@
     transform: translateY(-3px);
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
 }
-    ////////////////////////////////////////////////////
-    
+
+////////////////////////////////////////////////////
 ////////////////////Basic Style//////////////////////
 * {
     margin: 0;
@@ -56,13 +57,13 @@ h3,
 h4,
 h5,
 h6 {
-    color: rgb(37,42,51);
+    color: rgb(37, 42, 51);
     line-height: 1.2;
     font-weight: 700;
 }
 
 p {
-    color: rgb(37,42,51);
+    color: rgb(37, 42, 51);
     font-size: 1em;
     line-height: 1.5;
     font-weight: 400;
@@ -79,7 +80,7 @@ a:focus {
     transition: all 500ms ease 0s;
     text-decoration: none;
     outline: none;
-    color: rgb(37,42,51);
+    color: rgb(37, 42, 51);
     font-weight: 400;
 }
 
@@ -92,9 +93,6 @@ ol li,
 ul li {
     list-style: outside none none;
 }
-
-
-
 
 img {
     height: auto;
@@ -127,8 +125,6 @@ img {
 .background-overlay-white:before {
     background-color: rgba(255, 255, 255, 0.9);
 }
-
-
 
 .mt-100 {
     margin-top: 100px;
@@ -241,7 +237,7 @@ img {
 }
 
 #scrollUp {
-    background-color: rgb(210,57,59);
+    background-color: rgb(210, 57, 59);
     border-radius: 0;
     bottom: 0;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
@@ -300,11 +296,11 @@ img {
 .karl-btn:focus {
     font-weight: 700;
     color: #fff;
-    background-color: rgb(37,42,51);
-    border-color: rgb(37,42,51) ;
+    background-color: rgb(37, 42, 51);
+    border-color: rgb(37, 42, 51);
 }
-/////////////////////End Of Basic////////////////////////////
 
+/////////////////////End Of Basic////////////////////////////
 //////////////////////////////////////////////////////
 .single_slide {
     background-position: center top;
@@ -318,7 +314,7 @@ img {
     z-index: 1;
 }
 
-.welcome_slide_text > h2,
+.welcome_slide_text>h2,
 .single_catagory_area h2 {
     font-size: 92px;
     letter-spacing: 0;
@@ -359,11 +355,11 @@ img {
 }
 
 .welcome_slides.owl-carousel .owl-dot.active {
-    background-color: rgb(210,57,59);
-    border-color: rgb(210,57,59);
+    background-color: rgb(210, 57, 59);
+    border-color: rgb(210, 57, 59);
 }
-//////////////////////////////
 
+//////////////////////////////
 
 /* --------------------------
 :: 10.0 Top Catagory Area CSS
@@ -384,7 +380,7 @@ img {
     content: "";
     width: 100%;
     height: 100%;
-    background-color: rgb(210,57,59);
+    background-color: rgb(210, 57, 59);
     position: absolute;
     top: 0;
     left: 0;
@@ -410,7 +406,6 @@ img {
 
 /////////////////////////////////////////
 //////////////// Modal  ////////////////////////
-
 #quickview button.close {
     box-shadow: none;
     position: absolute;
@@ -419,10 +414,11 @@ img {
     top: 10px;
     z-index: 9;
 }
-.fade{
- margin-left:auto;
- margin-right:auto;
- width:50%
+
+.fade {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%
 }
 
 .quickview_body {
@@ -461,23 +457,23 @@ img {
     padding: 30px 0;
 }
 
-.quickview_pro_des .price > span {
+.quickview_pro_des .price>span {
     color: #888;
     font-size: 14px;
     text-decoration: line-through;
 }
 
-.quickview_pro_des > p {
+.quickview_pro_des>p {
     font-size: 13px;
 }
 
-.quickview_pro_des > a {
+.quickview_pro_des>a {
     color: #19B5FE;
     font-size: 13px;
     text-decoration: underline;
 }
 
-.quickview_body .quantity > input {
+.quickview_body .quantity>input {
     -moz-appearance: textfield;
     border: 1px solid #f6f6f6;
     height: 35px;
@@ -521,7 +517,7 @@ img {
 }
 
 .quickview_body .cart-submit {
-    background-color: rgb(210,57,59);
+    background-color: rgb(210, 57, 59);
     border: medium none;
     color: #fff;
     cursor: pointer;
@@ -534,7 +530,7 @@ img {
 }
 
 .quickview_body .cart-submit:hover {
-    background-color: rgb(210,57,59);
+    background-color: rgb(210, 57, 59);
     color: #fff;
 }
 
@@ -545,9 +541,9 @@ img {
     line-height: 33px;
 }
 
-.quickview_body .modal_pro_wishlist > a,
-.quickview_body .modal_pro_compare > a {
-    background-color: rgb(210,57,59);
+.quickview_body .modal_pro_wishlist>a,
+.quickview_body .modal_pro_compare>a {
+    background-color: rgb(210, 57, 59);
     color: #fff;
     display: block;
     height: 35px;
@@ -557,39 +553,39 @@ img {
     font-size: 22px;
 }
 
-.quickview_body .modal_pro_wishlist > a:hover,
-.quickview_body .modal_pro_compare > a:hover {
+.quickview_body .modal_pro_wishlist>a:hover,
+.quickview_body .modal_pro_compare>a:hover {
     background-color: #000;
     color: #fff;
 }
 
-.quickview_body .modal_pro_compare > a {
-    background-color: rgb(37,42,51);
+.quickview_body .modal_pro_compare>a {
+    background-color: rgb(37, 42, 51);
     margin: 0;
 }
 
-.quickview_body .modal_pro_wishlist > a i,
-.quickview_body .modal_pro_compare > a i {
+.quickview_body .modal_pro_wishlist>a i,
+.quickview_body .modal_pro_compare>a i {
     line-height: 35px;
 }
 
-.quickview_body .share_wf > p {
+.quickview_body .share_wf>p {
     font-size: 13px;
     margin-bottom: 5px;
     text-transform: capitalize;
 }
 
-.quickview_body .share_wf ._icon > a {
+.quickview_body .share_wf ._icon>a {
     color: #888;
     font-size: 14px;
     margin-right: 5px;
 }
 
-.quickview_body .share_wf ._icon > a:hover {
+.quickview_body .share_wf ._icon>a:hover {
     color: #000;
 }
 
-.quickview_body .top_seller_product_rating > i {
+.quickview_body .top_seller_product_rating>i {
     color: #ff9800;
     font-size: 13px;
 }
@@ -599,23 +595,23 @@ img {
 ::  New Deals Area Start
 ---------------------------- */
 
-.new_deals{
-    margin-left:auto;
-    margin-right:auto;
-    width:50%
+.new_deals {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%
 }
 
-.portfolio-menu > .btn {
+.portfolio-menu>.btn {
     font-size: 14px;
     font-weight: 700;
-    color: rgb(37,42,51);
+    color: rgb(37, 42, 51);
     background-color: transparent;
     padding: 0 15px;
     text-transform: uppercase;
 }
 
-.portfolio-menu > .btn:hover {
-    color: rgb(210,57,59);
+.portfolio-menu>.btn:hover {
+    color: rgb(210, 57, 59);
     box-shadow: none;
 }
 
@@ -630,13 +626,13 @@ img {
     overflow: hidden
 }
 
-.product-img > img {
+.product-img>img {
     width: 100%;
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
 }
 
-.single_gallery_item:hover .product-img > img {
+.single_gallery_item:hover .product-img>img {
     -webkit-transform: scale(1.15);
     transform: scale(1.15);
 }
@@ -669,7 +665,7 @@ img {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
-.product-img .product-quicview > a {
+.product-img .product-quicview>a {
     width: 72px;
     height: 72px;
     border: 2px solid rgba(255, 255, 255, 0.8);
@@ -680,7 +676,7 @@ img {
     line-height: 72px;
 }
 
-.product-img .product-quicview > a:hover {
+.product-img .product-quicview>a:hover {
     border: 2px solid rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, 1);
 }
@@ -691,7 +687,7 @@ img {
 
 .product-description h4 {
     font-weight: 400;
-    color: rgb(210,57,59);
+    color: rgb(210, 57, 59);
     margin-bottom: 5px;
     display: block;
 }
@@ -699,22 +695,17 @@ img {
 .product-description p {
     font-size: 20px;
     margin: 0;
-    color:rgb(37,42,51)
+    color: rgb(37, 42, 51)
 }
 
 .product-description .add-to-cart-btn {
     margin-top: 50px;
     font-size: 12px;
     font-weight: 700;
-    color: rgb(210,57,59);
+    color: rgb(210, 57, 59);
     display: block;
 }
 
 .product-description .add-to-cart-btn:hover {
-    color: rgb(210,57,59);
+    color: rgb(210, 57, 59);
 }
-
-
-
-
-
