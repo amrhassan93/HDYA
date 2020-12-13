@@ -1,3 +1,4 @@
+import { CartComponent } from './Components/cart/cart.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './Components/home/home.component';
@@ -8,6 +9,7 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
+  {path:'cart',component:CartComponent},
   {path:'',redirectTo:'/home',pathMatch:'full'}
 ];
 

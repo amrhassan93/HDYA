@@ -10,6 +10,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { SignupComponent } from './Components/signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { CartComponent } from './Components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     HomeComponent,
     LoginComponent,
     SignupComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
