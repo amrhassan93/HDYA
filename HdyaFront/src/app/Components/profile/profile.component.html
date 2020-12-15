@@ -1,0 +1,221 @@
+<body>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-6 col-sm-12 d-flex justify-content-center">
+
+      <div class="card style_card" style="width: 18rem;">
+        <img [src]="url" class="card-img-top" style="border-radius: 50%;width: 50%;margin: auto;" alt="profile image">
+        <div class="card-body">
+          <h5 class="card-title">Reham Tarek</h5>
+        </div>
+        <div *ngIf="isdisplayed">
+          <input type="file" (change)="selectfile($event)">
+
+        </div>
+
+        <div class="card-body">
+          <input type="button" class="btn btn-primary change_image" (click)="toggledispayed()"
+            value="Change your profile image">
+          <br> <br>
+          <button class="btn btn-primary edit_profile"> <a class="edit_profile_link" href="profile/edit">Edit your
+              profile</a></button>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- end card 1 -->
+    <div class="col-md-6 col-sm-12 d-flex justify-content-center">
+
+
+
+      <!-- second card -->
+
+      <div class="card style_card" style="width: 40rem;">
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-6">
+              <label class="bmd-label-floating">First Name </label>
+            </div>
+            <div class="col-6">
+              <p class="profile_info">Reham</p>
+            </div>
+
+          </div>
+
+
+          <div class="row">
+            <div class="col-6">
+              <label class="bmd-label-floating">Last Name </label>
+            </div>
+            <div class="col-6">
+              <p class="profile_info">Tarek</p>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <label class="bmd-label-floating">E-mail </label>
+            </div>
+            <div class="col-6">
+              <p class="profile_info">Reham ididid</p>
+            </div>
+
+          </div>
+
+
+          <div class="row">
+            <div class="col-6">
+              <label class="bmd-label-floating">Mobile</label>
+            </div>
+            <div class="col-6">
+              <p class="profile_info">01159444101</p>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <label class="bmd-label-floating">Adress </label>
+            </div>
+            <div class="col-6">
+              <p class="profile_info">alamaza masr elgdida</p>
+            </div>
+
+          </div>
+
+
+
+
+          <a href="#" class="change_password">Change Password</a>
+
+
+
+
+          <p>
+            <a class="btn btn-primary Previous_order" data-bs-toggle="collapse" href="#multiCollapseExample1"
+              role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Previous Orders</a>
+          </p>
+
+          <p>
+            <a class="btn btn-primary product" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button"
+              aria-expanded="false" aria-controls="multiCollapseExample2"> Your Products</a>
+          </p>
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+    <div>
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<!--previous orders -->
+<div class="collapse multi-collapse" id="multiCollapseExample1">
+
+  <div class="row">
+    <div class="col-lg-3 col-md-12"></div>
+    <div class="col-lg-6 col-md-12 justify-content-center">
+      <div class="card order_card" style="width: 35rem;">
+        <div class="card card-body">
+          <div class="row">
+
+            <div class="col-4">
+              <img src="../../../assets/images/login.jpg" width="100%" alt="..." class="img-thumbnail">
+
+            </div>
+            <div class="col-2"></div>
+            <div class="col-4 order_details">
+              <p> face drawing </p>
+              <p> details</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+    <div class="col-lg-3 col-sm-12"></div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="collapse multi-collapse" id="multiCollapseExample2">
+
+  <div class="row">
+    <div class="col-lg-3 col-md-12"></div>
+    <div class="col-lg-6 col-md-12 justify-content-center">
+      <div class="card order_card" style="width: 35rem;">
+        <div class="card card-body">
+          <div class="row">
+
+            <div class="col-4">
+              <img src="../../../assets/images/login.jpg" width="100%" alt="..." class="img-thumbnail">
+
+            </div>
+            <div class="col-2"></div>
+            <div class="col-4 order_details">
+              <p> face drawing </p>
+              <p> details</p>
+            </div>
+
+          </div>
+
+          <div class="d-grid gap-2 d-md-block">
+            <button class="btn btn-primary edit_product" type="button">Edit</button>
+            <button class="btn btn-primary delete_product" type="button">Delete</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+    <div class="col-lg-3 col-sm-12"></div>
+  </div>
+</div>
+
+     
+
+</body>
+
+
