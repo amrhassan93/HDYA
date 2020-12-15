@@ -1,1 +1,82 @@
-<p>cart works!</p>
+
+<body>
+<div class="cart_area section_padding_100 clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="cart-table clearfix">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="cart_product_img d-flex align-items-center">
+                                    <a href="#"><img src="../../../assets/images/hand10.jpg" alt="Product"></a>
+                                    <h6>Hand Made Wooden Camera</h6>
+                                </td>
+                                <td class="price"><span>$34</span></td>
+                                <td class="qty">
+                                    <div class="quantity">
+                                        <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) && qty > 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value="1">
+                                        <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                    </div>
+                                </td>
+                                <td class="total_price"><span>$34</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cart-footer d-flex mt-30">
+                    <div class="back-to-shop w-50">
+                        <a routerLink="/home">Continue shooping</a>
+                    </div>
+                    <div class="update-checkout w-50 text-right">
+                        <a href="#">clear cart</a>
+                        <a href="#">Update cart</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 col-sm-4">
+                <div class="coupon-code-area mt-70">
+                    <div class="cart-page-heading">
+                        <h5>Coupon code</h5><br>
+                        <p>Enter your Coupon code</p>
+                    </div>
+                    <form action="#">
+                        <input type="search" name="search" placeholder="#945bd45">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </div>
+           
+            <div class="col-12 col-lg-4 col-sm-8 cart_total">
+                <div class="cart-total-area mt-70">
+                    <div class="cart-page-heading">
+                        <h5>Cart total</h5><br>
+                        <p>Final info</p>
+                    </div>
+
+                    <ul class="cart-total-chart">
+                        <li><span>Subtotal</span> <span>$59.90</span></li>
+                        <li><span>Shipping</span> <span>Free</span></li>
+                        <li><span><strong>Total</strong></span> <span><strong>$59.90</strong></span></li>
+                    </ul>
+                    <a routerLink="/checkout" class="btn karl-checkout-btn">Proceed to checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

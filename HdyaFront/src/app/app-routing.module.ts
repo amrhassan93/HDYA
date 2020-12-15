@@ -1,3 +1,6 @@
+import { SearchComponent } from './Components/search/search.component';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
+import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -10,6 +13,9 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'cart',component:CartComponent},
+  {path:'checkout',component:CheckoutComponent},
+  {path:'productdetails',component:ProductDetailsComponent},
+  {path:'search',component:SearchComponent},
   {path:'',redirectTo:'/home',pathMatch:'full'}
 ];
 

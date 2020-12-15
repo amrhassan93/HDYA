@@ -1,0 +1,71 @@
+body,
+html {
+    height: 100%;
+    font-family: 'Oswald', sans-serif;
+}
+
+body {
+    height: 100%;
+    background-image: url(../../../assets/images/register.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.formcard {
+    background-color: whitesmoke;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 20px;
+    opacity: .9;
+    float: left;
+    position: relative;
+    left: 30px;
+    margin-bottom: 80px;
+    margin-top: 40px;
+}
+
+.headerform {
+    color: rgb(210, 57, 59);
+    margin: auto;
+    font-size: 50px;
+}
+
+.sign_in,
+.sign_with_google {
+    font-size: 20px;
+    background-color: rgb(37, 42, 51);
+    margin: 20px 0;
+}
+
+.sign_in:hover,
+.sign_with_google:hover {
+    background-color: rgb(210, 57, 59);
+    ;
+}
+
+.to_login {
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.to_login a {
+    text-decoration: none;
+}
+
+.to_login a:hover {
+    color: rgb(210, 57, 59);
+}
+
+.mb-3 {
+    margin-bottom: .6rem!important;
+}
+
+.mb-3 i {
+    font-size: 20px;
+}
+
+.form-control {
+    padding: 10px;
+}

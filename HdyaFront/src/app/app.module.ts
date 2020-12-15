@@ -11,6 +11,9 @@ import { SignupComponent } from './Components/signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CartComponent } from './Components/cart/cart.component';
+import { CheckoutComponent } from './Components/checkout/checkout.component';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
+import { SearchComponent } from './Components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { CartComponent } from './Components/cart/cart.component';
     LoginComponent,
     SignupComponent,
     CartComponent,
+    CheckoutComponent,
+    ProductDetailsComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
