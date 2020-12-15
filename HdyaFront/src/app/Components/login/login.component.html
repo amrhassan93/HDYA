@@ -1,7 +1,10 @@
 <body>
 
     <div class="container">
-        <div class="card formcard">
+        <div class="row">
+            <div class="col-lg-5"></div>
+            <div class="col-lg-5">
+        <div class="card formcard" width="40rem">
             <header class="headerform"> Welcome Back</header>
 
             <div class="d-grid gap-2">
@@ -22,15 +25,15 @@
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
-                <input type="text" class="form-control" placeholder="E-mail" aria-label="E-mail" aria-describedby="basic-addon1">
+                <input type="text" #email class="form-control" placeholder="E-mail" aria-label="E-mail" aria-describedby="basic-addon1">
             </div>
 
             <div class="input-group mb-3">
-                <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="button-addon2">
+                <input type="password" class="form-control" #password placeholder="Password" aria-label="Password" aria-describedby="button-addon2">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa fa-eye"></i></button>
             </div>
 
-            <button type="button" class="btn btn-primary btn-sm sign_in">Sign In</button>
+            <button type="button" (click)="UserLogin(email.value , password.value)" class="btn btn-primary btn-sm sign_in">Sign In</button>
 
             <div class="to_login">
                 <a href="#"> Forget Password?</a>
@@ -44,7 +47,9 @@
 
         </div>
     </div>
-
+    <div class="col-lg-2"></div>
+</div>
+</div>
     <div class="ff" style="clear: both;"></div>
 
 </body>
