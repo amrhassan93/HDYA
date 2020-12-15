@@ -1,0 +1,110 @@
+body {
+    font-family: 'Oswald', sans-serif;
+}
+
+.container {
+    background-color: #f2e7e7;
+    border-radius: 10%;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+.style_card {
+    line-height: 1.5;
+    background-color:whitesmoke;
+    padding: 40px 20px;
+    margin: 20px;
+    text-align: center;
+    border-radius: 10%;
+
+
+}
+
+.bmd-label-floating{
+    font-size: 25px;
+    
+}
+
+.profile_info {
+    font-size:20px ;
+}
+
+
+.card-title{
+    font-size: 40px;
+    color:rgb(210, 57, 59) ;
+    font-style: italic;
+}
+
+.Previous_order,.product {
+    margin: auto;
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    display: block;
+}
+
+
+
+.edit_profile:hover,.change_image:hover {
+    background-color:rgb(210, 57, 59) ;
+    
+
+}
+
+.edit_profile_link {
+    text-decoration: none;
+    color: white;
+}
+
+.change_password:hover {
+   color:rgb(210, 57, 59) ;
+    
+
+}
+
+.Previous_order:hover,.product:hover {
+    background-color:rgb(210, 42, 51) ;
+
+}
+
+.img-thumbnail {
+    border-radius: 50%;
+    // display: inline-block;
+}
+
+.order_details  {
+    font-size: 30px;
+    color: rgb(37,42, 51);
+    font-style: italic;
+    margin-left: -60px;
+    margin-top: 20px;
+
+}
+
+.order_card {
+    border-radius: 5%;
+    background-color: silver;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+
+
+
+}
+
+.order_card:hover {
+    border: dotted 2px rgb(37,42, 51);
+    width: 70rem;
+}
+
+
+.edit_product,.delete_product {
+    float: right;
+    padding: 10px;
+    background-color:rgb(210, 57, 59) ;
+    margin: 10px;
+    color: white;
+}
