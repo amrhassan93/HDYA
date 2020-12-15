@@ -9,10 +9,12 @@ import { HomeComponent } from './Components/home/home.component';
 import { LoginComponent } from './Components/login/login.component';
 import { SignupComponent } from './Components/signup/signup.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+
 import { ProfileComponent } from './Components/profile/profile.component';
 import { EditComponent } from './Components/edit/edit.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {HttpClientModule} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -28,9 +30,10 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CarouselModule ,
-    HttpClientModule,
-    NgxPaginationModule 
+    NgxPaginationModule,
+    BrowserAnimationsModule,
+    CarouselModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
