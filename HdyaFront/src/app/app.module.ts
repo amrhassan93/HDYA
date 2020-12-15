@@ -18,6 +18,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { EditComponent } from './Components/edit/edit.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -28,15 +29,12 @@ import {HttpClientModule} from '@angular/common/http';
     HomeComponent,
     LoginComponent,
     SignupComponent,
-<<<<<<< HEAD
     CartComponent,
     CheckoutComponent,
     ProductDetailsComponent,
     SearchComponent,
-=======
     ProfileComponent,
     EditComponent,
->>>>>>> dcb4a21006e6dfb2ccdcbf548a732170cc50718d
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,9 @@
-
-body {
+section {
     background-image: url(../../../assets/images/register.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
-
 
 .formcard {
     background-color: whitesmoke;
@@ -14,10 +12,11 @@ body {
     font-size: 20px;
     opacity: .9;
     float: left;
-    position: relative;
-    left: 30px;
-    margin-top: 70px;
-    line-height: 2;
+    // position: relative;
+    // left: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    // line-height: 2;
 }
 
 .headerform {
@@ -36,7 +35,6 @@ body {
 .sign_in:hover,
 .sign_with_google:hover {
     background-color: rgb(210, 57, 59);
-    ;
 }
 
 .to_login {

@@ -4,10 +4,10 @@
 :: 15.0 Breadcumb Area CSS
 ------------------------ */
 
-.main{
-    margin:auto;
-    padding:auto;
-    width:50%;
+.main {
+    margin: auto;
+    padding: auto;
+    width: 70%;
 }
 
 .breadcumb_area {
@@ -22,7 +22,7 @@
 }
 
 .breadcumb_area .breadcrumb-item,
-.breadcumb_area .breadcrumb-item > a {
+.breadcumb_area .breadcrumb-item>a {
     text-transform: capitalize;
     font-size: 14px;
 }
@@ -110,11 +110,11 @@
     font-size: 18px;
 }
 
-.single_product_desc .short_overview > h6 {
+.single_product_desc .short_overview>h6 {
     font-size: 14px;
 }
 
-.single_product_desc .short_overview > p {
+.single_product_desc .short_overview>p {
     color: #888;
     font-size: 14px;
     font-weight: 300;
@@ -137,8 +137,8 @@
 
 .single_product_desc .widget.size .widget-desc a:hover,
 .single_product_desc .widget.size .widget-desc a:focus {
-    border: 2px solid rgb(210,57,59);
-    background-color: rgb(210,57,59);
+    border: 2px solid rgb(210, 57, 59);
+    background-color: rgb(210, 57, 59);
 }
 
 .single_product_desc .widget.size {
@@ -159,7 +159,7 @@
 
 .single_product_desc .cart .quantity {
     display: inline-block;
-    float:left;
+    float: left;
     position: relative;
     z-index: 1;
 }
@@ -188,7 +188,7 @@
 }
 
 .single_product_desc .cart .cart-submit {
-    background-color: rgb(210,57,59);
+    background-color: rgb(210, 57, 59);
     border: medium none;
     color: #fff;
     font-size: 14px;
@@ -199,7 +199,6 @@
     cursor: pointer;
     border-radius: 0;
 }
-
 
 .single_product_desc .card-header {
     padding: 30px 15px;
@@ -241,6 +240,5 @@
 }
 
 .mb-50 {
-    margin-bottom: 50px;
-    
+    margin-bottom: 30px;
 }

@@ -4,11 +4,11 @@
 :: 16.0 Product Sidebar Area CSS
 ------------------------------ */
 
-.section_padding_100{
-    margin:auto;
-    padding:auto;
-    width:50%;
-    padding:100px 0px;
+.section_padding_100 {
+    margin: auto;
+    padding: auto;
+    width: 80%;
+    padding: 100px 0px;
 }
 
 .mb-50 {
@@ -29,7 +29,7 @@
     border-radius: 50%;
 }
 
-.custom-control-input:checked ~ .custom-control-indicator {
+.custom-control-input:checked~.custom-control-indicator {
     background-color: #00bcd4;
     color: #fff;
     box-shadow: none !important;
@@ -127,7 +127,7 @@
     width: calc(100% + 6px);
     height: calc(100% + 6px);
     display: block;
-    border: 2px solid rgb(210,57,59);
+    border: 2px solid rgb(210, 57, 59);
     position: absolute;
     z-index: -1;
     top: -3px;
@@ -178,7 +178,7 @@
 .pagination-sm .page-item.active .page-link,
 .pagination-sm .page-link:focus {
     color: rgb(210, 57, 59);
-    border: 2px solid rgb(210,57,59);
+    border: 2px solid rgb(210, 57, 59);
     background-color: transparent;
 }
 
@@ -191,6 +191,7 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
+
 #sidebar {
     background: white;
     color: #fff;
@@ -204,39 +205,44 @@
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid rgb(37, 42 ,51);
+    border-bottom: 1px solid rgb(37, 42, 51);
 }
+
 #sidebar ul li a {
     padding: 10px;
     font-size: 1.1em;
     display: block;
 }
+
 #sidebar ul li a:hover {
     color: white;
     background: rgb(210, 57, 59);
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
     color: #fff;
     background: rgb(210, 57, 59);
 }
+
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
     background: rgb(210, 57, 59);
 }
 
-.shop_sidebar_area{
-    margin-right:50px;
-    padding:10px;
-}
-.shop_pagination_area{
-    margin: auto;
-    padding: auto;
-    width:50%;
+.shop_sidebar_area {
+    margin-right: 50px;
+    padding: 10px;
 }
 
-.add-to-cart-btn{
+.shop_pagination_area {
+    margin: auto;
+    padding: auto;
+    width: 50%;
+}
+
+.add-to-cart-btn {
     display: inline-block;
     min-width: 170px;
     height: 55px;
@@ -248,20 +254,21 @@ ul ul a {
     font-size: 14px;
     font-weight: 700;
     line-height: 49px;
-    background-color:rgb(210,57,59);
+    background-color: rgb(210, 57, 59);
 }
 
 .add-to-cart-btn:hover,
-.add-to-cart-btn:focus{
+.add-to-cart-btn:focus {
     font-weight: 700;
     color: #fff;
     background-color: rgb(37, 42, 51);
     border-color: rgb(37, 42, 51);
 }
+
 .mt-50 {
     margin-top: 30px;
 }
+
 .mb-30 {
     margin-bottom: 30px;
 }
-
