@@ -2,93 +2,88 @@
 <div class="container-fluid">
     <input type="hidden" #selection>
     <div class="card-container">
-        <div class="card card-small" (click)="selection.value = 'component'" tabindex="0">
-            <span>Crocheted </span>
+        <div class="card card-small border border-dark" (click)="selection.value = 'component'" tabindex="0">
+            <a routerLink="/search">Crocheted </a>
         </div>
         <div class="card card-small-rd" (click)="selection.value = 'component'" tabindex="0">
-            <span>Tailoring</span>
+            <a routerLink="/search">Tailoring</a>
         </div>
-        <div class="card card-small" (click)="selection.value = 'component'" tabindex="0">
-            <span>Recycling</span>
-        </div>
-        <div class="card card-small-rd" (click)="selection.value = 'component'" tabindex="0">
-            <span>Wooden products</span>
-        </div>
-        <div class="card card-small" (click)="selection.value = 'component'" tabindex="0">
-            <span>Leather products</span>
+        <div class="card card-small border border-dark" (click)="selection.value = 'component'" tabindex="0">
+            <a routerLink="/search">Recycling</a>
         </div>
         <div class="card card-small-rd" (click)="selection.value = 'component'" tabindex="0">
-            <span>Draw</span>
+            <a routerLink="/search">Wooden products</a>
         </div>
-        <div class="card card-small" (click)="selection.value = 'component'" tabindex="0">
-            <span>Glass products</span>
-        </div>
-        <div class="card card-small-rd" (click)="selection.value = 'component'" tabindex="0">
-            <span>Terracotta and clay </span>
-        </div>
-        <div class="card card-small" (click)="selection.value = 'component'" tabindex="0">
-            <span>Accessories</span>
+        <div class="card card-small border border-dark" (click)="selection.value = 'component'" tabindex="0">
+            <a routerLink="/search">Leather products</a>
         </div>
         <div class="card card-small-rd" (click)="selection.value = 'component'" tabindex="0">
-            <span>Handmade carpets</span>
+            <a routerLink="/search">Draw</a>
         </div>
-        <div class="card card-small" (click)="selection.value = 'component'" tabindex="0">
-            <span>Wicker products</span>
+        <div class="card card-small border border-dark" (click)="selection.value = 'component'" tabindex="0">
+            <a routerLink="/search">Glass products</a>
+        </div>
+        <div class="card card-small-rd" (click)="selection.value = 'component'" tabindex="0">
+            <a routerLink="/search">Terracotta and clay </a>
+        </div>
+        <div class="card card-small border border-dark" (click)="selection.value = 'component'" tabindex="0">
+            <a routerLink="/search">Accessories</a>
+        </div>
+        <div class="card card-small-rd" (click)="selection.value = 'component'" tabindex="0">
+            <a routerLink="/search">Handmade carpets</a>
+        </div>
+        <div class="card card-small border border-dark" (click)="selection.value = 'component'" tabindex="0">
+            <a routerLink="/search">Wicker products</a>
         </div>
     </div>
 </div>
 <!-- ******* End  of Categories********** -->
 
 <!-- //////////////////Path Of Photos  <img src="../../../assets/images/logo.png" alt="HDYA" height="40px" width="50px"> -->
-
-
 <section class="welcome_area">
-    <div class="welcome_slides owl-carousel">
-        <!-- Single Slide Start -->
-        <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(../../../assets/images/hand1.jpg);">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center">
-                    <div class="col-12">
-                        <div class="welcome_slide_text">
-                            <h6 data-animation="bounceInDown" data-delay="0" data-duration="500ms">* Only today we offer free shipping</h6>
-                            <h2 data-animation="fadeInUp" data-delay="500ms" data-duration="500ms">Accessories Trends</h2>
-                            <a href="#" class="btn karl-btn" data-animation="fadeInUp" data-delay="1s" data-duration="500ms">Shop Now</a>
-                        </div>
+    <div id="demo" class="carousel slide" data-ride="carousel">
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../../../assets/images/hand1.jpg" alt="hand1" width="1100" height="500">
+                <div class="carousel-caption">
+                    <div class="welcome_slide_text">
+                        <h2 data-animation="fadeInUp" data-delay="500ms" data-duration="500ms">Accessories Trends</h2>
+                        <a routerLink="/search" class="btn karl-btn" style="background-color:rgb(210,57,59);" data-animation="fadeInUp" data-delay="1s" data-duration="500ms">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../../../assets/images/hand2.jpg" alt="Chicago" width="1100" height="500">
+                <div class="carousel-caption">
+                    <div class="welcome_slide_text">
+                        <h2 data-animation="fadeInUp" data-delay="500ms" data-duration="500ms">New Recycling Collection</h2>
+                        <a routerLink="/search" class="btn karl-btn" style="background-color:rgb(210,57,59);" data-animation="fadeInLeftBig" data-delay="1s" data-duration="500ms">Check Collection</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../../../assets/images/hand3.jpg" alt="hand3" width="1100" height="500">
+                <div class="carousel-caption">
+                    <div class="welcome_slide_text">
+                        <h2 data-animation="bounceInDown" data-delay="500ms" data-duration="500ms">New Year Collection</h2>
+                        <a routerLink="/search" class="btn karl-btn" style="background-color:rgb(210,57,59);" data-animation="fadeInRightBig" data-delay="1s" data-duration="500ms">Show Now </a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Single Slide Start -->
-        <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(../../../assets/images/hand2.jpg);">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center">
-                    <div class="col-12">
-                        <div class="welcome_slide_text">
-                            <h6 data-animation="fadeInDown" data-delay="0" data-duration="500ms">* Only today we offer free shipping</h6>
-                            <h2 data-animation="fadeInUp" data-delay="500ms" data-duration="500ms">New Recycling Collection</h2>
-                            <a href="#" class="btn karl-btn" data-animation="fadeInLeftBig" data-delay="1s" data-duration="500ms">Check Collection</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Single Slide Start -->
-        <div class="single_slide height-800 bg-img background-overlay" style="background-image: url(../../../assets/images/hand3.jpg);">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center">
-                    <div class="col-12">
-                        <div class="welcome_slide_text">
-                            <h6 data-animation="fadeInDown" data-delay="0" data-duration="500ms">* Only today we offer free shipping</h6>
-                            <h2 data-animation="bounceInDown" data-delay="500ms" data-duration="500ms">New Year Collection</h2>
-                            <a href="#" class="btn karl-btn" data-animation="fadeInRightBig" data-delay="1s" data-duration="500ms">Show Now </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
     </div>
+
 </section>
 <br>
 
@@ -99,7 +94,7 @@
         <div class="catagory-content ">
             <h6>On Accesories</h6>
             <h2>Sale 30%</h2>
-            <a href="#" class="btn karl-btn">SHOP NOW</a>
+            <a routerLink="/search" class="btn karl-btn">SHOP NOW</a>
         </div>
     </div>
     <!-- Single Catagory -->
@@ -107,7 +102,7 @@
         <div class="catagory-content col-12 col-sm-6 col-md-4">
             <h6>in Bags excepting the new collection</h6>
             <h2>Designer bags</h2>
-            <a href="#" class="btn karl-btn">SHOP NOW</a>
+            <a routerLink="/search" class="btn karl-btn">SHOP NOW</a>
         </div>
     </div>
 </section>
@@ -144,7 +139,7 @@
                                     <a href="#">View Full Product Details</a>
                                 </div>
                                 <!-- Add to Cart Form -->
-                                <form class="cart" method="post">
+                                <form class="cart d-flex text-center" method="post">
                                     <div class="quantity">
                                         <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) && qty > 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
 
@@ -152,14 +147,14 @@
 
                                         <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                     </div>
-                                    <button type="submit" name="addtocart" value="5" class="cart-submit">Add to cart</button>
+                                    <a routerLink="/home" style="background-color:rgb(210,57,59);">Add to cart</a>
                                     <!-- Wishlist -->
                                     <div class="modal_pro_wishlist">
-                                        <a href="wishlist.html" target="_blank"><i class="fas fa-heart"></i></a>
+                                        <a><i class="fas fa-heart"></i></a>
                                     </div>
                                     <!-- Compare -->
                                     <div class="modal_pro_compare">
-                                        <a href="compare.html" target="_blank"><i class="fas fa-chart-line"></i></a>
+                                        <a><i class="fas fa-chart-line"></i></a>
                                     </div>
                                 </form>
 
@@ -209,7 +204,7 @@
                 <div class="product-img">
                     <img src="../../../assets/images/hand6.jpg" alt="hand6">
                     <div class="product-quicview">
-                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
+                        <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
                     </div>
                 </div>
                 <!-- Product Description -->
@@ -217,7 +212,7 @@
                     <h4 class="product-price">$20</h4>
                     <p>Accesories Dish with Rings</p>
                     <!-- Add to Cart -->
-                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                    <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
                 </div>
             </div>
 
@@ -227,15 +222,15 @@
                 <div class="product-img">
                     <img src="../../../assets/images/hand7.jpg" alt="hand7">
                     <div class="product-quicview">
-                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
+                        <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
                     </div>
                 </div>
                 <!-- Product Description -->
                 <div class="product-description">
                     <h4 class="product-price">$30 </h4>
-                    <p>Jeans midi cocktail dress</p>
+                    <p>SPECIAL COLLECTION OF CLOTH KEY CHAIN</p>
                     <!-- Add to Cart -->
-                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                    <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
                 </div>
             </div>
 
@@ -245,15 +240,15 @@
                 <div class="product-img">
                     <img src="../../../assets/images/hand8.jpg" alt="hand8">
                     <div class="product-quicview">
-                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
+                        <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
                     </div>
                 </div>
                 <!-- Product Description -->
                 <div class="product-description">
-                    <h4 class="product-price">$24</h4>
-                    <p>Jeans midi cocktail dress</p>
+                    <h4 class="product-price">$80</h4>
+                    <p>SPECIAL WOODEN COLLECTION </p>
                     <!-- Add to Cart -->
-                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                    <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
                 </div>
             </div>
 
@@ -263,15 +258,15 @@
                 <div class="product-img">
                     <img src="../../../assets/images/hand9.jpg" alt="hand9">
                     <div class="product-quicview">
-                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
+                        <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
                     </div>
                 </div>
                 <!-- Product Description -->
                 <div class="product-description">
-                    <h4 class="product-price">$33</h4>
-                    <p>Jeans midi cocktail dress</p>
+                    <h4 class="product-price">$150</h4>
+                    <p>SPECIAL COLLECTION OF HANDMADE GIFTS</p>
                     <!-- Add to Cart -->
-                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                    <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
                 </div>
             </div>
 
@@ -281,15 +276,15 @@
                 <div class="product-img">
                     <img src="../../../assets/images/hand10.jpg" alt="hand10">
                     <div class="product-quicview">
-                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
+                        <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
                     </div>
                 </div>
                 <!-- Product Description -->
                 <div class="product-description">
                     <h4 class="product-price">$14</h4>
-                    <p>Jeans midi cocktail dress</p>
+                    <p>WOODEN HANDMADE CAMERA</p>
                     <!-- Add to Cart -->
-                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                    <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
                 </div>
             </div>
 
@@ -299,15 +294,15 @@
                 <div class="product-img">
                     <img src="../../../assets/images/hand11.jpg" alt="hand11">
                     <div class="product-quicview">
-                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
+                        <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
                     </div>
                 </div>
                 <!-- Product Description -->
                 <div class="product-description">
-                    <h4 class="product-price">$22</h4>
-                    <p>Jeans midi cocktail dress</p>
+                    <h4 class="product-price">$40</h4>
+                    <p>SMALL WOODEN SHOP </p>
                     <!-- Add to Cart -->
-                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                    <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
                 </div>
             </div>
         </div>
