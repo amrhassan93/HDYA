@@ -28,21 +28,17 @@ import {HttpClientModule} from '@angular/common/http';
     HomeComponent,
     LoginComponent,
     SignupComponent,
-<<<<<<< HEAD
     CartComponent,
     CheckoutComponent,
     ProductDetailsComponent,
     SearchComponent,
-=======
     ProfileComponent,
     EditComponent,
->>>>>>> dcb4a21006e6dfb2ccdcbf548a732170cc50718d
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgxPaginationModule,
-    BrowserAnimationsModule,
     CarouselModule,
     HttpClientModule
   ],
