@@ -1,11 +1,9 @@
 @import '../../../main.css';
-
-.container{
-    margin:auto;
-    padding:auto;
-    width:50%;
+.container {
+    margin: auto;
+    padding: auto;
+    width: 70%;
 }
-
 
 .checkout_details_area form label {
     font-size: 16px;
@@ -47,8 +45,8 @@
     border-bottom: 2px solid #ebebeb;
 }
 
-.karl-checkout{
-    background-color: rgb(210,57,59);
+.karl-checkout {
+    background-color: rgb(210, 57, 59);
     display: block;
     height: 55px;
     color: #fff;
@@ -61,7 +59,7 @@
 }
 
 .karl-checkout:hover,
-.karl-checkout:focus{
+.karl-checkout:focus {
     font-weight: 700;
     color: #fff;
     background-color: rgb(37, 42, 51);

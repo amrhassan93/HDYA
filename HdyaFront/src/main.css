@@ -83,8 +83,6 @@ img {
     background-color: rgba(255, 255, 255, 0.9);
 }
 
-
-
 .mb-100 {
     margin-bottom: 100px;
 }
@@ -94,8 +92,6 @@ img {
     background-size: cover;
     background-repeat: no-repeat;
 }
-
-
 
 .bg-transparent {
     background-color: transparent;
@@ -167,9 +163,11 @@ img {
     width: 40px;
 }
 
+
 /* 
 /////////////////////////////////////////
 //////////////// Modal  //////////////////////// */
+
 #quickview button.close {
     box-shadow: none;
     position: absolute;
@@ -400,12 +398,10 @@ img {
     border-color: rgb(37, 42, 51);
 }
 
-
-
 .product-img {
     position: relative;
     z-index: 1;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .product-img>img {

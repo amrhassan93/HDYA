@@ -1,9 +1,6 @@
-
 ////////////////////Basic Style//////////////////////
 @import '../../../main.css';
-
 /////////////////////End Of Basic////////////////////////////
-
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -30,6 +27,9 @@
     background-color: rgb(210, 57, 59);
 }
 
+// .card-small {
+//     background-color: rgb(37, 42, 51);
+// }
 .card-container .card:not(:last-child) {
     margin-right: 0;
 }
@@ -43,18 +43,15 @@
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
 }
 
-.carousel-item{
-    height: 600px;
-    width:100%;
-} 
-
-
-.carousel-item img{
+.carousel-item {
     height: 600px;
     width: 100%;
 }
 
-
+.carousel-item img {
+    height: 600px;
+    width: 100%;
+}
 
 .welcome_slide_text>h2,
 .single_catagory_area h2 {
@@ -72,7 +69,6 @@
     font-size: 14px;
     margin-bottom: 5px;
 }
-
 
 .welcome_slides.owl-carousel .owl-dot.active {
     background-color: rgb(210, 57, 59);
@@ -125,16 +121,14 @@
 }
 
 
-
 /* ----------------------------
 ::  New Deals Area Start
 ---------------------------- */
 
-
-.new_deals{
-    margin-left:auto;
-    margin-right:auto;
-    width:50%
+.new_deals {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%
 }
 
 .portfolio-menu>.btn {

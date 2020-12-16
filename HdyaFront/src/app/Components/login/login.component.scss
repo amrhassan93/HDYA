@@ -1,4 +1,4 @@
-body {
+section {
     font-family: 'Oswald', sans-serif;
     background-image: url(../../../assets/images/login.jpg);
     background-position: center;
@@ -12,8 +12,8 @@ body {
     border-radius: 20px;
     font-size: 20px;
     opacity: .9;
-    // float: right;
-    margin-top: 60px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .headerform {
@@ -84,3 +84,25 @@ body {
     top: 17px;
     font-size: 20px;
 }
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  
+  .example-right-align {
+    text-align: right;
+  }
+  
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.example-right-align {
+    -moz-appearance: textfield;
+  }

@@ -18,7 +18,12 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { EditComponent } from './Components/edit/edit.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {HttpClientModule} from '@angular/common/http';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -40,7 +45,16 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     NgxPaginationModule,
     CarouselModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule,
+    MatIconModule,
+    
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
