@@ -22,15 +22,58 @@
                         </div>
                     </div>
 
-                    <div class="input-group mb-3">
+                    <!-- <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
                         <input type="text" #email class="form-control" placeholder="E-mail" aria-label="E-mail" aria-describedby="basic-addon1">
+                    </div> -->
+                    <!-- <p #email>kkkk </p> -->
+
+                    <div class="example-container">
+                        <mat-form-field>
+                          <input matInput placeholder="Enter your E-mail" #email>
+                        </mat-form-field>
                     </div>
 
-                    <div class="input-group mb-3">
+                    <!-- <div class="example-container">
+                        <mat-form-field>
+                          <input matInput #email placeholder="Enter your email" [formControl]="email" required>
+                          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                        </mat-form-field>
+                      </div> -->
+                      
+
+                    <!-- <div class="input-group mb-3">
                         <input type="password" class="form-control" #password placeholder="Password" aria-label="Password" aria-describedby="button-addon2">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa fa-eye"></i></button>
-                    </div>
+                    </div> -->
+
+                    <div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Enter your password" #password [type]="hide ? 'password' : 'text'">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </mat-form-field>
+
+  
+</div>
+
+<!-- <div class="example-container">
+    <mat-form-field>
+      <input matInput #password placeholder="Input">
+    </mat-form-field>
+  
+    <mat-form-field>
+      <textarea matInput placeholder="Textarea"></textarea>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-select placeholder="Select">
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div> -->
+
+  
+
 
                     <button type="button" (click)="UserLogin(email.value , password.value)" class="btn btn-primary btn-sm sign_in">Sign In</button>
 
