@@ -23,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { ValidateEqualModule } from 'ng-validate-equal';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,8 @@ import {MatIconModule} from '@angular/material/icon'
     MatInputModule,
     MatSelectModule,
     MatIconModule,
+    ValidateEqualModule,
+
     
     
     
