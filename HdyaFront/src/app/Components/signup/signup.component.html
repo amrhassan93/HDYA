@@ -1,11 +1,8 @@
-<section>
+<section><br>
     <div class="container">
         <div class="row">
             <div class="card formcard col-lg-6 col-sm-12" width="40rem">
-                <header class="headerform"> Hdya</header>
-                <div class="d-grid gap-2">
-                    <button class="btn btn-primary sign_with_google" type="button">Sign in with Google</button>
-                </div>
+                <header class="headerform"> Sign Up</header>
                 <div class="card-body">
                     <div class="row g-3">
                         <div class="col">
@@ -42,21 +39,28 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i> </span>
-                        <input #mobile type="text" class="form-control" placeholder="Mobile Phone" aria-label="Mobile Phone" aria-describedby="basic-addon1">
+                        <input #mobile type="text" class="form-control" placeholder="Phone Number" aria-label="Mobile Phone" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button (click)="UserRegester(username.value,email.value, password.value ,re_password.value, first_name.value , last_name.value  , mobile.value)" class="btn btn-primary sign_in" type="button">Sign Up </button>
                     </div>
 
-                    <!-- <button type="button" class="btn btn-primary btn-sm sign_in">Sign In</button> -->
-                    <div class="d-grid gap-2">
-                        <button (click)="UserRegester(username.value,email.value, password.value ,re_password.value, first_name.value , last_name.value  , mobile.value)" class="btn btn-primary sign_in" type="button">Sign In </button>
+                    <!-- google -->
+                    <div class="g">
+                        <div class="google-btn">
+                            <div class="google-icon-wrapper">
+                                <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+                            </div>
+                            <p class="btn-text"><b>Sign in with Google</b></p>
+                        </div>
                     </div>
 
                     <div class="to_login">
-                        Already have an account? <a routerLink="/login"> Log In</a>
+                        Already have an account? <a routerLink="/login">Sign in</a>
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-lg-6 col-sm-12"></div> -->
         </div>
     </div>
-    <!-- <div style="clear: both;"></div> -->
+    <br>
 </section>
