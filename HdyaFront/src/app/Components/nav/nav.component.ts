@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../../services/authentication.service'
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
   usertoken: any ;
 
-  constructor() {
+  constructor(private auth:AuthenticationService) {
 
     // if (localStorage.getItem('token')){
     //   this.usertoken = localStorage.getItem("token")
@@ -30,4 +31,12 @@ export class NavComponent implements OnInit {
     this.usertoken = localStorage.getItem('token')
     
   }
+
+  logout(){
+    this.auth.logout().subscribe(
+      (data)=>localStorage.removeItem('token'),
+      (err)=>console.log(err)
+    )
+  }
+
 }

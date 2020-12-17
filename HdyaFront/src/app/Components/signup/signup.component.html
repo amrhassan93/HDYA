@@ -8,59 +8,59 @@
                 </div>
                 <div class="card-body">
                     <form [formGroup]="profileForm">
-                    <div class="row g-3">
-                        <div class="col">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"> <i class="fa fa-user"></i></span>
-                                <input #first_name type="text" class="form-control" placeholder="Firstname" aria-label="Firstname" aria-describedby="basic-addon1" formControlName="firstName">
+                        <div class="row g-3">
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1"> <i class="fa fa-user"></i></span>
+                                    <input #first_name type="text" class="form-control" placeholder="Firstname" aria-label="Firstname" aria-describedby="basic-addon1" formControlName="firstName">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                                    <input type="text" #last_name class="form-control" placeholder="Lastname" aria-label="lastname" aria-describedby="basic-addon1" formControlName="lastName">
+                                </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
-                                <input type="text" #last_name class="form-control" placeholder="Lastname" aria-label="lastname" aria-describedby="basic-addon1" formControlName="lastName">
-                            </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
+                            <input type="text" #username class="form-control" placeholder="username" aria-label="username" aria-describedby="basic-addon1" formControlName="username">
                         </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
-                        <input type="text" #username class="form-control" placeholder="username" aria-label="username" aria-describedby="basic-addon1"formControlName="username" >
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
-                        <input type="text" #email class="form-control" placeholder="E-mail" aria-label="E-mail" aria-describedby="basic-addon1" formControlName="email">
-                    </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
+                            <input type="text" #email class="form-control" placeholder="E-mail" aria-label="E-mail" aria-describedby="basic-addon1" formControlName="email">
+                        </div>
 
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
-                        <input type="password" #password class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1"  formControlName="password">
-                    </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                            <input type="password" #password class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" formControlName="password">
+                        </div>
 
-                    <!-- <div class="invalid-feedback"
+                        <!-- <div class="invalid-feedback"
                      *ngIf="password.hasError('required')">
                     Password is required
                 </div> -->
 
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
-                        <input #re_password type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1" formControlName="confirmpassword" >
-            
-                    </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                            <input #re_password type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1" formControlName="confirmpassword">
+
+                        </div>
 
 
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i> </span>
-                        <input #mobile type="text" class="form-control" placeholder="Mobile Phone" aria-label="Mobile Phone" aria-describedby="basic-addon1" formControlName="mobile">
-                    </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i> </span>
+                            <input #mobile type="text" class="form-control" placeholder="Mobile Phone" aria-label="Mobile Phone" aria-describedby="basic-addon1" formControlName="mobile">
+                        </div>
 
-                    <div class="d-grid gap-2">
-                        <button (click)="UserRegester(username.value,email.value, password.value ,re_password.value, first_name.value , last_name.value  , mobile.value)" class="btn btn-primary sign_in" type="submit" [disabled]="!profileForm.valid">Sign In </button>
-                    </div>
+                        <div class="d-grid gap-2">
+                            <button (click)="UserRegester(username.value,email.value, password.value ,re_password.value, first_name.value , last_name.value  , mobile.value)" class="btn btn-primary sign_in" type="submit" [disabled]="!profileForm.valid">Sign In </button>
+                        </div>
 
-                    <div class="to_login">
-                        Already have an account? <a routerLink="/login"> Log In</a>
-                    </div>
-                </form>
+                        <div class="to_login">
+                            Already have an account? <a routerLink="/login"> Log In</a>
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- <div class="col-lg-6 col-sm-12"></div> -->
