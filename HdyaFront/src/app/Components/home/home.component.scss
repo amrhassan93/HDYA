@@ -27,9 +27,6 @@
     background-color: rgb(210, 57, 59);
 }
 
-// .card-small {
-//     background-color: rgb(37, 42, 51);
-// }
 .card-container .card:not(:last-child) {
     margin-right: 0;
 }
@@ -45,7 +42,8 @@
 
 .carousel-item {
     height: 600px;
-    width: 100%;
+    width: 97%;
+    padding-left: 40px;
 }
 
 .carousel-item img {

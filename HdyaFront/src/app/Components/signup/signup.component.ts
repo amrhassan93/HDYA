@@ -23,25 +23,12 @@ export class SignupComponent implements OnInit {
     validator:this.confirmedPassword.passwordMatchValidator("password","confirmpassword")
       
     })
-    
-
-
-   
-
-  // constructor(private auth:AuthenticationService,private fb: FormBuilder,private confirmedPassword:ConfirmedpasswordService) { 
-
 
   constructor(private auth:AuthenticationService , private route:Router ,private fb: FormBuilder,private confirmedPassword:ConfirmedpasswordService) { 
     if (localStorage.getItem('token')){
       this.route.navigate(['/home'])
     }
   }
-  // email:string;
-  // password:string;
-  // re_password:string;
-  // first_name:string;
-  // last_name:string;
-  // mobile:string
 
   ngOnInit(): void {
   }

@@ -1,64 +1,115 @@
-section {
-    background-image: url(../../../assets/images/register.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.formcard {
-    background-color: whitesmoke;
-    padding: 20px 20px;
-    border-radius: 20px;
-    font-size: 20px;
-    opacity: .9;
-    float: left;
-    // position: relative;
-    // left: 30px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    // line-height: 2;
-}
-
-.headerform {
-    color: rgb(210, 57, 59);
-    margin: auto;
-    font-size: 50px;
-}
-
-.sign_in,
-.sign_with_google {
-    font-size: 20px;
-    background-color: rgb(37, 42, 51);
-    margin: 20px 0;
-}
-
-.sign_in:hover,
-.sign_with_google:hover {
-    background-color: rgb(210, 57, 59);
-}
-
-.to_login {
-    font-size: 20px;
-    padding: 20px;
-    text-align: center;
-}
-
-.to_login a {
-    text-decoration: none;
-}
-
-.to_login a:hover {
-    color: rgb(210, 57, 59);
-}
-
-.mb-3 {
-    margin-bottom: .6rem!important;
-}
-
-.mb-3 i {
-    font-size: 20px;
-}
-
-.form-control {
-    padding: 10px;
-}
+    section {
+        background-image: url(../../../assets/images/signupbg.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .formcard {
+        background-color: whitesmoke;
+        padding: 20px 20px;
+        border-radius: 20px;
+        font-size: 20px;
+        opacity: .9;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin: auto;
+    }
+    
+    .headerform {
+        color: rgb(210, 57, 59);
+        margin: auto;
+        font-size: 50px;
+    }
+    
+    .sign_in,
+    .sign_with_google {
+        font-size: 20px;
+        background-color: rgb(37, 42, 51);
+        margin: 20px 0;
+    }
+    
+    .sign_in:hover,
+    .sign_with_google:hover {
+        background-color: rgb(210, 57, 59);
+    }
+    
+    .to_login {
+        font-size: 20px;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .to_login a {
+        text-decoration: none;
+    }
+    
+    .to_login a:hover {
+        color: rgb(210, 57, 59);
+    }
+    
+    .mb-3 {
+        margin-bottom: .6rem!important;
+    }
+    
+    .mb-3 i {
+        font-size: 20px;
+    }
+    
+    .form-control {
+        padding: 10px;
+    }
+    
+    //google
+    $white: #fff;
+    $google-blue: #4285f4;
+    $button-active-blue: #1669F2;
+    .g {
+        padding-bottom: 6px;
+    }
+    
+    .google-btn {
+        height: 42px;
+        background-color: $google-blue;
+        border-radius: 2px;
+        box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .25);
+        width: 100%;
+        .google-icon-wrapper {
+            position: absolute;
+            margin-top: 1px;
+            margin-left: 1px;
+            width: 40px;
+            height: 40px;
+            border-radius: 2px;
+            background-color: $white;
+        }
+        .google-icon {
+            position: absolute;
+            margin-top: 11px;
+            margin-left: 11px;
+            width: 18px;
+            height: 18px;
+        }
+        .btn-text {
+            padding-top: 10px;
+            text-align: center;
+            margin: 11px 11px 0 0;
+            color: $white;
+            font-size: 14px;
+            letter-spacing: 0.2px;
+            font-family: "Roboto";
+        }
+        &:hover {
+            box-shadow: 0 0 6px $google-blue;
+            cursor: pointer;
+        }
+        &:active {
+            background: $button-active-blue;
+        }
+    }
+    
+    @media(max-width: 576px) {
+        .formcard {
+            width: 97%;
+        }
+    }
