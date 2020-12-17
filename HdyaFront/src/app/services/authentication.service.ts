@@ -17,4 +17,9 @@ export class AuthenticationService {
   register( username:string,email:string , password:string ,re_password:string, first_name:string , last_name:string  , mobile:string ):Observable<any>{
     return this.http.post<any>("http://127.0.0.1:8000/auth/users/" , { username:username, email:email , password : password , re_password : re_password , first_name:first_name , last_name:last_name , mobile:mobile})
   }
+
+  userProfile(id:number):Observable<any>{
+    return this.http.get<any>(`http://127.0.0.1:8000/auth/users/${id}/`)
+  }
+
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../../services/authentication.service'
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-profile',
@@ -28,9 +31,15 @@ export class ProfileComponent implements OnInit {
 
   
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private auth:AuthenticationService , private activerouter:ActivatedRoute) { 
+    
   }
 
+  ngOnInit(): void {
+    let id = this.activerouter.snapshot.params['id']
+    this.auth.userProfile(id).subscribe(
+      (data)=>console.log(data),
+      (err)=>console.log(err)
+    )
+  }
 }

@@ -3,7 +3,7 @@ import { AuthenticationService } from '../../services/authentication.service'
 import { Validators, FormControl,FormGroup ,FormArray} from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import {ConfirmedpasswordService} from '../../services/confirmedpassword.service'
-
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-signup',
@@ -34,7 +34,11 @@ export class SignupComponent implements OnInit {
 
   constructor(private auth:AuthenticationService,private fb: FormBuilder,private confirmedPassword:ConfirmedpasswordService) { 
 
-  
+
+  constructor(private auth:AuthenticationService , private route:Router) { 
+    if (localStorage.getItem('token')){
+      this.route.navigate(['/home'])
+    }
   }
   // email:string;
   // password:string;
