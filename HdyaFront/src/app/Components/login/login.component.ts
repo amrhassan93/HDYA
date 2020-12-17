@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service'
 import {FormControl, Validators} from '@angular/forms';
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,9 +19,12 @@ export class LoginComponent implements OnInit {
             '';
   }
 
-  constructor(private auth:AuthenticationService) { 
+  constructor(private auth:AuthenticationService, private route:Router) { 
     // this.email = ''
     this.password = ''
+    if (localStorage.getItem('token')){
+      this.route.navigate(['/home'])
+    }
   }
 
   ngOnInit(): void {
@@ -28,8 +32,13 @@ export class LoginComponent implements OnInit {
 
   UserLogin(email:string , password:string){
     this.auth.login(email,password).subscribe(
-      (data)=>  localStorage.setItem("token" , data.auth_token),
+      (data)=>  {
+        localStorage.setItem("token" , data.auth_token) 
+        this.route.navigate(['/home'])
+    },
       (err) => alert("Wrong User name or password")
     );
   }
+
+
 }
