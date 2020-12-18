@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './Components/nav/nav.component';
@@ -13,7 +12,6 @@ import { CartComponent } from './Components/cart/cart.component';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { SearchComponent } from './Components/search/search.component';
-
 import { ProfileComponent } from './Components/profile/profile.component';
 import { EditComponent } from './Components/edit/edit.component';
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -25,6 +23,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { ValidateEqualModule } from 'ng-validate-equal';
+import { CreateProductComponent } from './Components/create-product/create-product.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +39,7 @@ import { ValidateEqualModule } from 'ng-validate-equal';
     SearchComponent,
     ProfileComponent,
     EditComponent,
+    CreateProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,10 +54,6 @@ import { ValidateEqualModule } from 'ng-validate-equal';
     MatSelectModule,
     MatIconModule,
     ValidateEqualModule,
-
-    
-    
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

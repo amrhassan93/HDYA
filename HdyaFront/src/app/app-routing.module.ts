@@ -1,3 +1,4 @@
+import { CreateProductComponent } from './Components/create-product/create-product.component';
 import { SearchComponent } from './Components/search/search.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path:'profile/edit',component:EditComponent},
   {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
+  {path:'product/createproduct',component:CreateProductComponent},
   {path:'signup',component:SignupComponent},
   {path:'cart',component:CartComponent},
   {path:'checkout',component:CheckoutComponent},
