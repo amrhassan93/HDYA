@@ -9,7 +9,8 @@ import { HomeComponent } from './Components/home/home.component';
 import { LoginComponent } from './Components/login/login.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { SignupComponent } from './Components/signup/signup.component';
-import {EditComponent} from './Components/edit/edit.component'
+import { EditComponent } from './Components/edit/edit.component'
+
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
   {path:'profile/:id',component:ProfileComponent},
