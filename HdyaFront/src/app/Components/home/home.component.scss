@@ -147,3 +147,10 @@
     margin-bottom: 50px;
     overflow: hidden
 }
+
+.animated {
+    visibility: visible !important;
+}
+.hide-on-init {
+    visibility: hidden;
+}

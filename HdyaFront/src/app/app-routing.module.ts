@@ -10,6 +10,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { SignupComponent } from './Components/signup/signup.component';
 import { EditComponent } from './Components/edit/edit.component'
 
+
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
   {path:'profile/:id',component:ProfileComponent},
@@ -21,6 +22,8 @@ const routes: Routes = [
   {path:'checkout',component:CheckoutComponent},
   {path:'productdetails',component:ProductDetailsComponent},
   {path:'search',component:SearchComponent},
+
+
   
 ];
 
