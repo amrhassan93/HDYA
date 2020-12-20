@@ -51,32 +51,31 @@ export class SignupComponent implements OnInit {
   //   }
   // }
 
-//   ConfirmedValidator(controlName: string, matchingControlName: string){
+  ConfirmedValidator(controlName: string, matchingControlName: string){
 
-//     return (formGroup: FormGroup) => {
+    return (formGroup: FormGroup) => {
 
-//         const control = formGroup.controls[controlName];
+        const control = formGroup.controls[controlName];
 
-//         const matchingControl = formGroup.controls[matchingControlName];
+        const matchingControl = formGroup.controls[matchingControlName];
 
-//         if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+        if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
 
-//             return;
+            return;
 
-//         }
+        }
 
-//         if (control.value !== matchingControl.value) {
+        if (control.value !== matchingControl.value) {
 
-//             matchingControl.setErrors({ confirmedValidator: true });
+            matchingControl.setErrors({ confirmedValidator: true });
 
-//         } else {
+        } else {
 
-//             matchingControl.setErrors(null);
+            matchingControl.setErrors(null);
 
-//         }
+        }
 
-//     }
+    }
 
-// }
+}}
 
-}
