@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 declare var jQuery: any;
+import * as AOS from 'aos';
+
 
 @Component({
   selector: 'app-product-details',
@@ -13,6 +15,8 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     jQuery('.owl-carousel').owlCarousel(); 
+    AOS.init();
+
 
   }
   customOptions: OwlOptions = {

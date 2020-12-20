@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service'
 import {FormControl, Validators} from '@angular/forms';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+import * as AOS from 'aos';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
+
 })
 export class LoginComponent implements OnInit {
   // email: string;
@@ -28,6 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    AOS.init();
   }
 
   UserLogin(email:string , password:string){
