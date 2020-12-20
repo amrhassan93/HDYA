@@ -4,6 +4,8 @@ import { Validators, FormControl,FormGroup ,FormArray} from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import {ConfirmedpasswordService} from '../../services/confirmedpassword.service'
 import { Router } from '@angular/router'
+import * as AOS from 'aos';
+
 
 @Component({
   selector: 'app-signup',
@@ -31,6 +33,7 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    AOS.init();
   }
 
   UserRegester(username:string , email:string , password:string ,re_password:string, first_name:string , last_name:string  , mobile:string) {

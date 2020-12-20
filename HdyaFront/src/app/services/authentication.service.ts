@@ -38,8 +38,15 @@ export class AuthenticationService {
   }
 
 
-  userProfile(id:number):Observable<any>{
-    return this.http.get<any>(`http://127.0.0.1:8000/auth/users/${id}/`)
+  userProfile():Observable<any>{
+    const headerDict = {
+      'Authorization':'Token ' +  localStorage.getItem('token')
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+    return this.http.get<any>(`http://127.0.0.1:8000/auth/users/me/`, requestOptions)
   }
 
 }

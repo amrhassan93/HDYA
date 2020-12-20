@@ -71,7 +71,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-4 col-lg-3">
-                <div class="shop_sidebar_area">
+                <div class="shop_sidebar_area" data-aos="fade-right" data-aos-duration="2000" data-aos-offset="300" data-aos-easing="ease-in-sine">
                     <div class="wrapper">
                         <!-- Sidebar -->
                         <nav id="sidebar">
@@ -187,7 +187,7 @@
                     <div class="row">
 
                         <!-- Single gallery Item -->
-                        <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig mb-4" data-wow-delay="0.2s">
+                        <div *ngFor="let product of productList" class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig mb-4" data-wow-delay="0.2s" data-aos="fade-up" data-aos-duration="2000">
                             <!-- Product Image -->
                             <div class="product-img">
                                 <img src="../../../assets/images/hand18.jpg " style="width: 150px; height:150px;" alt="hand18">
@@ -197,156 +197,14 @@
                             </div>
                             <!-- Product Description -->
                             <div class="product-description">
-                                <h4 class="product-price">$33</h4>
-                                <p>Wooden Gift 4</p>
+                                <h4 class="product-price">{{product.price}}</h4>
+                                <p>{{product.name}}</p>
                                 <!-- Add to Cart -->
                                 <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
                             </div>
                         </div>
 
-                        <!-- Single gallery Item -->
-                        <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig  mb-4" data-wow-delay="0.3s">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="../../../assets/images/hand14.jpg" style="width: 150px; height:150px;" alt="">
-                                <div class="product-quicview">
-                                    <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$10</h4>
-                                <p>Wooden Gift 5</p>
-                                <!-- Add to Cart -->
-                                <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
-                            </div>
-                        </div>
 
-                        <!-- Single gallery Item -->
-                        <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig  mb-4" data-wow-delay="0.4s">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="../../../assets/images/hand15.jpg" style="width: 150px; height:150px;" alt="hand15">
-                                <div class="product-quicview">
-                                    <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$22</h4>
-                                <p>Wooden Gift 6</p>
-                                <!-- Add to Cart -->
-                                <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
-                            </div>
-                        </div>
-
-                        <!-- Single gallery Item -->
-                        <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig  mb-4" data-wow-delay="0.5s">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="../../../assets/images/hand16.jpg" style="width: 150px; height:150px;" alt="hand16">
-                                <div class="product-quicview">
-                                    <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$25</h4>
-                                <p>Wooden Gift 7</p>
-                                <!-- Add to Cart -->
-                                <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
-                            </div>
-                        </div>
-
-                        <!-- Single gallery Item -->
-                        <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig  mb-4" data-wow-delay="0.6s">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="../../../assets/images/hand17.jpg" style="width: 150px; height:150px;" alt="hand17">
-                                <div class="product-quicview">
-                                    <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$18</h4>
-                                <p>Wooden Gift 8</p>
-                                <!-- Add to Cart -->
-                                <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
-                            </div>
-                        </div>
-
-                        <!-- Single gallery Item -->
-                        <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig  mb-4" data-wow-delay="0.7s">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="../../../assets/images/hand18.jpg" style="width: 150px; height:150px;" alt="hand18">
-                                <div class="product-quicview">
-                                    <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$12</h4>
-                                <p>Wooden Gift 9</p>
-                                <!-- Add to Cart -->
-                                <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
-                            </div>
-                        </div>
-
-                        <!-- Single gallery Item -->
-                        <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig  mb-4" data-wow-delay="0.8s">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="../../../assets/images/hand14.jpg" style="width: 150px; height:150px;" alt="hand14">
-                                <div class="product-quicview">
-                                    <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$14</h4>
-                                <p>Wooden Gift 10</p>
-                                <!-- Add to Cart -->
-                                <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
-                            </div>
-                        </div>
-
-                        <!-- Single gallery Item -->
-                        <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig mb-4" data-wow-delay="0.9s">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="../../../assets/images/hand15.jpg" style="width: 150px; height:150px;" alt="hand15">
-                                <div class="product-quicview">
-                                    <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$14</h4>
-                                <p>Wooden Gift 11</p>
-                                <!-- Add to Cart -->
-                                <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
-                            </div>
-                        </div>
-
-                        <!-- Single gallery Item -->
-                        <div class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig  mb-4" data-wow-delay="1s">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="../../../assets/images/hand16.jpg" style="width: 150px; height:150px;" alt="hand16">
-                                <div class="product-quicview">
-                                    <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$11</h4>
-                                <p>Wooden Gift 12</p>
-                                <!-- Add to Cart -->
-                                <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

@@ -10,51 +10,95 @@
                         <br><h5 style="font-size:30px;">ADD PRODUCT</h5>
                     </div>
 
-                    <form action="#" method="post">
+                    <form action="#" method="post" #myForm="ngForm">
                         <div class="row">
-                            <div class="col-md-12 mb-2 pr-4">
-                                <label for="name"> Name <span>*</span></label>
-                                <input type="text" class="form-control" id="first_name" value="" required>
+                            <div class="col-md-12 mb-4 ">
+                                <label for="fullName"> Full Name <span>*</span></label>
+                                <input type="text" class="form-control" name="fullName" id="fullName" value="" required minlength="15">                                  
                             </div>
-                            <div class="col-md-12 mb-2">
+                            <div class="col-md-12 mb-4">
                                 <label for="last_name">Price <span>*</span></label>
-                                <input type="text" class="form-control" id="last_name" value="" required>
+                                <input type="text" class="form-control" id="last_name" value=""  required>
                             </div>
 
-                            <div class="col-12 mb-2">
-                                <label for="details">Details <span>*</span></label>
-                                <textarea type="textarea" class="form-control" id="country" value=""></textarea>
-                            </div>
-                            <div class="col-12 mb-2">
-                                <label for="image">Image <span>*</span></label>
-                                <label class="form-label" for="customFile">Default file input example</label>
-                                <input type="file" class="form-control" id="customFile" />
-                            </div>
-                            <div class="col-12 mb-2">
-                                <label for="agefrom">Age From <span>*</span></label>
-                                <input type="text" class="form-control" id="postcode" value="" required>
-                            </div>
-                            <div class="col-12 mb-2">
-                                <label for="agefrom">Age To <span>*</span></label>
-                                <input type="text" class="form-control" id="postcode" value="" required>
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label for="occasions">Occasions <span>*</span></label>
-                                <input type="text" class="form-control" id="city" value="" required>
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label for="relationships">Relationships <span>*</span></label>
-                                <input type="text" class="form-control" id="state" value="" required>
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label for="time of creation"> Time Of Creation <span>*</span></label>
-                                <input type="number" class="form-control" id="phone_number" min="0" value="" required>
+                            <div class="col-12 mb-4">
+                                <div class="form-group">
+                                    <label for="comment">Details</label>
+                                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                                  </div>
                             </div>
                             <div class="col-12 mb-4">
-                                <label for="updation time">Updation time <span>*</span></label>
-                                <input type="email" class="form-control" id="email_address" value="" required>
+                                <label for="image">Image <span>*</span></label>
+                                <input type="file" class="form-control" id="customFile" />
                             </div>
-                        </div>
+                            <div class="col-12 mb-4">
+                                <div class="form-group row">
+                                    <label for="example-number-input" class="col-2 col-form-label">Age To<span>*</span></label>
+                                    <input class="form-control" type="date" value="today()" id="example-date-input">
+                                    </div>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <div class="form-group row">
+                                    <label for="example-number-input" class="col-2 col-form-label">Age From<span>*</span></label>
+                                    <input class="form-control" type="date" value="today()" id="example-date-input">
+                                    </div>
+                            </div>
+                            <div class="col-12 mb-4">
+                                
+                            </div>                   
+                            <div class="col-12 mb-4">
+                                <div class="form-group">
+                                    <label for="occassion">Occassion</label>
+                                    <select class="form-control" id="occassion">
+                                      <option>Birth-day</option>
+                                      <option>Merage</option>
+                                      <option>Valentine</option>
+                                    </select>
+                                  </div>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <div class="form-group">
+                                    <label for="relationship">Relationship</label>
+                                    <select class="form-control" id="relationship">
+                                      <option>Friend</option>
+                                      <option>Brother</option>
+                                      <option>Sister</option>
+                                      <option>Mother</option>
+                                      <option>Father</option>
+                                    </select>
+                                  </div>
+                            </div>
+                            <div class="col-md-12 mb-4">
+                                <div class="form-group">
+                                <label for="Category">Category <span>*</span></label>
+                                <select class="form-control" id="relationship">
+                                    <option>Glass Product</option>
+                                    <option>Wooden Product</option>
+                                    <option>Wicker Product</option>
+                                    <option>Leather Product</option>
+                                    <option>Recycling Product</option>
+                                    <option>Tailoring Product</option>
+                                    <option>Accessories</option>
+                                  </select>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <div class="form-group">
+                                    <label for="example-datetime-local-input"> Creation Time <span>*</span></label>
+                                    <input class="form-control" type="date" value="" id="example-date-input">
+                                    </div>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <div class="form-group row">
+                                    <label for="example-datetime-local-input"> Updation Time <span>*</span></label>
+                                    <input class="form-control" type="date" value="" id="example-date-input">
+                                    </div>
+                             </div>
+                             <button type="submit" class="btn btn-primary" routerLink="">ADD</button><br><br>
+                         </div>
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+</div><br>

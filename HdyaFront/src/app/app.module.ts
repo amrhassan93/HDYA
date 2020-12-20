@@ -23,6 +23,11 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { ValidateEqualModule } from 'ng-validate-equal';
 import { CreateProductComponent } from './Components/create-product/create-product.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {trigger,state,style,animate,transition,} from '@angular/animations';
+import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
+import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.component';
+
 
 @NgModule({
   declarations: [
@@ -39,6 +44,7 @@ import { CreateProductComponent } from './Components/create-product/create-produ
     ProfileComponent,
     EditComponent,
     CreateProductComponent,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +59,8 @@ import { CreateProductComponent } from './Components/create-product/create-produ
     MatSelectModule,
     MatIconModule,
     ValidateEqualModule,
+    BrowserAnimationsModule,
+    AnimateOnScrollModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

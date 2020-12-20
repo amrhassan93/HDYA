@@ -10,10 +10,12 @@ import { LoginComponent } from './Components/login/login.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { SignupComponent } from './Components/signup/signup.component';
 import { EditComponent } from './Components/edit/edit.component'
+import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.component';
+
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
-  {path:'profile/:id',component:ProfileComponent},
+  {path:'profile',component:ProfileComponent},
   {path:'profile/edit',component:EditComponent},
   {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
@@ -21,9 +23,9 @@ const routes: Routes = [
   {path:'signup',component:SignupComponent},
   {path:'cart',component:CartComponent},
   {path:'checkout',component:CheckoutComponent},
-  {path:'productdetails',component:ProductDetailsComponent},
+  {path:'productdetails/:id',component:ProductDetailsComponent},
   {path:'search',component:SearchComponent},
-  
+  {path:'**',component:PagenotfoundComponent},
 ];
 
 @NgModule({
