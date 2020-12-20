@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service'
 import { ActivatedRoute, Router } from '@angular/router';
+import { Profile } from '../../models/interfaces/profile'
 
 
 @Component({
@@ -30,15 +31,26 @@ export class ProfileComponent implements OnInit {
   }
 
   
-
+  myprofile:Profile = {
+    username:"",
+    first_name:"",
+    last_name:"",
+    address: "",
+    mobile: "",
+    avatar: "",
+    birth_date:"",
+    id: 0,
+    email: ""
+  }
   constructor(private auth:AuthenticationService , private activerouter:ActivatedRoute) { 
     
   }
 
   ngOnInit(): void {
-    let id = this.activerouter.snapshot.params['id']
-    this.auth.userProfile(id).subscribe(
-      (data)=>console.log(data),
+    // let id = this.activerouter.snapshot.params['id']
+    let usertoken = localStorage.getItem('token')
+    this.auth.userProfile().subscribe(
+      (data)=>this.myprofile=data,
       (err)=>console.log(err)
     )
   }

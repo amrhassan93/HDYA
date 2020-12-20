@@ -6,7 +6,7 @@
             <div class="card style_card" style="width: 18rem;">
                 <img [src]="url" class="card-img-top" style="border-radius: 50%;width: 50%;margin: auto;" alt="profile image">
                 <div class="card-body">
-                    <h5 class="card-title">Reham Tarek</h5>
+                    <h5 class="card-title">{{myprofile.username}}</h5>
                 </div>
                 <div *ngIf="isdisplayed">
                     <input type="file" (change)="selectfile($event)">

@@ -27,6 +27,7 @@ import { ValidateEqualModule } from 'ng-validate-equal';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {trigger,state,style,animate,transition,} from '@angular/animations';
 import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
+import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
     SearchComponent,
     ProfileComponent,
     EditComponent,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,
