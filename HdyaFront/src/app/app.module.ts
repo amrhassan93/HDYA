@@ -24,6 +24,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { ValidateEqualModule } from 'ng-validate-equal';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {trigger,state,style,animate,transition,} from '@angular/animations';
+import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
+
 
 @NgModule({
   declarations: [
@@ -53,6 +57,11 @@ import { ValidateEqualModule } from 'ng-validate-equal';
     MatSelectModule,
     MatIconModule,
     ValidateEqualModule,
+    BrowserAnimationsModule,
+    AnimateOnScrollModule.forRoot(),
+    
+    
+    
 
     
     

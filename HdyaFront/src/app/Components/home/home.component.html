@@ -1,8 +1,9 @@
 <!-- ******* Start of Categories********** -->
-<div class="container-fluid">
+<div class="container-fluid"
+>
     <input type="hidden" #selection>
     <div class="card-container">
-        <div class="card card-small border border-dark" (click)="selection.value = 'component'" tabindex="0">
+        <div class="card card-small border border-dark" (click)="selection.value = 'component'" tabindex="0" >
             <a routerLink="/search">Crocheted </a>
         </div>
         <div class="card card-small-rd" (click)="selection.value = 'component'" tabindex="0">
@@ -88,7 +89,9 @@
 <!-- ****** Top Catagory Area Start ****** -->
 <section class="top_catagory_area d-md-flex clearfix" style="width: 97%; padding-left: 40px;">
     <!-- Single Catagory -->
-    <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url(../../../assets/images/hand4.jpg);">
+    <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url(../../../assets/images/hand4.jpg);" data-aos="fade-right"
+    data-aos-offset="300"
+    data-aos-easing="ease-in-sine" data-aos-duration="2000">
         <div class="catagory-content ">
             <h6>On Accesories</h6>
             <h2>Sale 30%</h2>
@@ -96,7 +99,9 @@
         </div>
     </div>
     <!-- Single Catagory -->
-    <div class="single_catagory_area  d-flex align-items-center bg-img" style="background-image: url(../../../assets/images/hand5.jpg);">
+    <div class="single_catagory_area  d-flex align-items-center bg-img" style="background-image: url(../../../assets/images/hand5.jpg);" data-aos="fade-left"
+    data-aos-offset="300"
+    data-aos-easing="ease-in-sine" data-aos-duration="2000">
         <div class="catagory-content col-12 col-sm-6 col-md-4">
             <h6>in Bags excepting the new collection</h6>
             <h2>Designer bags</h2>
@@ -179,7 +184,12 @@
 <!-- ****** New Arrivals Area Start ****** -->
 <section class="new_arrivals_area section_padding_100_0 clearfix">
     <div class="section_heading text-center font-italic">
-        <h2>NEW DEALS</h2>
+        <h2 class="animate__heartBeat" 
+
+        data-aos="zoom-in-up"
+        data-aos-duration="2000"
+        
+        >NEW DEALS</h2>
     </div>
 
     <div class="karl-projects-menu mb-100">
@@ -197,7 +207,9 @@
         <div class="row karl-new-arrivals">
 
             <!-- Single gallery Item Start -->
-            <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s">
+            <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s" data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="2000">
                 <!-- Product Image -->
                 <div class="product-img">
                     <img src="../../../assets/images/hand6.jpg" alt="hand6">
@@ -215,7 +227,9 @@
             </div>
 
             <!-- Single gallery Item Start -->
-            <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.3s">
+            <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.3s" data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="2000">
                 <!-- Product Image -->
                 <div class="product-img">
                     <img src="../../../assets/images/hand7.jpg" alt="hand7">
@@ -233,7 +247,9 @@
             </div>
 
             <!-- Single gallery Item Start -->
-            <div class="col-12 col-sm-6 col-md-4 single_gallery_item access wow fadeInUpBig" data-wow-delay="0.4s">
+            <div class="col-12 col-sm-6 col-md-4 single_gallery_item access wow fadeInUpBig" data-wow-delay="0.4s" data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="2000">
                 <!-- Product Image -->
                 <div class="product-img">
                     <img src="../../../assets/images/hand8.jpg" alt="hand8">
@@ -251,7 +267,9 @@
             </div>
 
             <!-- Single gallery Item Start -->
-            <div class="col-12 col-sm-6 col-md-4 single_gallery_item shoes wow fadeInUpBig" data-wow-delay="0.5s">
+            <div class="col-12 col-sm-6 col-md-4 single_gallery_item shoes wow fadeInUpBig" data-wow-delay="0.5s" data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="3000">
                 <!-- Product Image -->
                 <div class="product-img">
                     <img src="../../../assets/images/hand9.jpg" alt="hand9">
@@ -269,7 +287,9 @@
             </div>
 
             <!-- Single gallery Item Start -->
-            <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.6s">
+            <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.6s" data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="3000">
                 <!-- Product Image -->
                 <div class="product-img">
                     <img src="../../../assets/images/hand10.jpg" alt="hand10">
@@ -287,7 +307,9 @@
             </div>
 
             <!-- Single gallery Item -->
-            <div class="col-12 col-sm-6 col-md-4 single_gallery_item kids man wow fadeInUpBig" data-wow-delay="0.7s">
+            <div class="col-12 col-sm-6 col-md-4 single_gallery_item kids man wow fadeInUpBig" data-wow-delay="0.7s" data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="3000">
                 <!-- Product Image -->
                 <div class="product-img">
                     <img src="../../../assets/images/hand11.jpg" alt="hand11">
@@ -307,3 +329,5 @@
     </div>
 </section>
 <!-- ****** New Arrivals Area End ****** -->
+
+
