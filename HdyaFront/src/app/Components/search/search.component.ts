@@ -27,14 +27,10 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     AOS.init();
     this._products.viewProducts().subscribe(
-<<<<<<< HEAD
       (data)=>{
         this.productList=data.results;
         // this.allproducts = this.productList
       },
-=======
-      // (data)=>this.productList=data.results,
->>>>>>> dcbba6baeef6191f111ad4859589ca9f5954c4a0
       (err)=> console.log(err) 
     )      
     // console.log(this.productList);
