@@ -26,13 +26,26 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     AOS.init();
-    this._products.viewProducts().subscribe(
-      (data)=>{
-        this.productList=data.results;
-        // this.allproducts = this.productList
-      },
-      (err)=> console.log(err) 
-    )      
+
+    if(localStorage.getItem('products')){
+
+      let searchProducts = localStorage.getItem('products')
+      // console.log(searchProducts instanceof Array);
+      
+      this.productList = JSON.parse(searchProducts)
+      localStorage.removeItem('products')
+    }
+    else {
+      this._products.viewProducts().subscribe(
+        (data)=>{
+          this.productList=data.results;
+          // this.allproducts = this.productList
+        },
+        (err)=> console.log(err) 
+      )    
+    }
+
+  
     // console.log(this.productList);
 
 
@@ -41,6 +54,21 @@ export class SearchComponent implements OnInit {
       (err) => console.log(err) 
     )
 
+  }
+
+  ngDoCheck(): void {
+  
+    if(localStorage.getItem('products')){
+
+      let searchProducts = localStorage.getItem('products')
+      // console.log(searchProducts instanceof Array);
+      
+      this.productList = JSON.parse(searchProducts)
+      localStorage.removeItem('products')
+    }   
+    
+    
+    
   }
 
   resetFilters(){
@@ -128,6 +156,21 @@ export class SearchComponent implements OnInit {
    }
    this.productList = this.filterdProducts
    this.filterdProducts = []
+  }
+
+  search(searchKey:string){
+
+    for (let i = 0 ; i < this.productList.length ; i++){
+      if (this.productList[i].name.toLowerCase().includes(searchKey.toLowerCase())){
+        this.filterdProducts.push(this.productList[i])
+      }else{
+        console.log('this is not in products');
+      }
+    }
+
+    this.productList = this.filterdProducts
+    this.filterdProducts = []
+     console.log(this.productList)
   }
 
 }
