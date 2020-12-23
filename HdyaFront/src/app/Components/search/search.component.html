@@ -75,66 +75,23 @@
                     <div class="wrapper">
                         <!-- Sidebar -->
                         <nav id="sidebar">
+                            <button (click)="resetFilters()" class="btn btn-info">Reset Filters</button>
                             <div class="sidebar-header text-center" style="background-color: rgb(236, 236, 236);">
-                                <h3>Categories</h3>
+                                <h3>Filters</h3>
                             </div>
                             <ul class="list-unstyled components">
                                 <li class="active">
-                                    <a href="#WoodenProductsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Wooden Products</a>
+                                    <a href="#WoodenProductsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Category List</a>
                                     <ul class="collapse list-unstyled" id="WoodenProductsSubmenu">
-                                        <li>
-                                            <a routerLink="/search">Camera</a>
+
+                                        <li *ngFor="let cat of categoryList">
+                                            <a (click)="showProductsbyID(cat.id)">{{cat.title}}</a>
                                         </li>
-                                        <li>
-                                            <a routerLink="/search">Toys</a>
-                                        </li>
-                                        <li>
-                                            <a routerLink="/search">Shapes</a>
-                                        </li>
+
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#leatherproductsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Leather Products</a>
-                                    <ul class="collapse list-unstyled" id="leatherproductsSubmenu">
-                                        <li>
-                                            <a routerLink="/search">Leather Coasters</a>
-                                        </li>
-                                        <li>
-                                            <a routerLink="/search">Leather Wrapped Flask</a>
-                                        </li>
-                                        <li>
-                                            <a routerLink="/search">Leather Notebook</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#glassproductsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Glass Products</a>
-                                    <ul class="collapse list-unstyled" id="glassproductsSubmenu">
-                                        <li>
-                                            <a routerLink="/search">Flowers Glass</a>
-                                        </li>
-                                        <li>
-                                            <a routerLink="/search">Oil And Vineagar GLass</a>
-                                        </li>
-                                        <li>
-                                            <a routerLink="/search">Candy Jars GLass</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#handmadecarpetsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Hand Made Carpets</a>
-                                    <ul class="collapse list-unstyled" id="handmadecarpetsSubmenu">
-                                        <li>
-                                            <a routerLink="/search">Carpets For Living Room</a>
-                                        </li>
-                                        <li>
-                                            <a routerLink="/search">Carpets For Bed Room</a>
-                                        </li>
-                                        <li>
-                                            <a routerLink="/search">Carpets For Bath Room</a>
-                                        </li>
-                                    </ul>
-                                </li>
+
                             </ul>
                         </nav>
                     </div>
@@ -142,14 +99,23 @@
                     <div class="widget price mt-50">
                         <h6 class="widget-title mb-30">Filter by Price</h6><br>
                         <div class="widget-desc">
-                            <div class="slider-range">
+
+                            <label for="minpricefilter">Min Age</label>
+                            <p>{{minprice}}</p>
+                            <input #filterminprice [(ngModel)]="minprice" type="range" max="10000" min="0" step="1" value="0" id="minpricefilter">
+
+                            <label for="maxpricefilter">Min Age</label>
+                            <p>{{maxprice}}</p>
+                            <input #filtermaxprice [(ngModel)]="maxprice" type="range" max="10000" min="0" step="1" value="1000" id="maxpricefilter">
+                            <button class="btn btn-success" (click)="getproductsbyprice(filterminprice.value , filtermaxprice.value)">Price filter</button>
+                            <!-- <div class="slider-range">
                                 <div data-min="0" data-max="3000" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="0" data-value-max="1350" data-label-result="Price:">
                                     <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
                                     <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
                                     <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
                                 </div>
                                 <div class="range-price">Price: 0 - 1350</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -158,9 +124,9 @@
                         <h6 class="widget-title mb-30">Filter by Gender</h6>
                         <div class="widget-desc">
                             <ul class="justify-content-between">
-                                <input type="checkbox" name="male" value="male">Male
-                                <input type="checkbox" name="female" value="female">Female<br>
-                                <input type="checkbox" name="both" value="male"> Both<br>
+                                <input #pmale (change)="getproductsbygender(pmale.value)" type="radio" name="genderfilter" value="m">Male
+                                <input #pfemale (change)="getproductsbygender(pfemale.value)" type="radio" name="genderfilter" value="f">Female<br>
+                                <input #pboth (change)="getproductsbygender(pboth.value)" type="radio" name="genderfilter" value="b"> Both<br>
                             </ul>
                         </div>
                     </div>
@@ -169,14 +135,23 @@
                         <br>
                         <h6 class="widget-title">Filter by Age</h6><br>
                         <div class="widget-desc">
-                            <ul class=" justify-content-between">
-                                <li><a routerLink="#">0-3</a></li>
+
+                            <label for="minrangefilter">Min Age</label>
+                            <p>{{minrange}}</p>
+                            <input #filterminage [(ngModel)]="minrange" type="range" max="100" min="0" step="1" value="10" id="minrangefilter">
+
+                            <label for="maxrangefilter">Min Age</label>
+                            <p>{{maxrange}}</p>
+                            <input #filtermaxage [(ngModel)]="maxrange" type="range" max="100" min="0" step="1" value="70" id="maxrangefilter">
+                            <button class="btn btn-success" (click)="getproductsbyage(filterminage.value , filtermaxage.value)">age filter</button>
+                            <!-- <ul class=" justify-content-between">
+                                <li><a (click)="getproductsbyage(10,13)">0-3</a></li>
                                 <li><a routerLink="#">3-10</a></li>
                                 <li><a routerLink="#">10-18</a></li>
                                 <li><a routerLink="#">18-30</a></li>
                                 <li><a routerLink="#">30-50</a></li>
                                 <li><a routerLink="#">50-70</a></li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                 </div>
@@ -192,7 +167,7 @@
                             <div class="product-img">
                                 <img src="../../../assets/images/hand18.jpg " style="width: 150px; height:150px;" alt="hand18">
                                 <div class="product-quicview">
-                                    <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
+                                    <a data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
                                 </div>
                             </div>
                             <!-- Product Description -->

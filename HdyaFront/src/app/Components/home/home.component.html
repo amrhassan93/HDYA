@@ -14,10 +14,10 @@
 <div class="container-fluid">
     <input type="hidden" #selection>
     <div class="card-container">
-        <div class="card card-small border border-dark" (click)="selection.value = 'component'" tabindex="0">
-            <a routerLink="/search">Crocheted </a>
+        <div *ngFor="let cat of categoryList" class="card card-small border border-dark" (click)="selection.value = 'component'" tabindex="0">
+            <a routerLink="/search">{{cat.title}} </a>
         </div>
-        <div class="card card-small-rd" (click)="selection.value = 'component'" tabindex="0">
+        <!-- <div class="card card-small-rd" (click)="selection.value = 'component'" tabindex="0">
             <a routerLink="/search">Tailoring</a>
         </div>
         <div class="card card-small border border-dark" (click)="selection.value = 'component'" tabindex="0">
@@ -46,7 +46,7 @@
         </div>
         <div class="card card-small border border-dark" (click)="selection.value = 'component'" tabindex="0">
             <a routerLink="/search">Wicker </a>
-        </div>
+        </div> -->
     </div>
 </div>
 <!-- ******* End  of Categories********** -->
