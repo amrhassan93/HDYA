@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     AOS.init();
     this._products.viewProducts().subscribe(
-      (data)=>this.productList=data.results,
+      // (data)=>this.productList=data.results,
       (err)=> console.log(err) 
     )      
     console.log(this.productList);
