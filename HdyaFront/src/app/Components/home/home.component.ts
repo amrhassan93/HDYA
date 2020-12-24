@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { state, style, transition, trigger ,animate,group,keyframes} from '@angular/animations';
 import * as AOS from 'aos';
+import { ProductsService } from '../../services/products.service'
+import { Category } from '../../models/interfaces/category'
 
 
 declare var jQuery: any;
@@ -20,13 +22,17 @@ declare var jQuery: any;
 
 
 export class HomeComponent implements OnInit {
+  categoryList:Category[]=[];
 
-  constructor() { }
+  constructor(private _products:ProductsService) { }
 
   ngOnInit(){
     // jQuery('.owl-carousel').owlCarousel(); 
     AOS.init();
-
+    this._products.showcategories().subscribe(
+      (data)=>this.categoryList = data.results,
+      (err) => console.log(err) 
+    )
   }
   customOptions: OwlOptions = {
     loop: true,

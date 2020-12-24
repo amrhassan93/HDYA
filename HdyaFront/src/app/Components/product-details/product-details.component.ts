@@ -16,17 +16,16 @@ export class ProductDetailsComponent implements OnInit {
                         name : "" ,
                         price: 0,
                         details: "" , 
-                        img: "" ,
                         age_from : 0 ,
                         age_to:0 ,
                         gender : "", 
-                        occassions: "" , 
-                        category: "" ,
-                        catId: 0 ,
-                        relationships: "" ,
+                        occassions: [] , 
+                        category: 0 ,
+                        relationships: [] ,
                         is_featured: false ,
                         created_at: "" ,
                         updated_at: "" ,
+                        productpicture_set:[]
                       };
                            
   constructor(private _products:ProductsService , private activerouter:ActivatedRoute) { }
