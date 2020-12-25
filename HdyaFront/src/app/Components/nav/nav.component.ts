@@ -51,7 +51,7 @@ export class NavComponent implements OnInit {
 
     // }
     this._products.viewProducts().subscribe(
-      (data)=>this.productList=data,
+      (data)=>this.productList=data.results,
       (err)=> console.log(err) 
     )   
 
