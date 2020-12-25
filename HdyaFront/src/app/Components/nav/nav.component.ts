@@ -3,7 +3,6 @@ import { AuthenticationService } from '../../services/authentication.service'
 import { ProductsService } from '../../services/products.service'
 import { Product } from '../../models/interfaces/product'
 import { Category } from '../../models/interfaces/category'
-import { title } from 'process';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 
