@@ -32,7 +32,7 @@ export class SearchComponent implements OnInit {
       let searchProducts = localStorage.getItem('products')
       // console.log(searchProducts instanceof Array);
       
-      this.productList = JSON.parse(searchProducts)
+      this.productList = JSON.parse(searchProducts || '{}')
       localStorage.removeItem('products')
     }
     else {
@@ -63,7 +63,7 @@ export class SearchComponent implements OnInit {
       let searchProducts = localStorage.getItem('products')
       // console.log(searchProducts instanceof Array);
       
-      this.productList = JSON.parse(searchProducts)
+      this.productList = JSON.parse(searchProducts || '{}')
       localStorage.removeItem('products')
     }   
     

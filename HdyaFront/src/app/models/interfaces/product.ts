@@ -12,7 +12,7 @@ export interface Product {
     is_featured:boolean;
     created_at?:string;
     updated_at?:string;
-    productpicture_set:Array<object>;
+    pimage:Array<object>;
 }
    
     

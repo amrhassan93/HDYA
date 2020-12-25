@@ -37,7 +37,7 @@ export class CreateProductComponent implements OnInit {
       price:0,
       age_from:0,
       age_to:0,
-      productpicture_set:[]
+      pimage:[]
     }
     // this.gender="";
     // this.details = "";
@@ -56,7 +56,7 @@ export class CreateProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.newproduct.productpicture_set instanceof Array);
+    console.log(this.newproduct.pimage instanceof Array);
   }
 
 
@@ -78,8 +78,10 @@ export class CreateProductComponent implements OnInit {
 
     for (let i=0; i<event.target.files.length; i++){
       console.log(event.target.files[i]);
-      this.newproduct.productpicture_set.push(event.target.files[i])
+      this.newproduct.pimage.push({pimage:event.target.files[i]})
     }  
+    console.log(this.newproduct.pimage);
+    
     // if(event.target.files && event.target.files[0].type.includes('image')){
       
     // }

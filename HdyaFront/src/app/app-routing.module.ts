@@ -11,11 +11,12 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { SignupComponent } from './Components/signup/signup.component';
 import { EditComponent } from './Components/edit/edit.component'
 import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.component';
-
+import { AboutComponent } from './Components/about/about.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
   {path:'profile',component:ProfileComponent},
+  {path:'about',component:AboutComponent},
   {path:'profile/edit',component:EditComponent},
   {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
