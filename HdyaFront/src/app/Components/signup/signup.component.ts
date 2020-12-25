@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service'
-import { Validators, FormControl,FormGroup ,FormArray} from '@angular/forms';
+import { FormControl,FormGroup ,FormArray,Validators} from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import {ConfirmedpasswordService} from '../../services/confirmedpassword.service'
 import { Router } from '@angular/router'
@@ -14,12 +14,12 @@ import * as AOS from 'aos';
 })
 export class SignupComponent implements OnInit {
   profileForm = this.fb.group({
-    firstName: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(15)]],
-    lastName: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(15)]],
+    firstname: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(15)]],
+    lastname: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(15)]],
     email: ['',[Validators.required,Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
     username:['',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]],
     mobile:['',[Validators.required,Validators.pattern("^01[0-2]{1}[0-9]{8}")]],
-    password:['',Validators.required],
+    password:['',[Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
     confirmpassword:['',Validators.required] },
     { 
     validator:this.confirmedPassword.passwordMatchValidator("password","confirmpassword")
