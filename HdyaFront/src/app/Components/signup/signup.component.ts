@@ -14,9 +14,9 @@ import * as AOS from 'aos';
 })
 export class SignupComponent implements OnInit {
   profileForm = this.fb.group({
-    firstname: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(15)]],
+    firstname: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(15),Validators.pattern("^[a-zA-Z]$")]],
     lastname: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(15)]],
-    email: ['',[Validators.required,Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
+    email: ['',[Validators.required,Validators.email,Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$")]],
     username:['',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]],
     mobile:['',[Validators.required,Validators.pattern("^01[0-2]{1}[0-9]{8}")]],
     password:['',[Validators.required,Validators.minLength(6),Validators.maxLength(30)]],

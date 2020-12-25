@@ -11,11 +11,12 @@
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"> <i class="fa fa-user"></i></span>
-                                    <input #first_name type="text" class="form-control" placeholder="Firstname" aria-label="Firstname" aria-describedby="basic-addon1" formControlName="firstname" required >
+                                    <input #first_name type="text" class="form-control ng-untouched ng-pristine ng-valid" placeholder="Firstname" aria-label="Firstname" aria-describedby="basic-addon1" formControlName="firstname" required >
                                     <p *ngIf="! profileForm.controls.firstname.pristine && profileForm.controls.firstname.errors?.minlength" class="alert alert-danger">Firstname should be greater than 2 character!</p>
                   <p *ngIf="!profileForm.controls.firstname.pristine && profileForm.controls.firstname.errors?.required" class="alert alert-danger">Firstname is required!</p>
                   <p *ngIf="!profileForm.controls.firstname.pristine && profileForm.controls.firstname.errors?.maxlength" class="alert alert-danger" >Firstname should be less than 15 character!</p>
-                                    </div>
+    
+                </div>
 
                                 </div>
 
@@ -23,7 +24,7 @@
 
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
-                                    <input type="text" #last_name class="form-control" placeholder="Lastname" aria-label="lastname" aria-describedby="basic-addon1" formControlName="lastname" required>
+                                    <input type="text" #last_name class="form-control ng-untouched ng-pristine ng-valid" placeholder="Lastname" aria-label="lastname" aria-describedby="basic-addon1" formControlName="lastname" required>
                                     <p *ngIf="! profileForm.controls.lastname.pristine && profileForm.controls.lastname.errors?.minlength" class="alert alert-danger">Lastname should be greater than 2 character!</p>
                                     <p *ngIf="!profileForm.controls.lastname.pristine && profileForm.controls.lastname.errors?.required" class="alert alert-danger">Lastname is required!</p>
                                     <p *ngIf="!profileForm.controls.lastname.pristine && profileForm.controls.lastname.errors?.maxlength" class="alert alert-danger" >Lastname should be less than 15 character!</p>
@@ -52,17 +53,17 @@
      
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
-                    <input type="text" #email class="form-control" placeholder="E-mail" aria-label="E-mail" aria-describedby="basic-addon1" formControlName="email" required>
+                    <input type="text" #email class="form-control ng-untouched ng-pristine ng-valid" placeholder="E-mail" aria-label="E-mail" aria-describedby="basic-addon1" formControlName="email" required>
                     <p *ngIf="! profileForm.controls.email.pristine && profileForm.controls.email.errors?.pattern" class="alert alert-danger">Email should be like HDYA12@gmail.com</p>
                     <p *ngIf="!profileForm.controls.email.pristine && profileForm.controls.email.errors?.required && profileForm.controls.email.errors?.email" class="alert alert-danger">E-mail is require!</p>
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
-                    <input type="password" #password class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" formControlName="password" required>
-                    <p *ngIf="! profileForm.controls.password.pristine && profileForm.controls.password.errors?.minlength" class="alert alert-danger">Password should be greater than 6 character or numbers!</p>
-                    <p *ngIf="!profileForm.controls.password.pristine && profileForm.controls.password.errors?.required" class="alert alert-danger">Password is require!</p>
-                    <p *ngIf="!profileForm.controls.password.pristine && profileForm.controls.password.errors?.maxlength" class="alert alert-danger" >Password should be less than 30 character!</p>
+                    <input type="password" #password class="form-control ng-untouched ng-pristine ng-valid" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" formControlName="password" required>
+                    <p *ngIf="! profileForm.controls.password.pristine && profileForm.controls.password.errors?.minlength" class="alert alert-danger help-block">Password should be greater than 6 character or numbers!</p>
+                    <p *ngIf="!profileForm.controls.password.pristine && profileForm.controls.password.errors?.required" class="alert alert-danger help-block">Password is require!</p>
+                    <p *ngIf="!profileForm.controls.password.pristine && profileForm.controls.password.errors?.maxlength" class="alert alert-danger help-block" >Password should be less than 30 character!</p>
                 
                 </div>
                            
@@ -70,8 +71,7 @@
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
-                    <input #re_password type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1" formControlName="confirmpassword" required>
-                    <!-- <p *ngIf="!profileForm.controls.confirmpassword.pristine && profileForm.controls.mobile.errors?.required" class="alert alert-danger">Password is require!</p> -->
+                    <input #re_password type="password" class="form-control ng-untouched ng-pristine ng-valid" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1" formControlName="confirmpassword" required>
 
                  </div> 
                  
@@ -80,12 +80,11 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i> </span>
-                        <input #mobile  type="text" class="form-control " placeholder="Phone Number" aria-label="Mobile Phone" aria-describedby="basic-addon1" formControlName="mobile" required>
-    
+                        <input #mobile  type="text" class="form-control ng-untouched ng-pristine ng-valid" placeholder="Phone Number" aria-label="Mobile Phone" aria-describedby="basic-addon1" formControlName="mobile" required>
                         <p *ngIf="! profileForm.controls.mobile.pristine && profileForm.controls.mobile.errors?.pattern" class="alert alert-danger">Mobil PHone should be like 01234567890!</p>
                         <p *ngIf="!profileForm.controls.mobile.pristine && profileForm.controls.mobile.errors?.required" class="alert alert-danger">Password is require!</p>
                         
-                        <!-- ng-untouched ng-pristine ng-valid -->
+                        <!-- ng-untouched ng-pristine ng-valid --> 
     
                     </div>
                 
