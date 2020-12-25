@@ -32,13 +32,13 @@ export class SearchComponent implements OnInit {
       let searchProducts = localStorage.getItem('products')
       // console.log(searchProducts instanceof Array);
       
-      this.productList = JSON.parse(searchProducts)
+      this.productList = JSON.parse(searchProducts || '{}')
       localStorage.removeItem('products')
     }
     else {
       this._products.viewProducts().subscribe(
         (data)=>{
-          this.productList=data.results;
+          this.productList=data;
           // this.allproducts = this.productList
         },
         (err)=> console.log(err) 
@@ -50,7 +50,7 @@ export class SearchComponent implements OnInit {
 
 
     this._products.showcategories().subscribe(
-      (data)=>this.categoryList = data.results,
+      (data)=>this.categoryList = data,
       (err) => console.log(err) 
     )
 
@@ -63,7 +63,7 @@ export class SearchComponent implements OnInit {
       let searchProducts = localStorage.getItem('products')
       // console.log(searchProducts instanceof Array);
       
-      this.productList = JSON.parse(searchProducts)
+      this.productList = JSON.parse(searchProducts || '{}')
       localStorage.removeItem('products')
     }   
     
@@ -73,7 +73,7 @@ export class SearchComponent implements OnInit {
   resetFilters(){
     this._products.viewProducts().subscribe(
       (data)=>{
-        this.productList=data.results;
+        this.productList=data;
         // this.allproducts = this.productList
       },
       (err)=> console.log(err) 

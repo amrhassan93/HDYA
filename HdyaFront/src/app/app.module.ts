@@ -27,6 +27,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {trigger,state,style,animate,transition,} from '@angular/animations';
 import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
 import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.component';
+import { ReactiveValidationModule } from 'angular-reactive-validation';
+import { CustomFormsModule } from 'ng2-validation'
 import { DollartoegpPipe } from './Pipes/dollartoegp.pipe';
 import { AboutComponent } from './Components/about/about.component';
 
@@ -65,6 +67,8 @@ import { AboutComponent } from './Components/about/about.component';
     ValidateEqualModule,
     BrowserAnimationsModule,
     AnimateOnScrollModule.forRoot(),
+    CustomFormsModule,
+    ReactiveValidationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

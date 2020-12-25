@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     // jQuery('.owl-carousel').owlCarousel(); 
     AOS.init();
     this._products.showcategories().subscribe(
-      (data)=>this.categoryList = data.results,
+      (data)=>this.categoryList = data,
       (err) => console.log(err) 
     )
   }

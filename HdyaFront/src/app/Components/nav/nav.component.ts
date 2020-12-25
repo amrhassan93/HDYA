@@ -3,7 +3,6 @@ import { AuthenticationService } from '../../services/authentication.service'
 import { ProductsService } from '../../services/products.service'
 import { Product } from '../../models/interfaces/product'
 import { Category } from '../../models/interfaces/category'
-import { title } from 'process';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 
@@ -37,11 +36,11 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this._products.viewProducts().subscribe(
-      (data)=>this.productList=data.results,
+      (data)=>this.productList=data,
       (err)=> console.log(err) 
     )      
     this._products.showcategories().subscribe(
-      (data)=>this.categoryList = data.results,
+      (data)=>this.categoryList = data,
       (err) => console.log(err) 
     )
   }
@@ -52,7 +51,7 @@ export class NavComponent implements OnInit {
 
     // }
     this._products.viewProducts().subscribe(
-      (data)=>this.productList=data.results,
+      (data)=>this.productList=data,
       (err)=> console.log(err) 
     )   
 
