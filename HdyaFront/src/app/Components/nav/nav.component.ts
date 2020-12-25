@@ -36,11 +36,11 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this._products.viewProducts().subscribe(
-      (data)=>this.productList=data,
+      (data)=>this.productList=data.results,
       (err)=> console.log(err) 
     )      
     this._products.showcategories().subscribe(
-      (data)=>this.categoryList = data,
+      (data)=>this.categoryList = data.results,
       (err) => console.log(err) 
     )
   }

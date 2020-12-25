@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
     else {
       this._products.viewProducts().subscribe(
         (data)=>{
-          this.productList=data;
+          this.productList=data.results;
           // this.allproducts = this.productList
         },
         (err)=> console.log(err) 
@@ -50,7 +50,7 @@ export class SearchComponent implements OnInit {
 
 
     this._products.showcategories().subscribe(
-      (data)=>this.categoryList = data,
+      (data)=>this.categoryList = data.results,
       (err) => console.log(err) 
     )
 
@@ -73,7 +73,7 @@ export class SearchComponent implements OnInit {
   resetFilters(){
     this._products.viewProducts().subscribe(
       (data)=>{
-        this.productList=data;
+        this.productList=data.results;
         // this.allproducts = this.productList
       },
       (err)=> console.log(err) 
