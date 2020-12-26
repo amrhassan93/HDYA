@@ -27,6 +27,7 @@
     "angular-reactive-validation": "^5.0.0",
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",
+    "chokidar": "^3.4.3",
     "jquery": "^3.5.1",
     "jw-angular-pagination": "^1.2.0",
     "ng-validate-equal": "^1.0.4",
