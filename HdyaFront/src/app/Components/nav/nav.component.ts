@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service'
+import { ProductsService } from '../../services/products.service'
+import { Product } from '../../models/interfaces/product'
+import { Category } from '../../models/interfaces/category'
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-nav',
@@ -8,8 +13,16 @@ import { AuthenticationService } from '../../services/authentication.service'
 })
 export class NavComponent implements OnInit {
   usertoken: any ;
+  productList: Product[] = [];
+  filteredProductList: Product[] = [];
 
-  constructor(private auth:AuthenticationService) {
+  categoryList:Category[]=[];
+
+  constructor(private auth:AuthenticationService ,
+              private _products:ProductsService ,
+              private route:Router,
+              // private activerouter:ActivatedRoute,
+              ) {
 
     // if (localStorage.getItem('token')){
     //   this.usertoken = localStorage.getItem("token")
@@ -22,6 +35,39 @@ export class NavComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this._products.viewProducts().subscribe(
+      (data)=>this.productList=data.results,
+      (err)=> console.log(err) 
+    )      
+    this._products.showcategories().subscribe(
+      (data)=>this.categoryList = data.results,
+      (err) => console.log(err) 
+    )
+  }
+
+  search(searchKey:string){
+    // let id = this.activerouter.snapshot.params['id']
+    // if(this.activerouter.snapshot.routeConfig ){
+
+    // }
+    this._products.viewProducts().subscribe(
+      (data)=>this.productList=data.results,
+      (err)=> console.log(err) 
+    )   
+
+    for (let i = 0 ; i < this.productList.length ; i++){
+      if (this.productList[i].name.toLowerCase().includes(searchKey.toLowerCase())){
+        this.filteredProductList.push(this.productList[i])
+      }else{
+        console.log('this is not in products');
+      }
+    }
+
+    this.productList = this.filteredProductList
+    this.filteredProductList = []
+     console.log(this.productList)
+    localStorage.setItem('products' ,  JSON.stringify(this.productList))
+    return this.route.navigate(['/search'] )
 
   }
 

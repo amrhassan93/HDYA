@@ -1,6 +1,16 @@
 ////////////////////Basic Style//////////////////////
 @import '../../../main.css';
 /////////////////////End Of Basic////////////////////////////
+.animate__flash {
+    background-color: rgb(210, 57, 59);
+    color: whitesmoke;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 30px;
+    padding: 15px;
+    font-style: italic;
+}
+
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -151,6 +161,7 @@
 .animated {
     visibility: visible !important;
 }
+
 .hide-on-init {
     visibility: hidden;
 }

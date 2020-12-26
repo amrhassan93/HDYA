@@ -1,9 +1,7 @@
 <section><br>
     <div class="container">
         <div class="row">
-            <div class="card formcard col-lg-6 col-sm-12" width="40rem"data-aos="flip-right"
-             data-aos-easing="ease-in-sine"
-            data-aos-duration="2000">
+            <div class="card formcard col-lg-6 col-sm-12" width="40rem" data-aos="flip-right" data-aos-easing="ease-in-sine" data-aos-duration="1000">
                 <header class="headerform"> Sign Up</header>
                 <div class="card-body">
                     <form [formGroup]="profileForm">
@@ -11,44 +9,97 @@
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"> <i class="fa fa-user"></i></span>
-                                    <input #first_name type="text" class="form-control" placeholder="Firstname" aria-label="Firstname" aria-describedby="basic-addon1" formControlName="firstName">
+                                    <input #first_name type="text" class="form-control ng-untouched ng-pristine ng-valid" placeholder="Firstname" aria-label="Firstname" aria-describedby="basic-addon1" formControlName="firstname" required >
+
                                 </div>
-                            </div>
+                                <p *ngIf="! profileForm.controls.firstname.pristine && profileForm.controls.firstname.errors?.minlength" class="alert alert-danger">Firstname should be greater than 2 character!</p>
+                                <p *ngIf="!profileForm.controls.firstname.pristine && profileForm.controls.firstname.errors?.required" class="alert alert-danger">Firstname is required!</p>
+                                <p *ngIf="!profileForm.controls.firstname.pristine && profileForm.controls.firstname.errors?.maxlength" class="alert alert-danger" >Firstname should be less than 15 character!</p>
+                                </div>
+
                             <div class="col">
+
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
-                                    <input type="text" #last_name class="form-control" placeholder="Lastname" aria-label="lastname" aria-describedby="basic-addon1" formControlName="lastName">
+                                    <input type="text" #last_name class="form-control ng-untouched ng-pristine ng-valid" placeholder="Lastname" aria-label="lastname" aria-describedby="basic-addon1" formControlName="lastname" required>
+
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                            <p *ngIf="! profileForm.controls.lastname.pristine && profileForm.controls.lastname.errors?.minlength" class="alert alert-danger">Lastname should be greater than 2 character!</p>
+                            <p *ngIf="!profileForm.controls.lastname.pristine && profileForm.controls.lastname.errors?.required" class="alert alert-danger">Lastname is required!</p>
+                            <p *ngIf="!profileForm.controls.lastname.pristine && profileForm.controls.lastname.errors?.maxlength" class="alert alert-danger" >Lastname should be less than 15 character!</p>
+                   
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
-                    <input type="text" #username class="form-control" placeholder="username" aria-label="username" aria-describedby="basic-addon1">
+                    <input type="text" #username class="form-control ng-untouched ng-pristine ng-valid" placeholder="username" aria-label="username" aria-describedby="basic-addon1" formControlName="username" required> 
+                
                 </div>
+                <!-- <div *ngIf="profileForm.controls['username'].invalid && (profileForm.controls['username'].dirty || profileForm.controls['username'].touched)" class="alert alert-danger"> -->
+                
+                    <!-- <div class="alert alert-danger"> -->
+                  
+                  <p *ngIf="! profileForm.controls.username.pristine && profileForm.controls.username.errors?.minlength" class="alert alert-danger">Username should be greater than 2 character!</p>
+                  <p *ngIf="!profileForm.controls.username.pristine && profileForm.controls.username.errors?.required" class="alert alert-danger">Username is required!</p>
+                  <p *ngIf="!profileForm.controls.username.pristine && profileForm.controls.username.errors?.maxlength" class="alert alert-danger" >Username should be less than 15 character!</p>
+                 
+                  
+                <!-- </div> -->
+                
+
+
+     
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
-                    <input type="text" #email class="form-control" placeholder="E-mail" aria-label="E-mail" aria-describedby="basic-addon1">
+                    <input type="text" #email class="form-control ng-untouched ng-pristine ng-valid" placeholder="E-mail" aria-label="E-mail" aria-describedby="basic-addon1" formControlName="email" required>
+   
                 </div>
+                <p *ngIf="! profileForm.controls.email.pristine && profileForm.controls.email.errors?.pattern" class="alert alert-danger">Email should be like HDYA12@gmail.com</p>
+                <p *ngIf="!profileForm.controls.email.pristine && profileForm.controls.email.errors?.required && profileForm.controls.email.errors?.email" class="alert alert-danger">E-mail is require!</p>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
-                    <input type="password" #password class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                    <input type="password" #password class="form-control ng-untouched ng-pristine ng-valid" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" formControlName="password" required>
+
+                
                 </div>
+                <p *ngIf="! profileForm.controls.password.pristine && profileForm.controls.password.errors?.minlength" class="alert alert-danger help-block">Password should be greater than 6 character or numbers!</p>
+                <p *ngIf="!profileForm.controls.password.pristine && profileForm.controls.password.errors?.required" class="alert alert-danger help-block">Password is require!</p>
+                <p *ngIf="!profileForm.controls.password.pristine && profileForm.controls.password.errors?.maxlength" class="alert alert-danger help-block" >Password should be less than 30 character!</p>
+                           
+             
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
-                    <input #re_password type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1">
-                </div>
+                    <input #re_password type="password" class="form-control ng-untouched ng-pristine ng-valid" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1" formControlName="confirmpassword" required>
 
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i> </span>
-                    <input #mobile type="text" class="form-control" placeholder="Phone Number" aria-label="Mobile Phone" aria-describedby="basic-addon1">
-                </div>
+                 </div> 
+                 
+
+
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i> </span>
+                        <input #mobile  type="text" class="form-control ng-untouched ng-pristine ng-valid" placeholder="Phone Number" aria-label="Mobile Phone" aria-describedby="basic-addon1" formControlName="mobile" required>
+
+                        
+                        <!-- ng-untouched ng-pristine ng-valid --> 
+    
+                    </div>
+                    <p *ngIf="! profileForm.controls.mobile.pristine && profileForm.controls.mobile.errors?.pattern" class="alert alert-danger">Mobil PHone should be like 01234567890!</p>
+                    <p *ngIf="!profileForm.controls.mobile.pristine && profileForm.controls.mobile.errors?.required" class="alert alert-danger">Password is require!</p>
+                
+
+ 
+
+
+                
+
+
                 <div class="d-grid gap-2">
-                    <button (click)="UserRegester(username.value,email.value, password.value ,re_password.value, first_name.value , last_name.value  , mobile.value)" class="btn btn-primary sign_in" type="button">Sign Up </button>
+                    <button (click)="UserRegester(username.value,email.value, password.value ,re_password.value, first_name.value , last_name.value  , mobile.value)" class="btn btn-primary sign_in" type="button" [disabled]="!profileForm.valid">Sign Up </button>
                 </div>
+            </form>
 
                 <!-- google -->
                 <div class="g">
@@ -58,13 +109,17 @@
                         </div>
                         <p class="btn-text"><b>Sign in with Google</b></p>
                     </div>
-                </div>
+                </div> 
 
-                <div class="to_login">
+                 <div class="to_login">
                     Already have an account? <a routerLink="/login">Sign in</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+ 
+
     <br>
 </section>
