@@ -12,7 +12,8 @@ export interface Product {
     is_featured:boolean;
     created_at?:string;
     updated_at?:string;
-    pimage:Array<object>;
+    images?:Array<object>;
+    // results?:any;
 }
    
     

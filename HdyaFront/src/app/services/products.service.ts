@@ -14,8 +14,8 @@ export class ProductsService {
 
 
 
-  viewProducts():Observable<Product[]>{
-    return this.http.get<Product[]>(`http://127.0.0.1:8000/products/`)
+  viewProducts():Observable<any>{
+    return this.http.get<any>(`http://127.0.0.1:8000/products/`)
   }
 
  
@@ -34,8 +34,8 @@ export class ProductsService {
     return this.http.post<Product>(`http://127.0.0.1:8000/products/` , data)
   }
 
-  showcategories():Observable<Category[]>{
-    return this.http.get<Category[]>(`http://127.0.0.1:8000/categories/`)
+  showcategories():Observable<any>{
+    return this.http.get<any>(`http://127.0.0.1:8000/categories/`)
   }
 
 
