@@ -1,0 +1,156 @@
+////////////////////Basic Style//////////////////////
+@import '../../../main.css';
+/////////////////////End Of Basic////////////////////////////
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.card {
+    border-radius: 4px;
+    border: 1px solid #eee;
+    height: 40px;
+    width: 150px;
+    margin: 0 8px 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    line-height: 24px;
+}
+
+.card-small-rd {
+    background-color: rgb(210, 57, 59);
+}
+
+.card-container .card:not(:last-child) {
+    margin-right: 0;
+}
+
+.card-container .card:not(.highlight-card) {
+    cursor: pointer;
+}
+
+.card-container .card:not(.highlight-card):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+}
+
+.carousel-item {
+    height: 600px;
+    width: 97%;
+    padding-left: 40px;
+}
+
+.carousel-item img {
+    height: 600px;
+    width: 100%;
+}
+
+.welcome_slide_text>h2,
+.single_catagory_area h2 {
+    font-size: 92px;
+    letter-spacing: 0;
+    margin-left: -5px;
+    text-transform: uppercase;
+    color: rgb(37, 42, 51);
+    margin-bottom: 20px;
+}
+
+.welcome_slide_text h6,
+.single_catagory_area h6 {
+    color: rgb(210, 57, 59);
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.welcome_slides.owl-carousel .owl-dot.active {
+    background-color: rgb(210, 57, 59);
+    border-color: rgb(210, 57, 59);
+}
+
+//////////////////////////////
+
+/* --------------------------
+ Top Catagory Area CSS
+-------------------------- */
+
+.single_catagory_area {
+    padding: 150px 50px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    position: relative;
+    z-index: 1;
+}
+
+.single_catagory_area:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgb(210, 57, 59);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -8;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+}
+
+.single_catagory_area:hover:after {
+    opacity: 0.7;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+}
+
+.single_catagory_area h6 {
+    text-transform: uppercase;
+}
+
+.catagory-content {
+    width: 55%;
+}
+
+
+/* ----------------------------
+::  New Deals Area Start
+---------------------------- */
+
+.new_deals {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%
+}
+
+.portfolio-menu>.btn {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgb(37, 42, 51);
+    background-color: transparent;
+    padding: 0 15px;
+    text-transform: uppercase;
+}
+
+.portfolio-menu>.btn:hover {
+    color: rgb(210, 57, 59);
+    box-shadow: none;
+}
+
+.single_gallery_item {
+    margin-bottom: 50px;
+    overflow: hidden
+}
+
+.animated {
+    visibility: visible !important;
+}
+.hide-on-init {
+    visibility: hidden;
+}
