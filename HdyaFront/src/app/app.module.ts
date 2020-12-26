@@ -27,6 +27,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {trigger,state,style,animate,transition,} from '@angular/animations';
 import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
 import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.component';
+import { ReactiveValidationModule } from 'angular-reactive-validation';
+import { CustomFormsModule } from 'ng2-validation'
+import { DollartoegpPipe } from './Pipes/dollartoegp.pipe';
+import { AboutComponent } from './Components/about/about.component';
 
 
 @NgModule({
@@ -45,6 +49,8 @@ import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.co
     EditComponent,
     CreateProductComponent,
     PagenotfoundComponent,
+    DollartoegpPipe,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +67,8 @@ import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.co
     ValidateEqualModule,
     BrowserAnimationsModule,
     AnimateOnScrollModule.forRoot(),
+    CustomFormsModule,
+    ReactiveValidationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

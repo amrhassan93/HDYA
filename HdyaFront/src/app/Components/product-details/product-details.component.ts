@@ -25,7 +25,7 @@ export class ProductDetailsComponent implements OnInit {
                         is_featured: false ,
                         created_at: "" ,
                         updated_at: "" ,
-                        productpicture_set:[]
+                        images:[]
                       };
                            
   constructor(private _products:ProductsService , private activerouter:ActivatedRoute) { }
