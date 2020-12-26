@@ -32,16 +32,17 @@
                                 <label for="image">Image <span>*</span></label>
                                 <input #pimages type="file" name="img" multiple (change)="changeImageInput($event)" class="form-control" id="customFile" />
                             </div>
-                            <div class="col-12 mb-4">
-                                <div class="form-group row">
-                                    <label for="example-number-input" class="col-2 col-form-label">Age To<span>*</span></label>
-                                    <input #pageto [(ngModel)]="newproduct.age_to" class="form-control" name="ageto" type="number" id="example-date-input">
-                                </div>
-                            </div>
+
                             <div class="col-12 mb-4">
                                 <div class="form-group row">
                                     <label for="example-number-input" class="col-2 col-form-label">Age From<span>*</span></label>
                                     <input #pagefrom [(ngModel)]="newproduct.age_from" class="form-control" name="agefrom" type="number" id="example-date-input">
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <div class="form-group row">
+                                    <label for="example-number-input" class="col-2 col-form-label">Age To<span>*</span></label>
+                                    <input #pageto [(ngModel)]="newproduct.age_to" class="form-control" name="ageto" type="number" id="example-date-input">
                                 </div>
                             </div>
                             <div class="col-12 mb-4">
@@ -87,21 +88,9 @@
                                     <option value="3">Wicker Product</option>
                                   </select>
                                 </div>
-                                <p>{{newproduct.category}}</p>
 
                             </div>
-                            <div class="col-12 mb-4">
-                                <div class="form-group">
-                                    <label for="example-datetime-local-input"> Creation Time <span>*</span></label>
-                                    <input #pcreatedat name="createdat" class="form-control" type="date" value="" id="example-date-input">
-                                </div>
-                            </div>
-                            <div class="col-12 mb-4">
-                                <div class="form-group row">
-                                    <label for="example-datetime-local-input"> Updation Time <span>*</span></label>
-                                    <input #pupdatedat name="updatedat" class="form-control" type="date" value="" id="example-date-input">
-                                </div>
-                            </div>
+
                             <button (click)="addNewProduct()" class="btn btn-primary">ADD</button><br><br>
                         </div>
                     </form>
