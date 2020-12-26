@@ -24,7 +24,7 @@ body{
     border: none;
     border-radius: 0;
     font-size: 15px;
-    background: #212529b8;
+    background: rgb(37,42,51);
 }
 .profile-img .file input {
     position: absolute;
@@ -33,10 +33,10 @@ body{
     top: 0;
 }
 .profile-head h5{
-    color: #333;
+    color: rgb(37,42,51);
 }
 .profile-head h6{
-    color: #0062cc;
+    color: rgb(210,57,59);
 }
 .profile-edit-btn{
     border: none;
@@ -44,19 +44,10 @@ body{
     width: 70%;
     padding: 2%;
     font-weight: 600;
-    color: #6c757d;
+    color: rgb(37,42,51);
     cursor: pointer;
 }
-.proile-rating{
-    font-size: 12px;
-    color: #818182;
-    margin-top: 5%;
-}
-.proile-rating span{
-    color: #495057;
-    font-size: 15px;
-    font-weight: 600;
-}
+
 .profile-head .nav-tabs{
     margin-bottom:5%;
 }
@@ -66,7 +57,7 @@ body{
 }
 .profile-head .nav-tabs .nav-link.active{
     border: none;
-    border-bottom:2px solid #0062cc;
+    border-bottom:2px solid rgb(210,57,59);
 }
 .profile-work{
     padding: 14%;
@@ -80,7 +71,7 @@ body{
 }
 .profile-work a{
     text-decoration: none;
-    color: #495057;
+    color: rgb(37,42,51);
     font-weight: 600;
     font-size: 14px;
 }
@@ -92,5 +83,7 @@ body{
 }
 .profile-tab p{
     font-weight: 600;
-    color: #0062cc;
+    color: rgb(210,57,59);
 }
+
+

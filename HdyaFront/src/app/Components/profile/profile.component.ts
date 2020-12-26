@@ -3,6 +3,8 @@ import { AuthenticationService } from '../../services/authentication.service'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Profile } from '../../models/interfaces/profile'
 
+//shalawlaw
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

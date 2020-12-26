@@ -27,34 +27,29 @@
 
 
 
-body {
-    background: rgb(99, 39, 120)
-}
-
 .form-control:focus {
     box-shadow: none;
-    border-color: #BA68C8
+    border-color: rgb(210, 57, 59)
 }
 
 .profile-button {
-    background: rgb(99, 39, 120);
+    background: rgb(210, 57, 59);
     box-shadow: none;
-    border: none
+    border: none;
+    color:white;
+    width:50%;
 }
 
 .profile-button:hover {
-    background: #682773
+    background: rgb(37,42,51);
 }
 
 .profile-button:focus {
-    background: #682773;
+    background: rgb(37,42,51);
     box-shadow: none
 }
 
-.profile-button:active {
-    background: #682773;
-    box-shadow: none
-}
+
 
 .back:hover {
     color: #682773;
