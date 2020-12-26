@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
   maxprice:number=1000;
 
 
-
+  cart:Array<object> = [];
 
   constructor(private _products:ProductsService) {}
 
@@ -171,6 +171,17 @@ export class SearchComponent implements OnInit {
     this.filterdProducts = []
      console.log(this.productList)
   }
+
+
+  addToCart(product_id:number){
+    let addtocart = this.productList.find((product)=> product.id = product_id)
+    console.log(addtocart);
+    
+    this.cart.push(addtocart)
+    console.log(this.cart);
+
+  }
+
 
 }
  
