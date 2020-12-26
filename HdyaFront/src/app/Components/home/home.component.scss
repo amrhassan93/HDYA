@@ -1,6 +1,15 @@
 ////////////////////Basic Style//////////////////////
 @import '../../../main.css';
 /////////////////////End Of Basic////////////////////////////
+.animate__flash {
+    background-color: rgb(210, 57, 59);
+    color: whitesmoke;
+    text-align: center;
+    margin: 20px 0 ;
+    font-size: 40px;
+    padding: 20px;
+    font-style: italic;;
+}
 .card-container {
     display: flex;
     flex-wrap: wrap;

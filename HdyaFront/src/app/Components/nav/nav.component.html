@@ -20,8 +20,8 @@
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons text-light">
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                <input #searchabout class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button (click)="search(searchabout.value)" class="btn btn-outline-light my-2 my-sm-0" type="submit" routerLink="/search">Search</button>
             </form>
 
             <li class="nav-item active">

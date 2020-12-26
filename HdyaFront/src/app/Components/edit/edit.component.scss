@@ -1,73 +1,23 @@
-// .container {
-//     border-radius: 5%;
-//     margin-top: 40px;
-//     margin-bottom: 40px;
-//     background-color: #eee4e4;
-// }
-
-// .mb-3 {
-//     font-size: 20px;
-// }
-
-// .form-control {
-//     width: inherit;
-// }
-
-// .style_card {
-//     margin-top: 20px;
-//     margin-bottom: 20px;
-// }
-
-// .save_change {
-//     background-color: rgb(210, 57, 59);
-//     // float: right;
-// }
-
-
-
-
-
-body {
-    background: rgb(99, 39, 120)
+.container {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background-color: #eee4e4;
 }
 
-.form-control:focus {
-    box-shadow: none;
-    border-color: #BA68C8
+.mb-3 {
+    font-size: 20px;
 }
 
-.profile-button {
-    background: rgb(99, 39, 120);
-    box-shadow: none;
-    border: none
+.form-control {
+    width: inherit;
 }
 
-.profile-button:hover {
-    background: #682773
+.style_card {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.profile-button:focus {
-    background: #682773;
-    box-shadow: none
-}
-
-.profile-button:active {
-    background: #682773;
-    box-shadow: none
-}
-
-.back:hover {
-    color: #682773;
-    cursor: pointer
-}
-
-.labels {
-    font-size: 11px
-}
-
-.add-experience:hover {
-    background: #BA68C8;
-    color: #fff;
-    cursor: pointer;
-    border: solid 1px #BA68C8
+.save_change {
+    background-color: rgb(210, 57, 59);
+    // float: right;
 }

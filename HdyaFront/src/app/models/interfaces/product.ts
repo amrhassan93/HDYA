@@ -1,17 +1,18 @@
 export interface Product {
-    id:number;
+    id?:number;
     name:string;
     price:number;
     details:string;
-    img:string;
     age_from:number;
     age_to:number;
     gender:string;
-    occassions:string;
-    category:string;
-    catId:number;
-    relationships:string;
+    occassions:Array<number>;
+    category:number;
+    relationships:Array<number>;
     is_featured:boolean;
-    created_at:string;
-    updated_at:string;
+    created_at?:string;
+    updated_at?:string;
+    productpicture_set:Array<object>;
 }
+   
+    
