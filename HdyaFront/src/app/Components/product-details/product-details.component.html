@@ -36,21 +36,22 @@
                             </ol>
 
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
+                                <!-- <div class="carousel-item active">
                                     <a class="gallery_img" href="../../../assets/images/hand14.jpg">
                                         <img class="d-block w-100" src="../../../assets/images/hand14.jpg" alt="First slide">
                                     </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a class="gallery_img" href="../../../assets/images/hand15.jpg">
-                                        <img class="d-block w-100" src="../../../assets/images/hand15.jpg" alt="Second slide">
+                                </div> -->
+
+                                <div *ngFor ="let image of productdetails.images" class="carousel-item">
+                                    <a class="gallery_img" href={{image.image}}>
+                                        <img class="d-block w-100" src={{image.image}} alt="Second slide">
                                     </a>
                                 </div>
-                                <div class="carousel-item">
+                                <!-- <div class="carousel-item">
                                     <a class="gallery_img" href="../../../assets/images/hand16.jpg">
                                         <img class="d-block w-100" src="../../../assets/images/hand16.jpg" alt="Third slide">
                                     </a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -60,7 +61,7 @@
                     <div class="single_product_desc pl-5">
 
                         <h4 class="title"><a href="#">{{productdetails.name}} </a></h4>
-                        <h4 class="price">{{productdetails.price}}</h4>
+                        <h4 class="price">{{productdetails.price| currency}}</h4>
 
                         <p class="available">Available: <span class="text-muted">In Stock</span></p>
 
@@ -75,21 +76,27 @@
                         <div class="widget size mb-50">
                             <h6 class="widget-title m-2">Age</h6>
                             <div class="widget-desc">
-                                <a class="p-2 m-2" routerLink="#">0-3</a>
-                                <a class="p-2 m-2" routerLink="#">3-7</a>
+                                <a class="p-2 m-2" routerLink="#">{{productdetails.age_from}}-{{productdetails.age_to}}</a>
+                                <!-- <a class="p-2 m-2" routerLink="#">3-7</a>
                                 <a class="p-2 m-2" routerLink="#">7-12</a>
                                 <a class="p-2 m-2" routerLink="#">12-18</a>
                                 <a class="p-2 m-2" routerLink="#">18-25</a><br><br>
                                 <a class="p-2 m-2 " routerLink="#">25-35</a>
                                 <a class="p-2 m-2" routerLink="#">35-55</a>
-                                <a class="p-2 m-2" routerLink="#">55+</a>
+                                <a class="p-2 m-2" routerLink="#">55+</a> -->
                             </div>
                         </div>
                         <div class="widget size mb-50">
-                            <h6 class="widget-title m-2">Gender : Female</h6>
+                            <h6 class="widget-title m-2">Gender : {{productdetails.gender}}</h6>
                         </div>
                         <div class="widget size mb-50">
-                            <h6 class="widget-title m-2">occassion : Birthday</h6>
+                            <h6 class="widget-title m-2">occassion : 
+                                <ul>
+                                    <li *ngFor="let occassion of productdetails.occassions">
+                                           {{occassion}}
+                                    </li>
+                                </ul>
+                            </h6>
                         </div>
 
                         <!-- Add to Cart Form -->
@@ -112,9 +119,9 @@
 
                                 <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                                     <div class="card-body">
-                                        <p>Wooden Camera Made by Egyptian Hands </p>
-                                        <p>Suitable for all age groups, whether boy or girl; A man or a woman </p>
-                                        <p>Suitable for all occasions and can be delivered to any governorate inside Egypt</p>
+                                         <p>{{productdetails.details}} </p>
+                                        <!-- <p>Suitable for all age groups, whether boy or girl; A man or a woman </p>
+                                        <p>Suitable for all occasions and can be delivered to any governorate inside Egypt</p> -->
                                     </div>
                                 </div>
                             </div>
