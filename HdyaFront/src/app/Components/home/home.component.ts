@@ -13,9 +13,6 @@ declare var jQuery: any;
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  
-   
-
 })
 
 
