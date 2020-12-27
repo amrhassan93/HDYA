@@ -17,6 +17,8 @@ export class NavComponent implements OnInit {
   filteredProductList: Product[] = [];
 
   categoryList:Category[]=[];
+  cart:Product[] = []
+
 
   constructor(private auth:AuthenticationService ,
               private _products:ProductsService ,
@@ -43,6 +45,13 @@ export class NavComponent implements OnInit {
       (data)=>this.categoryList = data.results,
       (err) => console.log(err) 
     )
+
+    if (localStorage.getItem("cart")){
+      this.cart = JSON.parse(localStorage.getItem("cart") || '{}') 
+
+    }
+    console.log(this.cart.length);
+
   }
 
   search(searchKey:string){
@@ -75,6 +84,7 @@ export class NavComponent implements OnInit {
     //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
     //Add 'implements DoCheck' to the class.
     this.usertoken = localStorage.getItem('token')
+    this.cart = JSON.parse(localStorage.getItem('cart') || '{}')
     
   }
 
