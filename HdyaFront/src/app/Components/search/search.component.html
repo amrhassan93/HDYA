@@ -1,5 +1,5 @@
 <!-- ****** Quick View Modal Area Start ****** -->
-<div class="modal fade" id="quickview" tabindex="-1" role="dialog" aria-labelledby="quickview" aria-hidden="true">
+<div class="modal fade" *ngIf="productPopUp" id="quickview" tabindex="-1" role="dialog" aria-labelledby="quickview" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
@@ -16,7 +16,7 @@
                             </div>
                             <div class="col-12 col-lg-7">
                                 <div class="quickview_pro_des">
-                                    <h4 class="title">Boutique Silk Dress</h4>
+                                    <h4 class="title">{{productPopUp.name}}</h4>
                                     <div class="top_seller_product_rating mb-15">
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -155,7 +155,7 @@
                             <div class="product-img">
                                 <img src="../../../assets/images/hand18.jpg " style="width: 150px; height:150px;" alt="hand18">
                                 <div class="product-quicview">
-                                    <a data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
+                                    <a data-toggle="modal" (click)="popUpProduct(product.id)" data-target="#quickview"><i class="far fa-plus"></i></a>
                                 </div>
                             </div>
                             <!-- Product Description -->
