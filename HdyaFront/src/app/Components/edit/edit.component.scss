@@ -1,23 +1,68 @@
-.container {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    background-color: #eee4e4;
+// .container {
+//     margin-top: 40px;
+//     margin-bottom: 40px;
+//     background-color: #eee4e4;
+// }
+
+// .mb-3 {
+//     font-size: 20px;
+// }
+
+// .form-control {
+//     width: inherit;
+// }
+
+// .style_card {
+//     margin-top: 20px;
+//     margin-bottom: 20px;
+// }
+
+// .save_change {
+//     background-color: rgb(210, 57, 59);
+// }
+
+
+
+
+
+
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: rgb(210, 57, 59)
 }
 
-.mb-3 {
-    font-size: 20px;
+.profile-button {
+    background: rgb(210, 57, 59);
+    box-shadow: none;
+    border: none;
+    color:white;
+    width:50%;
 }
 
-.form-control {
-    width: inherit;
+.profile-button:hover {
+    background: rgb(37,42,51);
 }
 
-.style_card {
-    margin-top: 20px;
-    margin-bottom: 20px;
+.profile-button:focus {
+    background: rgb(37,42,51);
+    box-shadow: none
 }
 
-.save_change {
-    background-color: rgb(210, 57, 59);
-    // float: right;
+
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
 }
