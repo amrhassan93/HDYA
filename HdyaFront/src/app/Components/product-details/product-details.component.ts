@@ -35,7 +35,7 @@ export class ProductDetailsComponent implements OnInit {
     AOS.init();
     let id = this.activerouter.snapshot.params['id']
     this._products.viewProductById(id).subscribe(
-      (data)=>this.productdetails=data,
+      (data)=>this.productdetails=data.results,
       (err)=> console.log(err) 
     ) 
 

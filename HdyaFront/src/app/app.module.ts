@@ -31,6 +31,7 @@ import { ReactiveValidationModule } from 'angular-reactive-validation';
 import { CustomFormsModule } from 'ng2-validation'
 import { DollartoegpPipe } from './Pipes/dollartoegp.pipe';
 import { AboutComponent } from './Components/about/about.component';
+import { PoductDetailsPopupComponent } from './Components/poduct-details-popup/poduct-details-popup.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { AboutComponent } from './Components/about/about.component';
     PagenotfoundComponent,
     DollartoegpPipe,
     AboutComponent,
+    PoductDetailsPopupComponent,
   ],
   imports: [
     BrowserModule,

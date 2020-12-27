@@ -18,6 +18,7 @@ export class SearchComponent implements OnInit {
   maxrange:number=70;
   minprice:number=0;
   maxprice:number=1000;
+  productID:Product;
 
 
 
@@ -171,6 +172,13 @@ export class SearchComponent implements OnInit {
     this.filterdProducts = []
      console.log(this.productList)
   }
+
+  // getProductsByCatID(product_id):Product[]{
+  //   return this.productID = this.productList.filter((product)=>{
+  //     return product.id==this.product_id;
+  //     console.log(this.productID)
+  //   })
+  //  }
 
 }
  

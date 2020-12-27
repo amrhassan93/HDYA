@@ -1,5 +1,5 @@
 <!-- ****** Quick View Modal Area Start ****** -->
-<div class="modal fade" id="quickview" tabindex="-1" role="dialog" aria-labelledby="quickview" aria-hidden="true">
+<!-- <div class="modal fade" id="quickview" tabindex="-1" role="dialog" aria-labelledby="quickview" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
@@ -27,9 +27,9 @@
                                     <h5 class="price">$40 <span>$37</span></h5>
                                     <p>Wooden Camera Made By Egyptian Hands</p>
                                     <a href="#">View Full Product Details</a>
-                                </div>
+                                </div> -->
                                 <!-- Add to Cart Form -->
-                                <form class="cart" method="post">
+                                <!-- <form class="cart" method="post">
                                     <div class="quantity">
                                         <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) && qty > 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
 
@@ -37,13 +37,13 @@
 
                                         <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                     </div>
-                                    <button type="submit" name="addtocart" value="5" class="cart-submit">Add to cart</button>
+                                    <button type="submit" name="addtocart" value="5" class="cart-submit">Add to cart</button> -->
                                     <!-- Wishlist -->
-                                    <div class="modal_pro_wishlist">
+                                    <!-- <div class="modal_pro_wishlist">
                                         <a><i class="fas fa-heart"></i></a>
-                                    </div>
+                                    </div> -->
                                     <!-- Compare -->
-                                    <div class="modal_pro_compare">
+                                    <!-- <div class="modal_pro_compare">
                                         <a><i class="fas fa-chart-line"></i></a>>
                                     </div>
                                 </form>
@@ -64,7 +64,11 @@
             </div>
         </div>
     </div>
-</div>
+</div>  -->
+<!-- <select  [(ngModel)]="productID" ngDefaultControl >
+    <option *ngFor="let product of productList" [value]="product.id">{{product.name}}</option>
+  </select>
+<app-poduct-details-popup [productPopupID]="productID"></app-poduct-details-popup> -->
 <!-- ****** Quick View Modal Area End ****** -->
 
 <section class="shop_grid_area section_padding_100 ">
@@ -152,7 +156,9 @@
                             <div class="product-img">
                                 <img src="../../../assets/images/hand18.jpg " style="width: 150px; height:150px;" alt="hand18">
                                 <div class="product-quicview">
-                                    <a data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
+                                    <a data-toggle="modal"><i class="far fa-plus"></i></a>
+                                    
+
                                 </div>
                             </div>
                             <!-- Product Description -->
@@ -160,7 +166,7 @@
                                 <h4 class="product-price">{{product.price}}</h4>
                                 <p>{{product.name}}</p>
                                 <!-- Add to Cart -->
-                                <a routerLink="#" class="add-to-cart-btn">ADD TO CART</a>
+                                <a  class="add-to-cart-btn" click="getProductsByCatID(product_id)">ADD TO CART</a>
                             </div>
                         </div>
 
@@ -182,3 +188,13 @@
         </div>
     </div>
 </section>
+<!-- <select  [(ngModel)]="productID" >
+    <option *ngFor="let product of productList" [value]="product.id">{{product.name}}</option>
+  </select>
+
+ 
+<app-poduct-details-popup [productPopupID]="productID"></app-poduct-details-popup> -->
+
+
+
+  
