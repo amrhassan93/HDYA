@@ -162,6 +162,8 @@
                             <div class="product-description">
                                 <h4 class="product-price">{{product.price}}</h4>
                                 <p>{{product.name}}</p>
+                                <!-- More Details -->
+                                <a class="add-to-cart-btn" [routerLink]="['/productdetails',product.id]">More Details</a>
                                 <!-- Add to Cart -->
                                 <a class="add-to-cart-btn" (click)="addToCart(product.id)">ADD TO CART</a>
                             </div>

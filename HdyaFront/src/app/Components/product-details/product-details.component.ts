@@ -5,6 +5,7 @@ import * as AOS from 'aos';
 import { ProductsService } from '../../services/products.service'
 import { Product } from '../../models/interfaces/product'
 import { ActivatedRoute, Router } from '@angular/router';
+import { Category } from 'src/app/models/interfaces/category';
 
 @Component({
   selector: 'app-product-details',
@@ -12,35 +13,65 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
+  
   productdetails:Product = {id : 0 ,
-                        name : "" ,
-                        price: 0,
-                        details: "" , 
-                        age_from : 0 ,
-                        age_to:0 ,
-                        gender : "", 
-                        occassions: [] , 
-                        category: 0 ,
-                        relationships: [] ,
-                        is_featured: false ,
-                        created_at: "" ,
-                        updated_at: "" ,
-                        images:[]
-                      };
-                           
+                            name : "" ,
+                            price: 0,
+                            details: "" , 
+                            age_from : 0 ,
+                            age_to:0 ,
+                            gender : "", 
+                            occassions: [] , 
+                            category: 0 ,
+                            relationships: [] ,
+                            is_featured: false ,
+                            created_at: "" ,
+                            updated_at: "" ,
+                            images:[]
+                            };
+
+  productList: Product[] = [];
+  categoryList:Category[] = [];
+  filterdProducts:Product[] = [];
+  
+
   constructor(private _products:ProductsService , private activerouter:ActivatedRoute) { }
 
   ngOnInit(): void {
     jQuery('.owl-carousel').owlCarousel(); 
     AOS.init();
     let id = this.activerouter.snapshot.params['id']
+
     this._products.viewProductById(id).subscribe(
       (data)=>this.productdetails=data,
       (err)=> console.log(err) 
     ) 
+    // this._products.showcategories().subscribe(
+    //   (data)=>this.categoryList = data.results,
+    //   (err) => console.log(err) 
+    // )
 
-
+    this._products.viewProducts().subscribe(
+      (data)=>{
+        this.productList=data.results;
+      },
+      (err)=> console.log(err) 
+    )    
   }
+
+  // showProductsbyID(catId:number){
+  //   for (let i=0 ; i<this.productList.length ; i++){
+  //      if (this.productList[i].category == catId){
+  //         this.filterdProducts.push(this.productList[i])
+  //      }
+  //      else{
+  //        console.log('not in this cat')
+  //      }
+  //   }
+  //   this.productList = this.filterdProducts
+  //   this.filterdProducts = []
+  // }
+
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -65,5 +96,5 @@ export class ProductDetailsComponent implements OnInit {
     },
     nav: true
   }
-
 }
+

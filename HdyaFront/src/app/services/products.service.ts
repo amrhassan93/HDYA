@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Product } from '../models/interfaces/product'
-import { Category } from '../models/interfaces/category'
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -43,6 +42,7 @@ export class ProductsService {
   // viewProductsBycat(catId?:number):Observable<Product>{ 
   //   return this.http.get<Product>(`${environment.apiUrl}/products/?category=${catId}`)
   // }
+  
   // viewProductsBycat(name:string,price?:number,gender?:string,age_from?:number,age_to?:number,catId?:number,user?:number,is_featured?:boolean):Observable<Product>{ 
   //   return this.http.get<Product>(`${environment.apiUrl}/products/?name=${name}&price=${price}&gender=${gender}&age_from=${age_from}&age_to=${age_to}&category=${catId}&user=${user}&is_featured=${is_featured}/`)
   // }

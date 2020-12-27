@@ -20,32 +20,11 @@ export class SearchComponent implements OnInit {
   maxprice:number=1000;
   totalRecords: number | undefined
   page:number=1
-
   cart:Array<object> = [];
-
-
   productPopUp:Product[] = [] ; 
 
-
-
-
   constructor(private _products:ProductsService) {
-    // this.productPopUp = {
-    //                     id : 0 ,
-    //                     name : "" ,
-    //                     price: 0,
-    //                     details: "" , 
-    //                     age_from : 0 ,
-    //                     age_to:0 ,
-    //                     gender : "", 
-    //                     occassions: [] , 
-    //                     category: 0 ,
-    //                     relationships: [] ,
-    //                     is_featured: false ,
-    //                     created_at: "" ,
-    //                     updated_at: "" ,
-    //                     images:[]
-    // }
+  
   }
 
   ngOnInit(): void {
@@ -245,10 +224,6 @@ export class SearchComponent implements OnInit {
     console.log(this.productPopUp);
 
   }
-
-
 }
-//pagination
-
  
 
