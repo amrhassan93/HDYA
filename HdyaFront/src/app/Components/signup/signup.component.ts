@@ -42,14 +42,6 @@ export class SignupComponent implements OnInit {
       (err) => console.log(err)
     );
   }
-  // confirmpassword(password:any, re_password:any){
-  //   if (password == re_password){
-  //     alert('ok')
-  //   }
-  //   else{
-  //     console.log('no');
-  //   }
-  // }
 
   ConfirmedValidator(controlName: string, matchingControlName: string){
 

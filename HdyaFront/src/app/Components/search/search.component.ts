@@ -18,12 +18,35 @@ export class SearchComponent implements OnInit {
   maxrange:number=70;
   minprice:number=0;
   maxprice:number=1000;
-  productID:Product;
+  totalRecords: number | undefined
+  page:number=1
+
+  cart:Array<object> = [];
+
+
+  productPopUp:Product[] = [] ; 
 
 
 
 
-  constructor(private _products:ProductsService) {}
+  constructor(private _products:ProductsService) {
+    // this.productPopUp = {
+    //                     id : 0 ,
+    //                     name : "" ,
+    //                     price: 0,
+    //                     details: "" , 
+    //                     age_from : 0 ,
+    //                     age_to:0 ,
+    //                     gender : "", 
+    //                     occassions: [] , 
+    //                     category: 0 ,
+    //                     relationships: [] ,
+    //                     is_featured: false ,
+    //                     created_at: "" ,
+    //                     updated_at: "" ,
+    //                     images:[]
+    // }
+  }
 
   ngOnInit(): void {
     AOS.init();
@@ -34,12 +57,17 @@ export class SearchComponent implements OnInit {
       // console.log(searchProducts instanceof Array);
       
       this.productList = JSON.parse(searchProducts || '{}')
+      this.totalRecords = this.productList.length
       localStorage.removeItem('products')
+      
     }
     else {
       this._products.viewProducts().subscribe(
         (data)=>{
           this.productList=data.results;
+          this.totalRecords = data.results.length
+          // console.log(this.productList);
+          
           // this.allproducts = this.productList
         },
         (err)=> console.log(err) 
@@ -65,6 +93,7 @@ export class SearchComponent implements OnInit {
       // console.log(searchProducts instanceof Array);
       
       this.productList = JSON.parse(searchProducts || '{}')
+      this.totalRecords = this.productList.length
       localStorage.removeItem('products')
     }   
     
@@ -75,6 +104,7 @@ export class SearchComponent implements OnInit {
     this._products.viewProducts().subscribe(
       (data)=>{
         this.productList=data.results;
+        this.totalRecords = data.results.length
         // this.allproducts = this.productList
       },
       (err)=> console.log(err) 
@@ -173,13 +203,52 @@ export class SearchComponent implements OnInit {
      console.log(this.productList)
   }
 
-  // getProductsByCatID(product_id):Product[]{
-  //   return this.productID = this.productList.filter((product)=>{
-  //     return product.id==this.product_id;
-  //     console.log(this.productID)
-  //   })
-  //  }
+
+  addToCart(product_id:number){
+    // this.ay7aga = product_id
+    // console.log(this.ay7aga);
+    
+    if (localStorage.getItem("cart")){
+      this.cart = JSON.parse(localStorage.getItem("cart") || '{}') 
+
+      let addtocart = this.productList.find((product)=>{ 
+        return product.id == product_id
+        })
+
+      this.cart.push(addtocart)
+
+      localStorage.setItem("cart" , JSON.stringify(this.cart))
+    }
+    else {
+      let addtocart = this.productList.find((product)=>{ 
+        return product.id == product_id
+        })
+      this.cart.push(addtocart)
+      localStorage.setItem("cart" , JSON.stringify(this.cart))
+  
+      console.log(this.cart);
+    }
+
+
+    
+    
+    // this.cart.push(addtocart)
+    // console.log(this.cart);
+
+  }
+
+  popUpProduct(product_id:number){
+    this.productPopUp =  this.productList.find((product)=>{ 
+      return product.id == product_id
+      })
+
+    console.log(this.productPopUp);
+
+  }
+
 
 }
+//pagination
+
  
 

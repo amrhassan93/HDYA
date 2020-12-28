@@ -1,7 +1,9 @@
 <br>
-<div class="cart_area section_padding_100 clearfix" data-aos="fade-down"
-data-aos-easing="linear"
-data-aos-duration="600">
+<div *ngIf="cart.length == 0">
+    <h1>No Items Continue Shopping</h1>
+</div>
+
+<div *ngIf="cart.length > 0" class="cart_area section_padding_100 clearfix" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="600">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -9,30 +11,40 @@ data-aos-duration="600">
                     <table class="table table-responsive">
                         <thead>
                             <tr>
-                                <th>Product</th>
+                                <th>NO.</th>
+                                <th>Product Image</th>
+                                <th>Product Name</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="cart_product_img d-flex align-items-center">
+                            <tr *ngFor="let product of cart; let i=index">
+                                <td>{{i+1}}</td>
+                                <td>
                                     <a href="#"><img src="../../../assets/images/hand10.jpg" alt="Product"></a>
-                                    <h6>Hand Made Wooden Camera</h6>
                                 </td>
-                                <td class="price"><span>$34</span></td>
+                                <td class="cart_product_img d-flex align-items-center">
+                                    <h6>{{product.name}}</h6>
+                                </td>
+                                <td class="price"><span>{{product.price}}</span></td>
                                 <td class="qty">
                                     <div class="quantity">
-                                        <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) && qty > 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value="1">
-                                        <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                        <!-- <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) && qty > 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span> -->
+                                        <!-- <input  type="number" step="1" min="1" max="99" name="quantity" class="qty-text" id="qty" value="1"> -->
+                                        <input (change)="calcPrice(product.id , product.price , pquantity.value , i)" #pquantity type="number" class="qty-text" id="qty" step="1" min="0" max="99" name="quantity">
+
+                                        <!-- <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span> -->
+
                                     </div>
                                 </td>
-                                <td class="total_price"><span>$34</span></td>
+                                <td class="total_price"><span>{{total[i]}}</span></td>
                             </tr>
                         </tbody>
                     </table>
+
+
                 </div>
 
                 <div class="cart-footer d-flex mt-30">
@@ -70,10 +82,11 @@ data-aos-duration="600">
                     </div>
 
                     <ul class="cart-total-chart">
-                        <li><span>Subtotal</span> <span>$59.90</span></li>
+                        <!-- <li><span>Subtotal</span> <span>{{totalPrice}}</span></li>-->
                         <li><span>Shipping</span> <span>Free</span></li>
-                        <li><span><strong>Total</strong></span> <span><strong>$59.90</strong></span></li>
+                        <li><span><strong>Total</strong></span> <span><strong>{{totalPrice}}</strong></span></li>
                     </ul>
+                    <!-- <button (click)="orderNow()">ok</button> -->
                     <a routerLink="/checkout" class="btn karl-checkout-btn">Proceed to checkout</a>
                 </div>
             </div>
