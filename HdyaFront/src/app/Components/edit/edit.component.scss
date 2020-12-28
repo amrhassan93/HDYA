@@ -21,11 +21,31 @@
 //     background-color: rgb(210, 57, 59);
 // }
 
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 90%;
+    height: 100%;
+}
+.profile-img .file {    
+    position: relative;
+    overflow: hidden;
+    width: 90%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background-color: rgb(37,42,51);
+}
+.profile-img .file:hover{
+    background-color:rgb(210,57,59);
+}
 
-
-
-
-
+.profile-img .file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+}
 
 .form-control:focus {
     box-shadow: none;
@@ -48,21 +68,9 @@
     background: rgb(37,42,51);
     box-shadow: none
 }
-
-
-
-.back:hover {
-    color: #682773;
-    cursor: pointer
-}
+    
 
 .labels {
-    font-size: 11px
+    font-size: 18px
 }
 
-.add-experience:hover {
-    background: #BA68C8;
-    color: #fff;
-    cursor: pointer;
-    border: solid 1px #BA68C8
-}

@@ -1,6 +1,7 @@
 
 <body>
-    <div class="container emp-profile">
+    <br><br>
+    <div class="container">
             <form >
                 <div class="row">
                     <div class="col-md-4">
@@ -10,7 +11,9 @@
                                 Change Photo
                                 <input type="file" name="file"/>
                             </div>
-                        </div>
+                            <br><br><h4 style="color: rgb(37,42,51);">Noor Shalaby</h4>
+                            <!-- <br><br><h4 style="color: rgb(37,42,51);">{{myprofile.username}}</h4> -->
+                        </div>   
                     </div>
                     <div class="col-md-6 p-4">
                         <div class="profile-head">
@@ -31,7 +34,7 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" routerLink='profile/edit'/>
+                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" routerLink='./edit'/>
                     </div>
                 </div>
                 <div class="row">
@@ -48,7 +51,7 @@
                                             <div class="col-md-6">
                                                 <p>{{myprofile.username}}</p>
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>First Name</label>
@@ -56,7 +59,7 @@
                                             <div class="col-md-6">
                                                 <p>{{myprofile.first_name}}</p>
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Last Name</label>
@@ -64,7 +67,7 @@
                                             <div class="col-md-6">
                                                 <p>{{myprofile.last_name}}</p>
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Email</label>
@@ -72,7 +75,7 @@
                                             <div class="col-md-6">
                                                 <p>{{myprofile.email}}</p>
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Phone</label>
@@ -80,7 +83,7 @@
                                             <div class="col-md-6">
                                                 <p>{{myprofile.mobile}}</p>
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Address</label>
@@ -88,7 +91,7 @@
                                             <div class="col-md-6">
                                                 <p>{{myprofile.address}}</p>
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Bithday</label>
@@ -98,24 +101,62 @@
                                             </div>
                                         </div>
                             </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row">
-                                            <div class="container">
-                                                <h2>Profile name</h2>                  
-                                                <div class="card" style="width:400px">
-                                                <img class="card-img-top" src="#" alt="Card image" style="width:100%">
-                                                <div class="card-body">
-                                                    <h4 class="card-title">Category</h4>
-                                                    <p class="card-text">Product details</p>
-                                                    <p class="card-text">Price</p>
-                                                    <a href="#" class="btn btn-primary">Redirect to Product</a>
-                                                </div>
-                                                </div>
-                                                </div>
-                                                </div>
+                           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row">
+                                    <div class="col-12 ml-1 mb-5">
+                                    <table class="table table-responsive ">
+                                        <thead>
+                                        <tr>
+                                          <th class="col-md-3">Product Name</th>
+                                          <th class="col-md-3">Price</th>
+                                          <th class="col-md-3">Quantity</th>
+                                          <th class="col-md-3">Total</th>
+                                       </tr>
+                                      </thead>
+                                        <tbody >
+                                      <tr>
+                                          <td class="cart_product_img text-center" class="col-md-3">
+                                              <h6>Hand Made Wooden Camera</h6>
+                                          </td>
+                                          <td class="price" class="col-md-3"><span>30 EGP</span></td>
+                                          <td class="qty" class="col-md-3">
+                                              <div class="quantity">
+                                                 <span>4</span>
+                                              </div>
+                                          </td>
+                                          <td class="total_price" class="col-md-3"><span>120 EGP</span></td>
+                                      </tr>
+                                      <tr>
+                                        <td class="cart_product_img text-center" class="col-md-3">
+                                            <h6>Personal Leather Wallet</h6>
+                                        </td>
+                                        <td class="price" class="col-md-3"><span>20 EGP</span></td>
+                                        <td class="qty" class="col-md-3">
+                                            <div class="quantity">
+                                                <span>4</span>
+                                            </div>
+                                        </td>
+                                        <td class="total_price" class="col-md-3"><span>80 EGP</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cart_product_img text-center" class="col-md-3">
+                                            <h6>Accessories</h6>
+                                        </td>
+                                        <td class="price" class="col-md-3"><span>10 EGP</span></td>
+                                        <td class="qty" class="col-md-3">
+                                            <div class="quantity">
+                                                <span>5</span>
+                                            </div>
+                                        </td>
+                                        <td class="total_price" class="col-md-3"><span>50 EGP</span></td>
+                                    </tr>
+                                  </tbody>
+                              </table>
+                            </div>
+                             </div>
                             </div>
                             <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-                                <div class="row" style="width:100%;">
+                                <div class="row">
                                     <div class="col-12 ml-1 mb-5">
                                     <table class="table table-responsive ">
                                         <thead>
@@ -131,13 +172,13 @@
                                           <td class="cart_product_img text-center" class="col-md-3">
                                               <h6>Hand Made Wooden Camera</h6>
                                           </td>
-                                          <td class="price" class="col-md-3"><span>$34</span></td>
+                                          <td class="price" class="col-md-3"><span>30 EGP</span></td>
                                           <td class="qty" class="col-md-3">
                                               <div class="quantity">
-                                                 
+                                                 <span>3</span>
                                               </div>
                                           </td>
-                                          <td class="total_price" class="col-md-3"><span>$34</span></td>
+                                          <td class="total_price" class="col-md-3"><span>90 EGP</span></td>
                                       </tr>
                                   </tbody>
                               </table>
