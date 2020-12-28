@@ -1,6 +1,8 @@
+
 body{
-    background: -webkit-linear-gradient(left, rgb(210,57,59),rgb(210,57,59) );
-    color:rgb(37,42,51)
+    // background: -webkit-linear-gradient(left, #f4f2f8,#f4f2f8 );
+    background-color:transparent;
+    color:rgb(37,42,51);
 }
 .emp-profile{
     padding: 3%;
@@ -13,31 +15,27 @@ body{
     text-align: center;
 }
 .profile-img img{
-    width: 70%;
+    width: 75%;
     height: 100%;
 }
-.profile-img .file {
+.profile-img .file {    
     position: relative;
     overflow: hidden;
-    margin-top: -20%;
-    width: 70%;
+    width:75%;
     border: none;
     border-radius: 0;
     font-size: 15px;
-    background: rgb(37,42,51);
+    background-color: rgb(37,42,51);
+}
+.profile-img .file:hover{
+    background-color:rgb(210,57,59);
 }
 .profile-img .file input {
     position: absolute;
     opacity: 0;
     right: 0;
-    top: 0;
 }
-.profile-head h5{
-    color: rgb(37,42,51);
-}
-.profile-head h6{
-    color: rgb(210,57,59);
-}
+
 .profile-edit-btn{
     border: none;
     border-radius: 1.5rem;
@@ -65,7 +63,7 @@ body{
 }
 .profile-work p{
     font-size: 12px;
-    color: #818182;
+    color:#f4f2f8;
     font-weight: 600;
     margin-top: 10%;
 }

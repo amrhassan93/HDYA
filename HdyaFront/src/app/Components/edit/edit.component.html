@@ -70,7 +70,16 @@
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
         <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU"><span class="font-weight-bold">{{myprofile.username}}</span><span class="text-black-50">{{myprofile.email}}</span><span> </span></div>
+            <div class="profile-img">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
+                <div class="file btn btn-lg btn-primary">
+                    Change Photo
+                    <input type="file" name="file" />
+                </div>
+                <br><br>
+                <h4 style="color: rgb(37,42,51);">Noor Shalaby</h4>
+                <!-- <br><br><h4 style="color: rgb(37,42,51);">{{myprofile.username}}</h4> -->
+            </div>
         </div>
         <div class="col-md-9 border-right">
             <div class="p-3 py-5">
@@ -78,19 +87,21 @@
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="{{myprofile.first_name}}" value=""></div>
-                    <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" placeholder="{{myprofile.last_name}}" value=""></div>
-                    <div class="col-md-6"><label class="labels">Username</label><input type="text" class="form-control" value="" placeholder="{{myprofile.username}}"></div>
+                    <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="{{myprofile.first_name}}" value=""></div><br>
+                    <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" placeholder="{{myprofile.last_name}}" value=""></div><br>
+                    <div class="col-md-6"><label class="labels">Username</label><input type="text" class="form-control" value="" placeholder="{{myprofile.username}}"></div><br>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" class="form-control" placeholder="{{myprofile.mobile}}" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="{{myprofile.address}}" value=""></div>
-                    <div class="col-md-12"><label class="labels">Email ID</label><input type="email" class="form-control" placeholder="{{myprofile.email}}" value=""></div>
-                    <div class="col-md-12"><label class="labels">Birthday</label><input type="date" class="form-control" placeholder="{{myprofile.birth_date}}" value=""></div>
+                    <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" class="form-control" placeholder="{{myprofile.mobile}}" value=""></div><br>
+                    <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="{{myprofile.address}}" value=""></div><br>
+                    <div class="col-md-12"><label class="labels">Email </label><input type="email" class="form-control" placeholder="{{myprofile.email}}" value=""></div><br>
+                    <div class="col-md-12"><label class="labels">Birthday</label><input type="date" class="form-control" placeholder="{{myprofile.birth_date}}" value=""></div><br>
                 </div>
-                <div class="mt-5 text-center "><button class="btn  profile-button" type="button">Save Profile</button></div>
+                <div class="mt-5 text-center ">
+                    <button class="btn  profile-button" type="button" routerLink='../../profile'>Save Profile</button>
+                </div>
             </div>
         </div>
-        
+
     </div>
 </div>
