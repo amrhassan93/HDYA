@@ -15,9 +15,6 @@ import { Category } from 'src/app/models/interfaces/category';
 export class ProductDetailsComponent implements OnInit {
   productList:Product[] = [] ;
   filteredList:Product[]=[] ;
-
-
-
   productdetails:Product = {id : 0 ,
                         name : "" ,
                         price: 0,
@@ -33,9 +30,7 @@ export class ProductDetailsComponent implements OnInit {
                         updated_at: "" ,
                         images:[]
                       };
-                           
-  
-
+                    
   constructor(private _products:ProductsService , private activerouter:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -61,12 +56,6 @@ export class ProductDetailsComponent implements OnInit {
       (err)=> console.log(err),
     )
 
-
-    
-      // this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category)
-      
-      
-      
   }
 
   // showProductsbyID(catId:number){
@@ -81,16 +70,12 @@ export class ProductDetailsComponent implements OnInit {
   //   this.productList = this.filterdProducts
   //   this.filterdProducts = []
   // }
-
-
   
 ngDoCheck(): void {
   //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
   //Add 'implements DoCheck' to the class.
   // console.log(this.productList);
   this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category)
-
-  // console.log(this.filteredList);
 } 
 
 
