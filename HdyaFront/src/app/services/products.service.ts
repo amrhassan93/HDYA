@@ -46,7 +46,9 @@ export class ProductsService {
   // viewProductsBycat(name:string,price?:number,gender?:string,age_from?:number,age_to?:number,catId?:number,user?:number,is_featured?:boolean):Observable<Product>{ 
   //   return this.http.get<Product>(`${environment.apiUrl}/products/?name=${name}&price=${price}&gender=${gender}&age_from=${age_from}&age_to=${age_to}&category=${catId}&user=${user}&is_featured=${is_featured}/`)
   // }
-
+  // query_string= "" 
+  // if( name) query_String+="name"=name 
+  // if(category) 
   createProduct(data:object):Observable<Product>{
     return this.http.post<Product>(`${environment.apiUrl}/products/` , data)
   }

@@ -18,6 +18,8 @@
     <!-- <<<<<<<<<<<<<<<<<<<< Breadcumb Area End <<<<<<<<<<<<<<<<<<<< -->
 
     <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area Start >>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+
     <section class="single_product_details_area section_padding_0_100" data-aos="fade-down" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1000">
         <div class="container">
             <div class="row">
@@ -41,9 +43,10 @@
                                         <img class="d-block w-100" src="../../../assets/images/hand14.jpg" alt="First slide">
                                     </a>
                                 </div>
-                                <div class="carousel-item">
-                                    <a class="gallery_img" href="../../../assets/images/hand15.jpg">
-                                        <img class="d-block w-100" src="../../../assets/images/hand15.jpg" alt="Second slide">
+
+                                <div *ngFor="let image of productdetails.images" class="carousel-item">
+                                    <a class="gallery_img" href={{image.image}}>
+                                        <img class="d-block w-100" src={{image.image}} alt="Second slide">
                                     </a>
                                 </div>
                                 <div class="carousel-item">
@@ -60,7 +63,7 @@
                     <div class="single_product_desc pl-5">
 
                         <h4 class="title"><a href="#">{{productdetails.name}} </a></h4>
-                        <h4 class="price">{{ productdetails.price | currency:'EGP' }}</h4>
+                        <h4 class="price">{{ productdetails.price | currency:'EGP ' }}</h4>
 
                         <p class="available">Available: <span class="text-muted">In Stock</span></p>
 
@@ -75,21 +78,27 @@
                         <div class="widget size mb-50">
                             <h6 class="widget-title m-2">Age</h6>
                             <div class="widget-desc">
-                                <a class="p-2 m-2" routerLink="#">0-3</a>
-                                <a class="p-2 m-2" routerLink="#">3-7</a>
+                                <a class="p-2 m-2" routerLink="#">{{productdetails.age_from}}-{{productdetails.age_to}}</a>
+                                <!-- <a class="p-2 m-2" routerLink="#">3-7</a>
                                 <a class="p-2 m-2" routerLink="#">7-12</a>
                                 <a class="p-2 m-2" routerLink="#">12-18</a>
                                 <a class="p-2 m-2" routerLink="#">18-25</a><br><br>
                                 <a class="p-2 m-2 " routerLink="#">25-35</a>
                                 <a class="p-2 m-2" routerLink="#">35-55</a>
-                                <a class="p-2 m-2" routerLink="#">55+</a>
+                                <a class="p-2 m-2" routerLink="#">55+</a> -->
                             </div>
                         </div>
                         <div class="widget size mb-50">
-                            <h6 class="widget-title m-2">Gender : Female</h6>
+                            <h6 class="widget-title m-2">Gender : {{productdetails.gender}}</h6>
                         </div>
                         <div class="widget size mb-50">
-                            <h6 class="widget-title m-2">occassion : Birthday</h6>
+                            <h6 class="widget-title m-2">occassion :
+                                <ul>
+                                    <li *ngFor="let occassion of productdetails.occassions">
+                                        {{occassion}}
+                                    </li>
+                                </ul>
+                            </h6>
                         </div>
 
                         <!-- Add to Cart Form -->
@@ -112,9 +121,9 @@
 
                                 <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                                     <div class="card-body">
-                                        <p>Wooden Camera Made by Egyptian Hands </p>
-                                        <p>Suitable for all age groups, whether boy or girl; A man or a woman </p>
-                                        <p>Suitable for all occasions and can be delivered to any governorate inside Egypt</p>
+                                        <p>{{productdetails.details}} </p>
+                                        <!-- <p>Suitable for all age groups, whether boy or girl; A man or a woman </p>
+                                        <p>Suitable for all occasions and can be delivered to any governorate inside Egypt</p> -->
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +231,7 @@
                     <div class="you_make_like_slider owl-carousel">
 
                         <!-- Single gallery Item -->
-                        <div class="single_gallery_item">
+                        <div *ngFor="let product of filteredList" class="single_gallery_item">
                             <!-- Product Image -->
                             <div class="product-img">
                                 <img src="../../../assets/images/hand15.jpg" alt="hand15">
@@ -233,83 +242,13 @@
                             <!-- Product Description -->
                             <div class="product-description">
                                 <h4 class="product-price">$20</h4>
-                                <p>Wooden Camera 2</p>
+                                <p>{{product.name}}</p>
                                 <!-- Add to Cart -->
                                 <a href="#" class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
                             </div>
                         </div>
 
-                        <!-- Single gallery Item -->
-                        <div class="single_gallery_item">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="../../../assets/images/hand16.jpg" alt="hand16">
-                                <div class="product-quicview">
-                                    <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$25</h4>
-                                <p>Wooden Camera 3</p>
-                                <!-- Add to Cart -->
-                                <a href="#" class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
-                            </div>
-                        </div>
 
-                        <!-- Single gallery Item -->
-                        <div class="single_gallery_item">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="../../../assets/images/hand17.jpg" alt="hand17">
-                                <div class="product-quicview">
-                                    <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$32</h4>
-                                <p>Wooden Camera 4</p>
-                                <!-- Add to Cart -->
-                                <a href="#" class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
-                            </div>
-                        </div>
-
-                        <!-- Single gallery Item -->
-                        <div class="single_gallery_item">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="../../../assets/images/hand18.jpg" alt="hand18">
-                                <div class="product-quicview">
-                                    <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$28</h4>
-                                <p>Wooden Camera 5</p>
-                                <!-- Add to Cart -->
-                                <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                            </div>
-                        </div>
-
-                        <!-- Single gallery Item -->
-                        <div class="single_gallery_item">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="../../../assets/images/hand14.jpg" alt="hand14">
-                                <div class="product-quicview">
-                                    <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">$15</h4>
-                                <p>Wooden Camera 6</p>
-                                <!-- Add to Cart -->
-                                <a href="#" class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
