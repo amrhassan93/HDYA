@@ -79,7 +79,6 @@ export class CreateProductComponent implements OnInit {
     // this.newproduct.relationships = relationships.value ;
     console.log(this.newproduct);
 
-
     this._productservisec.createProduct(this.newproduct).subscribe(
       (data)=>{
         const fd : FormData = new FormData()
@@ -97,6 +96,7 @@ export class CreateProductComponent implements OnInit {
       (err)=>console.log(err)
     )
   }
+
 
 // ngDoCheck(): void {
 //   //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
