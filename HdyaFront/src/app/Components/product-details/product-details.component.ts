@@ -57,7 +57,7 @@ export class ProductDetailsComponent implements OnInit {
 
 
     
-      // this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category)
+      // this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category
       
       
       
