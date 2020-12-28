@@ -1,23 +1,76 @@
-.container {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    background-color: #eee4e4;
+// .container {
+//     margin-top: 40px;
+//     margin-bottom: 40px;
+//     background-color: #eee4e4;
+// }
+
+// .mb-3 {
+//     font-size: 20px;
+// }
+
+// .form-control {
+//     width: inherit;
+// }
+
+// .style_card {
+//     margin-top: 20px;
+//     margin-bottom: 20px;
+// }
+
+// .save_change {
+//     background-color: rgb(210, 57, 59);
+// }
+
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 90%;
+    height: 100%;
+}
+.profile-img .file {    
+    position: relative;
+    overflow: hidden;
+    width: 90%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background-color: rgb(37,42,51);
+}
+.profile-img .file:hover{
+    background-color:rgb(210,57,59);
 }
 
-.mb-3 {
-    font-size: 20px;
+.profile-img .file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
 }
 
-.form-control {
-    width: inherit;
+.form-control:focus {
+    box-shadow: none;
+    border-color: rgb(210, 57, 59)
 }
 
-.style_card {
-    margin-top: 20px;
-    margin-bottom: 20px;
+.profile-button {
+    background: rgb(210, 57, 59);
+    box-shadow: none;
+    border: none;
+    color:white;
+    width:50%;
 }
 
-.save_change {
-    background-color: rgb(210, 57, 59);
-    // float: right;
+.profile-button:hover {
+    background: rgb(37,42,51);
 }
+
+.profile-button:focus {
+    background: rgb(37,42,51);
+    box-shadow: none
+}
+    
+
+.labels {
+    font-size: 18px
+}
+

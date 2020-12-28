@@ -1,461 +1,193 @@
-<!-- <div class="container">
-    <div class="row">
-
-        <div class="col-md-6 col-sm-12 d-flex justify-content-center">
-
-            <div class="card style_card" style="width: 18rem;">
-                <img [src]="url" class="card-img-top" style="border-radius: 50%;width: 50%;margin: auto;" alt="profile image">
-                <div class="card-body">
-                    <h5 class="card-title">{{myprofile.username}}</h5>
-                </div>
-                <div *ngIf="isdisplayed">
-                    <input type="file" (change)="selectfile($event)">
-
-                </div>
-
-                <div class="card-body">
-                    <input type="button" class="btn btn-primary change_image" (click)="toggledispayed()" value="Change your profile image">
-                    <br> <br>
-                    <button class="btn btn-primary edit_profile"> <a class="edit_profile_link" href="profile/edit">Edit your
-              profile</a></button>
-
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-md-6 col-sm-12 d-flex justify-content-center">
-            <div class="card style_card" style="width: 40rem;">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="bmd-label-floating">First Name </label>
-                        </div>
-                        <div class="col-6">
-                            <p class="profile_info">Reham</p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="bmd-label-floating">Last Name </label>
-                        </div>
-                        <div class="col-6">
-                            <p class="profile_info">Tarek</p>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="bmd-label-floating">E-mail </label>
-                        </div>
-                        <div class="col-6">
-                            <p class="profile_info">Reham ididid</p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="bmd-label-floating">Mobile</label>
-                        </div>
-                        <div class="col-6">
-                            <p class="profile_info">01159444101</p>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="bmd-label-floating">Adress </label>
-                        </div>
-                        <div class="col-6">
-                            <p class="profile_info">alamaza masr elgdida</p>
-                        </div>
-
-                    </div>
-
-                    <a href="#" class="change_password">Change Password</a>
-
-                    <p>
-                        <a class="btn btn-primary Previous_order" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Previous Orders</a>
-                    </p>
-
-                    <p>
-                        <a class="btn btn-primary product" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2"> Your Products</a>
-                    </p>
-
-                </div>
-
-            </div>
-
-
-        </div>
-        <div>
-
-
-
-        </div>
-    </div>
-
-</div>
-
-<div class="collapse multi-collapse" id="multiCollapseExample1">
-
-    <div class="row">
-        <div class="col-lg-3 col-md-12"></div>
-        <div class="col-lg-6 col-md-12 justify-content-center">
-            <div class="card order_card" style="width: 35rem;">
-                <div class="card card-body">
-                    <div class="row">
-
-                        <div class="col-4">
-                            <img src="../../../assets/images/login.jpg" width="100%" alt="..." class="img-thumbnail">
-
-                        </div>
-                        <div class="col-2"></div>
-                        <div class="col-4 order_details">
-                            <p> face drawing </p>
-                            <p> details</p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-sm-12"></div>
-    </div>
-</div>
-
-
-<div class="collapse multi-collapse" id="multiCollapseExample2">
-
-    <div class="row">
-        <div class="col-lg-3 col-md-12"></div>
-        <div class="col-lg-6 col-md-12 justify-content-center">
-            <div class="card order_card" style="width: 35rem;">
-                <div class="card card-body">
-                    <div class="row">
-
-                        <div class="col-4">
-                            <img src="../../../assets/images/login.jpg" width="100%" alt="..." class="img-thumbnail">
-
-                        </div>
-                        <div class="col-2"></div>
-                        <div class="col-4 order_details">
-                            <p> face drawing </p>
-                            <p> details</p>
-                        </div>
-
-                    </div>
-
-                    <div class="d-grid gap-2 d-md-block">
-                        <button class="btn btn-primary edit_product" type="button">Edit</button>
-                        <button class="btn btn-primary delete_product" type="button">Delete</button>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-sm-12"></div>
-    </div>
-</div> -->
-
-
-
-
-
-
-
-<!-- 
 <body>
-<div class="container"> 
-<div class="col-md-12">  
-    <div class="row">
-     <div style="text-align: center;" class="col-md-4">      
-        <div class="portlet light profile-sidebar-portlet bordered">
-            <div class="profile-userpic">
-                <img src="{{myprofile.avatar}}"  class="img-responsive" alt=""> 
-            </div>
-            <div class="profile-usertitle">
-                <div class="profile-usertitle-name">{{myprofile.username}}</div>
-            </div>
-            <div class="profile-userbuttons">
-                <button type="button" class="btn btn-info  btn-sm">Follow</button>
-                <button type="button" class="btn btn-info  btn-sm">Message</button>
-            </div>
-            <div class="profile-usermenu">
-                <ul class="nav">
-                    <li class="active">
-                        <a href="#">
-                            <i class="icon-home"></i> Ticket List </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="icon-settings"></i> Support Staff </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="icon-info"></i> Configurations </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-8"> 
-        <div class="portlet light bordered">
-            <div class="portlet-title tabbable-line">
-                <div class="caption caption-md">
-                    <i class="icon-globe theme-font hide"></i>
-                    <span class="caption-subject font-blue-madison bold uppercase">Your info</span>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div>
-                
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Update</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-                        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
-                    </ul>
-                
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="home">
-                            <form>
-                              <div class="form-group">
-                                <label for="inputName">Name</label>
-                                <input type="text" class="form-control" id="inputName" placeholder="{{myprofile.first_name}}">
-                              </div>
-                                <div class="form-group">
-                                <label for="inputLastName">Last Name</label>
-                                <input type="text" class="form-control" id="inputLastName" placeholder="{{myprofile.last_name}}">
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="{{myprofile.email}}">
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                              </div>
-                              <div class="form-group">
-                                <label for="Mobile">Mobile Number</label>
-                                <input type="tel" class="form-control" id="Mobile" placeholder="{{myprofile.mobile}}">
-                              </div>
-
-                              <div class="form-group">
-                                <label for="address">Address</label>
-                                <input type="text" class="form-control" id="address" placeholder="{{myprofile.address}}">
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInputFile">File input</label>
-                                <input type="file" id="exampleInputFile">
-                                <p class="help-block">Example block-level help text here.</p>
-                              </div>
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox"> Check me out
-                                </label>
-                              </div>
-                              <button type="submit" class="btn btn-default">Submit</button>
-                            </form>
+    <br><br>
+    <div class="container">
+        <form>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
+                        <div class="file btn btn-lg btn-primary">
+                            Change Photo
+                            <input type="file" name="file" />
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="profile">Profile</div>
-                        <div role="tabpanel" class="tab-pane" id="messages">Messages</div>
-                        <div role="tabpanel" class="tab-pane" id="settings">Settings</div>
+                        <br><br>
+                        <h4 style="color: rgb(37,42,51);">Noor Shalaby</h4>
+                        <!-- <br><br><h4 style="color: rgb(37,42,51);">{{myprofile.username}}</h4> -->
                     </div>
-                
+                </div>
+                <div class="col-md-6 p-4">
+                    <div class="profile-head">
+                        <h5>
+                            {{myprofile.username}}
+                        </h5>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false">Orders</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" routerLink='./edit' />
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</body>  -->
+            <div class="row">
+                <div class="col-md-4">
 
-
-
-
-<head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
-<body>
-    <div class="container emp-profile">
-            <form method="post">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>User Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{myprofile.username}}</p>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>First Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{myprofile.first_name}}</p>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Last Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{myprofile.last_name}}</p>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{myprofile.email}}</p>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Phone</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{myprofile.mobile}}</p>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Address</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{myprofile.address}}</p>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Bithday</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{myprofile.birth_date}}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    <h5>
-                                        {{myprofile.username}}
-                                    </h5>
-                                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-work">
-                            <p>WORK LINK</p>
-                            <a href="">Website Link</a><br/>
-                            <a href="">Bootsnipp Profile</a><br/>
-                            <a href="">Bootply Profile</a>
-                            <p>SKILLS</p>
-                            <a href="">Web Designer</a><br/>
-                            <a href="">Web Developer</a><br/>
-                            <a href="">WordPress</a><br/>
-                            <a href="">WooCommerce</a><br/>
-                            <a href="">PHP, .Net</a><br/>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>User Name</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{myprofile.username}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>First Name</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{myprofile.first_name}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Last Name</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{myprofile.last_name}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{myprofile.email}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Phone</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{myprofile.mobile}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Address</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{myprofile.address}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Bithday</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{myprofile.birth_date}}</p>
-                                            </div>
-                                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+                                <div class="col-12 ml-1 mb-5">
+                                    <table class="table table-responsive ">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-3">Product Name</th>
+                                                <th class="col-md-3">Price</th>
+                                                <th class="col-md-3">Quantity</th>
+                                                <th class="col-md-3">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="cart_product_img text-center" class="col-md-3">
+                                                    <h6>Hand Made Wooden Camera</h6>
+                                                </td>
+                                                <td class="price" class="col-md-3"><span>30 EGP</span></td>
+                                                <td class="qty" class="col-md-3">
+                                                    <div class="quantity">
+                                                        <span>4</span>
+                                                    </div>
+                                                </td>
+                                                <td class="total_price" class="col-md-3"><span>120 EGP</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cart_product_img text-center" class="col-md-3">
+                                                    <h6>Personal Leather Wallet</h6>
+                                                </td>
+                                                <td class="price" class="col-md-3"><span>20 EGP</span></td>
+                                                <td class="qty" class="col-md-3">
+                                                    <div class="quantity">
+                                                        <span>4</span>
+                                                    </div>
+                                                </td>
+                                                <td class="total_price" class="col-md-3"><span>80 EGP</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cart_product_img text-center" class="col-md-3">
+                                                    <h6>Accessories</h6>
+                                                </td>
+                                                <td class="price" class="col-md-3"><span>10 EGP</span></td>
+                                                <td class="qty" class="col-md-3">
+                                                    <div class="quantity">
+                                                        <span>5</span>
+                                                    </div>
+                                                </td>
+                                                <td class="total_price" class="col-md-3"><span>50 EGP</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Experience</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Hourly Rate</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>10$/hr</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Total Projects</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>230</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>English Level</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Availability</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>6 months</p>
-                                            </div>
-                                        </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
-                                    </div>
+                        </div>
+                        <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                            <div class="row">
+                                <div class="col-12 ml-1 mb-5">
+                                    <table class="table table-responsive ">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-3">Product</th>
+                                                <th class="col-md-3">Price</th>
+                                                <th class="col-md-3">Quantity</th>
+                                                <th class="col-md-3">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="cart_product_img text-center" class="col-md-3">
+                                                    <h6>Hand Made Wooden Camera</h6>
+                                                </td>
+                                                <td class="price" class="col-md-3"><span>30 EGP</span></td>
+                                                <td class="qty" class="col-md-3">
+                                                    <div class="quantity">
+                                                        <span>3</span>
+                                                    </div>
+                                                </td>
+                                                <td class="total_price" class="col-md-3"><span>90 EGP</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>           
-        </div>
+            </div>
+        </form>
+    </div>
 </body>
-
-
-
-
-

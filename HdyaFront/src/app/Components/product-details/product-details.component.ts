@@ -12,6 +12,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
+  productList:Product[] = [] ;
+  filteredList:Product[]=[] ;
+
+
+
   productdetails:Product = {id : 0 ,
                         name : "" ,
                         price: 0,
@@ -28,6 +33,8 @@ export class ProductDetailsComponent implements OnInit {
                         images:[]
                       };
                            
+  
+
   constructor(private _products:ProductsService , private activerouter:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -39,8 +46,34 @@ export class ProductDetailsComponent implements OnInit {
       (err)=> console.log(err) 
     ) 
 
+    this._products.viewProducts().subscribe(
+      (data)=> {
+        this.productList=data.results
+        console.log(this.productList);
 
+      },
+      (err)=> console.log(err),
+    )
+
+
+    
+      // this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category)
+      
+      
+      
   }
+
+  
+ngDoCheck(): void {
+  //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
+  //Add 'implements DoCheck' to the class.
+  // console.log(this.productList);
+  this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category)
+
+  // console.log(this.filteredList);
+} 
+
+
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,

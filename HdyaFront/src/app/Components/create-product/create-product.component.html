@@ -51,45 +51,44 @@
                             <div class="col-12 mb-4">
                                 <div class="form-group">
                                     <label for="occassion">Occassion</label>
-                                    <select #poccassions class="form-control" id="occassion">
-                                      <option value="1">Birth-day</option>
-                                      <option value="2">Merage</option>
-                                      <option value="3">Valentine</option>
+                                    <select multiple #poccassions [(ngModel)]="newproduct.occassions" [ngModelOptions]="{standalone: true}" class="form-control" id="occassion">
+                                      <option *ngFor="let occ of occassions" [value]="occ.id" >{{occ.name}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-12 mb-4">
                                 <div class="form-group">
                                     <label for="gender">gender</label>
-                                    <select #pgender class="form-control" id="gender">
-                                      <option value="m">male</option>
-                                      <option value="f">female</option>
-                                      <option value="b">both</option>
+                                    <select #pgender [(ngModel)]="newproduct.gender" [ngModelOptions]="{standalone: true}" class="form-control" id="gender">
+                                      <option [Value]="m" value="m">male</option>
+                                      <option [Value]="f" value="f">female</option>
+                                      <option [Value]="b" value="b">both</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-12 mb-4">
                                 <div class="form-group">
                                     <label for="relationship">Relationship</label>
-                                    <select #prelationship class="form-control" id="relationship">
-                                      <option value="1">Friend</option>
-                                      <option value="2">Brother</option>
-                                      <option value="3">Sister</option>
-                                      <option value="4">Mother</option>
-                                    </select>
+                                    <select multiple #prelationship [(ngModel)]="newproduct.relationships" [ngModelOptions]="{standalone: true}" class="form-control" id="relationship">
+                                        <option *ngFor="let rel of relationships" [value]="rel.id" >{{rel.name}}</option>
+                                       
+                                      </select>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-4">
                                 <div class="form-group">
-                                    <label for="Category">Category <span>*</span></label>
-                                    <select #pcategory class="form-control" id="relationship">
-                                    <option value="1">Glass Product</option>
-                                    <option value="2">Wooden Product</option>
-                                    <option value="3">Wicker Product</option>
-                                  </select>
+
+                                    <label for="Category">Categories <span>*</span></label>
+
+                                    <select #pcategory [(ngModel)]="newproduct.category" [ngModelOptions]="{standalone: true}" class="form-control" id="Category">
+                                        <option *ngFor="let cat of categories" [value]="cat.id">{{cat.title}}</option>
+                                    </select>
+
+
                                 </div>
 
                             </div>
+                            <!-- <h1>{{newproduct.gender}}</h1> -->
 
                             <button (click)="addNewProduct()" class="btn btn-primary">ADD</button><br><br>
                         </div>
@@ -101,3 +100,4 @@
 </div><br>
 
 <!-- (click)="addNewProduct(pname,pprice,pdetails,pimages)" -->
+<!-- pname,pprice,pdetails,pagefrom,pageto,poccassions , pgender , prelationship ,pcategory  -->
