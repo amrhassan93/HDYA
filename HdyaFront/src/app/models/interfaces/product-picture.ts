@@ -1,5 +1,5 @@
 export interface ProductPicture {
-    id:number;
-    product:string;
-    img_url:string;
+    id?:number;
+    product:number;
+    img_url:File;
 }
