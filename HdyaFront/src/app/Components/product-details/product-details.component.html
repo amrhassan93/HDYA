@@ -29,12 +29,12 @@
                         <div id="product_details_slider" class="carousel slide" data-ride="carousel">
 
                             <ol class="carousel-indicators">
-                                <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(../../../assets/images/hand14.jpg);">
+                                <li *ngFor="let image of productdetails.images" class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url({{image.image}});">
                                 </li>
-                                <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(../../../assets/images/hand15.jpg);">
+                                <!-- <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(../../../assets/images/hand15.jpg);">
                                 </li>
                                 <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(../../../assets/images/hand16.jpg);">
-                                </li>
+                                </li> -->
                             </ol>
 
                             <div class="carousel-inner">
@@ -49,11 +49,11 @@
                                         <img class="d-block w-100" src={{image.image}} alt="Second slide">
                                     </a>
                                 </div>
-                                <div class="carousel-item">
+                                <!-- <div class="carousel-item">
                                     <a class="gallery_img" href="../../../assets/images/hand16.jpg">
                                         <img class="d-block w-100" src="../../../assets/images/hand16.jpg" alt="Third slide">
                                     </a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

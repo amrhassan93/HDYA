@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service'
 import { Product } from '../../models/interfaces/product'
+import { Category } from '../../models/interfaces/category'
+import { RelationShip } from '../../models/interfaces/relation-ship'
+import { Occassion } from '../../models/interfaces/occassion'
+
+import { ProductPicture } from '../../models/interfaces/product-picture'
 
 @Component({
   selector: 'app-create-product',
@@ -8,106 +13,110 @@ import { Product } from '../../models/interfaces/product'
   styleUrls: ['./create-product.component.scss']
 })
 export class CreateProductComponent implements OnInit {
-
+  categories:Category[] = []
+  occassions:Occassion[] = []
+  relationships:RelationShip[] = []
   newproduct:Product;
-  // name:string;
-  // price:number;
-  // details:string;
-  // age_from:numbe// name:string;
-  // price:number;
-  // details:string;
-  // age_from:number;
-  // age_to:nur;
-  // age_to:number;
-  // gender:string;
-  // occassions:Array<number>;
-  // category:number;
-  // relationships:Array<number>;
+  images:File [] = [] 
+  // name:string = "";
+  // price:number = 0;
+  // details:string = "";
+  // age_from:number = 0;
+  // age_to:number = 0;
+  // gender:string = "";
+  // occassions:Array<number> = [];
+  // category:number = 0;
+  // relationships:Array<number> = [];
   // is_featured:boolean;
   // created_at:string;
   // updated_at:string;
   // productpicture_set:Array<object>;
-
-
-  
   constructor(private _productservisec:ProductsService) { 
     this.newproduct = {
-      gender:"m",
+      gender:"",
       details:"",
       name:"",
-      category:1,
-      occassions:[5,6],
-      relationships:[1,2],
+      category:0,
+      occassions:[],
+      relationships:[],
       is_featured:false,
       price:0,
       age_from:0,
       age_to:0,
-      // images:
-    }
-    // this.gender="";
-    // this.details = "";
-    // this.name="" ;
-    // this.category=0;
-    // this.occassions=[];
-    // this.relationships=[];
-    // this.is_featured=false;
-    // this.price=0;
-    // this.age_from=0;
-    // this.age_to=0;
-    // this.created_at='';
-    // this.updated_at='';
-    // this.productpicture_set=[]
-  
+    } 
   }
 
   ngOnInit(): void {
-    console.log(this.newproduct.images instanceof Array);
+    this._productservisec.showcategories().subscribe(
+      (data)=>this.categories=data.results,
+      (err)=>console.log(err) 
+    )
+
+    this._productservisec.showrelations().subscribe(
+      (data)=>this.relationships=data.results,
+      (err)=>console.log(err) 
+    )
+
+    this._productservisec.showoccassions().subscribe(
+      (data)=>this.occassions=data.results,
+      (err)=>console.log(err) 
+    )
+
   }
 
-
+  // name:string,details:string, price:number, age_from:number, age_to:number, gender:string, category:number , occassions:Array<number> , relationships:Array<number>
   addNewProduct(){
-    console.log(this.newproduct)
+    console.log(this.newproduct);
+    
+    // this.newproduct.name = name.value ;
+    // this.newproduct.details = details.value ;
+    // this.newproduct.price = price.value ;
+    // this.newproduct.age_from = age_from.value ;
+    // this.newproduct.age_to = age_to.value ;
+    // this.newproduct.gender = gender.value ;
+    // this.newproduct.category = category.value ;
+    // this.newproduct.occassions = occassions.value ;
+    // this.newproduct.relationships = relationships.value ;
+    console.log(this.newproduct);
+
 
     this._productservisec.createProduct(this.newproduct).subscribe(
-      (data)=>console.log(data),
+      (data)=>{
+        const fd : FormData = new FormData()
+
+        for(let i=0 ; i < this.images.length ; i++){
+          fd.append('image' , this.images[i] , this.images[i].name)
+          fd.append('product' , data.id)
+          this._productservisec.createProductImages(fd).subscribe(
+            (data)=>console.log(data),
+            (err)=>console.log(err),
+          )
+        };
+        alert('Your Product Was submitted successfully');
+      },
       (err)=>console.log(err)
     )
   }
-  changeImageInput(event:any){
-    // console.log(this.newproduct.productpicture_set instanceof Array);
-    // console.log(typeof(this.newproduct.productpicture_set));
-    console.log(event.target.files)
-    // console.log(this.newproduct.productpicture_set);
-    // console.log(typeof(this.newproduct.productpicture_set));
-    // console.log(this.newproduct.productpicture_set instanceof Array);
 
-    // for (let i=0; i<event.target.files.length; i++){
-    //   console.log(event.target.files[i]);
-    //   this.newproduct.images.push({pimage:event.target.files[i]})
-    // }  
-    // console.log(this.newproduct.pimage);
-    this.newproduct.images = event.target.files
-    
-    // if(event.target.files && event.target.files[0].type.includes('image')){
-      
-    // }
+// ngDoCheck(): void {
+//   //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
+//   //Add 'implements DoCheck' to the class.
+//   console.log(this.newproduct.category);
+  
+// }
+  
+  changeImageInput(event:any){
+   
+    let incoming_images =  event.target.files
+    for (let i=0; i<incoming_images.length; i++){
+      // console.log(incoming_images[i]);
+
+      this.images.push(incoming_images[i])
+    }
+   
 
   }
 
-
-  // changeImageInput(event:any){
-  //   console.log(event)
-  //   // if(event.target.files && event.target.files[0].type.includes('image') ){
-  //   // let reader = new FileReader()
-  //   // reader.readAsDataURL(event.target.files[0])
-  //   // reader.onload= (event:any)=>{
-  //   // this.url = event.target.result
-  //   // console.info(this.url)
-  //   // }
-  //   // }
-  //   // else
-  //   // console.log('File does not supported')
-  //   } 
 
 }
 
@@ -125,3 +134,54 @@ export class CreateProductComponent implements OnInit {
 //   "age_to":15,
 //   "productpicture_set":[{"image":null}, {"image":null}]
 //   } 
+
+
+
+// ===================================================================================
+
+
+
+// import { IProduct } from './../../classes/iproduct';
+// import { ProductService } from 'src/app/services/product.service';
+// import { ICategory } from './../../classes/icategory';
+// import { CategoryService } from './../../services/category.service';
+// import { Component, OnInit } from '@angular/core';
+// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { HttpClient, HttpHeaders } from '@angular/common/http'
+// @Component({
+//   selector: 'app-add-new-product',
+//   templateUrl: './add-new-product.component.html',
+//   styleUrls: ['./add-new-product.component.css']
+// })
+// export class AddNewProductComponent implements OnInit {
+//   selectedFiles: File[] = [];
+
+//   constructor(private _fb:FormBuilder, private _http:HttpClient) { }
+
+//   ngOnInit(): void {
+
+//   }
+//   onFileSelected(event){
+//     console.log(event);
+//     for(let i in event.target.files)
+//       this.selectedFiles.push(event.target.files[i])
+
+//   }
+//   onUpload(){
+//     const headers = {
+//       headers:new HttpHeaders({
+//         'Authorization': 'Token 508b22e480a3d2f271c028e58c606c0677f737cf'
+//       })
+//     }
+//     const fb = new FormData()
+    
+//     for(let file in this.selectedFiles)
+//       fb.append('image', file, file.name)
+//     // fb.append('product', '53')
+
+//     this._http.post('http://localhost:8000/products/', fb, headers).subscribe(
+//       console.log,
+//       res=>console.error(res.error)
+//     )
+//   }
+// }
