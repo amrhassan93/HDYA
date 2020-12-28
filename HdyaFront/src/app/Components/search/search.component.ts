@@ -3,6 +3,7 @@ import * as AOS from 'aos';
 import { ProductsService } from '../../services/products.service'
 import { Product } from '../../models/interfaces/product'
 import { Category } from '../../models/interfaces/category'
+import { AlertService } from 'src/app/_alert';
 
 @Component({
   selector: 'app-search',
@@ -14,6 +15,7 @@ export class SearchComponent implements OnInit {
   productList: Product[] = [];
   categoryList:Category[]=[];
   filterdProducts:Product[] = [];
+  newproduct:Product | undefined;
   minrange:number = 10;
   maxrange:number=70;
   minprice:number=0;
@@ -22,9 +24,28 @@ export class SearchComponent implements OnInit {
   page:number=1
   cart:Array<object> = [];
   productPopUp:Product[] = [] ; 
+  relationships: any;
+  occassions: any;
 
-  constructor(private _products:ProductsService) {
-  
+  // search options
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+};
+
+  constructor(private _products:ProductsService,protected alertService: AlertService) {
+    this.newproduct = {
+      gender:"",
+      details:"",
+      name:"",
+      category:0,
+      occassions:[],
+      relationships:[],
+      is_featured:false,
+      price:0,
+      age_from:0,
+      age_to:0,
+    } 
   }
 
   ngOnInit(): void {
@@ -53,13 +74,18 @@ export class SearchComponent implements OnInit {
       )    
     }
 
-  
-    // console.log(this.productList);
-
-
     this._products.showcategories().subscribe(
       (data)=>this.categoryList = data.results,
       (err) => console.log(err) 
+    )
+    this._products.showrelations().subscribe(
+      (data)=>this.relationships=data.results,
+      (err)=>console.log(err) 
+    )
+
+    this._products.showoccassions().subscribe(
+      (data)=>this.occassions=data.results,
+      (err)=>console.log(err) 
     )
 
   }
@@ -117,28 +143,7 @@ export class SearchComponent implements OnInit {
      }
      this.productList = this.filterdProducts
      this.filterdProducts = []
-
-    // if (this.allproducts.length == this.productList.length){
-
-    // }else{
-    //   this.productList = this.allproducts
-    //   for (let i=0 ; i<this.productList.length ; i++){
-    //       if (this.productList[i].gender == gender){
-    //         this.filterdProducts.push(this.productList[i])
-    //       }
-    //       else{
-    //         console.log('not in this cat')
-    //       }
-    //   }
-    //   this.productList = this.filterdProducts
-    //   this.filterdProducts = []
-    // }
-
-
-    
-
   }
-
 
   getproductsbyprice(minprice:number , maxprice:number ){
     for (let i=0 ; i<this.productList.length ; i++){
@@ -184,8 +189,6 @@ export class SearchComponent implements OnInit {
 
 
   addToCart(product_id:number){
-    // this.ay7aga = product_id
-    // console.log(this.ay7aga);
     
     if (localStorage.getItem("cart")){
       this.cart = JSON.parse(localStorage.getItem("cart") || '{}') 
@@ -197,6 +200,7 @@ export class SearchComponent implements OnInit {
       this.cart.push(addtocart)
 
       localStorage.setItem("cart" , JSON.stringify(this.cart))
+      this.alertService.success('Success!!', this.options)
     }
     else {
       let addtocart = this.productList.find((product)=>{ 
@@ -204,18 +208,10 @@ export class SearchComponent implements OnInit {
         })
       this.cart.push(addtocart)
       localStorage.setItem("cart" , JSON.stringify(this.cart))
-  
-      console.log(this.cart);
+      // console.log(this.cart);
+      this.alertService.success('Success!!', this.options)
     }
-
-
-    
-    
-    // this.cart.push(addtocart)
-    // console.log(this.cart);
-
   }
-
   popUpProduct(product_id:number){
     this.productPopUp =  this.productList.find((product)=>{ 
       return product.id == product_id
@@ -225,5 +221,3 @@ export class SearchComponent implements OnInit {
 
   }
 }
- 
-

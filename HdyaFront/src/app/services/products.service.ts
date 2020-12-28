@@ -40,7 +40,6 @@ export class ProductsService {
 
     return this.http.post<any>(`${environment.apiUrl}/orders/`, {product : product, quantity:quantity ,status :status} , requestOptions)
   }
-
   // viewProductsBycat(catId?:number):Observable<Product>{ 
   //   return this.http.get<Product>(`${environment.apiUrl}/products/?category=${catId}`)
   // }
