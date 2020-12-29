@@ -39,10 +39,7 @@ export class CartComponent implements OnInit {
 
   calcPrice(prd_id :number ,  Prd_price:number , quantaty:number , index:number){
    
-    this.total[index] = quantaty * Prd_price
-
-    // console.log(this.total);
-    
+    this.total[index] = quantaty * Prd_price    
     this.totalPrice = 0
     for ( let i=0 ; i< this.total.length ; i++){
       this.totalPrice += this.total[i]

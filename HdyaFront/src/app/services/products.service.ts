@@ -40,10 +40,10 @@ export class ProductsService {
 
     return this.http.post<any>(`${environment.apiUrl}/orders/`, {product : product, quantity:quantity ,status :status} , requestOptions)
   }
-
   // viewProductsBycat(catId?:number):Observable<Product>{ 
   //   return this.http.get<Product>(`${environment.apiUrl}/products/?category=${catId}`)
   // }
+  
   // viewProductsBycat(name:string,price?:number,gender?:string,age_from?:number,age_to?:number,catId?:number,user?:number,is_featured?:boolean):Observable<Product>{ 
   //   return this.http.get<Product>(`${environment.apiUrl}/products/?name=${name}&price=${price}&gender=${gender}&age_from=${age_from}&age_to=${age_to}&category=${catId}&user=${user}&is_featured=${is_featured}/`)
   // }
@@ -96,6 +96,20 @@ export class ProductsService {
     return this.http.post<Product>(`${environment.apiUrl}/product/reviews/` ,{body:body,rate:rate,product:product} , requestOptions) 
     
   }
+
+  showreviews(product:number):Observable<any>{
+    // const headerDict = {
+    //   'product':product
+    // }
+    
+    // const requestOptions = {                                                                                                                                                                                 
+    //   headers: new HttpHeaders(headerDict), 
+    // };
+
+    return this.http.get<Product>(`${environment.apiUrl}/product/reviews/`) 
+    
+  }
+
 
 
 }

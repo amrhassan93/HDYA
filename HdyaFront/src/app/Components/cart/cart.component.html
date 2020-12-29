@@ -1,6 +1,8 @@
 <br>
-<div *ngIf="cart.length == 0">
-    <h1>No Items Continue Shopping</h1>
+<div *ngIf="cart.length == 0" class="emptycart text-center mt-5">
+    <img src="../../../assets/images/emptycart.jpg" alt="empty cart">
+    <h6>Ooops! No items in cart. Keep shopping with us and grab exciting offers.!</h6>
+    <a class="btn btn-danger m-2 p-2" routerLink="/search" style="color:white;">Continue Shopping</a>
 </div>
 
 <div *ngIf="cart.length > 0" class="cart_area section_padding_100 clearfix" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="600">
@@ -11,7 +13,7 @@
                     <table class="table table-responsive">
                         <thead>
                             <tr>
-                                <th>NO.</th>
+                                <th>NO</th>
                                 <th>Product Image</th>
                                 <th>Product Name</th>
                                 <th>Price</th>
@@ -78,16 +80,12 @@
                 <div class="cart-total-area mt-70">
                     <div class="cart-page-heading">
                         <h5>Cart total</h5><br>
-                        <p>Final info</p>
                     </div>
-
                     <ul class="cart-total-chart">
-                        <!-- <li><span>Subtotal</span> <span>{{totalPrice}}</span></li>-->
                         <li><span>Shipping</span> <span>Free</span></li>
                         <li><span><strong>Total</strong></span> <span><strong>{{totalPrice}}</strong></span></li>
                     </ul>
-                    <button (click)="orderNow()">ok</button>
-                    <a routerLink="/checkout" class="btn karl-checkout-btn">Proceed to checkout</a>
+                    <button routerLink="/checkout" (click)="orderNow()" class="btn karl-checkout-btn">Proceed to checkout</button>
                 </div>
             </div>
         </div>

@@ -140,7 +140,6 @@ export class CreateProductComponent implements OnInit {
 // ===================================================================================
 
 
-
 // import { IProduct } from './../../classes/iproduct';
 // import { ProductService } from 'src/app/services/product.service';
 // import { ICategory } from './../../classes/icategory';
@@ -159,7 +158,6 @@ export class CreateProductComponent implements OnInit {
 //   constructor(private _fb:FormBuilder, private _http:HttpClient) { }
 
 //   ngOnInit(): void {
-
 //   }
 //   onFileSelected(event){
 //     console.log(event);
