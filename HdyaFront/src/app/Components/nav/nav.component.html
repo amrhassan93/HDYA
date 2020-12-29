@@ -16,7 +16,7 @@
                 <a class="nav-link nav-item navbar-collapse text-light" routerLink="/about">About Us <span class="sr-only"></span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" routerLink="/profile" *ngIf="usertoken">profile <span class="sr-only"></span></a>
+                <a class="nav-link" routerLink="/profile" *ngIf="usertoken">Profile <span class="sr-only"></span></a>
             </li>
 
             <li class="nav-item active">
@@ -30,13 +30,13 @@
         <ul class="navbar-nav ml-auto nav-flex-icons text-light">
             <form class="form-inline my-2 my-lg-0">
                 <input #searchabout class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button (click)="search(searchabout.value)" class="btn btn-outline-light my-2 my-sm-0" type="submit" routerLink="/search">Search</button>
+                <button (click)="search(searchabout.value)" class="btn btn-outline-light my-2 my-sm-0" type="submit" routerLink="/search"><i class="fas fa-search"></i></button>
             </form>
             <li class="nav-item active">
-                <a class="nav-link nav-item navbar-collapse text-light" routerLink="/cart">cart {{cart.length}}<span class="sr-only"></span></a>
+                <a class="nav-link nav-item navbar-collapse text-light " routerLink="/cart"><i class="fas fa-shopping-cart"></i> {{cart.length}}<span class="sr-only"></span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" *ngIf="usertoken" (click)=logout()>logout <span class="sr-only"></span></a>
+                <a class="nav-link" *ngIf="usertoken" (click)=logout()><i class="fas fa-sign-out-alt"></i> <span class="sr-only"></span></a>
             </li>
             <li *ngIf="usertoken === null" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

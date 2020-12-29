@@ -4,6 +4,17 @@
 :: 15.0 Breadcumb Area CSS
 ------------------------ */
 
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.relprd {
+    width: 30%;
+    margin: 10px;
+}
+
 .main {
     margin: auto;
     padding: auto;
