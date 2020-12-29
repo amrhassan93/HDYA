@@ -5,6 +5,7 @@ import * as AOS from 'aos';
 import { ProductsService } from '../../services/products.service'
 import { Product } from '../../models/interfaces/product'
 import { ActivatedRoute, Router } from '@angular/router';
+import {  Review} from '../../models/interfaces/review'
 
 @Component({
   selector: 'app-product-details',
@@ -14,6 +15,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductDetailsComponent implements OnInit {
   productList:Product[] = [] ;
   filteredList:Product[]=[] ;
+  // review:Review;
+
 
 
 
@@ -35,7 +38,13 @@ export class ProductDetailsComponent implements OnInit {
                            
   
 
-  constructor(private _products:ProductsService , private activerouter:ActivatedRoute) { }
+  constructor(private _products:ProductsService , private activerouter:ActivatedRoute) {
+    // this.review = {
+    //   body:"",
+    //   rate:0,
+    //   product_id:0
+    // }
+   }
 
   ngOnInit(): void {
     jQuery('.owl-carousel').owlCarousel(); 
@@ -43,6 +52,7 @@ export class ProductDetailsComponent implements OnInit {
     let id = this.activerouter.snapshot.params['id']
     this._products.viewProductById(id).subscribe(
       (data)=>this.productdetails=data.results,
+
       (err)=> console.log(err) 
     ) 
 
@@ -55,6 +65,7 @@ export class ProductDetailsComponent implements OnInit {
       (err)=> console.log(err),
     )
 
+    // (data)=>this.productdetails=data.results,
 
     
       // this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category)
@@ -63,12 +74,20 @@ export class ProductDetailsComponent implements OnInit {
       
   }
 
+  // reviewFun(body:string , rate:number ){
+  //   this._products.ReviewProduct(body , rate ,this.productdetails.id).subscribe(
+  //     (data)=>  console.log(data),
+  //     (err) => console.log(err)
+  //   )
+  // }
+
+
   
 ngDoCheck(): void {
   //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
   //Add 'implements DoCheck' to the class.
   // console.log(this.productList);
-  this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category)
+  // this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category)
 
   // console.log(this.filteredList);
 } 
