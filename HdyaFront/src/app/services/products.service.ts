@@ -41,6 +41,20 @@ export class ProductsService {
     return this.http.post<any>(`${environment.apiUrl}/orders/`, {product : product, quantity:quantity ,status :status} , requestOptions)
   }
 
+
+  showorders():Observable<any>{
+
+    const headerDict = {
+      'Authorization':'Token ' +  localStorage.getItem('token')
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+
+    return this.http.get<any>(`${environment.apiUrl}/orders/`, requestOptions)
+  }
+
   // viewProductsBycat(catId?:number):Observable<Product>{ 
   //   return this.http.get<Product>(`${environment.apiUrl}/products/?category=${catId}`)
   // }

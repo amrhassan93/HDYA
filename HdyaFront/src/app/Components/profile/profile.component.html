@@ -168,9 +168,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr *ngFor="let order of orders">
                                                 <td class="cart_product_img text-center" class="col-md-3">
-                                                    <h6>Hand Made Wooden Camera</h6>
+                                                    <h6>{{order.product}}</h6>
                                                 </td>
                                                 <td class="price" class="col-md-3"><span>30 EGP</span></td>
                                                 <td class="qty" class="col-md-3">
