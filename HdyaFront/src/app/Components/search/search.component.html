@@ -27,7 +27,7 @@
                                     <h5 class="price">$40 <span>$37</span></h5>
                                     <p>Wooden Camera Made By Egyptian Hands</p>
                                     <a href="#">View Full Product Details</a>
-                                </div>
+                                </div> -->
                                 <!-- Add to Cart Form -->
                                 <form class="cart" method="post">
                                     <div class="quantity">
@@ -65,6 +65,10 @@
         </div>
     </div>
 </div>
+<!-- <select  [(ngModel)]="productID" ngDefaultControl >
+    <option *ngFor="let product of productList" [value]="product.id">{{product.name}}</option>
+  </select>
+<app-poduct-details-popup [productPopupID]="productID"></app-poduct-details-popup> -->
 <!-- ****** Quick View Modal Area End ****** -->
 
 <section class="shop_grid_area section_padding_100 ">
@@ -214,3 +218,9 @@
         </div>
     </div>
 </section>
+<!-- <select  [(ngModel)]="productID" >
+    <option *ngFor="let product of productList" [value]="product.id">{{product.name}}</option>
+  </select>
+
+ 
+<app-poduct-details-popup [productPopupID]="productID"></app-poduct-details-popup> -->

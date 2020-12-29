@@ -112,5 +112,25 @@ export class ProductsService {
     return this.http.get<any>(`${environment.apiUrl}/occassions/`)
   }
 
+  ReviewProduct(body:string , rate:number ,product:number):Observable<any>{
+    const headerDict = {
+      'Authorization':'Token ' +  localStorage.getItem('token')
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+
+    return this.http.post<Product>(`${environment.apiUrl}/product/reviews/` ,{body:body,rate:rate,product:product} , requestOptions) 
+    
+  }
+
+  showreviews(product_id:number):Observable<any>{
+    
+    return this.http.get<Product>(`${environment.apiUrl}/product/reviews/?product=${product_id}`, ) 
+    
+  }
+
+
 
 }

@@ -101,7 +101,7 @@
                                 <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
                                 <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                             </div>
-                            <a routerLink="/home" (click)="addToCart(productdetails.id)" class="btn cart-submit d-block p-2" routerLink="/cart">Add to cart</a>
+                            <a (click)="addToCart(productdetails.id)" class="btn cart-submit d-block p-2">Add to cart</a>
                         </form>
 
                         <div id="accordion" role="tablist">
@@ -254,3 +254,39 @@
         </div>
     </section>
 </div>
+
+
+<!-- 
+    <select #selCat [(ngModel)]="selCatID" >
+  <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+</select>
+ -->
+
+<p>review</p>
+<!-- <select [(ngModel)]="review" >
+        <option *ngFor="let re of review">{{re.rate}}</option>
+      </select> -->
+
+<div class="container text-center">
+    <h3 *ngIf="countOfReviews != 0">Count Of Reviews : {{countOfReviews}}</h3>
+    <h3 *ngIf="avrOfReviews != 0">avr Of Reviews : {{avrOfReviews}}</h3>
+
+    <div *ngFor="let rev of reviewList">
+        <h4>rate: {{rev.rate}}</h4>
+        <h4>body: {{rev.body}}</h4>
+        <h4>user: {{rev.user}}</h4>
+        <hr>
+    </div>
+</div>
+
+
+<select #preview>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+
+</select>
+<textarea #pcomment>write </textarea>
+<button type="submit" (click)="reviewFun(pcomment.value,preview.value)">ok</button>
