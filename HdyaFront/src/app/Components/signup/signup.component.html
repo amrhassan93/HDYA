@@ -72,6 +72,8 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
                     <input #re_password type="password" class="form-control ng-untouched ng-pristine ng-valid" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1" formControlName="confirmpassword" required>
+                    
+                    <p *ngIf="!profileForm.controls.confirmpassword.pristine && profileForm.controls.confirmpassword.errors?.required" class="alert alert-danger help-block" >Password not matched</p>
 
                  </div> 
                  

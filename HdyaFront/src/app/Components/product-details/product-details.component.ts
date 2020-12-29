@@ -5,6 +5,7 @@ import * as AOS from 'aos';
 import { ProductsService } from '../../services/products.service'
 import { Product } from '../../models/interfaces/product'
 import { ActivatedRoute, Router } from '@angular/router';
+import {  Review} from '../../models/interfaces/review'
 import { Category } from 'src/app/models/interfaces/category';
 
 @Component({
@@ -30,8 +31,14 @@ export class ProductDetailsComponent implements OnInit {
                         updated_at: "" ,
                         images:[]
                       };
+                           
+  
+
+  constructor(private _products:ProductsService , private activerouter:ActivatedRoute) {
+   
+   }
                     
-  constructor(private _products:ProductsService , private activerouter:ActivatedRoute) { }
+  //  this.productdetails=data.results
 
   ngOnInit(): void {
     jQuery('.owl-carousel').owlCarousel(); 
@@ -39,7 +46,12 @@ export class ProductDetailsComponent implements OnInit {
     let id = this.activerouter.snapshot.params['id']
 
     this._products.viewProductById(id).subscribe(
-      (data)=>this.productdetails=data,
+      (data)=>
+      {
+        console.log(data)
+        this.productdetails=data
+        console.log(this.productdetails)
+      },
       (err)=> console.log(err) 
     ) 
     // this._products.showcategories().subscribe(
@@ -56,7 +68,32 @@ export class ProductDetailsComponent implements OnInit {
       (err)=> console.log(err),
     )
 
+    // (data)=>this.productdetails=data.results,
+
+    
+      // this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category)
+      
+      this._products.showreviews(id).subscribe(
+        (data)=> {
+          // this.=data.results
+          console.log(data);
+  
+        },
+        (err)=> console.log(err),
+      )
+      
+      
   }
+
+  reviewFun(body:string , rate:number ){
+    this._products.ReviewProduct(body , rate ,this.productdetails.id).subscribe(
+      (data)=>  console.log(data),
+      (err) => console.log(err)
+    )
+  }
+
+
+  
 
   // showProductsbyID(catId:number){
   //   for (let i=0 ; i<this.productList.length ; i++){

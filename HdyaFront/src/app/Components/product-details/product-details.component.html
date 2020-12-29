@@ -243,3 +243,26 @@
         </div>
     </section>
 </div>
+
+
+<!-- 
+    <select #selCat [(ngModel)]="selCatID" >
+  <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+</select>
+ -->
+
+<p>review</p>
+    <!-- <select [(ngModel)]="review" >
+        <option *ngFor="let re of review">{{re.rate}}</option>
+      </select> -->
+<select #preview>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+
+</select>  
+<textarea #pcomment>write </textarea>
+    <button type="submit" (click)="reviewFun(pcomment.value,preview.value)">ok</button>
+ 
