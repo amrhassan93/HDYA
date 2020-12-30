@@ -166,7 +166,10 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let order of myOrders ; let i=index">
+                                            <tr *ngFor="let order of myOrders ; let i=index | paginate: { id: 'listing_pagination',
+                                            itemsPerPage: 6,
+                                            currentPage: page,
+                                            totalItems: totalRecords}">
                                                 <td>
                                                     {{i+1}}
                                                 </td>
@@ -186,6 +189,10 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <br>
+                                    <div>
+                                        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -17,17 +17,10 @@
                             <div class="col-12 col-lg-7">
                                 <div class="quickview_pro_des">
                                     <h4 class="title">{{productPopUp.name}}</h4>
-                                    <div class="top_seller_product_rating mb-15">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <h5 class="price">$40 <span>$37</span></h5>
-                                    <p>Wooden Camera Made By Egyptian Hands</p>
-                                    <a href="#">View Full Product Details</a>
-                                </div> -->
+                                    <h5 class="price">{{productPopUp.price | currency:'EGP '}}</h5>
+                                    <p>{{productPopUp.details}}</p>
+                                    <!-- <a [routerLink]="['/productdetails',productPopUp.id]">View Full Product Details</a> -->
+                                </div>
                                 <!-- Add to Cart Form -->
                                 <form class="cart" method="post">
                                     <div class="quantity">
@@ -42,21 +35,8 @@
                                     <div class="modal_pro_wishlist">
                                         <a><i class="fas fa-heart"></i></a>
                                     </div>
-                                    <!-- Compare -->
-                                    <div class="modal_pro_compare">
-                                        <a><i class="fas fa-chart-line"></i></a>>
-                                    </div>
                                 </form>
-
-                                <div class="share_wf mt-30">
-                                    <p>Share With Friend</p>
-                                    <div class="_icon">
-                                        <a href="#"> <i class="fab fa-facebook" style="color:rgb(66,103,178);"> </i> </a>
-                                        <a href="#"><i class="fab fa-twitter" style="color:rgb(29,161,242)"> </i> </a>
-                                        <a href="#"> <i class="fab fa-pinterest" style="color:rgb(221, 75, 57)"> </i> </a>
-                                        <a href="#"> <i class="fab fa-google-plus-square" style="color:rgb(189,8,28)"> </i> </a>
-                                    </div>
-                                </div>
+                                <br>
                             </div>
                         </div>
                     </div>
@@ -79,37 +59,27 @@
                     <div class="wrapper">
                         <!-- Sidebar -->
                         <nav id="sidebar">
-
                             <div class="sidebar-header text-center" style="background-color: rgb(236, 236, 236);">
                                 <h3>Filters</h3>
                             </div>
-                            <ul class="list-unstyled components">
-                                <li class="active">
-                                    <a href="" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-center">Category List</a>
-                                    <ul class="collapse list-unstyled" id="WoodenProductsSubmenu">
-
-                                        <li *ngFor="let cat of categoryList">
-                                            <a (click)="showProductsbyID(cat.id)">{{cat.title}}</a>
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li>
-
-                            </ul>
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title" class="text-center">
+                                            <a class="btn karl-checkout-btn" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Category List <i class="fas fa-caret-down"></i></a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse1" class="panel-collapse collapse in">
+                                        <ul>
+                                            <li *ngFor="let cat of categoryList">
+                                                <a (click)="showProductsbyID(cat.id)" style="color: black;">{{cat.title}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </nav>
                     </div>
-                    <!-- < blockend>///////////////</blockend> -->
-
-                    <div>
-                        <h6>filter by cat</h6>
-                        <ul>
-                            <li *ngFor="let cat of categoryList">
-                                <a (click)="showProductsbyID(cat.id)">{{cat.title}}</a>
-                            </li>
-                        </ul>
-                    </div>
-
                     <div class="widget price mt-50">
                         <h6 class="widget-title mb-20">Filter by Price</h6><br>
                         <div class="widget-desc">
@@ -136,7 +106,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="widget size d-block">
                         <br>
                         <h6 class="widget-title">Filter by Age</h6><br>
@@ -171,19 +140,12 @@
                         </div>
                     </div>
                     <button (click)="resetFilters()" class="btn karl-checkout-btn mt-2 bg-dark">Reset Filters</button>
-                    <button (click)=" searchNow()"> search Now</button>
+                    <button (click)=" searchNow()" class="btn karl-checkout-btn mt-2"> Search</button>
                 </div>
-
-
             </div>
-
             <div class="col-12 col-md-8 col-lg-9">
                 <div class="shop_grid_product_area d-block p-4 m-4 text-center">
                     <div class="row">
-                        <!-- | paginate: { id: 'listing_pagination',
-                        itemsPerPage: 9,
-                        currentPage: page,
-                        totalItems: totalRecords}" -->
                         <!-- Single gallery Item -->
                         <div *ngFor="let product of productList " class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig mb-4" data-wow-delay="0.2s" data-aos="fade-up" data-aos-duration="1300">
                             <!-- Product Image -->
@@ -195,25 +157,21 @@
                             </div>
                             <!-- Product Description -->
                             <div class="product-description">
-                                <h4 class="product-price">{{product.price}}</h4>
+                                <h4 class="product-price">{{product.price | currency:'EGP '}}</h4>
                                 <p>{{product.name}}</p>
                                 <!-- More Details -->
                                 <a class="add-to-cart-btn" [routerLink]="['/productdetails',product.id]">More Details</a>
                                 <!-- Add to Cart -->
                                 <a class="add-to-cart-btn" (click)="addToCart(product.id)">ADD TO CART</a>
-                                <!-- <a class="add-to-cart-btn" (click)="alertService.success('Success!!', options)">ADD TO CART</a> -->
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-                <!-- pagination -->
-                <!-- <div>
-                    <pagination-controls (click)="showMore()" id="listing_pagination" maxSize="0" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
-                </div> -->
-                <button (click)="showless()">previous</button>
-                <button (click)="showMore()">next</button>
+                <div class="text-center">
+                    <button (click)="showless()" class="btn btn-light m-2"><i class="fas fa-arrow-circle-left fa-2x"></i></button>
+                    <button (click)="showMore()" class="btn btn-light"><i class="fas fa-arrow-circle-right fa-2x"></i></button>
+                </div>
+
             </div>
         </div>
     </div>

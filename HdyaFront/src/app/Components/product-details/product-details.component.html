@@ -31,16 +31,12 @@
                             <ol class="carousel-indicators">
                                 <li *ngFor="let image of productdetails.images" class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url({{image.image}});">
                                 </li>
-                                <!-- <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(../../../assets/images/hand15.jpg);">
-                                </li>
-                                <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(../../../assets/images/hand16.jpg);">
-                                </li> -->
                             </ol>
 
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                     <a class="gallery_img" href="../../../assets/images/hand14.jpg">
-                                        roducts/?page=3                       <img class="d-block w-100" src="../../../assets/images/hand14.jpg" alt="First slide">
+                                        <img class="d-block w-100" src="../../../assets/images/hand14.jpg" alt="First slide">
                                     </a>
                                 </div>
 
@@ -49,11 +45,6 @@
                                         <img class="d-block w-100" src={{image.image}} alt="Second slide">
                                     </a>
                                 </div>
-                                <!-- <div class="carousel-item">
-                                    <a class="gallery_img" href="../../../assets/images/hand16.jpg">
-                                        <img class="d-block w-100" src="../../../assets/images/hand16.jpg" alt="Third slide">
-                                    </a>
-                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -66,15 +57,6 @@
                         <h4 class="price">{{ productdetails.price | currency:'EGP ' }}</h4>
 
                         <p class="available">Available: <span class="text-muted">In Stock</span></p>
-
-                        <!-- <div class="single_product_ratings mb-15">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                        </div> -->
-
                         <div class="widget size mb-50">
                             <h6 class="widget-title m-2">Age</h6>
                             <div class="widget-desc">

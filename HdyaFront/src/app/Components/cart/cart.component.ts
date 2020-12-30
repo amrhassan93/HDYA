@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { ProductsService } from '../../services/products.service'
 import { Product } from '../../models/interfaces/product'
-import { ThrowStmt } from '@angular/compiler';
+import { Router } from '@angular/router';
+import { AlertService } from 'src/app/_alert';
+
 
 @Component({
   selector: 'app-cart',
@@ -15,14 +17,15 @@ export class CartComponent implements OnInit {
   total:Array<number> = [] ;
   totalPrice:number = 0 ;
   orders:Array<object> = [] ;
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+};
 
-
-  constructor(private _products:ProductsService) { }
+  constructor(private _products:ProductsService,private route:Router,protected alertService: AlertService) { }
 
   ngOnInit(): void {
     AOS.init();
-
-
     if (localStorage.getItem("cart")){
       this.cart = JSON.parse(localStorage.getItem("cart") || '{}') 
       for (let i in this.cart){
@@ -34,7 +37,9 @@ export class CartComponent implements OnInit {
   ngDoCheck(): void {
     //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
     //Add 'implements DoCheck' to the class.
-    
+    if (!localStorage.getItem("cart")){
+      this.cart = []
+    }
   }
 
   calcPrice(prd_id :number ,  Prd_price:number , quantaty:number , index:number){
@@ -56,16 +61,12 @@ export class CartComponent implements OnInit {
       }if(found == false){
         this.orders.push({product : prd_id , quantaty : quantaty})
       }
-
     }
     else{
       this.orders.push({product : prd_id , quantaty : quantaty})
 
     }
-
-  
     console.log(this.orders);
-    
   }
 
 
@@ -81,5 +82,15 @@ export class CartComponent implements OnInit {
         )
     }
   }
-
+  emptyCart(){
+    localStorage.removeItem("cart")
+    this.alertService.warn('Cart is Empty!!', this.options)
+  }
+  removeitem(prd_id:number){
+    for(let i =0 ; i < this.cart.length ; i++){
+      if(this.cart[i].id == prd_id)
+      this.cart.splice(i,1)
+    }
+    localStorage.setItem('cart',JSON.stringify(this.cart))
+  }
 }

@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "HdyaFront"
+  "defaultProject": "HdyaFront",
+  "cli": {
+    "analytics": false
+  }
 }

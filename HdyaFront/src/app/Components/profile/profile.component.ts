@@ -21,6 +21,9 @@ export class ProfileComponent implements OnInit {
   myProducts:Product[] = []
   // onlyOrders:Product[] = []
   myOrders:Array<object> = []
+  //pagination
+  totalRecords: number | undefined
+  page:number=1
 
   toggledispayed(){
     this.isdisplayed = !this.isdisplayed
@@ -34,7 +37,6 @@ export class ProfileComponent implements OnInit {
         }
     }
   }
-
   togglePreviousOrders(){
     this.displayOrders = !this.displayOrders
   }
@@ -106,16 +108,20 @@ export class ProfileComponent implements OnInit {
       (err)=>console.log(err)
     )
     
-    
+    //pagination
+    this.totalRecords = this.orders.length
 
   }
-  
+ 
 
   cancelOrder(order_id:number){
     this._productService.deleteOrder(order_id).subscribe(console.log,console.log)
     
   }
-
+  
+  
 
 
 }
+  
+

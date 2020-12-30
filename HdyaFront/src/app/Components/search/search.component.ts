@@ -19,8 +19,6 @@ export class SearchComponent implements OnInit {
   maxrange:number=70;
   minprice:number=0;
   maxprice:number=1000;
-  totalRecords: number | undefined
-  page:number=1
   cart:Array<object> = [];
   productPopUp:Product[] = [] ; 
   relationships: any;
@@ -62,7 +60,7 @@ export class SearchComponent implements OnInit {
       // console.log(searchProducts instanceof Array);
       
       this.productList = JSON.parse(searchProducts || '{}')
-      this.totalRecords = this.productList.length
+      // this.totalRecords = this.productList.length
       localStorage.removeItem('products')
       
     }
@@ -70,8 +68,7 @@ export class SearchComponent implements OnInit {
       this._products.viewProducts().subscribe(
         (data)=>{
           this.productList=data.results;
-          this.totalRecords = data.results.length
-          // console.log(this.productList);
+          // this.totalRecords = data.results.length
           this.moreData = data
           // this.allproducts = this.productList
         },
@@ -106,7 +103,7 @@ export class SearchComponent implements OnInit {
       // console.log(searchProducts instanceof Array);
       
       this.productList = JSON.parse(searchProducts || '{}')
-      this.totalRecords = this.productList.length
+      // this.totalRecords = this.productList.length
       localStorage.removeItem('products')
     }   
     
@@ -118,7 +115,7 @@ export class SearchComponent implements OnInit {
       (data)=>{
         this.searchparams = {}
         this.productList=data.results;
-        this.totalRecords = data.results.length
+        // this.totalRecords = data.results.length
         // this.allproducts = this.productList
       },
       (err)=> console.log(err) 
@@ -235,10 +232,9 @@ export class SearchComponent implements OnInit {
       return product.id == product_id
       })
 
-    console.log(this.productPopUp);
-
+    // console.log(this.productPopUp);
   }
-
+  
   showMore(){
     this._products.viewProductsByPage(this.moreData.next).subscribe(
       (data)=>{
