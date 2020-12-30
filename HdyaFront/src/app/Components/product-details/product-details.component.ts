@@ -7,7 +7,6 @@ import { Product } from '../../models/interfaces/product'
 import { Occassion } from '../../models/interfaces/occassion'
 import { ActivatedRoute, Router } from '@angular/router';
 import {  Review} from '../../models/interfaces/review'
-import { Category } from 'src/app/models/interfaces/category';
 import { AddToCartService } from '../../services/add-to-cart.service'
 import { AuthenticationService } from '../../services/authentication.service'
 
@@ -23,6 +22,7 @@ export class ProductDetailsComponent implements OnInit {
   occassionList:Occassion[] = [];
   filterdoccassionList:Occassion[] = [];
   reviewList:Review[]=[]
+  productPopUp:Product[] = [] ; 
   countOfReviews:number=0;
   avrOfReviews:number=0
   productList:Product[] = [] ;
@@ -43,16 +43,12 @@ export class ProductDetailsComponent implements OnInit {
                         images:[]
                       };
                            
-  
-
-            
   constructor(private _products:ProductsService ,
               private activerouter:ActivatedRoute,
               private _addCart:AddToCartService,
               private _auth:AuthenticationService,
             
       ) { }
-  //  this.productdetails=data.results
 
   ngOnInit(): void {
     jQuery('.owl-carousel').owlCarousel(); 
@@ -139,7 +135,14 @@ export class ProductDetailsComponent implements OnInit {
 
       
   }
+  popUpProduct(product_id:number){
+    this.productPopUp =  this.productList.find((product)=>{ 
+      return product.id == product_id
+      })
 
+    console.log(this.productPopUp);
+  }
+  
   reviewFun(body:string , rate:number ){
     let id = this.activerouter.snapshot.params['id']
     let found = false
@@ -173,16 +176,7 @@ export class ProductDetailsComponent implements OnInit {
     else{
       alert("You Can't Review Product You didn't Try ")
     }
-
-    
-    
-    
-
-    
   }
-
-
-  
 
   // showProductsbyID(catId:number){
   //   for (let i=0 ; i<this.productList.length ; i++){
@@ -234,4 +228,5 @@ addToCart(){
     nav: true
   }
 }
+
 

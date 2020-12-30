@@ -16,6 +16,10 @@ export class ProfileComponent implements OnInit {
   url="../../../assets/images/login.jpg"
   isdisplayed = false
   displayOrders = false
+//pagination
+  totalRecords: number | undefined
+  page:number=1
+
   toggledispayed(){
     this.isdisplayed = !this.isdisplayed
   }
@@ -28,7 +32,6 @@ export class ProfileComponent implements OnInit {
         }
     }
   }
-
   togglePreviousOrders(){
     this.displayOrders = !this.displayOrders
   }
@@ -61,5 +64,7 @@ export class ProfileComponent implements OnInit {
       (data)=> this.orders = data,
       (err)=>console.log(err)
     )
+    //pagination
+    this.totalRecords = this.orders.length
   }
 }
