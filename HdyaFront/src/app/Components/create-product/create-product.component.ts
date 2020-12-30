@@ -4,6 +4,7 @@ import { Product } from '../../models/interfaces/product'
 import { Category } from '../../models/interfaces/category'
 import { RelationShip } from '../../models/interfaces/relation-ship'
 import { Occassion } from '../../models/interfaces/occassion'
+import { Router } from '@angular/router';
 
 import { ProductPicture } from '../../models/interfaces/product-picture'
 import { Router } from '@angular/router';
@@ -34,7 +35,7 @@ export class CreateProductComponent implements OnInit {
   // created_at:string;
   // updated_at:string;
   // productpicture_set:Array<object>;
-  constructor(private _productservisec:ProductsService,private router:Router) { 
+  constructor(private _productservisec:ProductsService ,  private route:Router) { 
     this.newproduct = {
       gender:"",
       details:"",
@@ -74,6 +75,7 @@ export class CreateProductComponent implements OnInit {
       res=>this.router.navigateByUrl('createproduct'),
       err=>console.log(err)
       )
+    // console.log(this.newproduct);
     
     // this.newproduct.name = name.value ;
     // this.newproduct.details = details.value ;
@@ -84,7 +86,7 @@ export class CreateProductComponent implements OnInit {
     // this.newproduct.category = category.value ;
     // this.newproduct.occassions = occassions.value ;
     // this.newproduct.relationships = relationships.value ;
-    console.log(this.newproduct);
+    // console.log(this.newproduct);
 
     this._productservisec.createProduct(this.newproduct).subscribe(
       (data)=>{
@@ -99,6 +101,9 @@ export class CreateProductComponent implements OnInit {
           )
         };
         alert('Your Product Was submitted successfully');
+        this.route.navigate([`/productdetails/${data.id}`])
+
+        
       },
       (err)=>console.log(err)
     )

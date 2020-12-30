@@ -4,9 +4,13 @@ declare var jQuery: any;
 import * as AOS from 'aos';
 import { ProductsService } from '../../services/products.service'
 import { Product } from '../../models/interfaces/product'
+import { Occassion } from '../../models/interfaces/occassion'
 import { ActivatedRoute, Router } from '@angular/router';
 import {  Review} from '../../models/interfaces/review'
 import { Category } from 'src/app/models/interfaces/category';
+import { AddToCartService } from '../../services/add-to-cart.service'
+import { AuthenticationService } from '../../services/authentication.service'
+
 
 @Component({
   selector: 'app-product-details',
@@ -14,6 +18,13 @@ import { Category } from 'src/app/models/interfaces/category';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
+  myID:number = 0
+  orders:Array<object> = []
+  occassionList:Occassion[] = [];
+  filterdoccassionList:Occassion[] = [];
+  reviewList:Review[]=[]
+  countOfReviews:number=0;
+  avrOfReviews:number=0
   productList:Product[] = [] ;
   filteredList:Product[]=[] ;
   productdetails:Product = {id : 0 ,
@@ -34,35 +45,54 @@ export class ProductDetailsComponent implements OnInit {
                            
   
 
-  constructor(private _products:ProductsService , private activerouter:ActivatedRoute) {
-   
-   }
-                    
+            
+  constructor(private _products:ProductsService ,
+              private activerouter:ActivatedRoute,
+              private _addCart:AddToCartService,
+              private _auth:AuthenticationService,
+            
+      ) { }
   //  this.productdetails=data.results
 
   ngOnInit(): void {
     jQuery('.owl-carousel').owlCarousel(); 
     AOS.init();
+
+    this._auth.userProfile().subscribe(
+      (data)=>{
+        this.myID = data.id
+        console.log(this.myID);
+        
+      },
+      (err)=>console.log(err)
+      
+    )
+
+    this._products.showoccassions().subscribe(
+      (data)=>this.occassionList=data.results,
+      (err)=>this.occassionList=err
+    )
+      
     let id = this.activerouter.snapshot.params['id']
 
     this._products.viewProductById(id).subscribe(
-      (data)=>
-      {
-        console.log(data)
+      (data)=>{
+      // console.log(this.occassionList);
         this.productdetails=data
-        console.log(this.productdetails)
+        for (let i =0; i < this.productdetails.occassions.length ; i++){
+          this.filterdoccassionList.push(this.occassionList.find((occ)=>occ.id == this.productdetails.occassions[i]));
+          
+        }
+        // console.log(this.filterdoccassionList);
       },
       (err)=> console.log(err) 
     ) 
-    // this._products.showcategories().subscribe(
-    //   (data)=>this.categoryList = data.results,
-    //   (err) => console.log(err) 
-    // )
+   
 
     this._products.viewProducts().subscribe(
       (data)=> {
         this.productList=data.results
-        console.log(this.productList);
+        // console.log(this.productList);
 
       },
       (err)=> console.log(err),
@@ -75,21 +105,80 @@ export class ProductDetailsComponent implements OnInit {
       
       this._products.showreviews(id).subscribe(
         (data)=> {
-          // this.=data.results
-          console.log(data);
-  
+          // console.log(data);
+          this.reviewList = data
+          // console.log(this.reviewList);
+          this.countOfReviews = this.reviewList.length
+          let onlyReviews = []
+          for(let i=0 ; i<this.reviewList.length ; i++){
+            onlyReviews.push(this.reviewList[i].rate)
+          } 
+          var sum = onlyReviews.reduce(function(a, b){
+            return a + b;
+          }, 0);
+
+          console.log(sum);
+          
+          // console.log(this.reviewList);
+          // console.log(onlyReviews);
+          // console.log(onlyReviews);
+          if (sum!=0){
+          this.avrOfReviews = sum / onlyReviews.length;
+          }
+          // console.log(this.avrOfReviews);
+          // console.log(sum);
+
         },
         (err)=> console.log(err),
       )
       
+      this._products.showorders().subscribe(
+        (data)=> this.orders = data,
+        (err)=>console.log(err)
+      )
+
       
   }
 
   reviewFun(body:string , rate:number ){
-    this._products.ReviewProduct(body , rate ,this.productdetails.id).subscribe(
-      (data)=>  console.log(data),
-      (err) => console.log(err)
-    )
+    let id = this.activerouter.snapshot.params['id']
+    let found = false
+    for(let i in this.orders ){
+      if(this.orders[i].product == id){
+        found = true ;
+        break;
+      }
+    }
+
+    if (found == true){
+      if (this.reviewList.length == 0){
+        this._products.ReviewProduct(body , rate ,this.productdetails.id).subscribe(
+          (data)=>  console.log(data),
+          (err) => console.log(err)
+        )
+      }else{
+        for(let i in this.reviewList){
+          if(this.reviewList[i].user != this.myID){
+              this._products.ReviewProduct(body , rate ,this.productdetails.id).subscribe(
+              (data)=>  console.log(data),
+              (err) => console.log(err)
+            )
+          }
+        }
+        alert("You can't review again")
+      }
+
+      
+    }
+    else{
+      alert("You Can't Review Product You didn't Try ")
+    }
+
+    
+    
+    
+
+    
   }
 
 
@@ -115,6 +204,10 @@ ngDoCheck(): void {
   this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category)
 } 
 
+addToCart(){
+  let id = this.activerouter.snapshot.params['id']
+  this._addCart.addCart(id)
+}
 
   customOptions: OwlOptions = {
     loop: true,
