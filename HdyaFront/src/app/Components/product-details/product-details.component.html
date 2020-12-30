@@ -93,6 +93,15 @@
                                 </ul>
                             </h6>
                         </div>
+                        <div class="widget size mb-50">
+                            <h6 class="widget-title m-2">Relationships :
+                                <ul>
+                                    <li *ngFor="let rel of filterdrelList">
+                                        {{rel.name}}
+                                    </li>
+                                </ul>
+                            </h6>
+                        </div>
 
                         <!-- Add to Cart Form -->
                         <form class="cart clearfix mb-50 d-flex" method="post">
@@ -290,3 +299,4 @@
 </select>
 <textarea #pcomment>write </textarea>
 <button type="submit" (click)="reviewFun(pcomment.value,preview.value)">ok</button>
+<button type="submit" (click)="editPrd(productdetails.id)">Edit</button>

@@ -5,12 +5,13 @@ import * as AOS from 'aos';
 import { ProductsService } from '../../services/products.service'
 import { Product } from '../../models/interfaces/product'
 import { Occassion } from '../../models/interfaces/occassion'
+import { RelationShip } from '../../models/interfaces/relation-ship'
 import { ActivatedRoute, Router } from '@angular/router';
 import {  Review} from '../../models/interfaces/review'
 import { Category } from 'src/app/models/interfaces/category';
 import { AddToCartService } from '../../services/add-to-cart.service'
 import { AuthenticationService } from '../../services/authentication.service'
-
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-product-details',
@@ -22,6 +23,8 @@ export class ProductDetailsComponent implements OnInit {
   orders:Array<object> = []
   occassionList:Occassion[] = [];
   filterdoccassionList:Occassion[] = [];
+  relList:RelationShip[] = [];
+  filterdrelList:RelationShip[] = [];
   reviewList:Review[]=[]
   countOfReviews:number=0;
   avrOfReviews:number=0
@@ -50,6 +53,7 @@ export class ProductDetailsComponent implements OnInit {
               private activerouter:ActivatedRoute,
               private _addCart:AddToCartService,
               private _auth:AuthenticationService,
+              private route:Router
             
       ) { }
   //  this.productdetails=data.results
@@ -57,6 +61,7 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     jQuery('.owl-carousel').owlCarousel(); 
     AOS.init();
+    let id = this.activerouter.snapshot.params['id']
 
     this._auth.userProfile().subscribe(
       (data)=>{
@@ -73,7 +78,11 @@ export class ProductDetailsComponent implements OnInit {
       (err)=>this.occassionList=err
     )
       
-    let id = this.activerouter.snapshot.params['id']
+    this._products.showrelations().subscribe(
+      (data)=>this.relList=data.results,
+      (err)=>console.log(err)
+    )
+
 
     this._products.viewProductById(id).subscribe(
       (data)=>{
@@ -81,6 +90,10 @@ export class ProductDetailsComponent implements OnInit {
         this.productdetails=data
         for (let i =0; i < this.productdetails.occassions.length ; i++){
           this.filterdoccassionList.push(this.occassionList.find((occ)=>occ.id == this.productdetails.occassions[i]));
+          
+        }
+        for (let i =0; i < this.productdetails.relationships.length ; i++){
+          this.filterdrelList.push(this.relList.find((rel)=>rel.id == this.productdetails.relationships[i]));
           
         }
         // console.log(this.filterdoccassionList);
@@ -97,40 +110,34 @@ export class ProductDetailsComponent implements OnInit {
       },
       (err)=> console.log(err),
     )
+    this._products.showreviews(id).subscribe(
+      (data)=> {
+        // console.log(data);
+        this.reviewList = data
+        // console.log(this.reviewList);
+        this.countOfReviews = this.reviewList.length
+        let onlyReviews = []
+        for(let i=0 ; i<this.reviewList.length ; i++){
+          onlyReviews.push(this.reviewList[i].rate)
+        } 
+        var sum = onlyReviews.reduce(function(a, b){
+          return a + b;
+        }, 0);
 
-    // (data)=>this.productdetails=data.results,
+        console.log(sum);
+        
+        // console.log(this.reviewList);
+        // console.log(onlyReviews);
+        // console.log(onlyReviews);
+        if (sum!=0){
+        this.avrOfReviews = sum / onlyReviews.length;
+        }
+        // console.log(this.avrOfReviews);
+        // console.log(sum);
 
-    
-      // this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category)
-      
-      this._products.showreviews(id).subscribe(
-        (data)=> {
-          // console.log(data);
-          this.reviewList = data
-          // console.log(this.reviewList);
-          this.countOfReviews = this.reviewList.length
-          let onlyReviews = []
-          for(let i=0 ; i<this.reviewList.length ; i++){
-            onlyReviews.push(this.reviewList[i].rate)
-          } 
-          var sum = onlyReviews.reduce(function(a, b){
-            return a + b;
-          }, 0);
-
-          console.log(sum);
-          
-          // console.log(this.reviewList);
-          // console.log(onlyReviews);
-          // console.log(onlyReviews);
-          if (sum!=0){
-          this.avrOfReviews = sum / onlyReviews.length;
-          }
-          // console.log(this.avrOfReviews);
-          // console.log(sum);
-
-        },
-        (err)=> console.log(err),
-      )
+      },
+      (err)=> console.log(err),
+       )
       
       this._products.showorders().subscribe(
         (data)=> this.orders = data,
@@ -202,12 +209,20 @@ ngDoCheck(): void {
   //Add 'implements DoCheck' to the class.
   // console.log(this.productList);
   this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category)
+  
 } 
 
 addToCart(){
   let id = this.activerouter.snapshot.params['id']
   this._addCart.addCart(id)
 }
+
+editPrd(prd_id:number){
+  localStorage.setItem('editprd',JSON.stringify(prd_id))
+  this.route.navigate(['/product/createproduct'])
+}
+
+
 
   customOptions: OwlOptions = {
     loop: true,
