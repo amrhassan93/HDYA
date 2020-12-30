@@ -36,7 +36,7 @@ export class NavComponent implements OnInit {
       this.cart = JSON.parse(localStorage.getItem("cart") || '{}') 
 
     }
-    console.log(this.cart.length);
+    // console.log(this.cart.length);
 
   }
 

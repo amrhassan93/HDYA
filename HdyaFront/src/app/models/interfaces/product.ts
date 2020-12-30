@@ -1,5 +1,5 @@
 export interface Product {
-    results: Product[];
+    results?: Product[];
     id?:number;
     name:string;
     price:number;

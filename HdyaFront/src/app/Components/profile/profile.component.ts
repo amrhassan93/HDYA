@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Profile } from '../../models/interfaces/profile'
-
+import { ProductsService } from '../../services/products.service'
 //
 
 @Component({
@@ -11,6 +11,8 @@ import { Profile } from '../../models/interfaces/profile'
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  orders:Array<object> = []
+
   url="../../../assets/images/login.jpg"
   isdisplayed = false
   displayOrders = false
@@ -43,7 +45,7 @@ export class ProfileComponent implements OnInit {
     id: 0,
     email: ""
   }
-  constructor(private auth:AuthenticationService , private activerouter:ActivatedRoute) { 
+  constructor(private _productService:ProductsService , private auth:AuthenticationService , private activerouter:ActivatedRoute) { 
     
   }
 
@@ -52,6 +54,11 @@ export class ProfileComponent implements OnInit {
     let usertoken = localStorage.getItem('token')
     this.auth.userProfile().subscribe(
       (data)=>this.myprofile=data,
+      (err)=>console.log(err)
+    )
+
+    this._productService.showorders().subscribe(
+      (data)=> this.orders = data,
       (err)=>console.log(err)
     )
   }

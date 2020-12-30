@@ -4,14 +4,13 @@ import { ProductsService } from '../../services/products.service'
 import { Product } from '../../models/interfaces/product'
 import { Category } from '../../models/interfaces/category'
 import { AlertService } from 'src/app/_alert';
-
+import { AddToCartService } from '../../services/add-to-cart.service'
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  // allproducts: Product[] = [];
   productList: Product[] = [];
   categoryList:Category[]=[];
   filterdProducts:Product[] = [];
@@ -26,14 +25,16 @@ export class SearchComponent implements OnInit {
   productPopUp:Product[] = [] ; 
   relationships: any;
   occassions: any;
+  moreData:Product[]= []
+  searchparams: {[k: string]: any} = {}
 
-  // search options
   options = {
     autoClose: true,
     keepAfterRouteChange: false
 };
 
-  constructor(private _products:ProductsService,protected alertService: AlertService) {
+
+  constructor(private _products:ProductsService,protected alertService: AlertService , private _addCart:AddToCartService) {
     this.newproduct = {
       gender:"",
       details:"",
@@ -46,8 +47,12 @@ export class SearchComponent implements OnInit {
       age_from:0,
       age_to:0,
     } 
-  }
+    // this.searchparams = {
+    //   gender = '',
 
+    // }
+  }
+  
   ngOnInit(): void {
     AOS.init();
 
@@ -67,7 +72,7 @@ export class SearchComponent implements OnInit {
           this.productList=data.results;
           this.totalRecords = data.results.length
           // console.log(this.productList);
-          
+          this.moreData = data
           // this.allproducts = this.productList
         },
         (err)=> console.log(err) 
@@ -90,6 +95,9 @@ export class SearchComponent implements OnInit {
 
   }
 
+
+  
+
   ngDoCheck(): void {
   
     if(localStorage.getItem('products')){
@@ -108,6 +116,7 @@ export class SearchComponent implements OnInit {
   resetFilters(){
     this._products.viewProducts().subscribe(
       (data)=>{
+        this.searchparams = {}
         this.productList=data.results;
         this.totalRecords = data.results.length
         // this.allproducts = this.productList
@@ -115,61 +124,90 @@ export class SearchComponent implements OnInit {
       (err)=> console.log(err) 
     )   
   }
-
+  
 
   showProductsbyID(catId:number){
-    for (let i=0 ; i<this.productList.length ; i++){
-       if (this.productList[i].category == catId){
-          this.filterdProducts.push(this.productList[i])
-       }
-       else{
-         console.log('not in this cat')
-       }
-    }
-    this.productList = this.filterdProducts
-    this.filterdProducts = []
+    this.searchparams.category = catId ; 
+    console.log(this.searchparams);
+
+    // for (let i=0 ; i<this.productList.length ; i++){
+    //    if (this.productList[i].category == catId){
+    //       this.filterdProducts.push(this.productList[i])
+    //    }
+    //    else{
+    //      console.log('not in this cat')
+    //    }
+    // }
+    // this.productList = this.filterdProducts
+    // this.filterdProducts = []
 
   }
 
 
   getproductsbygender(gender:string){
-      for (let i=0 ; i<this.productList.length ; i++){
-        if (this.productList[i].gender == gender){
-           this.filterdProducts.push(this.productList[i])
-        }
-        else{
-          console.log('not in this cat')
-        }
-     }
-     this.productList = this.filterdProducts
-     this.filterdProducts = []
+
+    this.searchparams.gender = gender
+    console.log(this.searchparams);
+
+
+    //   for (let i=0 ; i<this.productList.length ; i++){
+    //     if (this.productList[i].gender == gender){
+    //        this.filterdProducts.push(this.productList[i])
+    //     }
+    //     else{
+    //       console.log('not in this cat')
+    //     }
+    //  }
+    //  this.productList = this.filterdProducts
+    //  this.filterdProducts = []
   }
 
   getproductsbyprice(minprice:number , maxprice:number ){
-    for (let i=0 ; i<this.productList.length ; i++){
-      if (this.productList[i].price >= minprice && this.productList[i].price <= maxprice){
-         this.filterdProducts.push(this.productList[i])
-      }
-      else{
-        console.log('not in this cat')
-      }
-   }
-   this.productList = this.filterdProducts
-   this.filterdProducts = []
+     
+    // this.searchparams.push({'price':minprice})
+    this.searchparams.price = minprice
+
+    console.log(this.searchparams);
+
+  //   for (let i=0 ; i<this.productList.length ; i++){
+  //     if (this.productList[i].price >= minprice && this.productList[i].price <= maxprice){
+  //        this.filterdProducts.push(this.productList[i])
+  //     }
+  //     else{
+  //       console.log('not in this cat')
+  //     }
+  //  }
+  //  this.productList = this.filterdProducts
+  //  this.filterdProducts = []
 
   }
 
+  searchNow(){
+    // for (let i in this.searchparams){
+      
+    // }
+    // this.searchparams
+    this._products.viewProductsBycat(this.searchparams).subscribe(
+      (data)=>this.productList = data.results,
+      (err)=>console.log(err)
+      
+    )  
+  }
+
   getproductsbyage(age_from:number,age_to:number){
-    for (let i=0 ; i<this.productList.length ; i++){
-      if (this.productList[i].age_from >= age_from && this.productList[i].age_to <= age_to){
-         this.filterdProducts.push(this.productList[i])
-      }
-      else{
-        console.log('not in this cat')
-      }
-   }
-   this.productList = this.filterdProducts
-   this.filterdProducts = []
+    this.searchparams.age_from = age_from ; 
+    this.searchparams.age_to = age_to ; 
+
+  //   for (let i=0 ; i<this.productList.length ; i++){
+  //     if (this.productList[i].age_from >= age_from && this.productList[i].age_to <= age_to){
+  //        this.filterdProducts.push(this.productList[i])
+  //     }
+  //     else{
+  //       console.log('not in this cat')
+  //     }
+  //  }
+  //  this.productList = this.filterdProducts
+  //  this.filterdProducts = []
   }
 
   search(searchKey:string){
@@ -189,28 +227,28 @@ export class SearchComponent implements OnInit {
 
 
   addToCart(product_id:number){
-    
-    if (localStorage.getItem("cart")){
-      this.cart = JSON.parse(localStorage.getItem("cart") || '{}') 
+    this._addCart.addCart(product_id)
+    // if (localStorage.getItem("cart")){
+    //   this.cart = JSON.parse(localStorage.getItem("cart") || '{}') 
 
-      let addtocart = this.productList.find((product)=>{ 
-        return product.id == product_id
-        })
+    //   let addtocart = this.productList.find((product)=>{ 
+    //     return product.id == product_id
+    //     })
 
-      this.cart.push(addtocart)
+    //   this.cart.push(addtocart)
 
-      localStorage.setItem("cart" , JSON.stringify(this.cart))
-      this.alertService.success('Success!!', this.options)
-    }
-    else {
-      let addtocart = this.productList.find((product)=>{ 
-        return product.id == product_id
-        })
-      this.cart.push(addtocart)
-      localStorage.setItem("cart" , JSON.stringify(this.cart))
-      // console.log(this.cart);
-      this.alertService.success('Success!!', this.options)
-    }
+    //   localStorage.setItem("cart" , JSON.stringify(this.cart))
+    //   this.alertService.success('Success!!', this.options)
+    // }
+    // else {
+    //   let addtocart = this.productList.find((product)=>{ 
+    //     return product.id == product_id
+    //     })
+    //   this.cart.push(addtocart)
+    //   localStorage.setItem("cart" , JSON.stringify(this.cart))
+    //   // console.log(this.cart);
+    //   this.alertService.success('Success!!', this.options)
+    // }
   }
   popUpProduct(product_id:number){
     this.productPopUp =  this.productList.find((product)=>{ 
@@ -220,4 +258,35 @@ export class SearchComponent implements OnInit {
     console.log(this.productPopUp);
 
   }
+
+  showMore(){
+    this._products.viewProductsByPage(this.moreData.next).subscribe(
+      (data)=>{
+        console.log(data)
+        this.moreData = data
+        // for (let i in data.results){
+        //   this.productList.push(data.results[i])
+        // }
+        this.productList=data.results
+        console.log(this.productList);
+      },
+      (err)=>console.log(err)
+    )
+  }
+
+  showless(){
+    this._products.viewProductsByPage(this.moreData.previous).subscribe(
+      (data)=>{
+        console.log(data)
+        this.moreData = data
+        // for (let i in data.results){
+        //   this.productList.push(data.results[i])
+        // }
+        this.productList=data.results
+        console.log(this.productList);
+      },
+      (err)=>console.log(err)
+    )
+  }
+
 }

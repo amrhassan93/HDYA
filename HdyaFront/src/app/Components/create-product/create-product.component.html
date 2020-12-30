@@ -69,7 +69,7 @@
                             <div class="col-12 mb-4">
                                 <div class="form-group">
                                     <label for="relationship">Relationship</label>
-                                    <select #prelationship [(ngModel)]="newproduct.relationships" [ngModelOptions]="{standalone: true}" class="form-control" id="relationship">
+                                    <select #prelationship multiple [(ngModel)]="newproduct.relationships" [ngModelOptions]="{standalone: true}" class="form-control" id="relationship">
                                         <option *ngFor="let rel of relationships" [value]="rel.id" >{{rel.name}}</option>
                                       </select>
                                 </div>
@@ -87,7 +87,7 @@
                                 </div>
 
                             </div>
-                            <!-- <h1>{{newproduct.gender}}</h1> -->
+                            <!-- <h1>{{newproduct.relationships}}</h1> -->
 
                             <button (click)="addNewProduct()" class="btn btn-primary">ADD</button><br><br>
                         </div>

@@ -87,7 +87,6 @@ export class CartComponent implements OnInit {
     for(let i =0 ; i < this.cart.length ; i++){
       if(this.cart[i].id == prd_id)
       this.cart.splice(i,1)
-      // return
     }
     localStorage.setItem('cart',JSON.stringify(this.cart))
   }

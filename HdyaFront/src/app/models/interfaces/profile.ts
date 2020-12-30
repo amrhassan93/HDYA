@@ -6,6 +6,6 @@ export interface Profile {
     mobile: string,
     avatar: string,
     birth_date: string,
-    id: number,
+    id?: number,
     email: string
 }

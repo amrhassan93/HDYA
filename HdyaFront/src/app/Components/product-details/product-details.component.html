@@ -40,7 +40,7 @@
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                     <a class="gallery_img" href="../../../assets/images/hand14.jpg">
-                                        <img class="d-block w-100" src="../../../assets/images/hand14.jpg" alt="First slide">
+                                        roducts/?page=3                       <img class="d-block w-100" src="../../../assets/images/hand14.jpg" alt="First slide">
                                     </a>
                                 </div>
 
@@ -87,8 +87,8 @@
                         <div class="widget size mb-50">
                             <h6 class="widget-title m-2">occassion :
                                 <ul>
-                                    <li *ngFor="let occassion of productdetails.occassions">
-                                        {{occassion}}
+                                    <li *ngFor="let occassion of filterdoccassionList">
+                                        {{occassion.name}}
                                     </li>
                                 </ul>
                             </h6>
@@ -101,7 +101,7 @@
                                 <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
                                 <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                             </div>
-                            <a routerLink="/home" class="btn cart-submit d-block p-2" routerLink="/cart">Add to cart</a>
+                            <a (click)="addToCart(productdetails.id)" class="btn cart-submit d-block p-2">Add to cart</a>
                         </form>
 
                         <div id="accordion" role="tablist">
@@ -210,36 +210,83 @@
 
     <section class="you_may_like_area clearfix">
         <div class="container text-center">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section_heading text-center">
-                        <h2>Related Products</h2>
-                    </div>
-                </div>
+            <div class="section_heading text-center">
+                <h2>Related Products</h2>
             </div>
-            <div class="col-12 col-md-8 col-lg-9">
-                <div class="shop_grid_product_area d-block p-4 m-4 text-center">
-                    <div class="row">
-                        <!-- Single gallery Item -->
-                        <div *ngFor="let product of filteredList" class="col-12 col-sm-6 col-lg-4 m-2">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="../../../assets/images/hand15.jpg" alt="hand15">
-                                <div class="product-quicview">
-                                    <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <h4 class="product-price">{{product.price}}</h4>
-                                <p>{{product.name}}</p>
-                                <!-- Add to Cart -->
-                                <a class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
-                            </div>
+            <div class="row">
+
+                <!-- Single gallery Item -->
+                <div *ngFor="let product of filteredList" class="relprd col-md-4">
+                    <!-- Product Image -->
+                    <div class="product-img">
+                        <img src="../../../assets/images/hand15.jpg" alt="hand15">
+                        <div class="product-quicview">
+                            <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
                         </div>
                     </div>
+                    <!-- Product Description -->
+                    <div class="product-description">
+                        <h4 class="product-price">{{product.price}}</h4>
+                        <p>{{product.name}}</p>
+                        <!-- Add to Cart -->
+                        <a class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
+                    </div>
                 </div>
+                <div *ngFor="let product of filteredList" class="relprd col-md-4">
+                    <!-- Product Image -->
+                    <div class="product-img">
+                        <img src="../../../assets/images/hand15.jpg" alt="hand15">
+                        <div class="product-quicview">
+                            <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
+                        </div>
+                    </div>
+                    <!-- Product Description -->
+                    <div class="product-description">
+                        <h4 class="product-price">{{product.price}}</h4>
+                        <p>{{product.name}}</p>
+                        <!-- Add to Cart -->
+                        <a class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
+                    </div>
+                </div>
+
             </div>
+
         </div>
     </section>
 </div>
+
+
+<!-- 
+    <select #selCat [(ngModel)]="selCatID" >
+  <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+</select>
+ -->
+
+<p>review</p>
+<!-- <select [(ngModel)]="review" >
+        <option *ngFor="let re of review">{{re.rate}}</option>
+      </select> -->
+
+<div class="container text-center">
+    <h3 *ngIf="countOfReviews != 0">Count Of Reviews : {{countOfReviews}}</h3>
+    <h3 *ngIf="avrOfReviews != 0">avr Of Reviews : {{avrOfReviews}}</h3>
+
+    <div *ngFor="let rev of reviewList">
+        <h4>rate: {{rev.rate}}</h4>
+        <h4>body: {{rev.body}}</h4>
+        <h4>user: {{rev.user}}</h4>
+        <hr>
+    </div>
+</div>
+
+
+<select #preview>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+
+</select>
+<textarea #pcomment>write </textarea>
+<button type="submit" (click)="reviewFun(pcomment.value,preview.value)">ok</button>
