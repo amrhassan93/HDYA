@@ -2,47 +2,71 @@
 <div class="checkout_area section_padding_100">
     <div class="container">
         <div class="row">
-
-            <div class="col-12 col-md-6">
+            <div class=" col-md-6">
                 <div class="checkout_details_area  clearfix">
 
                     <div class="cart-page-heading mb-3 text-center">
                         <br>
                         <h5 style="font-size:30px;">ADD PRODUCT</h5>
                     </div>
-
-                    <form method="post" #myForm="ngForm">
+                    <form method="post" #myForm="ngForm" (ngSubmit)="addNewProduct()" ngNativeValidate>
                         <div class="row">
                             <div class="col-md-12 mb-4 ">
                                 <label for="Name">Product Name <span>*</span></label>
-                                <input #pname [(ngModel)]="newproduct.name" type="text" class="form-control" name="Name" id="Name" value="" required minlength="15">
+                                <input #pname [(ngModel)]="newproduct.name" type="text" pattern="(^[a-zA-Z]{5,15})" class="form-control" name="Name" id="Name" value="" 
+                                #NameField="ngModel"  required minlength="5" maxlength="15" [class.is-valid]="NameField.valid" [class.is-invaild]="NameField.invalid && NameField.touched" >
+                                <div class="alert alert-danger mt-2 p-3" *ngIf="NameField.invalid && NameField.touched" >
+                                    <div *ngIf="NameField.hasError('required')">Product Name Is Required</div>
+                                    <div *ngIf="NameField.hasError('pattern')">Product Name Must be Characters and not less than 5</div>
+                                    <!-- <div *ngIf="NameField.hasError('minlength')">Product Name must be 5 letters At least </div> -->
+                                    <div *ngIf="NameField.hasError('maxlength')">Product Name must be 15 Characters or less</div>
+                                </div>
                             </div>
                             <div class="col-md-12 mb-4">
                                 <label for="last_name">Price <span>*</span></label>
-                                <input #pprice [(ngModel)]="newproduct.price" type="text" class="form-control" name="price" id="last_name" value="" required>
-                            </div>
+                                <input #pprice [(ngModel)]="newproduct.price" type="number"  id="number" class="form-control" min="0"  name="price" value="" pattern="[1-9]{1,3}"
+                                 #priceField="ngModel" [class.is-valid]="priceField.valid" [class.is-invaild]="priceField.invalid && priceField.touched" required > 
+                                 <div class="alert alert-danger mt-2 p-3" *ngIf="priceField.invalid && priceField.touched" >
+                                    <div *ngIf="priceField.hasError('required')">Price Is Required</div>
+                                    <div *ngIf="!priceField.hasError('min')">Price Must not equal zero </div>
+                                    <!-- <div *ngIf="priceField.hasError('max')">Price must be 5 numbers only </div> --> 
+                                    <div *ngIf="priceField.hasError('pattern')">Price Must Be Number & not exceed 3 numbers</div>
+                                    <!-- pattern="^[1-9]{1,3}[0-9]*"  start without zero --> 
+                                </div>
+
+                           </div>
+
 
                             <div class="col-12 mb-4">
                                 <div class="form-group">
                                     <label for="comment">Details</label>
-                                    <textarea #pdetails [(ngModel)]="newproduct.details" class="form-control" name="details" rows="5" id="comment" style="resize: none;"></textarea>
+                                    <textarea #pdetails [(ngModel)]="newproduct.details" class="form-control" name="details" rows="5" id="comment" style="resize: none;"
+                                     #detailsField="ngModel" minlength="5" maxlength="250" required pattern="(^[a-zA-Z]{5,250})" [class.is-valid]="detailsField.valid"  [class.is-invaild]="detailsField.invalid && detailsField.touched"></textarea>
+                                     <div class="alert alert-danger mt-2 p-3" *ngIf="detailsField.invalid && detailsField.touched" >
+                                        <div *ngIf="detailsField.hasError('required')">Product Details Is Required</div>
+                                        <div *ngIf="detailsField.hasError('pattern')">Product Details Must be Characters and not less than 5</div>
+                                        <!-- <div *ngIf="NameField.hasError('minlength')">Product Name must be 5 letters At least </div> -->
+                                        <div *ngIf="detailsField.hasError('maxlength')">Product Details must not exceed 250 Characters</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-12 mb-4">
                                 <label for="image">Image <span>*</span></label>
-                                <input #pimages type="file" name="img" multiple (change)="changeImageInput($event)" class="form-control" id="customFile" />
+                                <input #pimages type="file" name="img" multiple required (change)="changeImageInput($event)" class="form-control" id="customFile" />
                             </div>
 
                             <div class="col-12 mb-4">
                                 <div class="form-group row">
                                     <label for="example-number-input" class="col-2 col-form-label">Age From<span>*</span></label>
-                                    <input #pagefrom [(ngModel)]="newproduct.age_from" class="form-control" name="agefrom" type="number" id="example-date-input">
+                                    <input #pagefrom [(ngModel)]="newproduct.age_from" class="form-control" name="agefrom" type="number" id="example-date-input" required
+                                    #ageFromField="ngModel" [class.is-valid]="ageFromField.valid" [class.is-invaild]="ageFromField.invalid && ageFromField.touched" >
+
                                 </div>
                             </div>
                             <div class="col-12 mb-4">
                                 <div class="form-group row">
                                     <label for="example-number-input" class="col-2 col-form-label">Age To<span>*</span></label>
-                                    <input #pageto [(ngModel)]="newproduct.age_to" class="form-control" name="ageto" type="number" id="example-date-input">
+                                    <input #pageto [(ngModel)]="newproduct.age_to" class="form-control" name="ageto" type="number" id="example-date-input" required>
                                 </div>
                             </div>
                             <div class="col-12 mb-4">
@@ -51,7 +75,7 @@
                             <div class="col-12 mb-4">
                                 <div class="form-group">
                                     <label for="occassion">Occassion</label>
-                                    <select multiple #poccassions [(ngModel)]="newproduct.occassions" [ngModelOptions]="{standalone: true}" class="form-control" id="occassion">
+                                    <select multiple #poccassions [(ngModel)]="newproduct.occassions" [ngModelOptions]="{standalone: true}" class="form-control" id="occassion" required>
                                       <option *ngFor="let occ of occassions" [value]="occ.id" >{{occ.name}}</option>
                                     </select>
                                 </div>
@@ -59,7 +83,7 @@
                             <div class="col-12 mb-4">
                                 <div class="form-group">
                                     <label for="gender">gender</label>
-                                    <select #pgender [(ngModel)]="newproduct.gender" [ngModelOptions]="{standalone: true}" class="form-control" id="gender">
+                                    <select #pgender [(ngModel)]="newproduct.gender" [ngModelOptions]="{standalone: true}" class="form-control" id="gender" required>
                                       <option [Value]="m" value="m">male</option>
                                       <option [Value]="f" value="f">female</option>
                                       <option [Value]="b" value="b">both</option>
@@ -69,32 +93,32 @@
                             <div class="col-12 mb-4">
                                 <div class="form-group">
                                     <label for="relationship">Relationship</label>
-                                    <select #prelationship [(ngModel)]="newproduct.relationships" [ngModelOptions]="{standalone: true}" class="form-control" id="relationship">
+                                    <select #prelationship [(ngModel)]="newproduct.relationships" [ngModelOptions]="{standalone: true}" class="form-control" id="relationship" required>
                                         <option *ngFor="let rel of relationships" [value]="rel.id" >{{rel.name}}</option>
                                       </select>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-4">
                                 <div class="form-group">
-
                                     <label for="Category">Categories <span>*</span></label>
-
-                                    <select #pcategory [(ngModel)]="newproduct.category" [ngModelOptions]="{standalone: true}" class="form-control" id="Category">
+                                    <select #pcategory [(ngModel)]="newproduct.category" [ngModelOptions]="{standalone: true}" class="form-control" id="Category" required>
                                         <option *ngFor="let cat of categories" [value]="cat.id">{{cat.title}}</option>
                                     </select>
-
-
                                 </div>
-
                             </div>
                             <!-- <h1>{{newproduct.gender}}</h1> -->
 
-                            <button (click)="addNewProduct()" class="btn btn-primary">ADD</button><br><br>
+                            <button (click)="addNewProduct()" class="btn btn-primary"[disabled]="myForm.invalid">ADD</button><br><br>
+
+                            <div class="submitted-message" *ngIf="myForm.submitted">
+                                <p>You've submitted your Product, {{ myForm.value.name }}!</p>
+                                <button (click)="myForm.resetForm({})">Add new hero</button>
+                              </div>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
+    </div>
     </div>
 </div><br>
 

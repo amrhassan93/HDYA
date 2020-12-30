@@ -6,6 +6,9 @@ import { RelationShip } from '../../models/interfaces/relation-ship'
 import { Occassion } from '../../models/interfaces/occassion'
 
 import { ProductPicture } from '../../models/interfaces/product-picture'
+import { Router } from '@angular/router';
+import { from } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-product',
@@ -17,7 +20,7 @@ export class CreateProductComponent implements OnInit {
   occassions:Occassion[] = []
   relationships:RelationShip[] = []
   newproduct:Product;
-  images:File [] = [] 
+  images:File [] = []; 
   // name:string = "";
   // price:number = 0;
   // details:string = "";
@@ -31,7 +34,7 @@ export class CreateProductComponent implements OnInit {
   // created_at:string;
   // updated_at:string;
   // productpicture_set:Array<object>;
-  constructor(private _productservisec:ProductsService) { 
+  constructor(private _productservisec:ProductsService,private router:Router) { 
     this.newproduct = {
       gender:"",
       details:"",
@@ -44,8 +47,8 @@ export class CreateProductComponent implements OnInit {
       age_from:0,
       age_to:0,
     } 
+    
   }
-
   ngOnInit(): void {
     this._productservisec.showcategories().subscribe(
       (data)=>this.categories=data.results,
@@ -67,6 +70,10 @@ export class CreateProductComponent implements OnInit {
   // name:string,details:string, price:number, age_from:number, age_to:number, gender:string, category:number , occassions:Array<number> , relationships:Array<number>
   addNewProduct(){
     console.log(this.newproduct);
+    this._productservisec.createProduct(this.newproduct).subscribe(
+      res=>this.router.navigateByUrl('createproduct'),
+      err=>console.log(err)
+      )
     
     // this.newproduct.name = name.value ;
     // this.newproduct.details = details.value ;
@@ -98,12 +105,12 @@ export class CreateProductComponent implements OnInit {
   }
 
 
-// ngDoCheck(): void {
-//   //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
-//   //Add 'implements DoCheck' to the class.
-//   console.log(this.newproduct.category);
-  
-// }
+    // ngDoCheck(): void {
+    //   //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
+    //   //Add 'implements DoCheck' to the class.
+    //   console.log(this.newproduct.category);
+
+    // }
   
   changeImageInput(event:any){
    
