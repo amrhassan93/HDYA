@@ -9,29 +9,30 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto nav-flex-icons text-light">
-            <li class="nav-item active m-2">
+            <li class="nav-item active mr-4">
                 <a class="nav-link nav-item navbar-collapse text-light" routerLink="/home"><acronym title="Home"><i class="fas fa-home fa-2x"></i></acronym> <span class="sr-only"></span></a>
             </li>
-            <li class="nav-item active m-2">
+            <li class="nav-item active mr-4">
                 <a class="nav-link nav-item navbar-collapse text-light" routerLink="/about"><acronym title="About Us"><i class="fas fa-info fa-2x"></i></acronym> <span class="sr-only"></span></a>
             </li>
-            <li class="nav-item active m-2">
-                <a class="nav-link" routerLink="/profile" *ngIf="usertoken"><acronym title="Profile"><i class="far fa-user-circle fa-2x"></i></acronym><span class="sr-only"></span></a>
-            </li>
-
-            <li class="nav-item active m-2">
-                <a class="nav-link" routerLink="/product/createproduct" *ngIf="usertoken"><acronym title="Add product"><i class="fas fa-plus-square fa-2x"></i></acronym><span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item active m-2">
+            <li class="nav-item active mr-4">
                 <a class="nav-link nav-item navbar-collapse text-light" routerLink="/search"><acronym title="Shopping"><i class="fas fa-store-alt fa-2x"></i></acronym><span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item active mr-4">
+                <a class="nav-link" routerLink="/product/createproduct" *ngIf="usertoken"><acronym title="Add product"><i class="fas fa-plus-square fa-2x"></i></acronym><span class="sr-only"></span></a>
             </li>
 
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons text-light">
             <form class="form-inline my-2 my-lg-0">
-                <input #searchabout class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button (click)="search(searchabout.value)" class="btn btn-outline-light my-2 my-sm-0" type="submit" routerLink="/search"><i class="fas fa-search"></i></button>
+                <div id="example1">
+                    <input #searchabout class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button (click)="search(searchabout.value)" class="btn btn-outline-light my-2 my-sm-0 mr-2" type="submit" routerLink="/search"><i class="fas fa-search"></i></button>
+                </div>
             </form>
+            <li class="nav-item active ">
+                <a class="nav-link" routerLink="/profile" *ngIf="usertoken"><acronym title="Profile"><i class="far fa-user-circle fa-2x"></i></acronym><span class="sr-only"></span></a>
+            </li>
             <li class="nav-item active">
                 <a class="nav-link nav-item navbar-collapse text-light " routerLink="/cart"><i class="fas fa-shopping-cart fa-2x"></i> {{cart.length}}<span class="sr-only"></span></a>
             </li>

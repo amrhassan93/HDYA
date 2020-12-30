@@ -19,8 +19,6 @@ export class SearchComponent implements OnInit {
   maxrange:number=70;
   minprice:number=0;
   maxprice:number=1000;
-  totalRecords: number | undefined
-  page:number=1
   cart:Array<object> = [];
   productPopUp:Product[] = [] ; 
   relationships: any;
@@ -71,7 +69,6 @@ export class SearchComponent implements OnInit {
         (data)=>{
           this.productList=data.results;
           this.totalRecords = data.results.length
-          // console.log(this.productList);
           this.moreData = data
           // this.allproducts = this.productList
         },
@@ -256,9 +253,8 @@ export class SearchComponent implements OnInit {
       })
 
     console.log(this.productPopUp);
-
   }
-
+  
   showMore(){
     this._products.viewProductsByPage(this.moreData.next).subscribe(
       (data)=>{
