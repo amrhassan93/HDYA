@@ -20,21 +20,7 @@ export class NavComponent implements OnInit {
   cart:Product[] = []
 
 
-  constructor(private auth:AuthenticationService ,
-              private _products:ProductsService ,
-              private route:Router,
-              // private activerouter:ActivatedRoute,
-              ) {
-
-    // if (localStorage.getItem('token')){
-    //   this.usertoken = localStorage.getItem("token")
-    // }
-    // else{
-    //   console.log('no token')
-    // }
-    // console.log(this.usertoken);
-    
-   }
+  constructor(private auth:AuthenticationService,private _products:ProductsService,private route:Router) {}
 
   ngOnInit(): void {
     this._products.viewProducts().subscribe(
@@ -74,12 +60,10 @@ export class NavComponent implements OnInit {
 
     this.productList = this.filteredProductList
     this.filteredProductList = []
-     console.log(this.productList)
+    console.log(this.productList)
     localStorage.setItem('products' ,  JSON.stringify(this.productList))
     return this.route.navigate(['/search'] )
-
   }
-
   ngDoCheck(): void {
     //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
     //Add 'implements DoCheck' to the class.
