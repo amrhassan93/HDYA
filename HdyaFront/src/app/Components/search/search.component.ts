@@ -60,7 +60,7 @@ export class SearchComponent implements OnInit {
       // console.log(searchProducts instanceof Array);
       
       this.productList = JSON.parse(searchProducts || '{}')
-      this.totalRecords = this.productList.length
+      // this.totalRecords = this.productList.length
       localStorage.removeItem('products')
       
     }
@@ -68,7 +68,7 @@ export class SearchComponent implements OnInit {
       this._products.viewProducts().subscribe(
         (data)=>{
           this.productList=data.results;
-          this.totalRecords = data.results.length
+          // this.totalRecords = data.results.length
           this.moreData = data
           // this.allproducts = this.productList
         },
@@ -103,7 +103,7 @@ export class SearchComponent implements OnInit {
       // console.log(searchProducts instanceof Array);
       
       this.productList = JSON.parse(searchProducts || '{}')
-      this.totalRecords = this.productList.length
+      // this.totalRecords = this.productList.length
       localStorage.removeItem('products')
     }   
     
@@ -115,7 +115,7 @@ export class SearchComponent implements OnInit {
       (data)=>{
         this.searchparams = {}
         this.productList=data.results;
-        this.totalRecords = data.results.length
+        // this.totalRecords = data.results.length
         // this.allproducts = this.productList
       },
       (err)=> console.log(err) 
@@ -225,34 +225,14 @@ export class SearchComponent implements OnInit {
 
   addToCart(product_id:number){
     this._addCart.addCart(product_id)
-    // if (localStorage.getItem("cart")){
-    //   this.cart = JSON.parse(localStorage.getItem("cart") || '{}') 
-
-    //   let addtocart = this.productList.find((product)=>{ 
-    //     return product.id == product_id
-    //     })
-
-    //   this.cart.push(addtocart)
-
-    //   localStorage.setItem("cart" , JSON.stringify(this.cart))
-    //   this.alertService.success('Success!!', this.options)
-    // }
-    // else {
-    //   let addtocart = this.productList.find((product)=>{ 
-    //     return product.id == product_id
-    //     })
-    //   this.cart.push(addtocart)
-    //   localStorage.setItem("cart" , JSON.stringify(this.cart))
-    //   // console.log(this.cart);
-    //   this.alertService.success('Success!!', this.options)
-    // }
   }
+  
   popUpProduct(product_id:number){
     this.productPopUp =  this.productList.find((product)=>{ 
       return product.id == product_id
       })
 
-    console.log(this.productPopUp);
+    // console.log(this.productPopUp);
   }
   
   showMore(){

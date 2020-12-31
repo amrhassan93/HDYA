@@ -2,6 +2,7 @@
     <br><br>
     <div class="container">
         <form>
+
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
@@ -101,51 +102,36 @@
                                     <table class="table table-responsive ">
                                         <thead>
                                             <tr>
+                                                <th>No.</th>
                                                 <th class="col-md-3">Product Name</th>
                                                 <th class="col-md-3">Price</th>
-                                                <th class="col-md-3">Quantity</th>
-                                                <th class="col-md-3">Total</th>
+                                                <th class="col-md-3">Created At</th>
+                                                <!-- <th class="col-md-3">Total</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr *ngFor="let prd of myProducts  | paginate: { id: 'listing_pagination',
+                                            itemsPerPage: 6,
+                                            currentPage: page,
+                                            totalItems: totalProductsRecords} ; let i=index">
+                                                <td>{{i+1}}</td>
                                                 <td class="cart_product_img text-center" class="col-md-3">
-                                                    <h6>Hand Made Wooden Camera</h6>
+                                                    <h6><a [routerLink]="['/productdetails',prd.id]">{{prd.name}}</a></h6>
                                                 </td>
-                                                <td class="price" class="col-md-3"><span>30 EGP</span></td>
+                                                <td class="price" class="col-md-3"><span>{{prd.price}}</span></td>
                                                 <td class="qty" class="col-md-3">
                                                     <div class="quantity">
-                                                        <span>4</span>
+                                                        <span>{{prd.created_at}}</span>
                                                     </div>
                                                 </td>
-                                                <td class="total_price" class="col-md-3"><span>120 EGP</span></td>
+                                                <!-- <td class="total_price" class="col-md-3"><span>120 EGP</span></td> -->
                                             </tr>
-                                            <tr>
-                                                <td class="cart_product_img text-center" class="col-md-3">
-                                                    <h6>Personal Leather Wallet</h6>
-                                                </td>
-                                                <td class="price" class="col-md-3"><span>20 EGP</span></td>
-                                                <td class="qty" class="col-md-3">
-                                                    <div class="quantity">
-                                                        <span>4</span>
-                                                    </div>
-                                                </td>
-                                                <td class="total_price" class="col-md-3"><span>80 EGP</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="cart_product_img text-center" class="col-md-3">
-                                                    <h6>Accessories</h6>
-                                                </td>
-                                                <td class="price" class="col-md-3"><span>10 EGP</span></td>
-                                                <td class="qty" class="col-md-3">
-                                                    <div class="quantity">
-                                                        <span>5</span>
-                                                    </div>
-                                                </td>
-                                                <td class="total_price" class="col-md-3"><span>50 EGP</span></td>
-                                            </tr>
+
                                         </tbody>
                                     </table>
+                                    <div>
+                                        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -155,27 +141,37 @@
                                     <table class="table table-responsive ">
                                         <thead>
                                             <tr>
+                                                <th class="col-md-3">No.</th>
                                                 <th class="col-md-3">Product</th>
                                                 <th class="col-md-3">Price</th>
                                                 <th class="col-md-3">Quantity</th>
                                                 <th class="col-md-3">Total</th>
+                                                <th class="col-md-3">Date</th>
+                                                <th class="col-md-3">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let order of orders | paginate: { id: 'listing_pagination',
+                                            <tr *ngFor="let order of myOrders  | paginate: { id: 'listing_pagination',
                                             itemsPerPage: 6,
                                             currentPage: page,
-                                            totalItems: totalRecords}">
-                                                <td class="cart_product_img text-center" class="col-md-3">
-                                                    <h6>{{order.product}}</h6>
+                                            totalItems: totalOrdersRecords} ; let i=index">
+
+                                                <td>
+                                                    {{i+1}}
                                                 </td>
-                                                <td class="price" class="col-md-3"><span>30 EGP</span></td>
+                                                <td class="cart_product_img text-center" class="col-md-3">
+                                                    <h6><a [routerLink]="['/productdetails',order.product_id]">{{order.product_name}}</a></h6>
+                                                </td>
+                                                <td class="price" class="col-md-3"><span>{{order.product_price}}</span></td>
                                                 <td class="qty" class="col-md-3">
                                                     <div class="quantity">
-                                                        <span>3</span>
+                                                        <span>{{order.Quantity}}</span>
                                                     </div>
                                                 </td>
-                                                <td class="total_price" class="col-md-3"><span>90 EGP</span></td>
+                                                <td class="total_price" class="col-md-3"><span>{{order.Total}}</span></td>
+                                                <td class="total_price" class="col-md-3"><span>{{order.created_at}}</span></td>
+                                                <td class="total_price" class="col-md-3"><span>{{order.status}}</span></td>
+                                                <td class="total_price" class="col-md-3"><span><i class="far fa-trash-alt" (click)="cancelOrder(order.order_id)"></i></span></td>
                                             </tr>
                                         </tbody>
                                     </table>

@@ -28,6 +28,9 @@ export class CartComponent implements OnInit {
     AOS.init();
     if (localStorage.getItem("cart")){
       this.cart = JSON.parse(localStorage.getItem("cart") || '{}') 
+      for (let i in this.cart){
+        this.calcPrice(this.cart[i].id ,this.cart[i].price, 1 , i)
+      }
     }
   }
 
