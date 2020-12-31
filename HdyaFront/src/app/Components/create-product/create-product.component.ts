@@ -21,6 +21,7 @@ export class CreateProductComponent implements OnInit {
   images:File [] = [] 
   edit:boolean = false
 
+  avatar:File[] = []
 
   constructor(private _productservisec:ProductsService ,  private route:Router) { 
     this.newproduct = {
@@ -162,6 +163,18 @@ export class CreateProductComponent implements OnInit {
     localStorage.removeItem('editprd')
     this.route.navigate([`/productdetails/${id}`]) 
 
+  }
+
+
+  imgtest(event:any){
+    this.avatar = event.target.files[0]
+  }
+
+  test(){
+    const fd = new FormData();
+    fd.append('avatar' , this.avatar[0]) 
+    console.log(fd);
+    
   }
 
 

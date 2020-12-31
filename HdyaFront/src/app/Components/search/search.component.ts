@@ -14,12 +14,6 @@ export class SearchComponent implements OnInit {
   productList: Product[] = [];
   categoryList:Category[]=[];
   filterdProducts:Product[] = [];
-  // newproduct:Product | undefined;
-  // minrange:number = 10;
-  // maxrange:number=70;
-  // minprice:number=0;
-  // maxprice:number=1000;
-  
   cart:Array<object> = [];
   productPopUp:Product[] = [] ; 
   relationships: any;

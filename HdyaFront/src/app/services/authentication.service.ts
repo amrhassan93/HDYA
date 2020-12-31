@@ -50,4 +50,26 @@ export class AuthenticationService {
     return this.http.get<any>(`${environment.apiUrl}/auth/users/me/`, requestOptions)
   }
 
+
+  editprofile( data:any){
+    const headerDict = {
+      'Authorization':'Token ' +  localStorage.getItem('token')
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+    return this.http.patch<any>(`${environment.apiUrl}/auth/users/me/`, data, requestOptions)
+
+    // if (data){
+
+    // }else if (avatar){
+    //   return this.http.patch<any>(`${environment.apiUrl}/auth/users/me/`, avatar, requestOptions)
+    // }else{
+    //   return console.log("err");
+      
+    // }
+
+  }
+
 }
