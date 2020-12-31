@@ -78,7 +78,7 @@ export class ProductDetailsComponent implements OnInit {
       (data)=>this.relList=data.results,
       (err)=>console.log(err)
     )
-
+    
 
     this._products.viewProductById(id).subscribe(
       (data)=>{
@@ -149,7 +149,8 @@ export class ProductDetailsComponent implements OnInit {
 
     console.log(this.productPopUp);
   }
-  
+
+
   reviewFun(body:string , rate:number ){
     let id = this.activerouter.snapshot.params['id']
     let found = false
@@ -206,9 +207,9 @@ ngDoCheck(): void {
   
 } 
 
-addToCart(){
+addToCart(qntty:number){
   let id = this.activerouter.snapshot.params['id']
-  this._addCart.addCart(id)
+  this._addCart.addCart(id , qntty)
 }
 
 editPrd(prd_id:number){

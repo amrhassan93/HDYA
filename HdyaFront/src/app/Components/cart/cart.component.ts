@@ -13,14 +13,15 @@ import { AlertService } from 'src/app/_alert';
 })
 export class CartComponent implements OnInit {
 
-  cart:Product[] = [] ;
+  cart:Array<object> ;
   total:Array<number> = [] ;
   totalPrice:number = 0 ;
   orders:Array<object> = [] ;
   options = {
     autoClose: true,
     keepAfterRouteChange: false
-};
+};  
+  checkout:{[k:string]:any } = {}
 
   constructor(private _products:ProductsService,private route:Router,protected alertService: AlertService) { }
 
@@ -29,7 +30,7 @@ export class CartComponent implements OnInit {
     if (localStorage.getItem("cart")){
       this.cart = JSON.parse(localStorage.getItem("cart") || '{}') 
       for (let i in this.cart){
-        this.calcPrice(this.cart[i].id ,this.cart[i].price, 1 , i)
+        this.calcPrice(this.cart[i].productDetails.id ,this.cart[i].productDetails.price, this.cart[i].quantity , i)
       }
     }
   }
@@ -39,11 +40,26 @@ export class CartComponent implements OnInit {
     //Add 'implements DoCheck' to the class.
     if (!localStorage.getItem("cart")){
       this.cart = []
+    }else{
+      localStorage.setItem('cart',JSON.stringify(this.cart))
     }
   }
 
+  changeQntty(prd_id :number ,  Prd_price:number , quantaty:number , index:number){
+    for (let i in this.cart){
+
+      if(this.cart[i].productDetails.id == prd_id){
+
+        this.cart[i].quantity = quantaty
+        console.log(this.cart[i].quantity);
+        console.log(this.cart); 
+        localStorage.setItem('cart' ,JSON.stringify(this.cart))
+      }
+    }
+    this.calcPrice(prd_id , Prd_price ,quantaty , index)
+  }
+  
   calcPrice(prd_id :number ,  Prd_price:number , quantaty:number , index:number){
-   
     this.total[index] = quantaty * Prd_price    
     this.totalPrice = 0
     for ( let i=0 ; i< this.total.length ; i++){
@@ -64,24 +80,32 @@ export class CartComponent implements OnInit {
     }
     else{
       this.orders.push({product : prd_id , quantaty : quantaty})
-
+      
     }
-    console.log(this.orders);
+    // console.log(this.orders);
   }
 
 
-  orderNow(){
-    for(let i =0 ; i < this.cart.length ; i++){
-      this._products.order(this.orders[i].product ,  this.orders[i].quantaty ).subscribe(
-        (data)=>{
-          localStorage.removeItem("cart")
-          console.log(data)
-      },
-
-        (err)=> console.log(err)
-        )
+           
+  toCheckout(){
+    let sumtotalQuantity:[] = [] ;
+    for (let i in this.cart){
+      sumtotalQuantity.push(parseInt(this.cart[i].quantity)) 
     }
+    var sum = sumtotalQuantity.reduce(function(a, b){
+      return a + b;
+    }, 0);
+
+
+    this.checkout.totalPrice = this.totalPrice
+    this.checkout.totalOrders = sum  
+    localStorage.setItem('orders' ,JSON.stringify(this.orders))
+    localStorage.setItem('checkout' ,JSON.stringify(this.checkout))
+
   }
+
+
+
   emptyCart(){
     localStorage.removeItem("cart")
     this.alertService.warn('Cart is Empty!!', this.options)

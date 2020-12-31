@@ -42,7 +42,7 @@ export class ProductsService {
   }
 
 
-  order(product:number , quantity:number , status:string = 'p' , ):Observable<any>{
+  order(product:number , quantity:number , status:string = 'p'  ):Observable<any>{
 
     const headerDict = {
       'Authorization':'Token ' +  localStorage.getItem('token')
@@ -66,7 +66,7 @@ export class ProductsService {
       headers: new HttpHeaders(headerDict), 
     };
 
-    return this.http.get<any>(`${environment.apiUrl}/orders/`, requestOptions)
+    return this.http.get<any>(`${environment.apiUrl}/my/orders/`, requestOptions)
   }
 
   deleteOrder(order_id:number):Observable<any>{
