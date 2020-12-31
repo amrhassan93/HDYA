@@ -79,11 +79,17 @@ export class CreateProductComponent implements OnInit {
   }
   // name:string,details:string, price:number, age_from:number, age_to:number, gender:string, category:number , occassions:Array<number> , relationships:Array<number>
   addNewProduct(){
-    console.log(this.newproduct);
-    this._productservisec.createProduct(this.newproduct).subscribe(
-      res=>this.route.navigateByUrl('createproduct'),
-      err=>console.log(err)
-      )
+    if (this.images.length >= 3){
+      console.log(this.newproduct);
+      this._productservisec.createProduct(this.newproduct).subscribe(
+        res=>this.route.navigateByUrl('createproduct'),
+        err=>console.log(err)
+        )
+    }
+    else{
+      alert('please upload more than 3 images')
+    }
+   
     // console.log(this.newproduct);
     
     // this.newproduct.name = name.value ;
