@@ -86,12 +86,12 @@
 
                             <label for="minpricefilter">Min price</label>
                             <p>{{minprice}}</p>
-                            <input #filterminprice [(ngModel)]="minprice" type="range" max="10000" min="0" step="1" value="0" id="minpricefilter">
+                            <input #filterminprice (change)="minPrice(filterminprice.value)" [(ngModel)]="minprice" type="range" max="10000" min="0" step="1" value="0" id="minpricefilter">
 
                             <label for="maxpricefilter">Max price</label>
                             <p>{{maxprice}}</p>
-                            <input #filtermaxprice [(ngModel)]="maxprice" type="range" max="10000" min="0" step="1" value="1000" id="maxpricefilter">
-                            <button class="btn karl-checkout-btn" (click)="getproductsbyprice(filterminprice.value , filtermaxprice.value)">Price filter</button>
+                            <input #filtermaxprice (change)="maxPrice(filtermaxprice.value)" [(ngModel)]="maxprice" type="range" max="10000" min="0" step="1" value="1000" id="maxpricefilter">
+                            <!-- <button class="btn karl-checkout-btn" (click)="getproductsbyprice(filterminprice.value , filtermaxprice.value)">Price filter</button> -->
                         </div>
                     </div>
 
@@ -113,19 +113,19 @@
 
                             <label for="minrangefilter">Min Age</label>
                             <p>{{minrange}}</p>
-                            <input #filterminage [(ngModel)]="minrange" type="range" max="100" min="0" step="1" value="10" id="minrangefilter">
+                            <input #filterminage (change)="minAge(filterminage.value)" [(ngModel)]="minrange" type="range" max="100" min="0" step="1" value="10" id="minrangefilter">
 
                             <label for="maxrangefilter">Max Age</label>
                             <p>{{maxrange}}</p>
-                            <input #filtermaxage [(ngModel)]="maxrange" type="range" max="100" min="0" step="1" value="70" id="maxrangefilter">
-                            <button class="btn karl-checkout-btn" (click)="getproductsbyage(filterminage.value , filtermaxage.value)">age filter</button>
+                            <input #filtermaxage (change)="maxAge(filtermaxage.value)" [(ngModel)]="maxrange" type="range" max="100" min="0" step="1" value="70" id="maxrangefilter">
+                            <!-- <button class="btn karl-checkout-btn" (click)="getproductsbyage(filterminage.value , filtermaxage.value)">age filter</button> -->
                         </div>
                     </div>
                     <div class="widget size d-block">
                         <br>
                         <h6 class="widget-title">Occassion</h6><br>
                         <div class="widget-desc">
-                            <select multiple #poccassions [(ngModel)]="newproduct.occassions" [ngModelOptions]="{standalone: true}" class="form-control" id="occassion">
+                            <select #poccassions (change)="occassionSearch()" [(ngModel)]="filteredoccassions" [ngModelOptions]="{standalone: true}" class="form-control" id="occassion">
                                 <option *ngFor="let occ of occassions" [value]="occ.id" >{{occ.name}}</option>
                             </select>
                         </div>
@@ -134,8 +134,8 @@
                         <br>
                         <h6 class="widget-title">Relationship</h6><br>
                         <div class="widget-desc">
-                            <select #prelationship [(ngModel)]="newproduct.relationships" [ngModelOptions]="{standalone: true}" class="form-control" id="relationship">
-                                <option *ngFor="let rel of relationships" [value]="rel.id" >{{rel.name}}</option>
+                            <select #prelationship (change)="relationSearch()" [(ngModel)]="filteredrelations" [ngModelOptions]="{standalone: true}" class="form-control" id="relationship">
+                                <option *ngFor="let rel of relationships"  [value]="rel.id" >{{rel.name}}</option>
                             </select>
                         </div>
                     </div>

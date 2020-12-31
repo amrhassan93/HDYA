@@ -81,14 +81,14 @@ export class ProductsService {
     return this.http.delete<any>(`${environment.apiUrl}/orders/${order_id}/`, requestOptions)
   }
 
-  viewProductsBycat(searchparams:object):Observable<Product>{ 
+  searchProducts(searchparams:object):Observable<Product>{ 
     let query_string= "" ; 
       for (let i in searchparams){
         query_string+=`${i}=${searchparams[i]}&`
       }
       
-    console.log(`${environment.apiUrl}/products/?${query_string}/`);
-    return this.http.get<Product>(`${environment.apiUrl}/products/?${query_string}/`)
+    console.log(`${environment.apiUrl}/products/?${query_string}`);
+    return this.http.get<Product>(`${environment.apiUrl}/product/search/?${query_string}`)
   }
 
   createProduct(data:object):Observable<Product>{
