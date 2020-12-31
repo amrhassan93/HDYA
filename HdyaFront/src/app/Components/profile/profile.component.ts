@@ -13,7 +13,6 @@ import { Product } from 'src/app/models/interfaces/product';
 })
 export class ProfileComponent implements OnInit {
   orders:Array<object> = []
-  new_avatar = File
 
   url="../../../assets/images/login.jpg"
   isdisplayed = false
@@ -22,7 +21,8 @@ export class ProfileComponent implements OnInit {
   // onlyOrders:Product[] = []
   myOrders:Array<object> = []
   //pagination
-  totalRecords: number | undefined
+  totalOrdersRecords: number = 0
+  totalProductsRecords: number = 0
   page:number=1
 
   toggledispayed(){
@@ -81,6 +81,9 @@ export class ProfileComponent implements OnInit {
                 'order_id':this.orders[i].id,
                 'product_id':data.id,
               })
+                //pagination
+              this.totalOrdersRecords = this.myOrders.length
+              
               for (let i in this.myOrders){
                 if(this.myOrders[i].status == 'p'){
                   this.myOrders[i].status = 'in processing'
@@ -94,6 +97,7 @@ export class ProfileComponent implements OnInit {
                   this.myOrders[i].status = 'cancelled'
                 }
               }
+             
             },
             (err)=>console.log(err)
           )
@@ -104,12 +108,16 @@ export class ProfileComponent implements OnInit {
 
 
     this._productService.myProducts().subscribe(
-      (data)=>this.myProducts = data,
+      (data)=>{
+
+        this.myProducts = data 
+       //pagination
+       this.totalProductsRecords = this.myProducts.length 
+      },
       (err)=>console.log(err)
     )
     
-    //pagination
-    this.totalRecords = this.orders.length
+   
 
   }
  
