@@ -7,7 +7,10 @@ import { AlertService } from 'src/app/_alert';
 })
 export class AddToCartService {
   cart:Array<object> = [];
-
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+};
   constructor(private _products:ProductsService ,protected alertService: AlertService) {}
    addCart(product_id:number){
     

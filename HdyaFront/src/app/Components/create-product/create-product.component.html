@@ -48,6 +48,14 @@
                                 <label for="image">Image <span>*</span></label>
                                 <input #pimages type="file" name="img" multiple min="3" required (change)="changeImageInput($event)" class="form-control" id="customFile" />
                             </div>
+                            <div *ngIf="edit == true" class="col-12 mb-4">
+                                <ul *ngFor="let img of newproduct.images">
+                                    <li style="display: inline;">
+                                        <img src="{{img.image}}" alt="" width="100" height="100"><i class="far fa-trash-alt" (click)="delimg(img.id)"></i>
+                                    </li>
+                                </ul>
+                            </div>
+
                             <div class="col-12 mb-4">
                                 <div class="form-group row">
                                     <label for="example-number-input" class="col-2 col-form-label">Age From<span>*</span></label>
@@ -118,6 +126,9 @@
                             <div class="submitted-message" *ngIf="myForm.submitted">
                                 <p> Congratulation You've Successfully  submitted your Product => {{ myForm.value.Name }}!</p>
                               </div>
+                            <button *ngIf="edit == false" (click)="addNewProduct()" class="btn btn-primary">ADD</button><br><br>
+                            <button *ngIf="edit == true" (click)="editProduct()" class="btn btn-primary">Edit</button><br><br>
+                            <button *ngIf="edit == true" (click)="cancel()" class="btn btn-primary">Cancel</button><br><br>
                         </div>
                     </form>
                 </div>
