@@ -214,25 +214,7 @@
                         <a class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
                     </div>
                 </div>
-                <div *ngFor="let product of filteredList" class="relprd col-md-4">
-                    <!-- Product Image -->
-                    <div class="product-img">
-                        <img src="../../../assets/images/hand15.jpg" alt="hand15">
-                        <div class="product-quicview">
-                            <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                        </div>
-                    </div>
-                    <!-- Product Description -->
-                    <div class="product-description">
-                        <h4 class="product-price">{{product.price}}</h4>
-                        <p>{{product.name}}</p>
-                        <!-- Add to Cart -->
-                        <a class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
-                    </div>
-                </div>
-
             </div>
-
         </div>
     </section>
 </div>

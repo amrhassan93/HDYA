@@ -12,7 +12,6 @@ import { ProductsService } from '../../services/products.service'
 })
 export class ProfileComponent implements OnInit {
   orders:Array<object> = []
-
   url="../../../assets/images/login.jpg"
   isdisplayed = false
   displayOrders = false
@@ -36,7 +35,6 @@ export class ProfileComponent implements OnInit {
     this.displayOrders = !this.displayOrders
   }
 
-  
   myprofile:Profile = {
     username:"",
     first_name:"",
@@ -48,9 +46,7 @@ export class ProfileComponent implements OnInit {
     id: 0,
     email: ""
   }
-  constructor(private _productService:ProductsService , private auth:AuthenticationService , private activerouter:ActivatedRoute) { 
-    
-  }
+  constructor(private _productService:ProductsService , private auth:AuthenticationService , private activerouter:ActivatedRoute) {}
 
   ngOnInit(): void {
     // let id = this.activerouter.snapshot.params['id']
@@ -59,7 +55,6 @@ export class ProfileComponent implements OnInit {
       (data)=>this.myprofile=data,
       (err)=>console.log(err)
     )
-
     this._productService.showorders().subscribe(
       (data)=> this.orders = data,
       (err)=>console.log(err)
