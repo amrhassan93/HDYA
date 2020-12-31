@@ -7,7 +7,6 @@ import { Occassion } from '../../models/interfaces/occassion'
 import { Router } from '@angular/router';
 
 import { ProductPicture } from '../../models/interfaces/product-picture'
-import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 
@@ -35,7 +34,7 @@ export class CreateProductComponent implements OnInit {
   // created_at:string;
   // updated_at:string;
   // productpicture_set:Array<object>;
-  constructor(private _productservisec:ProductsService ,  private route:Router) { 
+  constructor(private _productservisec:ProductsService ,  private route:Router) {
     this.newproduct = {
       gender:"",
       details:"",
@@ -72,7 +71,7 @@ export class CreateProductComponent implements OnInit {
   addNewProduct(){
     console.log(this.newproduct);
     this._productservisec.createProduct(this.newproduct).subscribe(
-      res=>this.router.navigateByUrl('createproduct'),
+      res=>this.route.navigateByUrl('createproduct'),
       err=>console.log(err)
       )
     // console.log(this.newproduct);
