@@ -69,6 +69,22 @@ export class ProductsService {
     return this.http.get<any>(`${environment.apiUrl}/my/orders/`, requestOptions)
   }
 
+
+  showIncomingOrders():Observable<any>{
+    const headerDict = {
+      'Authorization':'Token ' +  localStorage.getItem('token')
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+
+    return this.http.get<any>(`${environment.apiUrl}/orders/`, requestOptions)
+  }
+
+
+
+
   deleteOrder(order_id:number):Observable<any>{
     const headerDict = {
       'Authorization':'Token ' +  localStorage.getItem('token')

@@ -23,7 +23,13 @@ export class ProfileComponent implements OnInit {
   //pagination
   totalOrdersRecords: number = 0
   totalProductsRecords: number = 0
+  totaloncomingOrdersRecords: number = 0
   page:number=1
+  incomingOrders:Array<object> = []
+  incomingOrdersToHandle:Array<object> = []
+  usersList:Array<object> =[]
+
+
 
   toggledispayed(){
     this.isdisplayed = !this.isdisplayed
@@ -63,6 +69,8 @@ export class ProfileComponent implements OnInit {
       (err)=>console.log(err)
     )
 
+    // this.auth.showUserById(2).subscribe(console.log,console.log)
+
     this._productService.showorders().subscribe(
       (data)=>{ 
         this.orders = data
@@ -82,7 +90,7 @@ export class ProfileComponent implements OnInit {
                 'product_id':data.id,
               })
                 //pagination
-              this.totalOrdersRecords = this.myOrders.length
+              this.totaloncomingOrdersRecords = this.myOrders.length
               
               for (let i in this.myOrders){
                 if(this.myOrders[i].status == 'p'){
@@ -107,6 +115,68 @@ export class ProfileComponent implements OnInit {
     )
 
 
+
+
+    // this._productService.showIncomingOrders().subscribe(
+    //   (data)=>{
+    //     this.incomingOrders = data
+    //     console.log(this.incomingOrders);
+    //     for (let i=0 ; i <this.incomingOrders.length ; i++){
+    //       this._productService.viewProductById(this.incomingOrders[i].product).subscribe(
+    //         (data)=>{
+
+    //           // let user ;
+    //           // this.auth.showUserById(this.incomingOrders[i].user).subscribe(
+    //           //   (data)=>{
+    //           //     user=data
+    //           //     console.log(data)
+    //           //     console.log(user)
+    //           //   },
+    //           //   (err)=>console.log(err)
+    //           // )
+
+    //           this.incomingOrdersToHandle.push({
+    //             'No':i+1,
+    //             'product_name' : data.name,
+    //             'product_price' : data.price,
+    //             'Quantity' : this.incomingOrders[i].quantity,
+    //             'created_at' :this.incomingOrders[i].created_at,
+    //             'Total':data.price * this.incomingOrders[i].quantity,
+    //             'status':this.incomingOrders[i].status,
+    //             'order_id':this.incomingOrders[i].id,
+    //             'product_id':data.id,
+    //             'user':this.incomingOrders[i].user
+    //           })
+
+
+    //             //pagination
+    //           this.totalOrdersRecords = this.incomingOrdersToHandle.length
+              
+    //           for (let i in this.incomingOrdersToHandle){
+    //             if(this.incomingOrdersToHandle[i].status == 'p'){
+    //               this.incomingOrdersToHandle[i].status = 'in processing'
+    //             }else if (this.incomingOrdersToHandle[i].status == 's'){
+    //               this.incomingOrdersToHandle[i].status = 'shipped'
+    //             }else if (this.incomingOrdersToHandle[i].status == 'e'){
+    //               this.incomingOrdersToHandle[i].status = 'delivered'
+    //             }else if (this.incomingOrdersToHandle[i].status == 'r'){
+    //               this.incomingOrdersToHandle[i].status = 'returned'
+    //             }else if (this.incomingOrdersToHandle[i].status == 'c'){
+    //               this.incomingOrdersToHandle[i].status = 'cancelled'
+    //             }
+    //           }
+    //           // console.log(this.incomingOrdersToHandle);
+              
+    //         },
+    //         (err)=>console.log(err)
+    //       )
+    //     }
+    //   } ,
+    //   (err) => console.log(err)
+    // )
+
+
+
     this._productService.myProducts().subscribe(
       (data)=>{
 
@@ -126,6 +196,7 @@ export class ProfileComponent implements OnInit {
     this._productService.deleteOrder(order_id).subscribe(console.log,console.log)
     
   }
+  
   
   
 

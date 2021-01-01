@@ -110,9 +110,10 @@ export class CartComponent implements OnInit {
     localStorage.removeItem("cart")
     this.alertService.warn('Cart is Empty!!', this.options)
   }
+
   removeitem(prd_id:number){
     for(let i =0 ; i < this.cart.length ; i++){
-      if(this.cart[i].id == prd_id)
+      if(this.cart[i].productDetails.id == prd_id)
       this.cart.splice(i,1)
     }
     localStorage.setItem('cart',JSON.stringify(this.cart))
