@@ -44,52 +44,16 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  // calcPrice(prd_id :number ,  Prd_price:number , quantaty:number , index:number){
-   
-  //   this.total[index] = quantaty * Prd_price    
-  //   this.totalPrice = 0
-  //   for ( let i=0 ; i< this.total.length ; i++){
-  //     this.totalPrice += this.total[i]
-  //   }
-  //   if(this.orders.length > 0){
-
-  //     let found = false ;
-  //     for(let i =0 ; i <this.orders.length ; i++){
-  //       if (this.orders[i].product == prd_id){
-  //         this.orders[i] = {product : prd_id , quantaty : quantaty}
-  //         found = true ;
-  //         break ;
-  //       }
-  //     }if(found == false){
-  //       this.orders.push({product : prd_id , quantaty : quantaty})
-  //     }
-  //   }
-  //   else{
-  //     this.orders.push({product : prd_id , quantaty : quantaty})
-
-  //   }
-  //   console.log(this.orders);
-  // }
-
-
-  ngDoCheck(): void {
-    //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
-    //Add 'implements DoCheck' to the class.
-    // if (!localStorage.getItem("cart")){
-    //   this.cart = []
-    // }else{
-    //   localStorage.setItem('cart',JSON.stringify(this.cart))
-    // }
-  }
-
   orderNow(){
     for(let i =0 ; i < this.orders.length ; i++){
       this._products.order(this.orders[i].product ,  this.orders[i].quantaty ).subscribe(
         (data)=>{
+          alert("Thanks For Your Orders")
           localStorage.removeItem("cart")
           localStorage.removeItem("orders")
           localStorage.removeItem("checkout")
           console.log(data)
+          this.route.navigate(['/search'])
       },
 
         (err)=> console.log(err)

@@ -68,7 +68,7 @@
                         <li><span>Shipping</span> <span>Free</span></li>
                         <li><span>Total</span> <span>{{checkout.totalPrice | currency:'EGP ' }}</span></li>
                     </ul>
-                    <a routerLink='/cart' (click)="orderNow()" class="btn karl-checkout">Place Order</a>
+                    <a (click)="orderNow()" class="btn karl-checkout">Place Order</a>
                 </div>
             </div>
 

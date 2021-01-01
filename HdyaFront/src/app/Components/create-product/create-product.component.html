@@ -127,7 +127,7 @@
                     <!-- <h1>{{newproduct.relationships}}</h1> -->
 
                     <button *ngIf="edit == false" (click)="addNewProduct()" class="btn karl-checkout" [disabled]="myForm.invalid">ADD</button><br><br>
-                    <button class="btn karl-checkout" (click)="myForm.resetForm({})">Reset</button>
+                    <button *ngIf="edit == false" class="btn karl-checkout" (click)="myForm.resetForm({})">Reset</button>
 
                     <div class="submitted-message" *ngIf="myForm.submitted">
                         <p> Congratulation You've Successfully submitted your Product => {{ myForm.value.Name }}!</p>
