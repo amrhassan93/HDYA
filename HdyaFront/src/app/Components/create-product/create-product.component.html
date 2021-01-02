@@ -6,11 +6,11 @@
                 <br>
                 <h5 style="font-size:30px;">ADD PRODUCT</h5>
             </div>
-            <form method="post" #myForm="ngForm" (ngSubmit)="addNewProduct()" ngNativeValidate>
+            <form method="post" #myForm="ngForm" ngNativeValidate>
                 <div class="row">
                     <div class="col-md-12 mb-4 ">
                         <label for="Name">Product Name <span>*</span></label>
-                        <input #pname [(ngModel)]="newproduct.name" type="text" pattern="(^[a-zA-Z]{5,15})" class="form-control" name="Name" id="Name" value="" #NameField="ngModel" required minlength="5" maxlength="15" [class.is-valid]="NameField.valid" [class.is-invaild]="NameField.invalid && NameField.touched">
+                        <input #pname [(ngModel)]="newproduct.name" type="text" pattern="(^[a-zA-Z\s]{5,15})" class="form-control" name="Name" id="Name" value="" #NameField="ngModel" required minlength="5" maxlength="15" [class.is-valid]="NameField.valid" [class.is-invaild]="NameField.invalid && NameField.touched">
                         <div class="alert alert-danger mt-2 p-3" *ngIf="NameField.invalid && NameField.touched">
                             <div *ngIf="NameField.hasError('required')">Product Name Is Required</div>
                             <div *ngIf="NameField.hasError('pattern')">Product Name Must be Characters and not less than 5</div>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-md-12 mb-4">
                         <label for="last_name">Price <span>*</span></label>
-                        <input #pprice [(ngModel)]="newproduct.price" type="number" id="number" class="form-control" min="0" name="price" value="" pattern="[1-9]{1,3}" #priceField="ngModel" [class.is-valid]="priceField.valid" [class.is-invaild]="priceField.invalid && priceField.touched"
+                        <input #pprice [(ngModel)]="newproduct.price" type="number" id="number" class="form-control" min="0" name="price" value="" pattern="^((?!(0))[0-9]{1,3})$" #priceField="ngModel" [class.is-valid]="priceField.valid" [class.is-invaild]="priceField.invalid && priceField.touched"
                             required>
                         <div class="alert alert-danger mt-2 p-3" *ngIf="priceField.invalid && priceField.touched">
                             <div *ngIf="priceField.hasError('required')">Price Is Required</div>
@@ -33,7 +33,7 @@
                     <div class="col-12 mb-4">
                         <div class="form-group">
                             <label for="comment">Details</label>
-                            <textarea #pdetails [(ngModel)]="newproduct.details" class="form-control" name="details" rows="5" id="comment" style="resize: none;" #detailsField="ngModel" minlength="5" maxlength="250" required pattern="(^[a-zA-Z]{5,250})" [class.is-valid]="detailsField.valid"
+                            <textarea #pdetails [(ngModel)]="newproduct.details" class="form-control" name="details" rows="5" id="comment" style="resize: none;" #detailsField="ngModel" minlength="5" maxlength="250" required pattern="(^[a-zA-Z\s]{5,250})" [class.is-valid]="detailsField.valid"
                                 [class.is-invaild]="detailsField.invalid && detailsField.touched"></textarea>
                             <div class="alert alert-danger mt-2 p-3" *ngIf="detailsField.invalid && detailsField.touched">
                                 <div *ngIf="detailsField.hasError('required')">Product Details Is Required</div>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-12 mb-4">
                         <label for="image">Image <span>*</span></label>
-                        <input #pimages type="file" name="img" multiple min="3" required (change)="changeImageInput($event)" class="form-control" id="customFile" />
+                        <input #pimages type="file" name="img" multiple required (change)="changeImageInput($event)" class="form-control" id="customFile" />
                     </div>
                     <!-- <div *ngIf="edit == false"  class="col-12 mb-4">
                                 <ul *ngFor="let img of images">
@@ -66,7 +66,7 @@
                     <div class="col-12 mb-4">
                         <div class="form-group row">
                             <label for="example-number-input" class="col-2 col-form-label">Age From<span>*</span></label>
-                            <input #pagefrom [(ngModel)]="newproduct.age_from" class="form-control" name="agefrom" type="number" id="example-date-input" required min="0" pattern="[1-9]{1,2}" #ageFromField="ngModel" [class.is-valid]="ageFromField.valid" [class.is-invaild]="ageFromField.invalid && ageFromField.touched">
+                            <input #pagefrom [(ngModel)]="newproduct.age_from" class="form-control" name="agefrom" type="number" id="example-date-input" required min="0" pattern="^((?!(0))[0-9]{1,2})$" #ageFromField="ngModel" [class.is-valid]="ageFromField.valid" [class.is-invaild]="ageFromField.invalid && ageFromField.touched">
                             <div class="alert alert-danger mt-2 p-3" *ngIf="ageFromField.invalid && ageFromField.touched">
                                 <div *ngIf="ageFromField.hasError('required')">Age Is Required</div>
                                 <div *ngIf="!ageFromField.hasError('min')">Age Must not equal zero </div>
@@ -79,7 +79,7 @@
                     <div class="col-12 mb-4">
                         <div class="form-group row">
                             <label for="example-number-input" class="col-2 col-form-label">Age To<span>*</span></label>
-                            <input #pageto [(ngModel)]="newproduct.age_to" class="form-control" name="ageto" type="number" id="example-date-input" min="0" pattern="([1-9]{1,2})" #ageToField="ngModel" [class.is-valid]="ageToField.valid" [class.is-invaild]="ageToField.invalid && ageToField.touched"
+                            <input #pageto [(ngModel)]="newproduct.age_to" class="form-control" name="ageto" type="number" id="example-date-input" min="0" pattern="^((?!(0))[0-9]{1,2})$" #ageToField="ngModel" [class.is-valid]="ageToField.valid" [class.is-invaild]="ageToField.invalid && ageToField.touched"
                                 required>
                             <div class="alert alert-danger mt-2 p-3" *ngIf="ageToField.invalid && ageToField.touched">
                                 <div *ngIf="ageToField.hasError('required')">Age Is Required</div>
@@ -133,7 +133,7 @@
                         <p> Congratulation You've Successfully submitted your Product => {{ myForm.value.Name }}!</p>
                     </div>
                     <!-- <button  (click)="addNewProduct()" class="btn btn-primary">ADD</button><br><br> -->
-                    <button *ngIf="edit == true" (click)="editProduct()" class="btn karl-checkout">Edit</button><br><br>
+                    <button *ngIf="edit == true" (click)="editProduct()" class="btn karl-checkout">Save Edit</button><br><br>
                     <button *ngIf="edit == true" (click)="cancel()" class="btn karl-checkout">Cancel</button><br><br>
                 </div>
             </form>

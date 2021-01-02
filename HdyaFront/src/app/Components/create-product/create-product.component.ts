@@ -78,58 +78,36 @@ export class CreateProductComponent implements OnInit {
       this.images.push(incoming_images[i])
     }
   }
-  // name:string,details:string, price:number, age_from:number, age_to:number, gender:string, category:number , occassions:Array<number> , relationships:Array<number>
   addNewProduct(){
     if (this.images.length >= 3){
-      console.log(this.newproduct);
       this._productservisec.createProduct(this.newproduct).subscribe(
-        res=>this.route.navigateByUrl('createproduct'),
-        err=>console.log(err)
-        )
+        (data)=>{
+          const fd : FormData = new FormData()
+          
+          for(let i=0 ; i < this.images.length ; i++){
+            fd.append('image' , this.images[i] , this.images[i].name)
+            fd.append('product' , data.id)
+            this._productservisec.createProductImages(fd).subscribe(
+              (data)=>console.log(data),
+              (err)=>console.log(err),
+            )
+          };
+          alert('Your Product Was submitted successfully');
+          this.route.navigate([`/productdetails/${data.id}`]) 
+        },
+        (err)=>console.log(err)
+      )
     }
     else{
       alert('please upload more than 3 images')
     }
    
-    // console.log(this.newproduct);
-    
-    // this.newproduct.name = name.value ;
-    // this.newproduct.details = details.value ;
-    // this.newproduct.price = price.value ;
-    // this.newproduct.age_from = age_from.value ;
-    // this.newproduct.age_to = age_to.value ;
-    // this.newproduct.gender = gender.value ;
-    // this.newproduct.category = category.value ;
-    // this.newproduct.occassions = occassions.value ;
-    // this.newproduct.relationships = relationships.value ;
-    // console.log(this.newproduct);
-
-    this._productservisec.createProduct(this.newproduct).subscribe(
-      (data)=>{
-        const fd : FormData = new FormData()
-        
-        for(let i=0 ; i < this.images.length ; i++){
-          fd.append('image' , this.images[i] , this.images[i].name)
-          fd.append('product' , data.id)
-          this._productservisec.createProductImages(fd).subscribe(
-            (data)=>console.log(data),
-            (err)=>console.log(err),
-          )
-        };
-        alert('Your Product Was submitted successfully');
-        this.route.navigate([`/productdetails/${data.id}`]) 
-      },
-      (err)=>console.log(err)
-    )
+  
+   
   }
 
 
-    // ngDoCheck(): void {
-    //   //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
-    //   //Add 'implements DoCheck' to the class.
-    //   console.log(this.newproduct.category);
-
-    // }
+    
   
  
   editProduct(){
@@ -196,20 +174,6 @@ export class CreateProductComponent implements OnInit {
     this.route.navigate([`/productdetails/${id}`]) 
 
   }
-
-
-  imgtest(event:any){
-    this.avatar = event.target.files[0]
-  }
-
-  test(){
-    const fd = new FormData();
-    fd.append('avatar' , this.avatar[0]) 
-    console.log(fd);
-    
-  }
-
-
 }
 
 

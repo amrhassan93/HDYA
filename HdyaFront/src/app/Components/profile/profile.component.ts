@@ -19,7 +19,6 @@ export class ProfileComponent implements OnInit {
   myProducts:Product[] = []
   // onlyOrders:Product[] = []
   myOrders:Array<object> = []
-  //pagination
   totalOrdersRecords: number = 0
   totalProductsRecords: number = 0
   totaloncomingOrdersRecords: number = 0
@@ -189,8 +188,5 @@ export class ProfileComponent implements OnInit {
   cancelOrder(order_id:number){
     this._productService.deleteOrder(order_id).subscribe(console.log,console.log)
     
-  }
-  
+  } 
 }
-  
-

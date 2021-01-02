@@ -25,7 +25,7 @@
             <div class="row">
 
                 <div class="col-12 col-md-6">
-                    <div class="single_product_thumb">
+                    <!-- <div class="single_product_thumb">
                         <div id="product_details_slider" class="carousel slide" data-ride="carousel">
 
                             <ol class="carousel-indicators">
@@ -35,8 +35,8 @@
 
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <a class="gallery_img" href="../../../assets/images/hand14.jpg">
-                                        <img class="d-block w-100" src="../../../assets/images/hand14.jpg" alt="First slide">
+                                    <a class="gallery_img" href="{{productdetails.images[0].image}}">
+                                        <img class="d-block w-100" src="{{productdetails.images[0].image}}" alt="First slide">
                                     </a>
                                 </div>
 
@@ -47,13 +47,65 @@
                                 </div>
                             </div>
                         </div>
+                    </div> -->
+
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li *ngFor="let image of productdetails.images ; let i=index" data-target="#carouselExampleIndicators" data-slide-to="{{i+1}}"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="{{productdetails.images[0].image}}" alt="First slide">
+                            </div>
+                            <div *ngFor="let image of productdetails.images" class="carousel-item">
+                                <img class="d-block w-100" src="{{image.image}}" alt="Second slide">
+                            </div>
+
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
+                    <button type="submit" class="btn karl-checkout" (click)="editPrd(productdetails.id)">Edit Your Product</button>
+                    <br><button type="submit" class="btn karl-checkout" (click)="editPrd(productdetails.id)">Report Product</button>
                 </div>
+                <!-- <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                 -->
+                <!-- Modal content-->
+                <!-- <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
 
                 <div class="col-12 col-md-6">
                     <div class="single_product_desc pl-5">
-
-                        <h4 class="title"><a href="#">{{productdetails.name}} </a></h4>
+                        <h4 class="title"><a>{{productdetails.name}} &nbsp;<select style="background-color:#f4f2f8;" #preview>
+                            <option value="0">Reviews</option>
+                            <option *ngIf="countOfReviews != 0"> {{countOfReviews}}</option>
+                            <!-- <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option> -->
+                        </select> </a></h4>
+                        <h3 *ngIf="avrOfReviews != 0"> Average Reviews:{{avrOfReviews}}</h3><br>
                         <h4 class="price">{{ productdetails.price | currency:'EGP ' }}</h4>
 
                         <p class="available">Available: <span class="text-muted">In Stock</span></p>
@@ -89,7 +141,7 @@
                         <form class="cart clearfix mb-50 d-flex" method="post">
                             <div class="quantity">
                                 <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) && qty > 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                <input #pquntty type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity">
+                                <input #pquntty type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
                                 <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                             </div>
                             <a (click)="addToCart(pquntty.value)" class="btn cart-submit d-block p-2">Add to cart</a>
@@ -130,7 +182,30 @@
         </div>
     </section>
     <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area End >>>>>>>>>>>>>>>>>>>>>>>>> -->
-
+    <div class="comment-form">
+        <div class="comment-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="card-body text-center">
+                    <div class="comment-box text-center">
+                        <h4><i class="fas fa-comment"></i> Add your comment </h4><br>
+                        <div class="comment-area">
+                            <textarea #pcomment class="form-control" placeholder="Add Your Comment" rows="4"></textarea>
+                        </div>
+                        <br>
+                        <h5><i class="fas fa-comment-alt-smile"></i> Add Your FeedBack</h5>
+                        <div class="rating">
+                            <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                            <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                            <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                            <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                            <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                        </div>
+                    </div><br>
+                </div>
+                <button type="submit" class="btn karl-checkout" (click)="reviewFun(pcomment.value,preview.value)" style="width:50%;margin:auto;padding:auto;">ok</button>
+            </div>
+        </div>
+    </div><br>
     <!-- ****** Quick View Modal Area Start ****** -->
     <div class="modal fade" id="quickview" tabindex="-1" role="dialog" aria-labelledby="quickview" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -198,7 +273,76 @@
         </div>
     </div>
     <!-- ****** Quick View Modal Area End ****** -->
-
+    <br>
+    <div class="row">
+        <div class="panel panel-default widget">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <i class="fas fa-comments"></i> Recent Comments</h3>
+            </div><br>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-2 col-md-1">
+                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />USER1</div>
+                            <div class="col-xs-10 col-md-11">
+                                <div>
+                                    <h5>Google Style Login Page Design Using Bootstrap</h5>
+                                    <div class="mic-info">
+                                        By: <a href="#">Amr Hassan</a> on 2 Jan 2021
+                                    </div>
+                                </div>
+                                <div class="comment-text">
+                                    Awesome design
+                                </div>
+                                <div class="action">
+                                    <button type="button" class="btn btn-primary btn-xs" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-xs" title="report">
+                                        <img src="../../../assets/images/report.jpg" style="width:20px;height:20px;">
+                                    </button>
+                                    <button type="button" class="btn btn-xs" title="Delete">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-2 col-md-1">
+                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /> User2</div>
+                            <div class="col-xs-10 col-md-11">
+                                <div>
+                                    <h5>Admin Panel Quick Shortcuts</h5>
+                                    <div class="mic-info">
+                                        By: <a href="#">Moomen</a> on 29 Dec 2020
+                                    </div>
+                                </div>
+                                <div class="comment-text">
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
+                                </div>
+                                <div class="action">
+                                    <button type="button" class="btn btn-primary btn-xs" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button type="button" class="btn  btn-xs" title="report">
+                                     <img src="../../../assets/images/report.jpg" style="width:20px;height:20px;">
+                                    </button>
+                                    <button type="button" class="btn  btn-xs" title="Delete">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- //////////////////////////////////////// -->
     <section class="you_may_like_area clearfix">
         <div class="container text-center">
             <div class="section_heading text-center">
@@ -227,40 +371,3 @@
         </div>
     </section>
 </div>
-
-
-<!-- 
-    <select #selCat [(ngModel)]="selCatID" >
-  <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
-</select>
- -->
-
-<p>review</p>
-<!-- <select [(ngModel)]="review" >
-        <option *ngFor="let re of review">{{re.rate}}</option>
-      </select> -->
-
-<div class="container text-center">
-    <h3 *ngIf="countOfReviews != 0">Count Of Reviews : {{countOfReviews}}</h3>
-    <h3 *ngIf="avrOfReviews != 0">avr Of Reviews : {{avrOfReviews}}</h3>
-
-    <div *ngFor="let rev of reviewList">
-        <h4>rate: {{rev.rate}}</h4>
-        <h4>body: {{rev.body}}</h4>
-        <h4>user: {{rev.user}}</h4>
-        <hr>
-    </div>
-</div>
-
-
-<select #preview>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-
-</select>
-<textarea #pcomment>write </textarea>
-<button type="submit" (click)="reviewFun(pcomment.value,preview.value)">ok</button>
-<button type="submit" (click)="editPrd(productdetails.id)">Edit</button>
