@@ -209,7 +209,11 @@ ngDoCheck(): void {
 
 addToCart(qntty:number){
   let id = this.activerouter.snapshot.params['id']
-  this._addCart.addCart(id , qntty)
+  if (qntty > 0){
+    this._addCart.addCart(id , qntty)
+  }else{
+    this._addCart.addCart(id)
+  }
 }
 
 editPrd(prd_id:number){

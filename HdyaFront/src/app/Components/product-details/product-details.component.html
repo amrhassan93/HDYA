@@ -73,13 +73,13 @@
                         </a>
                     </div>
                     <button type="submit" class="btn karl-checkout" (click)="editPrd(productdetails.id)">Edit Your Product</button>
-                   <br><button type="submit" class="btn karl-checkout" (click)="editPrd(productdetails.id)">Report Product</button>
-              </div>
-              <!-- <div class="modal fade" id="myModal" role="dialog">
+                    <br><button type="submit" class="btn karl-checkout" (click)="editPrd(productdetails.id)">Report Product</button>
+                </div>
+                <!-- <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
                  -->
-                  <!-- Modal content-->
-                  <!-- <div class="modal-content">
+                <!-- Modal content-->
+                <!-- <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                       <h4 class="modal-title">Modal Header</h4>
@@ -104,7 +104,8 @@
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option> -->
-                        </select> </a></h4> <h3 *ngIf="avrOfReviews != 0"> Average Reviews:{{avrOfReviews}}</h3><br>
+                        </select> </a></h4>
+                        <h3 *ngIf="avrOfReviews != 0"> Average Reviews:{{avrOfReviews}}</h3><br>
                         <h4 class="price">{{ productdetails.price | currency:'EGP ' }}</h4>
 
                         <p class="available">Available: <span class="text-muted">In Stock</span></p>
@@ -140,7 +141,7 @@
                         <form class="cart clearfix mb-50 d-flex" method="post">
                             <div class="quantity">
                                 <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) && qty > 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                <input #pquntty type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity">
+                                <input #pquntty type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
                                 <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                             </div>
                             <a (click)="addToCart(pquntty.value)" class="btn cart-submit d-block p-2">Add to cart</a>
@@ -181,29 +182,30 @@
         </div>
     </section>
     <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area End >>>>>>>>>>>>>>>>>>>>>>>>> -->
-<div class="comment-form">
-       <div class="comment-dialog modal-dialog-centered" >
-        <div class="modal-content">
-            <div class="card-body text-center">
-                <div class="comment-box text-center">
-                    <h4><i class="fas fa-comment"></i> Add your comment </h4><br>
-                    <div class="comment-area">
-                   <textarea #pcomment class="form-control" placeholder="Add Your Comment" rows="4"></textarea> 
-                 </div>
-                 <br><h5><i class="fas fa-comment-alt-smile"></i> Add Your FeedBack</h5>
-                    <div class="rating">
-                    <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-                     <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> 
-                     <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> 
-                     <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
-                     <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
-                     </div>
-                </div><br>
+    <div class="comment-form">
+        <div class="comment-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="card-body text-center">
+                    <div class="comment-box text-center">
+                        <h4><i class="fas fa-comment"></i> Add your comment </h4><br>
+                        <div class="comment-area">
+                            <textarea #pcomment class="form-control" placeholder="Add Your Comment" rows="4"></textarea>
+                        </div>
+                        <br>
+                        <h5><i class="fas fa-comment-alt-smile"></i> Add Your FeedBack</h5>
+                        <div class="rating">
+                            <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                            <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                            <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                            <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                            <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                        </div>
+                    </div><br>
+                </div>
+                <button type="submit" class="btn karl-checkout" (click)="reviewFun(pcomment.value,preview.value)" style="width:50%;margin:auto;padding:auto;">ok</button>
             </div>
-            <button type="submit" class="btn karl-checkout" (click)="reviewFun(pcomment.value,preview.value)" style="width:50%;margin:auto;padding:auto;">ok</button>
         </div>
-    </div>
-</div><br>
+    </div><br>
     <!-- ****** Quick View Modal Area Start ****** -->
     <div class="modal fade" id="quickview" tabindex="-1" role="dialog" aria-labelledby="quickview" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -271,7 +273,7 @@
         </div>
     </div>
     <!-- ****** Quick View Modal Area End ****** -->
-     <br>
+    <br>
     <div class="row">
         <div class="panel panel-default widget">
             <div class="panel-heading">
@@ -320,8 +322,7 @@
                                     </div>
                                 </div>
                                 <div class="comment-text">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                    euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
                                 </div>
                                 <div class="action">
                                     <button type="button" class="btn btn-primary btn-xs" title="Edit">
@@ -336,7 +337,7 @@
                                 </div>
                             </div>
                         </div>
-                    </li> 
+                    </li>
                 </ul>
             </div>
         </div>
@@ -374,18 +375,18 @@
 </div>
 
 
-    <!-- 
+<!-- 
         <select #selCat [(ngModel)]="selCatID" >
     <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
     </select>
     -->
 
-    <!-- <p>review</p> -->
-    <!-- <select [(ngModel)]="review" >
+<!-- <p>review</p> -->
+<!-- <select [(ngModel)]="review" >
             <option *ngFor="let re of review">{{re.rate}}</option>
         </select> -->
 
-    <!-- <div class="container text-center">
+<!-- <div class="container text-center">
         <h3 *ngIf="countOfReviews != 0">Count Of Reviews : {{countOfReviews}}</h3>
         <h3 *ngIf="avrOfReviews != 0">avr Of Reviews : {{avrOfReviews}}</h3>
 
@@ -398,7 +399,7 @@
     </div> -->
 
 
-    <!-- <select #preview>
+<!-- <select #preview>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -408,12 +409,3 @@
     </select>
     <textarea #pcomment>write </textarea>
     <button type="submit" (click)="reviewFun(pcomment.value,preview.value)">ok</button> -->
-
-
-
-
-
-
-
-
-
