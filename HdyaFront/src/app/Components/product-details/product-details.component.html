@@ -56,7 +56,7 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="{{productdetails.images[0].image}}" alt="First slide">
+                                <img *ngIf="productdetails.images[0]" class="d-block w-100" src="{{productdetails.images[0].image}}" alt="First slide">
                             </div>
                             <div *ngFor="let image of productdetails.images" class="carousel-item">
                                 <img class="d-block w-100" src="{{image.image}}" alt="Second slide">
@@ -97,8 +97,8 @@
                 <div class="col-12 col-md-6">
                     <div class="single_product_desc pl-5">
                         <h4 class="title"><a>{{productdetails.name}} &nbsp;<select style="background-color:#f4f2f8;" #preview>
-                            <option value="0">Reviews</option>
-                            <option *ngIf="countOfReviews != 0"> {{countOfReviews}}</option>
+                            <h6>Reviews</h6>
+                            <p *ngIf="countOfReviews != 0"> {{countOfReviews}}</p>
                             <!-- <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>

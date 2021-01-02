@@ -150,7 +150,7 @@
                         <div *ngFor="let product of productList " class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig mb-4" data-wow-delay="0.2s" data-aos="fade-up" data-aos-duration="1300">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="{{product.images[0].image}}" style="width: 150px; height:150px;" alt="{{product.name}}">
+                                <img *ngIf="product.images[0]" src="{{product.images[0].image}}" style="width: 150px; height:150px;" alt="{{product.name}}">
                                 <div class="product-quicview">
                                     <a data-toggle="modal" (click)="popUpProduct(product.id)" data-target="#quickview"><i class="far fa-plus"></i></a>
                                 </div>
