@@ -253,3 +253,101 @@
 .mb-50 {
     margin-bottom: 30px;
 }
+
+.karl-checkout {
+    background-color: rgb(210, 57, 59);
+    display: block;
+    height: 55px;
+    color: #fff;
+    border: 3px solid #fff;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 49px;
+}
+
+.karl-checkout:hover,
+.karl-checkout:focus {
+    font-weight: 700;
+    color: #fff;
+    background-color: rgb(37, 42, 51);
+    border-color: rgb(37, 42, 51);
+}
+
+.comment-box {
+    padding: 5px
+}
+
+.comment-area textarea {
+    resize: none;
+    border: 1px solid rgb(37, 42, 51)
+}
+
+.form-control:focus {
+    color: rgb(37, 42, 51);
+    background-color: #fff;
+    border-color: #ffffff;
+    outline: 0;
+    box-shadow: 0 0 0 1px rgb(12, 179, 12) !important
+}
+
+.send {
+    color: #fff;
+    background-color: #ff0000;
+    border-color: #ff0000
+}
+
+.send:hover {
+    color: #fff;
+    background-color: #f50202;
+    border-color: #f50202
+}
+
+.rating {
+    display: inline-flex;
+    flex-direction: row-reverse;        
+    text-align:center;
+}
+
+.rating>input {
+     display: none;
+    }
+
+.rating>label {
+    position: relative;
+    width: 28px;
+    font-size: 35px;
+    color: rgb(210, 57, 59);
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+
+
+.widget .panel-body { padding:0px; }
+.widget .list-group { margin-bottom: 0; }
+.widget .label-info { float: right; }
+.widget li.list-group-item {border-radius: 0;border: 0;border-top: 1px solid #ddd;}
+.widget li.list-group-item:hover { background-color: rgba(86,61,124,.1); }
+.widget .mic-info { color: #666666;font-size: 11px; }
+.widget .action { margin-top:5px; }
+.widget .comment-text { font-size: 12px; }
+.widget .btn-block { border-top-left-radius:0px;border-top-right-radius:0px; }
