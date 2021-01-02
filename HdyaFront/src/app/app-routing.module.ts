@@ -14,7 +14,7 @@ import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.co
 import { AboutComponent } from './Components/about/about.component';
 
 const routes: Routes = [
-  {path:'',redirectTo:'/home',pathMatch:'full'},
+  {path:'',redirectTo:'/search',pathMatch:'full'},
   {path:'profile',component:ProfileComponent},
   {path:'about',component:AboutComponent},
   {path:'profile/edit',component:EditComponent},
