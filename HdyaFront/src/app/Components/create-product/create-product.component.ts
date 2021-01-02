@@ -7,6 +7,8 @@ import { Occassion } from '../../models/interfaces/occassion'
 import { Router } from '@angular/router';
 
 import { ProductPicture } from '../../models/interfaces/product-picture'
+import { from } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-product',
@@ -21,6 +23,7 @@ export class CreateProductComponent implements OnInit {
   images:File [] = [] 
   edit:boolean = false
 
+  avatar:File[] = []
 
   constructor(private _productservisec:ProductsService ,  private route:Router) { 
     this.newproduct = {
@@ -35,8 +38,8 @@ export class CreateProductComponent implements OnInit {
       age_from:0,
       age_to:0,
     } 
+    
   }
-
   ngOnInit(): void {
     this._productservisec.showcategories().subscribe(
       (data)=>this.categories=data.results,
@@ -77,6 +80,29 @@ export class CreateProductComponent implements OnInit {
   }
   // name:string,details:string, price:number, age_from:number, age_to:number, gender:string, category:number , occassions:Array<number> , relationships:Array<number>
   addNewProduct(){
+    if (this.images.length >= 3){
+      console.log(this.newproduct);
+      this._productservisec.createProduct(this.newproduct).subscribe(
+        res=>this.route.navigateByUrl('createproduct'),
+        err=>console.log(err)
+        )
+    }
+    else{
+      alert('please upload more than 3 images')
+    }
+   
+    // console.log(this.newproduct);
+    
+    // this.newproduct.name = name.value ;
+    // this.newproduct.details = details.value ;
+    // this.newproduct.price = price.value ;
+    // this.newproduct.age_from = age_from.value ;
+    // this.newproduct.age_to = age_to.value ;
+    // this.newproduct.gender = gender.value ;
+    // this.newproduct.category = category.value ;
+    // this.newproduct.occassions = occassions.value ;
+    // this.newproduct.relationships = relationships.value ;
+    // console.log(this.newproduct);
 
     this._productservisec.createProduct(this.newproduct).subscribe(
       (data)=>{
@@ -97,6 +123,13 @@ export class CreateProductComponent implements OnInit {
     )
   }
 
+
+    // ngDoCheck(): void {
+    //   //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
+    //   //Add 'implements DoCheck' to the class.
+    //   console.log(this.newproduct.category);
+
+    // }
   
  
   editProduct(){
@@ -162,6 +195,18 @@ export class CreateProductComponent implements OnInit {
     localStorage.removeItem('editprd')
     this.route.navigate([`/productdetails/${id}`]) 
 
+  }
+
+
+  imgtest(event:any){
+    this.avatar = event.target.files[0]
+  }
+
+  test(){
+    const fd = new FormData();
+    fd.append('avatar' , this.avatar[0]) 
+    console.log(fd);
+    
   }
 
 

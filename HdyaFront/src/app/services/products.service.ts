@@ -42,7 +42,7 @@ export class ProductsService {
   }
 
 
-  order(product:number , quantity:number , status:string = 'p' , ):Observable<any>{
+  order(product:number , quantity:number , status:string = 'p'  ):Observable<any>{
 
     const headerDict = {
       'Authorization':'Token ' +  localStorage.getItem('token')
@@ -66,8 +66,24 @@ export class ProductsService {
       headers: new HttpHeaders(headerDict), 
     };
 
+    return this.http.get<any>(`${environment.apiUrl}/my/orders/`, requestOptions)
+  }
+
+
+  showIncomingOrders():Observable<any>{
+    const headerDict = {
+      'Authorization':'Token ' +  localStorage.getItem('token')
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+
     return this.http.get<any>(`${environment.apiUrl}/orders/`, requestOptions)
   }
+
+
+
 
   deleteOrder(order_id:number):Observable<any>{
     const headerDict = {
@@ -81,14 +97,14 @@ export class ProductsService {
     return this.http.delete<any>(`${environment.apiUrl}/orders/${order_id}/`, requestOptions)
   }
 
-  viewProductsBycat(searchparams:object):Observable<Product>{ 
+  searchProducts(searchparams:object):Observable<Product>{ 
     let query_string= "" ; 
       for (let i in searchparams){
         query_string+=`${i}=${searchparams[i]}&`
       }
       
-    console.log(`${environment.apiUrl}/products/?${query_string}/`);
-    return this.http.get<Product>(`${environment.apiUrl}/products/?${query_string}/`)
+    console.log(`${environment.apiUrl}/products/?${query_string}`);
+    return this.http.get<Product>(`${environment.apiUrl}/product/search/?${query_string}`)
   }
 
   createProduct(data:object):Observable<Product>{

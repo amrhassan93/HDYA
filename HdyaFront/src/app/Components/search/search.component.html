@@ -11,7 +11,7 @@
                         <div class="row">
                             <div class="col-12 col-lg-5">
                                 <div class="quickview_pro_img">
-                                    <img src="../../../assets/images/hand3.jpg" alt="hand3">
+                                    <img *ngIf="productPopUp.images" src="{{productPopUp.images[0].image}}" alt="{{productPopUp.name}}">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-7">
@@ -26,11 +26,11 @@
                                     <div class="quantity">
                                         <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) && qty > 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
 
-                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
+                                        <input type="number" #pquntty class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
 
                                         <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                     </div>
-                                    <button type="submit" (click)="addToCart(productPopUp.id)" name="addtocart" value="5" class="cart-submit">Add to cart</button>
+                                    <button type="submit" (click)="addToCart(productPopUp.id ,pquntty.value )" name="addtocart" value="5" class="cart-submit">Add to cart</button>
                                     <!-- Wishlist -->
                                     <div class="modal_pro_wishlist">
                                         <a><i class="fas fa-heart"></i></a>
@@ -86,12 +86,12 @@
 
                             <label for="minpricefilter">Min price</label>
                             <p>{{minprice}}</p>
-                            <input #filterminprice [(ngModel)]="minprice" type="range" max="10000" min="0" step="1" value="0" id="minpricefilter">
+                            <input #filterminprice (change)="minPrice(filterminprice.value)" [(ngModel)]="minprice" type="range" max="10000" min="0" step="1" value="0" id="minpricefilter">
 
                             <label for="maxpricefilter">Max price</label>
                             <p>{{maxprice}}</p>
-                            <input #filtermaxprice [(ngModel)]="maxprice" type="range" max="10000" min="0" step="1" value="1000" id="maxpricefilter">
-                            <button class="btn karl-checkout-btn" (click)="getproductsbyprice(filterminprice.value , filtermaxprice.value)">Price filter</button>
+                            <input #filtermaxprice (change)="maxPrice(filtermaxprice.value)" [(ngModel)]="maxprice" type="range" max="10000" min="0" step="1" value="1000" id="maxpricefilter">
+                            <!-- <button class="btn karl-checkout-btn" (click)="getproductsbyprice(filterminprice.value , filtermaxprice.value)">Price filter</button> -->
                         </div>
                     </div>
 
@@ -113,19 +113,19 @@
 
                             <label for="minrangefilter">Min Age</label>
                             <p>{{minrange}}</p>
-                            <input #filterminage [(ngModel)]="minrange" type="range" max="100" min="0" step="1" value="10" id="minrangefilter">
+                            <input #filterminage (change)="minAge(filterminage.value)" [(ngModel)]="minrange" type="range" max="100" min="0" step="1" value="10" id="minrangefilter">
 
                             <label for="maxrangefilter">Max Age</label>
                             <p>{{maxrange}}</p>
-                            <input #filtermaxage [(ngModel)]="maxrange" type="range" max="100" min="0" step="1" value="70" id="maxrangefilter">
-                            <button class="btn karl-checkout-btn" (click)="getproductsbyage(filterminage.value , filtermaxage.value)">age filter</button>
+                            <input #filtermaxage (change)="maxAge(filtermaxage.value)" [(ngModel)]="maxrange" type="range" max="100" min="0" step="1" value="70" id="maxrangefilter">
+                            <!-- <button class="btn karl-checkout-btn" (click)="getproductsbyage(filterminage.value , filtermaxage.value)">age filter</button> -->
                         </div>
                     </div>
                     <div class="widget size d-block">
                         <br>
                         <h6 class="widget-title">Occassion</h6><br>
                         <div class="widget-desc">
-                            <select multiple #poccassions [(ngModel)]="newproduct.occassions" [ngModelOptions]="{standalone: true}" class="form-control" id="occassion">
+                            <select #poccassions (change)="occassionSearch()" [(ngModel)]="filteredoccassions" [ngModelOptions]="{standalone: true}" class="form-control" id="occassion">
                                 <option *ngFor="let occ of occassions" [value]="occ.id" >{{occ.name}}</option>
                             </select>
                         </div>
@@ -134,8 +134,8 @@
                         <br>
                         <h6 class="widget-title">Relationship</h6><br>
                         <div class="widget-desc">
-                            <select #prelationship [(ngModel)]="newproduct.relationships" [ngModelOptions]="{standalone: true}" class="form-control" id="relationship">
-                                <option *ngFor="let rel of relationships" [value]="rel.id" >{{rel.name}}</option>
+                            <select #prelationship (change)="relationSearch()" [(ngModel)]="filteredrelations" [ngModelOptions]="{standalone: true}" class="form-control" id="relationship">
+                                <option *ngFor="let rel of relationships"  [value]="rel.id" >{{rel.name}}</option>
                             </select>
                         </div>
                     </div>
@@ -150,7 +150,7 @@
                         <div *ngFor="let product of productList " class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig mb-4" data-wow-delay="0.2s" data-aos="fade-up" data-aos-duration="1300">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="../../../assets/images/hand18.jpg " style="width: 150px; height:150px;" alt="hand18">
+                                <img src="{{product.images[0].image}}" style="width: 150px; height:150px;" alt="{{product.name}}">
                                 <div class="product-quicview">
                                     <a data-toggle="modal" (click)="popUpProduct(product.id)" data-target="#quickview"><i class="far fa-plus"></i></a>
                                 </div>
