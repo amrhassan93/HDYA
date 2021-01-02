@@ -22,6 +22,9 @@ declare var jQuery: any;
 export class HomeComponent implements OnInit {
   categoryList:Category[]=[];
   products:Product[]=[];
+  allproducts:Product[]=[]
+  productparams: {[k: string]: any} = {}
+
 
   constructor(private _products:ProductsService) { }
 
@@ -39,6 +42,16 @@ export class HomeComponent implements OnInit {
     )
 
   }
+
+
+  showCategories(){
+    this._products.viewProducts().subscribe(
+      (data)=>this.allproducts = data.results,
+      (err) => console.log(err) 
+    )
+  }
+
+ 
 
 
   // latestFiveProducts(){

@@ -11,6 +11,8 @@ import {  Review} from '../../models/interfaces/review'
 import { AddToCartService } from '../../services/add-to-cart.service'
 import { AuthenticationService } from '../../services/authentication.service'
 import { stringify } from '@angular/compiler/src/util';
+import {  Report} from '../../models/interfaces/report'
+
 
 @Component({
   selector: 'app-product-details',
@@ -45,6 +47,7 @@ export class ProductDetailsComponent implements OnInit {
                         updated_at: "" ,
                         images:[]
                       };
+  reportProduct:Report[]=[]
                            
   constructor(private _products:ProductsService ,
               private activerouter:ActivatedRoute,
@@ -183,6 +186,41 @@ export class ProductDetailsComponent implements OnInit {
     }
     else{
       alert("You Can't Review Product You didn't Try ")
+    }
+  }
+
+  reportproduct(body:string){
+    let id = this.activerouter.snapshot.params['id']
+    let found = false
+    for(let i in this.orders ){
+      if(this.orders[i].product == id){
+        found = true ;
+        break;
+      }
+    }
+
+    if (found == true){
+      if (this.reportProduct.length == 0){
+        this._products.Report(body,this.productdetails.id).subscribe(
+          (data)=>  console.log(data),
+          (err) => console.log(err)
+        )
+      }else{
+        for(let i in this.reportProduct){
+          if(this.reviewList[i].user != this.myID){
+              this._products.Report(body ,this.productdetails.id).subscribe(
+              (data)=>  console.log(data),
+              (err) => console.log(err)
+            )
+          }
+        }
+        alert("You can't report again")
+      }
+
+      
+    }
+    else{
+      alert("You Can't Report Product You didn't Try ")
     }
   }
 

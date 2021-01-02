@@ -185,6 +185,33 @@ export class ProductsService {
     
   }
 
-  
+  Report(body:string,product:number):Observable<any>{
+    const headerDict = {
+      'Authorization':'Token ' +  localStorage.getItem('token')
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+
+    return this.http.post<Product>(`${environment.apiUrl}/productreports/` ,{body:body,product:product} , requestOptions) 
+    
+  }
+
+
+  reviewReport(body:string,review:number):Observable<any>{
+    const headerDict = {
+      'Authorization':'Token ' +  localStorage.getItem('token')
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+
+    return this.http.post<Product>(`${environment.apiUrl}/reviewreport/` ,{body:body,review:review} , requestOptions) 
+    
+  }
+
+
 
 }

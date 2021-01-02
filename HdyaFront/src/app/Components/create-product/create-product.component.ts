@@ -21,6 +21,20 @@ export class CreateProductComponent implements OnInit {
   relationships:RelationShip[] = []
   newproduct:Product;
   images:File [] = [] 
+  newavatar:File 
+  // name:string = "";
+  // price:number = 0;
+  // details:string = "";
+  // age_from:number = 0;
+  // age_to:number = 0;
+  // gender:string = "";
+  // occassions:Array<number> = [];
+  // category:number = 0;
+  // relationships:Array<number> = [];
+  // is_featured:boolean;
+  // created_at:string;
+  // updated_at:string;
+  // productpicture_set:Array<object>;
   edit:boolean = false
 
   avatar:File[] = []
@@ -175,6 +189,7 @@ export class CreateProductComponent implements OnInit {
 
   }
 }
+
 
 
 

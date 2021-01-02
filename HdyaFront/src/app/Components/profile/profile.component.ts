@@ -52,7 +52,6 @@ export class ProfileComponent implements OnInit {
     last_name:"",
     address: "",
     mobile: "",
-    avatar: "",
     birth_date:"",
     id: 0,
     email: ""

@@ -406,6 +406,17 @@
         <option value="4">4</option>
         <option value="5">5</option>
 
-    </select>
+</select>
+<textarea #pcomment>write </textarea>
+<button type="submit" (click)="reviewFun(pcomment.value,preview.value)">ok</button>
+<button type="submit" [disabled]="">report review</button>
+
+<br> <br> -
+
+
+
+    </select> 
     <textarea #pcomment>write </textarea>
     <button type="submit" (click)="reviewFun(pcomment.value,preview.value)">ok</button> -->
+    <textarea #preport></textarea>
+    <button type="submit" (click)="reportproduct(preport.value)">Report</button>
