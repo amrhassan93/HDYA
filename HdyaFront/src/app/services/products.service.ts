@@ -199,7 +199,7 @@ export class ProductsService {
   }
 
 
-  reviewReport(body:string,product:number):Observable<any>{
+  reviewReport(body:string,review:number):Observable<any>{
     const headerDict = {
       'Authorization':'Token ' +  localStorage.getItem('token')
     }
@@ -208,7 +208,7 @@ export class ProductsService {
       headers: new HttpHeaders(headerDict), 
     };
 
-    return this.http.post<Product>(`${environment.apiUrl}/reviewreport/` ,{body:body,product:product} , requestOptions) 
+    return this.http.post<Product>(`${environment.apiUrl}/reviewreport/` ,{body:body,review:review} , requestOptions) 
     
   }
 
