@@ -14,13 +14,6 @@ export class SearchComponent implements OnInit {
   productList: Product[] = [];
   categoryList:Category[]=[];
   filterdProducts:Product[] = [];
-  newproduct:Product | undefined;
-  minrange:number = 10;
-  maxrange:number=70;
-  minprice:number=0;
-  maxprice:number=1000;
-  totalRecords: number | undefined
-  page:number=1
   cart:Array<object> = [];
   productPopUp:Product[] = [] ; 
   relationships: any;
@@ -28,55 +21,30 @@ export class SearchComponent implements OnInit {
   moreData:Product[]= []
   searchparams: {[k: string]: any} = {}
 
+  filteredrelations:number = 0
+  filteredoccassions:number = 0
+
+
   options = {
     autoClose: true,
     keepAfterRouteChange: false
 };
 
 
-  constructor(private _products:ProductsService,protected alertService: AlertService , private _addCart:AddToCartService) {
-    this.newproduct = {
-      gender:"",
-      details:"",
-      name:"",
-      category:0,
-      occassions:[],
-      relationships:[],
-      is_featured:false,
-      price:0,
-      age_from:0,
-      age_to:0,
-    } 
-    // this.searchparams = {
-    //   gender = '',
-
-    // }
-  }
+  constructor(private _products:ProductsService,
+              protected alertService: AlertService ,
+              private _addCart:AddToCartService) {}
   
   ngOnInit(): void {
     AOS.init();
 
     if(localStorage.getItem('products')){
-
       let searchProducts = localStorage.getItem('products')
-      // console.log(searchProducts instanceof Array);
-      
       this.productList = JSON.parse(searchProducts || '{}')
-      this.totalRecords = this.productList.length
       localStorage.removeItem('products')
-      
     }
     else {
-      this._products.viewProducts().subscribe(
-        (data)=>{
-          this.productList=data.results;
-          this.totalRecords = data.results.length
-          // console.log(this.productList);
-          this.moreData = data
-          // this.allproducts = this.productList
-        },
-        (err)=> console.log(err) 
-      )    
+      this.showAll() 
     }
 
     this._products.showcategories().subscribe(
@@ -95,18 +63,22 @@ export class SearchComponent implements OnInit {
 
   }
 
-
+  showAll(){
+    this._products.viewProducts().subscribe(
+      (data)=>{
+        this.productList=data.results;
+        this.moreData = data
+      },
+      (err)=> console.log(err) 
+    )    
+  }
   
 
   ngDoCheck(): void {
   
     if(localStorage.getItem('products')){
-
       let searchProducts = localStorage.getItem('products')
-      // console.log(searchProducts instanceof Array);
-      
       this.productList = JSON.parse(searchProducts || '{}')
-      this.totalRecords = this.productList.length
       localStorage.removeItem('products')
     }   
     
@@ -114,15 +86,8 @@ export class SearchComponent implements OnInit {
   }
 
   resetFilters(){
-    this._products.viewProducts().subscribe(
-      (data)=>{
-        this.searchparams = {}
-        this.productList=data.results;
-        this.totalRecords = data.results.length
-        // this.allproducts = this.productList
-      },
-      (err)=> console.log(err) 
-    )   
+    this.showAll();
+    this.searchparams = {}
   }
   
 
@@ -162,10 +127,16 @@ export class SearchComponent implements OnInit {
     //  this.filterdProducts = []
   }
 
-  getproductsbyprice(minprice:number , maxprice:number ){
+  maxPrice(maxprice:number){
+    this.searchparams.max_price = maxprice
+
+    console.log(this.searchparams);
+  }
+  minPrice(minprice:number){
      
     // this.searchparams.push({'price':minprice})
-    this.searchparams.price = minprice
+    this.searchparams.min_price = minprice
+    // this.searchparams.max_price = maxprice
 
     console.log(this.searchparams);
 
@@ -182,111 +153,139 @@ export class SearchComponent implements OnInit {
 
   }
 
+  minAge(minage:number){
+    this.searchparams.min_age = minage
+
+    console.log(this.searchparams);
+  }
+
+  maxAge(maxage:number){
+    this.searchparams.max_age = maxage
+
+    console.log(this.searchparams);
+  }
+
+  occassionSearch(){
+    this.searchparams.occassions = this.filteredoccassions
+    console.log(this.searchparams);
+    
+  }
+
+  relationSearch(){
+
+
+    this.searchparams.relationships = this.filteredrelations
+    console.log(this.searchparams);
+    
+  }
+
+  
+  // getproductsbyage(age_from:number,age_to:number){
+  //   this.searchparams.min_age = age_from ; 
+  //   this.searchparams.max_age = age_to ; 
+
+  // //   for (let i=0 ; i<this.productList.length ; i++){
+  // //     if (this.productList[i].age_from >= age_from && this.productList[i].age_to <= age_to){
+  // //        this.filterdProducts.push(this.productList[i])
+  // //     }
+  // //     else{
+  // //       console.log('not in this cat')
+  // //     }
+  // //  }
+  // //  this.productList = this.filterdProducts
+  // //  this.filterdProducts = []
+  // }
+
   searchNow(){
-    // for (let i in this.searchparams){
-      
-    // }
-    // this.searchparams
-    this._products.viewProductsBycat(this.searchparams).subscribe(
-      (data)=>this.productList = data.results,
+    this._products.searchProducts(this.searchparams).subscribe(
+      (data)=>{
+        console.log(data);
+        if(data.length > 0){
+          this.productList = data
+          this.moreData = []
+        }else{
+          alert("NO Results Found")
+          this.showAll()
+        }
+       
+      },
       (err)=>console.log(err)
       
     )  
   }
 
-  getproductsbyage(age_from:number,age_to:number){
-    this.searchparams.age_from = age_from ; 
-    this.searchparams.age_to = age_to ; 
+  
 
-  //   for (let i=0 ; i<this.productList.length ; i++){
-  //     if (this.productList[i].age_from >= age_from && this.productList[i].age_to <= age_to){
-  //        this.filterdProducts.push(this.productList[i])
+  // search(searchKey:string){
+
+  //   for (let i = 0 ; i < this.productList.length ; i++){
+  //     if (this.productList[i].name.toLowerCase().includes(searchKey.toLowerCase())){
+  //       this.filterdProducts.push(this.productList[i])
+  //     }else{
+  //       console.log('this is not in products');
   //     }
-  //     else{
-  //       console.log('not in this cat')
-  //     }
-  //  }
-  //  this.productList = this.filterdProducts
-  //  this.filterdProducts = []
+  //   }
+
+  //   this.productList = this.filterdProducts
+  //   this.filterdProducts = []
+  //    console.log(this.productList)
+  // }
+
+
+  addToCart(product_id:number , qntty:number){
+    this._addCart.addCart(product_id , qntty)
   }
-
-  search(searchKey:string){
-
-    for (let i = 0 ; i < this.productList.length ; i++){
-      if (this.productList[i].name.toLowerCase().includes(searchKey.toLowerCase())){
-        this.filterdProducts.push(this.productList[i])
-      }else{
-        console.log('this is not in products');
-      }
-    }
-
-    this.productList = this.filterdProducts
-    this.filterdProducts = []
-     console.log(this.productList)
-  }
-
-
-  addToCart(product_id:number){
-    this._addCart.addCart(product_id)
-    // if (localStorage.getItem("cart")){
-    //   this.cart = JSON.parse(localStorage.getItem("cart") || '{}') 
-
-    //   let addtocart = this.productList.find((product)=>{ 
-    //     return product.id == product_id
-    //     })
-
-    //   this.cart.push(addtocart)
-
-    //   localStorage.setItem("cart" , JSON.stringify(this.cart))
-    //   this.alertService.success('Success!!', this.options)
-    // }
-    // else {
-    //   let addtocart = this.productList.find((product)=>{ 
-    //     return product.id == product_id
-    //     })
-    //   this.cart.push(addtocart)
-    //   localStorage.setItem("cart" , JSON.stringify(this.cart))
-    //   // console.log(this.cart);
-    //   this.alertService.success('Success!!', this.options)
-    // }
-  }
+  
   popUpProduct(product_id:number){
     this.productPopUp =  this.productList.find((product)=>{ 
       return product.id == product_id
       })
 
-    console.log(this.productPopUp);
-
+    // console.log(this.productPopUp);
   }
-
+  
   showMore(){
-    this._products.viewProductsByPage(this.moreData.next).subscribe(
-      (data)=>{
-        console.log(data)
-        this.moreData = data
-        // for (let i in data.results){
-        //   this.productList.push(data.results[i])
-        // }
-        this.productList=data.results
-        console.log(this.productList);
-      },
-      (err)=>console.log(err)
-    )
+
+    if (this.moreData.next){
+      this._products.viewProductsByPage(this.moreData.next).subscribe(
+        (data)=>{
+          console.log(data)
+          this.moreData = data
+          // for (let i in data.results){
+          //   this.productList.push(data.results[i])
+          // }
+          this.productList=data.results
+          console.log(this.productList);
+        },
+        (err)=>console.log(err)
+      )
+    }else {
+      alert('there is no more')
+    }
+
+    
   }
 
   showless(){
-    this._products.viewProductsByPage(this.moreData.previous).subscribe(
-      (data)=>{
-        console.log(data)
-        this.moreData = data
-        // for (let i in data.results){
-        //   this.productList.push(data.results[i])
-        // }
-        this.productList=data.results
-        console.log(this.productList);
-      },
-      (err)=>console.log(err)
-    )
+    if (this.moreData.previous){
+      this._products.viewProductsByPage(this.moreData.previous).subscribe(
+        (data)=>{
+          console.log(data)
+          this.moreData = data
+          // for (let i in data.results){
+          //   this.productList.push(data.results[i])
+          // }
+          this.productList=data.results
+          console.log(this.productList);
+        },
+        (err)=>console.log(err)
+      )
+    }
+    else{
+      alert('there is no previous')
+
+    }
+    
   }
 
 }

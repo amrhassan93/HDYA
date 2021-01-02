@@ -27,7 +27,7 @@ export class AuthenticationService {
   logout() {
 
     const headerDict = {
-      'Authorization':'Token ' +  localStorage.getItem('token')
+      'Authorization':'Token ' +  localStorage.getItem('token') 
     }
     
     const requestOptions = {                                                                                                                                                                                 
@@ -38,6 +38,16 @@ export class AuthenticationService {
 
   }
 
+  showUserById(id:number):Observable<any>{
+    const headerDict = {
+      'Authorization':'Token ' +  localStorage.getItem('token')
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+    return this.http.get<any>(`${environment.apiUrl}/auth/users/3/` , requestOptions)
+  }
 
   userProfile():Observable<any>{
     const headerDict = {

@@ -7,6 +7,8 @@ import { Occassion } from '../../models/interfaces/occassion'
 import { Router } from '@angular/router';
 
 import { ProductPicture } from '../../models/interfaces/product-picture'
+import { from } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-product',
@@ -33,6 +35,10 @@ export class CreateProductComponent implements OnInit {
   // created_at:string;
   // updated_at:string;
   // productpicture_set:Array<object>;
+  edit:boolean = false
+
+  avatar:File[] = []
+
   constructor(private _productservisec:ProductsService ,  private route:Router) { 
     this.newproduct = {
       gender:"",
@@ -46,8 +52,8 @@ export class CreateProductComponent implements OnInit {
       age_from:0,
       age_to:0,
     } 
+    
   }
-
   ngOnInit(): void {
     this._productservisec.showcategories().subscribe(
       (data)=>this.categories=data.results,
@@ -64,10 +70,41 @@ export class CreateProductComponent implements OnInit {
       (err)=>console.log(err) 
     )
 
-  }
 
+    if (localStorage.getItem('editprd')){
+      let prdId =JSON.parse(localStorage.getItem('editprd') || '{}')
+      this._productservisec.viewProductById(prdId).subscribe(
+        data => {
+          this.newproduct = (data)
+          this.edit = true
+        },
+        err => console.log((err))
+      )
+
+    }
+
+  }
+  changeImageInput(event:any){
+   
+    let incoming_images =  event.target.files
+    for (let i=0; i<incoming_images.length; i++){
+
+      this.images.push(incoming_images[i])
+    }
+  }
   // name:string,details:string, price:number, age_from:number, age_to:number, gender:string, category:number , occassions:Array<number> , relationships:Array<number>
   addNewProduct(){
+    if (this.images.length >= 3){
+      console.log(this.newproduct);
+      this._productservisec.createProduct(this.newproduct).subscribe(
+        res=>this.route.navigateByUrl('createproduct'),
+        err=>console.log(err)
+        )
+    }
+    else{
+      alert('please upload more than 3 images')
+    }
+   
     // console.log(this.newproduct);
     
     // this.newproduct.name = name.value ;
@@ -84,7 +121,7 @@ export class CreateProductComponent implements OnInit {
     this._productservisec.createProduct(this.newproduct).subscribe(
       (data)=>{
         const fd : FormData = new FormData()
-
+        
         for(let i=0 ; i < this.images.length ; i++){
           fd.append('image' , this.images[i] , this.images[i].name)
           fd.append('product' , data.id)
@@ -94,31 +131,83 @@ export class CreateProductComponent implements OnInit {
           )
         };
         alert('Your Product Was submitted successfully');
-        this.route.navigate([`/productdetails/${data.id}`])
-
-        
+        this.route.navigate([`/productdetails/${data.id}`]) 
       },
       (err)=>console.log(err)
     )
   }
 
 
-// ngDoCheck(): void {
-//   //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
-//   //Add 'implements DoCheck' to the class.
-//   console.log(this.newproduct.category);
-  
-// }
-  
-  changeImageInput(event:any){
-   
-    let incoming_images =  event.target.files
-    for (let i=0; i<incoming_images.length; i++){
-      // console.log(incoming_images[i]);
+    // ngDoCheck(): void {
+    //   //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
+    //   //Add 'implements DoCheck' to the class.
+    //   console.log(this.newproduct.category);
 
-      this.images.push(incoming_images[i])
+    // }
+  
+ 
+  editProduct(){
+
+    let prd_id:number = this.newproduct.id
+    this._productservisec.editProduct(prd_id , this.newproduct).subscribe(
+      (data)=>{
+        console.log(data);
+        localStorage.removeItem('editprd')
+        this.edit = false
+      },
+      (err)=>console.log(err),     
+    )
+
+    const fd : FormData = new FormData()
+    for(let i=0 ; i < this.images.length ; i++){
+      fd.append('image' , this.images[i] , this.images[i].name)
+      fd.append('product' , prd_id)
+      this._productservisec.createProductImages(fd).subscribe(
+        (data)=>console.log(data),
+        (err)=>console.log(err),
+      )
+    };
+    alert('Your Product Was submitted successfully');
+    this.route.navigate([`/productdetails/${prd_id}`]) 
+    
+  }
+
+  delimg(img_id:number){ 
+    this._productservisec.deletimg(img_id).subscribe(
+      (data) => {
+        console.log(data)
+
+        let prdId =JSON.parse(localStorage.getItem('editprd') || '{}')
+        this._productservisec.viewProductById(prdId).subscribe(
+        data => {
+          this.newproduct = (data)
+          this.edit = true
+        },
+        err => console.log((err))
+      )
+      },
+      (err) => console.log(err)
+
+    )
+  }
+
+
+  cancel(){
+    let id = this.newproduct.id
+    this.newproduct = {
+      gender:"",
+      details:"",
+      name:"",
+      category:0,
+      occassions:[],
+      relationships:[],
+      is_featured:false,
+      price:0,
+      age_from:0,
+      age_to:0,
     }
-   
+    localStorage.removeItem('editprd')
+    this.route.navigate([`/productdetails/${id}`]) 
 
   }
 
@@ -191,4 +280,22 @@ export class CreateProductComponent implements OnInit {
 //       res=>console.error(res.error)
 //     )
 //   }
+
+
+// }
+  imgtest(event:any){
+    this.avatar = event.target.files[0]
+  }
+
+  test(){
+    const fd = new FormData();
+    fd.append('avatar' , this.avatar[0]) 
+    console.log(fd);
+    
+  }
+
+
 }
+
+
+

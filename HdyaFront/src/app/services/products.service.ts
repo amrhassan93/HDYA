@@ -23,17 +23,26 @@ export class ProductsService {
   viewProductsByPage(url:string):Observable<any>{
     return this.http.get<any>(url)
   }
-  
-  // viewProductsWithPage(pageNumber:number):Observable<any>{
-  //   return this.http.get<any>(`${environment.apiUrl}/products/?page=${pageNumber}`)
-  // }
+
  
   viewProductById(id:number):Observable<Product>{
     return this.http.get<Product>(`${environment.apiUrl}/products/${id}/`)
   }
 
+  myProducts():Observable<any[]>{
+    const headerDict = {
+      'Authorization':'Token ' +  localStorage.getItem('token')
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+    return this.http.get<any[]>(`${environment.apiUrl}/my/products/`, requestOptions)
 
-  order(product:number , quantity:number , status:string = 'p' , ):Observable<any>{
+  }
+
+
+  order(product:number , quantity:number , status:string = 'p'  ):Observable<any>{
 
     const headerDict = {
       'Authorization':'Token ' +  localStorage.getItem('token')
@@ -57,27 +66,47 @@ export class ProductsService {
       headers: new HttpHeaders(headerDict), 
     };
 
+    return this.http.get<any>(`${environment.apiUrl}/my/orders/`, requestOptions)
+  }
+
+
+  showIncomingOrders():Observable<any>{
+    const headerDict = {
+      'Authorization':'Token ' +  localStorage.getItem('token')
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+
     return this.http.get<any>(`${environment.apiUrl}/orders/`, requestOptions)
   }
 
-  // viewProductsBycat(catId?:number):Observable<Product>{ 
-  //   return this.http.get<Product>(`${environment.apiUrl}/products/?category=${catId}`)
-  // }
-  
-  viewProductsBycat(searchparams:object):Observable<Product>{ 
+
+
+
+  deleteOrder(order_id:number):Observable<any>{
+    const headerDict = {
+      'Authorization':'Token ' +  localStorage.getItem('token')
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+
+    return this.http.delete<any>(`${environment.apiUrl}/orders/${order_id}/`, requestOptions)
+  }
+
+  searchProducts(searchparams:object):Observable<Product>{ 
     let query_string= "" ; 
       for (let i in searchparams){
         query_string+=`${i}=${searchparams[i]}&`
       }
       
-    console.log(`${environment.apiUrl}/products/?${query_string}/`);
-    return this.http.get<Product>(`${environment.apiUrl}/products/?${query_string}/`)
+    console.log(`${environment.apiUrl}/products/?${query_string}`);
+    return this.http.get<Product>(`${environment.apiUrl}/product/search/?${query_string}`)
   }
-  // name:string,price?:number,gender?:string,age_from?:number,age_to?:number,catId?:number,user?:number,is_featured?:boolean
-  // name=${name}&price=${price}&gender=${gender}&age_from=${age_from}&age_to=${age_to}&category=${catId}&user=${user}&is_featured=${is_featured}
-  // query_string= "" 
-  // if( name) query_String+="name"=name 
-  // if(category) 
+
   createProduct(data:object):Observable<Product>{
     const headerDict = {
       'Authorization':'Token ' +  localStorage.getItem('token')
@@ -89,6 +118,29 @@ export class ProductsService {
 
     return this.http.post<Product>(`${environment.apiUrl}/products/` , data , requestOptions) 
   }
+
+  editProduct( pdr_id:number , data:object):Observable<any>{
+    const headerDict = {
+      'Authorization':'Token ' +  localStorage.getItem('token')
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+
+    return this.http.patch<Product>(`${environment.apiUrl}/products/${pdr_id}/` , {name : data.name ,details:data.details , age_from : data.age_from , age_to : data.age_to , price :data.price , occassions : data.occassions , gender : data.gender , relationships : data.relationships , category : data.category}, requestOptions) 
+  }
+  deletimg(img_id:number):Observable<ProductPicture>{
+    const headerDict = {
+      'Authorization':'Token ' +  localStorage.getItem('token')
+    }
+    
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(headerDict), 
+    };
+    return this.http.delete<ProductPicture>(`${environment.apiUrl}/product_imgs/${img_id}/` , requestOptions)
+  }
+
   createProductImages(data:any):Observable<ProductPicture>{
     const headerDict = {
       'Authorization':'Token ' +  localStorage.getItem('token')
@@ -99,6 +151,8 @@ export class ProductsService {
     };
     return this.http.post<ProductPicture>(`${environment.apiUrl}/product_imgs/` , data , requestOptions)
   }
+
+
   showcategories():Observable<any>{
     return this.http.get<any>(`${environment.apiUrl}/categories/`)
   }
