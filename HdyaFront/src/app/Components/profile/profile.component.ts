@@ -103,8 +103,6 @@ export class ProfileComponent implements OnInit {
       },
       (err)=>console.log(err)
     )
-
-
     this._productService.myProducts().subscribe(
       (data)=>{
 
@@ -114,20 +112,11 @@ export class ProfileComponent implements OnInit {
       },
       (err)=>console.log(err)
     )
-    
-   
-
   }
- 
-
   cancelOrder(order_id:number){
     this._productService.deleteOrder(order_id).subscribe(console.log,console.log)
     
   }
-  
-  
-
-
 }
   
 
