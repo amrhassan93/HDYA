@@ -290,3 +290,10 @@
 </select>
 <textarea #pcomment>write </textarea>
 <button type="submit" (click)="reviewFun(pcomment.value,preview.value)">ok</button>
+<button type="submit" [disabled]="">report review</button>
+
+<br> <br>
+
+
+<textarea #preport></textarea>
+<button type="submit" (click)="reportproduct(preport.value)">Report</button>

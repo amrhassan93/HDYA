@@ -19,6 +19,7 @@ export class CreateProductComponent implements OnInit {
   relationships:RelationShip[] = []
   newproduct:Product;
   images:File [] = [] 
+  newavatar:File 
   // name:string = "";
   // price:number = 0;
   // details:string = "";
@@ -122,7 +123,11 @@ export class CreateProductComponent implements OnInit {
   }
 
 
-}
+
+
+
+
+
 
 
 // name:string,details:string, price:number, age_from:number, age_to:number, gender:string, category:string
@@ -186,4 +191,4 @@ export class CreateProductComponent implements OnInit {
 //       res=>console.error(res.error)
 //     )
 //   }
-// }
+}
