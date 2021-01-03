@@ -1,3 +1,4 @@
+import { PopupComponent } from './../popup/popup.component';
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 declare var jQuery: any;
@@ -11,7 +12,9 @@ import {  Review } from '../../models/interfaces/review'
 import { AddToCartService } from '../../services/add-to-cart.service'
 import { AuthenticationService } from '../../services/authentication.service'
 import { stringify } from '@angular/compiler/src/util';
-import {  Report } from '../../models/interfaces/report'
+import {  Report } from '../../models/interfaces/report';
+import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+
 
 
 @Component({
@@ -56,7 +59,8 @@ export class ProductDetailsComponent implements OnInit {
               private activerouter:ActivatedRoute,
               private _addCart:AddToCartService,
               private _auth:AuthenticationService,
-              private route:Router
+              private route:Router,
+              public dialog:MatDialog
             
       ) { }
 
@@ -284,7 +288,9 @@ editPrd(prd_id:number){
   this.route.navigate(['/product/createproduct'])
 }
 
-
+openDialog(){
+  this.dialog.open(PopupComponent)
+}
 
 
   customOptions: OwlOptions = {

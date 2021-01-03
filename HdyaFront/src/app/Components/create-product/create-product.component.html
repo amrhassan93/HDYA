@@ -10,12 +10,12 @@
                 <div class="row">
                     <div class="col-md-12 mb-4 ">
                         <label for="Name">Product Name <span>*</span></label>
-                        <input #pname [(ngModel)]="newproduct.name" type="text" pattern="(^[a-zA-Z\s]{5,15})" class="form-control" name="Name" id="Name" value="" #NameField="ngModel" required minlength="5" maxlength="15" [class.is-valid]="NameField.valid" [class.is-invaild]="NameField.invalid && NameField.touched">
+                        <input #pname [(ngModel)]="newproduct.name" type="text" pattern="(^[a-zA-Z\s]{3,30})" class="form-control" name="Name" id="Name" value="" #NameField="ngModel" required minlength="3" maxlength="30" [class.is-valid]="NameField.valid" [class.is-invaild]="NameField.invalid && NameField.touched">
                         <div class="alert alert-danger mt-2 p-3" *ngIf="NameField.invalid && NameField.touched">
                             <div *ngIf="NameField.hasError('required')">Product Name Is Required</div>
                             <div *ngIf="NameField.hasError('pattern')">Product Name Must be Characters and not less than 5</div>
                             <!-- <div *ngIf="NameField.hasError('minlength')">Product Name must be 5 letters At least </div> -->
-                            <div *ngIf="NameField.hasError('maxlength')">Product Name must be 15 Characters or less</div>
+                            <div *ngIf="NameField.hasError('maxlength')">Product Name must be 30 Characters or less</div>
                         </div>
                     </div>
                     <div class="col-md-12 mb-4">
@@ -33,13 +33,13 @@
                     <div class="col-12 mb-4">
                         <div class="form-group">
                             <label for="comment">Details</label>
-                            <textarea #pdetails [(ngModel)]="newproduct.details" class="form-control" name="details" rows="5" id="comment" style="resize: none;" #detailsField="ngModel" minlength="5" maxlength="250" required pattern="(^[a-zA-Z\s]{5,250})" [class.is-valid]="detailsField.valid"
+                            <textarea #pdetails [(ngModel)]="newproduct.details" class="form-control" name="details" rows="5" id="comment" style="resize: none;" #detailsField="ngModel" minlength="5" maxlength="250" required pattern="(^[a-zA-Z0-9\s]{5,300})" [class.is-valid]="detailsField.valid"
                                 [class.is-invaild]="detailsField.invalid && detailsField.touched"></textarea>
                             <div class="alert alert-danger mt-2 p-3" *ngIf="detailsField.invalid && detailsField.touched">
                                 <div *ngIf="detailsField.hasError('required')">Product Details Is Required</div>
                                 <div *ngIf="detailsField.hasError('pattern')">Product Details Must be Characters and not less than 5</div>
                                 <!-- <div *ngIf="NameField.hasError('minlength')">Product Name must be 5 letters At least </div> -->
-                                <div *ngIf="detailsField.hasError('maxlength')">Product Details must not exceed 250 Characters</div>
+                                <div *ngIf="detailsField.hasError('maxlength')">Product Details must not exceed 300 Characters</div>
                             </div>
                         </div>
                     </div>
@@ -156,8 +156,8 @@
             <ol>
                 <li>Product Name :
                     <ul>
-                        <li> Must Be at least 5 Characters </li>
-                        <li> Must Not EXCEED 15 Characters </li>
+                        <li> Must Be at least 3 Characters </li>
+                        <li> Must Not EXCEED 30 Characters </li>
                         <li>Must Not contain Numbers </li>
                     </ul>
                 </li><br>
@@ -177,8 +177,7 @@
                 <li> Details :
                     <ul>
                         <li> Must Be at least 5 Characters </li>
-                        <li> Must Not EXCEED 250 Characters</li>
-                        <li>Must contain Characters only </li>
+                        <li> Must Not EXCEED 300 Characters</li>
                     </ul>
                 </li><br>
                 <hr>

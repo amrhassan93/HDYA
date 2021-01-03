@@ -32,6 +32,8 @@ import { CustomFormsModule } from 'ng2-validation'
 import { DollartoegpPipe } from './Pipes/dollartoegp.pipe';
 import { AboutComponent } from './Components/about/about.component';
 import { AlertModule } from './_alert';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PopupComponent } from './Components/popup/popup.component';
 
 
 @NgModule({
@@ -52,6 +54,7 @@ import { AlertModule } from './_alert';
     PagenotfoundComponent,
     DollartoegpPipe,
     AboutComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +68,7 @@ import { AlertModule } from './_alert';
     MatInputModule,
     MatSelectModule,
     MatIconModule,
+    MatDialogModule,
     ValidateEqualModule,
     BrowserAnimationsModule,
     AnimateOnScrollModule.forRoot(),
@@ -73,6 +77,7 @@ import { AlertModule } from './_alert';
     AlertModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[ProductDetailsComponent]
 })
 export class AppModule { }
