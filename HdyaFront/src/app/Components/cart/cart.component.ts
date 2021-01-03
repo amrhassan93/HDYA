@@ -4,7 +4,7 @@ import { ProductsService } from '../../services/products.service'
 import { Product } from '../../models/interfaces/product'
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/_alert';
-
+import { SpinnerService} from 'src/app/spinner/spinner.service';
 
 @Component({
   selector: 'app-cart',
@@ -23,7 +23,8 @@ export class CartComponent implements OnInit {
 };  
   checkout:{[k:string]:any } = {}
 
-  constructor(private _products:ProductsService,private route:Router,protected alertService: AlertService) { }
+  constructor(private _products:ProductsService,private route:Router,
+    protected alertService: AlertService,private _spinner:SpinnerService) { }
 
   ngOnInit(): void {
     AOS.init();
@@ -109,6 +110,7 @@ export class CartComponent implements OnInit {
   emptyCart(){
     localStorage.removeItem("cart")
     this.alertService.warn('Cart is Empty!!', this.options)
+    // this._spinner.requestStarted()
   }
 
   removeitem(prd_id:number){

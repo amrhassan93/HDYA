@@ -50,6 +50,33 @@ export class ProductDetailsComponent implements OnInit {
                         updated_at: "" ,
                         images:[]
                       };
+                      //owlcarosel
+                      title = 'angularowlslider';
+                      customOptions: any = {
+                        loop: true,
+                        mouseDrag: false,
+                        touchDrag: false,
+                        pullDrag: false,
+                        dots: false,
+                        navSpeed: 700,
+                        navText: ['', ''],
+                        responsive: {
+                          0: {
+                            items: 1
+                          },
+                          400: {
+                            items: 2
+                          },
+                          740: {
+                            items: 3
+                          },
+                          940: {
+                            items: 4
+                          }
+                        },
+                        nav: true
+                      }
+                           
   reportProduct:Report[]=[]
                     
   constructor(private _products:ProductsService ,
@@ -98,7 +125,6 @@ export class ProductDetailsComponent implements OnInit {
           this.filterdrelList.push(this.relList.find((rel)=>rel.id == this.productdetails.relationships[i]));
           
         }
-        // console.log(this.filterdoccassionList);
       },
       (err)=> console.log(err) 
     ) 
@@ -107,14 +133,12 @@ export class ProductDetailsComponent implements OnInit {
     this._products.viewProducts().subscribe(
       (data)=> {
         this.productList=data.results
-        // console.log(this.productList);
 
       },
       (err)=> console.log(err),
     )
     this._products.showreviews(id).subscribe(
       (data)=> {
-        // console.log(data);
         this.reviewList = data
         console.log(this.reviewList);
         this.countOfReviews = this.reviewList.length
@@ -134,9 +158,6 @@ export class ProductDetailsComponent implements OnInit {
         if (sum!=0){
         this.avrOfReviews = sum / onlyReviews.length;
         }
-        // console.log(this.avrOfReviews);
-        // console.log(sum);
-
       },
       (err)=> console.log(err),
        )

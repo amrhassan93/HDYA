@@ -32,6 +32,7 @@ import { CustomFormsModule } from 'ng2-validation'
 import { DollartoegpPipe } from './Pipes/dollartoegp.pipe';
 import { AboutComponent } from './Components/about/about.component';
 import { AlertModule } from './_alert';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { AlertModule } from './_alert';
     PagenotfoundComponent,
     DollartoegpPipe,
     AboutComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,7 @@ import { AlertModule } from './_alert';
     CustomFormsModule,
     ReactiveValidationModule,
     AlertModule,
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
