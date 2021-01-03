@@ -32,7 +32,7 @@ import { CustomFormsModule } from 'ng2-validation'
 import { DollartoegpPipe } from './Pipes/dollartoegp.pipe';
 import { AboutComponent } from './Components/about/about.component';
 import { AlertModule } from './_alert';
-import { SpinnerComponent } from './spinner/spinner.component';
+import { LoaderComponent } from './Components/loader/loader.component';
 
 
 @NgModule({
@@ -53,7 +53,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     PagenotfoundComponent,
     DollartoegpPipe,
     AboutComponent,
-    SpinnerComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

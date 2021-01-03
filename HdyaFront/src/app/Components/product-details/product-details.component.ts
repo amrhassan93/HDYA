@@ -117,6 +117,14 @@ export class ProductDetailsComponent implements OnInit {
       (data)=>{
       // console.log(this.occassionList);
         this.productdetails=data
+        if(this.productdetails.gender == 'f'){
+          this.productdetails.gender = "Female"
+        }else if(this.productdetails.gender == 'm'){
+          this.productdetails.gender = "Male"
+        }else if(this.productdetails.gender == 'b'){
+          this.productdetails.gender = "Both"
+        }
+
         for (let i =0; i < this.productdetails.occassions.length ; i++){
           this.filterdoccassionList.push(this.occassionList.find((occ)=>occ.id == this.productdetails.occassions[i]));
           
