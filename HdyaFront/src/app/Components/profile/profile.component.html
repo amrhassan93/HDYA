@@ -1,7 +1,6 @@
 <br><br>
 <div class="container">
     <form>
-
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
@@ -23,9 +22,9 @@
                         <li class="nav-item">
                             <a class="nav-link" *ngIf="myProducts.length > 0" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Products</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false">Orders To Handle</a>
-                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" *ngIf="incomingOrdersToHandle.length > 0" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false">Orders To Handle</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" *ngIf="myOrders.length > 0" id="orders-tab" data-toggle="tab" href="#myorders" role="tab" aria-controls="myorders" aria-selected="false">My Orders</a>
                         </li>
@@ -114,7 +113,7 @@
                                     <tbody>
                                         <tr *ngFor="let prd of myProducts  | paginate: { id: 'listing_pagination',
                                             itemsPerPage: 6,
-                                            currentPage: page,
+                                            currentPage: productpage,
                                             totalItems: totalProductsRecords} ; let i=index">
                                             <td>{{i+1}}</td>
                                             <td class="cart_product_img text-center" class="col-md-3">
@@ -137,7 +136,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                    <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                         <div class="row">
                             <div class="col-12 ml-1 mb-5">
                                 <table class="table table-responsive ">
@@ -145,9 +144,7 @@
                                         <tr>
                                             <th class="col-md-3">No.</th>
                                             <th class="col-md-3">Product</th>
-                                            <th class="col-md-3">Price</th>
                                             <th class="col-md-3">Quantity</th>
-                                            <th class="col-md-3">User</th>
                                             <th class="col-md-3">Date</th>
                                             <th class="col-md-3">Status</th>
                                         </tr>
@@ -155,7 +152,7 @@
                                     <tbody>
                                         <tr *ngFor="let order of incomingOrdersToHandle  | paginate: { id: 'listing_pagination',
                                             itemsPerPage: 6,
-                                            currentPage: page,
+                                            currentPage: incommingorderspage,
                                             totalItems: totaloncomingOrdersRecords} ; let i=index">
 
                                             <td>
@@ -164,13 +161,11 @@
                                             <td class="cart_product_img text-center" class="col-md-3">
                                                 <h6><a [routerLink]="['/productdetails',order.product_id]">{{order.product_name}}</a></h6>
                                             </td>
-                                            <td class="price" class="col-md-3"><span>{{order.product_price}}</span></td>
                                             <td class="qty" class="col-md-3">
                                                 <div class="quantity">
                                                     <span>{{order.Quantity}}</span>
                                                 </div>
                                             </td>
-                                            <td class="total_price" class="col-md-3"><span>{{order.user}}</span></td>
                                             <td class="total_price" class="col-md-3"><span>{{order.created_at}}</span></td>
                                             <td class="total_price" class="col-md-3"><span>{{order.status}}</span></td>
                                             <td class="total_price" class="col-md-3"><span><i class="far fa-trash-alt" (click)="cancelOrder(order.order_id)"></i></span></td>
@@ -183,7 +178,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
 
                     <div class="tab-pane fade" id="myorders" role="tabpanel" aria-labelledby="MyOrders-tab">
                         <div class="row">
@@ -203,7 +198,7 @@
                                     <tbody>
                                         <tr *ngFor="let order of myOrders  | paginate: { id: 'listing_pagination',
                                             itemsPerPage: 6,
-                                            currentPage: page,
+                                            currentPage: orderpage,
                                             totalItems: totalOrdersRecords} ; let i=index">
 
                                             <td>

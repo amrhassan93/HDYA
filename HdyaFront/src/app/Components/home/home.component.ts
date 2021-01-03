@@ -52,7 +52,9 @@ export class HomeComponent implements OnInit {
   }
 
  
-
+  catSearch(catId:number){
+    localStorage.setItem('catsearch' ,JSON.stringify(catId) )
+  }
 
   // latestFiveProducts(){
   //   this.products.sort()

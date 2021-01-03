@@ -55,6 +55,15 @@
                                 </ul>
                             </div> -->
 
+                    <div *ngIf="edit == false" class="col-12 mb-4">
+                        <ul *ngFor="let img of url ; let i=index">
+                            <li style="display: inline;">
+                                <img src="{{img}}" alt="" width="100" height="100">
+                                <!-- <i class="far fa-trash-alt" (click)="delitem(i)"></i> -->
+                            </li>
+                        </ul>
+                    </div>
+
                     <div *ngIf="edit == true" class="col-12 mb-4">
                         <ul *ngFor="let img of newproduct.images">
                             <li style="display: inline;">
@@ -212,7 +221,3 @@
 
 <!-- (click)="addNewProduct(pname,pprice,pdetails,pimages)" -->
 <!-- pname,pprice,pdetails,pagefrom,pageto,poccassions , pgender , prelationship ,pcategory  -->
-
-
-
-

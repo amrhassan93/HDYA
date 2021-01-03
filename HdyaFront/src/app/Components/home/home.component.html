@@ -15,7 +15,7 @@
     <input type="hidden" #selection>
     <div class="card-container">
         <div *ngFor="let cat of categoryList" class="card card-small border border-dark" (click)="selection.value = 'component'" tabindex="0">
-            <a routerLink="/search">{{cat.title}} </a>
+            <a (click)="catSearch(cat.id)" routerLink="/search">{{cat.title}} </a>
         </div>
         <!-- <div class="card card-small-rd" (click)="selection.value = 'component'" tabindex="0">
             <a routerLink="/search">Tailoring</a>
@@ -108,7 +108,7 @@
         </div>
     </div>
     <!-- Single Catagory -->
-    <div class="single_catagory_area  d-flex align-items-center bg-img" style="background-image: url(../../../assets/images/hand5.jpg);" data-aos="fade-left"  data-aos-easing="ease-in-sine" data-aos-duration="500">
+    <div class="single_catagory_area  d-flex align-items-center bg-img" style="background-image: url(../../../assets/images/hand5.jpg);" data-aos="fade-left" data-aos-easing="ease-in-sine" data-aos-duration="500">
         <div class="catagory-content col-12 col-sm-6 col-md-4">
             <h6>in Bags excepting the new collection</h6>
             <h2>Designer bags</h2>

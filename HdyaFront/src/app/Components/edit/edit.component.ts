@@ -12,9 +12,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  url="../../../assets/images/login.jpg"
+  url:string = ''
   isdisplayed = false
-  newavatar:File;
+  newavatar!: File;
   editparams: {[k: string]: any} = {}
   // profileList:Profile[]= [];
   
@@ -24,15 +24,15 @@ export class EditComponent implements OnInit {
   toggledispayed(){
     this.isdisplayed = !this.isdisplayed
   }
-  selectfile(event:any){
-    if (event.target.files){
-      var reader = new FileReader()
-      reader.readAsDataURL(event.target.files[0])
-        reader.onload = (event:any) =>{
-          this.url = event.target.result
-        }
-    }
-  }
+  // selectfile(event:any){
+  //   if (event.target.files){
+  //     var reader = new FileReader()
+  //     reader.readAsDataURL(event.target.files[0])
+  //       reader.onload = (event:any) =>{
+  //         this.url = event.target.result
+  //       }
+  //   }
+  // }
 
   profileList:Profile = {
     username:"",
@@ -56,24 +56,19 @@ export class EditComponent implements OnInit {
       (data)=> {
         this.profileList=data
         console.log(this.profileList)
-      },
-        
-      (err)=>console.log(err)
-
-    )
+      },(err)=>console.log(err))}
 
 
-    
-   
-
+  // ngDoCheck(): void {
+  //   //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
+  //   //Add 'implements DoCheck' to the class.
+  //    if(this.newavatar){
+  //     this.profileList.avatar = this.newavatar
+  //     console.log(this.profileList.avatar)
+  //   }
   // }
+ 
 
-  //
-         
-
-
-
-    }
 
 
 
@@ -81,15 +76,22 @@ export class EditComponent implements OnInit {
      this.newavatar = event.target.files[0]
     //  this.profileList.avatar = this.newavatar
       console.log(this.newavatar)
+      if (event.target.files){
+        var reader = new FileReader()
+        reader.readAsDataURL(event.target.files[0])
+        reader.onload = (event:any) =>{
+          this.url = event.target.result
+        }
+      }
     }
 
 
 
     updateprofile( first_name:string , last_name:string  , mobile:string,address:string,birthdate:string){
-     console.log(first_name)
-     console.log(first_name instanceof Array);
+    //  console.log(first_name)
+    //  console.log(first_name instanceof Array);
 
-     console.log(this.newavatar)
+    //  console.log(this.newavatar)
 
     if (first_name){
       this.editparams.first_name = first_name
@@ -134,11 +136,8 @@ export class EditComponent implements OnInit {
 
           }
 
-  ngOnChange():void {
-    this.profileList.avatar = this.newavatar
-    console.log(this.newavatar)
-
-  }
+          
+ 
             
             
 }

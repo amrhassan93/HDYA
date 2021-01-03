@@ -20,7 +20,7 @@
     <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area Start >>>>>>>>>>>>>>>>>>>>>>>>> -->
 
 
-    <section class="single_product_details_area section_padding_0_100" data-aos="fade-down" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1000">
+    <section *ngIf="productdetails.images[0]" class="single_product_details_area section_padding_0_100" data-aos="fade-down" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1000">
         <div class="container">
             <div class="row">
 
@@ -96,16 +96,20 @@
 
                 <div class="col-12 col-md-6">
                     <div class="single_product_desc pl-5">
-                        <h4 class="title"><a>{{productdetails.name}} &nbsp;<select style="background-color:#f4f2f8;" #preview>
-                            <h6>Reviews</h6>
-                            <p *ngIf="countOfReviews != 0"> {{countOfReviews}}</p>
-                            <!-- <option value="1">1</option>
+                        <h4 class="title"><a>{{productdetails.name}}</a></h4>
+                        <!-- <select style="background-color:#f4f2f8;" #preview> -->
+                        <!-- <h6>Reviews</h6> -->
+                        <!-- <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option> -->
-                        </select> </a></h4>
-                        <h3 *ngIf="avrOfReviews != 0"> Average Reviews:{{avrOfReviews}}</h3><br>
+                        <!-- </select> -->
+
+                        <p *ngIf="countOfReviews != 0">count of Reviews {{countOfReviews}}</p>
+                        <h3 *ngIf="avrOfReviews != 0"> Average Reviews:{{avrOfReviews}}</h3>
+                        <br>
+
                         <h4 class="price">{{ productdetails.price | currency:'EGP ' }}</h4>
 
                         <p class="available">Available: <span class="text-muted">In Stock</span></p>
@@ -194,15 +198,15 @@
                         <br>
                         <h5><i class="fas fa-comment-alt-smile"></i> Add Your FeedBack</h5>
                         <div class="rating">
-                            <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-                            <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
-                            <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
-                            <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
-                            <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                            <input [(ngModel)]="reatValue" type="radio" name="rating" value="5" id="1"><label for="1">☆</label>
+                            <input [(ngModel)]="reatValue" type="radio" name="rating" value="4" id="2"><label for="2">☆</label>
+                            <input [(ngModel)]="reatValue" type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                            <input [(ngModel)]="reatValue" type="radio" name="rating" value="2" id="4"><label for="4">☆</label>
+                            <input [(ngModel)]="reatValue" type="radio" name="rating" value="1" id="5"><label for="5">☆</label>
                         </div>
                     </div><br>
                 </div>
-                <button type="submit" class="btn karl-checkout" (click)="reviewFun(pcomment.value,preview.value)" style="width:50%;margin:auto;padding:auto;">ok</button>
+                <button type="submit" class="btn karl-checkout" (click)="reviewFun(pcomment.value)" style="width:50%;margin:auto;padding:auto;">ok</button>
             </div>
         </div>
     </div><br>
@@ -280,23 +284,31 @@
                 <h3 class="panel-title">
                     <i class="fas fa-comments"></i> Recent Comments</h3>
             </div><br>
+
+            <!-- <div *ngIf="reviewList.length > 0" class="recent">
+                <div *ngFor="let rev of reviewList" class="rev">
+                    <h6>{{rev.body}}</h6>
+                    <h6>{{rev.rate}}</h6>
+                </div>
+            </div> -->
+
             <div class="panel-body">
-                <ul class="list-group">
-                    <li class="list-group-item">
+                <ul *ngIf="reviewList.length > 0" class="list-group">
+                    <li *ngFor="let rev of reviewList" class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-2 col-md-1">
-                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />USER1</div>
+                            <!-- <div class="col-xs-2 col-md-1"> -->
+                            <!-- <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />USER1</div> -->
                             <div class="col-xs-10 col-md-11">
                                 <div>
-                                    <h5>Google Style Login Page Design Using Bootstrap</h5>
-                                    <div class="mic-info">
+                                    <h5>{{rev.body}}</h5>
+                                    <!-- <div class="mic-info">
                                         By: <a href="#">Amr Hassan</a> on 2 Jan 2021
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="comment-text">
-                                    Awesome design
+                                    {{rev.rate}}
                                 </div>
-                                <div class="action">
+                                <!-- <div class="action">
                                     <button type="button" class="btn btn-primary btn-xs" title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </button>
@@ -306,11 +318,11 @@
                                     <button type="button" class="btn btn-xs" title="Delete">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </li>
-                    <li class="list-group-item">
+                    <!-- <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-2 col-md-1">
                                 <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /> User2</div>
@@ -337,7 +349,7 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -418,5 +430,5 @@
     </select> 
     <textarea #pcomment>write </textarea>
     <button type="submit" (click)="reviewFun(pcomment.value,preview.value)">ok</button> -->
-    <textarea #preport></textarea>
-    <button type="submit" (click)="reportproduct(preport.value)">Report</button>
+<textarea #preport></textarea>
+<button type="submit" (click)="reportproduct(preport.value)">Report</button>
