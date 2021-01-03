@@ -73,7 +73,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     CustomFormsModule,
     ReactiveValidationModule,
     AlertModule,
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

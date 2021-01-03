@@ -112,9 +112,6 @@ export class ProfileComponent implements OnInit {
       (err)=>console.log(err)
     )
 
-
-
-
     // this._productService.showIncomingOrders().subscribe(
     //   (data)=>{
     //     this.incomingOrders = data
