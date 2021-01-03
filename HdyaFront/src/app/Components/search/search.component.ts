@@ -24,6 +24,7 @@ export class SearchComponent implements OnInit {
   filteredrelations:number = 0
   filteredoccassions:number = 0
 
+  fromsearch:boolean = false
 
   options = {
     autoClose: true,
@@ -38,14 +39,28 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     AOS.init();
 
-    if(localStorage.getItem('products')){
-      let searchProducts = localStorage.getItem('products')
-      this.productList = JSON.parse(searchProducts || '{}')
-      localStorage.removeItem('products')
-    }
-    else {
+    // if(localStorage.getItem('products')){
+    //   let searchProducts = localStorage.getItem('products')
+    //   this.productList = JSON.parse(searchProducts || '{}')
+    //   localStorage.removeItem('products')
+    // }
+    // else {
+    //   this.showAll() 
+    // }
+
+    if(localStorage.getItem('searchKey')){
+      this.searchparams.name = localStorage.getItem('searchKey') ; 
+      this.searchNow()
+      localStorage.removeItem('searchKey')
+    }else if(localStorage.getItem('catsearch')){
+      this.searchparams.category =JSON.parse(localStorage.getItem('catsearch') || '{}'); 
+      this.searchNow()
+      localStorage.removeItem('catsearch')
+    }else{
       this.showAll() 
     }
+
+
 
     this._products.showcategories().subscribe(
       (data)=>this.categoryList = data.results,
@@ -68,6 +83,7 @@ export class SearchComponent implements OnInit {
       (data)=>{
         this.productList=data.results;
         this.moreData = data
+
       },
       (err)=> console.log(err) 
     )    
@@ -76,10 +92,10 @@ export class SearchComponent implements OnInit {
 
   ngDoCheck(): void {
   
-    if(localStorage.getItem('products')){
-      let searchProducts = localStorage.getItem('products')
-      this.productList = JSON.parse(searchProducts || '{}')
-      localStorage.removeItem('products')
+    if(localStorage.getItem('searchKey')){
+      this.searchparams.name = localStorage.getItem('searchKey') ; 
+      this.searchNow()
+      localStorage.removeItem('searchKey')
     }   
     
     
@@ -88,6 +104,8 @@ export class SearchComponent implements OnInit {
   resetFilters(){
     this.showAll();
     this.searchparams = {}
+    this.fromsearch = false
+
   }
   
 
@@ -180,21 +198,6 @@ export class SearchComponent implements OnInit {
   }
 
   
-  // getproductsbyage(age_from:number,age_to:number){
-  //   this.searchparams.min_age = age_from ; 
-  //   this.searchparams.max_age = age_to ; 
-
-  // //   for (let i=0 ; i<this.productList.length ; i++){
-  // //     if (this.productList[i].age_from >= age_from && this.productList[i].age_to <= age_to){
-  // //        this.filterdProducts.push(this.productList[i])
-  // //     }
-  // //     else{
-  // //       console.log('not in this cat')
-  // //     }
-  // //  }
-  // //  this.productList = this.filterdProducts
-  // //  this.filterdProducts = []
-  // }
 
   searchNow(){
     this._products.searchProducts(this.searchparams).subscribe(
@@ -202,7 +205,9 @@ export class SearchComponent implements OnInit {
         console.log(data);
         if(data.length > 0){
           this.productList = data
+          console.log(data);
           this.moreData = []
+          this.fromsearch = true
         }else{
           alert("NO Results Found")
           this.showAll()
@@ -241,7 +246,6 @@ export class SearchComponent implements OnInit {
       return product.id == product_id
       })
 
-    // console.log(this.productPopUp);
   }
   
   showMore(){

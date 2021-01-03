@@ -41,28 +41,30 @@ export class NavComponent implements OnInit {
   }
 
   search(searchKey:string){
+
+    localStorage.setItem('searchKey' , searchKey)
     // let id = this.activerouter.snapshot.params['id']
     // if(this.activerouter.snapshot.routeConfig ){
 
     // }
-    this._products.viewProducts().subscribe(
-      (data)=>this.productList=data.results,
-      (err)=> console.log(err) 
-    )   
+    // this._products.viewProducts().subscribe(
+    //   (data)=>this.productList=data.results,
+    //   (err)=> console.log(err) 
+    // )   
 
-    for (let i = 0 ; i < this.productList.length ; i++){
-      if (this.productList[i].name.toLowerCase().includes(searchKey.toLowerCase())){
-        this.filteredProductList.push(this.productList[i])
-      }else{
-        console.log('this is not in products');
-      }
-    }
+    // for (let i = 0 ; i < this.productList.length ; i++){
+    //   if (this.productList[i].name.toLowerCase().includes(searchKey.toLowerCase())){
+    //     this.filteredProductList.push(this.productList[i])
+    //   }else{
+    //     console.log('this is not in products');
+    //   }
+    // }
 
-    this.productList = this.filteredProductList
-    this.filteredProductList = []
-    console.log(this.productList)
-    localStorage.setItem('products' ,  JSON.stringify(this.productList))
-    return this.route.navigate(['/search'] )
+    // this.productList = this.filteredProductList
+    // this.filteredProductList = []
+    // console.log(this.productList)
+    // localStorage.setItem('products' ,  JSON.stringify(this.productList))
+    // return this.route.navigate(['/search'] )
   }
   ngDoCheck(): void {
     //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.

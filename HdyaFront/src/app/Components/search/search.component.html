@@ -145,12 +145,14 @@
             </div>
             <div class="col-12 col-md-8 col-lg-9">
                 <div class="shop_grid_product_area d-block p-4 m-4 text-center">
-                    <div class="row">
+                    <div *ngIf="productList.length > 0" class="row">
                         <!-- Single gallery Item -->
                         <div *ngFor="let product of productList " class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig mb-4" data-wow-delay="0.2s" data-aos="fade-up" data-aos-duration="1300">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img *ngIf="product.images[0]" src="{{product.images[0].image}}" style="width: 150px; height:150px;" alt="{{product.name}}">
+
+                                <img *ngIf="product.images[0] && fromsearch == false" src="{{product.images[0].image}}" style="width: 150px; height:150px;" alt="{{product.name}}">
+                                <img *ngIf="product.images[0] && fromsearch == true" src="http://127.0.0.1:8000{{product.images[0].image}}" style="width: 150px; height:150px;" alt="{{product.name}}">
                                 <div class="product-quicview">
                                     <a data-toggle="modal" (click)="popUpProduct(product.id)" data-target="#quickview"><i class="far fa-plus"></i></a>
                                 </div>
@@ -159,6 +161,7 @@
                             <div class="product-description">
                                 <h4 class="product-price">{{product.price | currency:'EGP '}}</h4>
                                 <p>{{product.name}}</p>
+                                <!-- <p>{{product.images[0].image}}</p> -->
                                 <!-- More Details -->
                                 <a class="add-to-cart-btn" [routerLink]="['/productdetails',product.id]">More Details</a>
                                 <!-- Add to Cart -->

@@ -26,7 +26,11 @@ export class SignupComponent implements OnInit {
       
     })
 
-  constructor(private auth:AuthenticationService , private route:Router ,private fb: FormBuilder,private confirmedPassword:ConfirmedpasswordService) { 
+  constructor(private auth:AuthenticationService ,
+              private route:Router ,
+              private fb: FormBuilder,
+              private confirmedPassword:ConfirmedpasswordService
+              ) { 
     if (localStorage.getItem('token')){
       this.route.navigate(['/home'])
     }
@@ -38,7 +42,10 @@ export class SignupComponent implements OnInit {
 
   UserRegester(username:string , email:string , password:string ,re_password:string, first_name:string , last_name:string  , mobile:string) {
     this.auth.register(username , email,password , re_password , first_name , last_name , mobile).subscribe(
-      (data)=>  console.log(data),
+      (data)=>  {
+        alert('thanks for regester please login now')
+        this.route.navigate(['/login'])
+      },
       (err) => console.log(err)
     );
   }
