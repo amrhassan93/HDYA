@@ -16,6 +16,7 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 16px;
+    text-align: center;
 }
 
 .card {
@@ -73,7 +74,7 @@
 
 .welcome_slide_text h6,
 .single_catagory_area h6 {
-    color: rgb(210, 57, 59);
+    color: white;
     font-size: 14px;
     margin-bottom: 5px;
 }
@@ -124,9 +125,9 @@
     text-transform: uppercase;
 }
 
-.catagory-content {
-    width: 55%;
-}
+// .catagory-content {
+//     width: 55%;
+// }
 
 
 /* ----------------------------
@@ -164,4 +165,23 @@
 
 .hide-on-init {
     visibility: hidden;
+}
+@media (max-width:768px){
+    .flash_image{
+        font-size:16px;
+    }
+   .catagory-content{
+       font-size:10px;
+   }
+   .welcome_slide_text>h2,
+  .single_catagory_area h2 {
+    font-size: 40px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: rgb(37, 42, 51);
+    margin-bottom: 20px;
+}
+.top_catagory_area{
+    display: table ;
+}
 }

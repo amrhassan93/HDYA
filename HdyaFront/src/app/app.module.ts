@@ -32,6 +32,8 @@ import { CustomFormsModule } from 'ng2-validation'
 import { DollartoegpPipe } from './Pipes/dollartoegp.pipe';
 import { AboutComponent } from './Components/about/about.component';
 import { AlertModule } from './_alert';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PopupComponent } from './Components/popup/popup.component';
 import { LoaderComponent } from './Components/loader/loader.component';
 
 
@@ -53,6 +55,7 @@ import { LoaderComponent } from './Components/loader/loader.component';
     PagenotfoundComponent,
     DollartoegpPipe,
     AboutComponent,
+    PopupComponent,
     LoaderComponent,
   ],
   imports: [
@@ -67,6 +70,7 @@ import { LoaderComponent } from './Components/loader/loader.component';
     MatInputModule,
     MatSelectModule,
     MatIconModule,
+    MatDialogModule,
     ValidateEqualModule,
     BrowserAnimationsModule,
     AnimateOnScrollModule.forRoot(),
@@ -75,6 +79,7 @@ import { LoaderComponent } from './Components/loader/loader.component';
     AlertModule,
     ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[ProductDetailsComponent]
 })
 export class AppModule { }
