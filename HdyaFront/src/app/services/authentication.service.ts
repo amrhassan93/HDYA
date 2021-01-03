@@ -27,7 +27,7 @@ export class AuthenticationService {
   logout() {
 
     const headerDict = {
-      'Authorization':'Token ' +  localStorage.getItem('token')
+      'Authorization':'Token ' +  localStorage.getItem('token') 
     }
     
     const requestOptions = {                                                                                                                                                                                 
@@ -58,10 +58,21 @@ export class AuthenticationService {
       headers: new HttpHeaders(headerDict), 
     };
     return this.http.get<any>(`${environment.apiUrl}/auth/users/me/`, requestOptions)
+    
   }
 
+  // getDataForuser():Observable<any>{
+  //   const headerDict = {
+  //     'Authorization':'Token ' +  localStorage.getItem('token')
+  //   }
+    
+  //   const requestOptions = {                                                                                                                                                                                 
+  //     headers: new HttpHeaders(headerDict), 
+  //   };
+  //   return this.http.get<any>(`${environment.apiUrl}/auth/users/me/`, requestOptions)
+  // }
 
-  editprofile( data:any){
+  editprofile(data:any){
     const headerDict = {
       'Authorization':'Token ' +  localStorage.getItem('token')
     }
@@ -69,17 +80,24 @@ export class AuthenticationService {
     const requestOptions = {                                                                                                                                                                                 
       headers: new HttpHeaders(headerDict), 
     };
-    return this.http.patch<any>(`${environment.apiUrl}/auth/users/me/`, data, requestOptions)
-
+    return this.http.patch<any>(`${environment.apiUrl}/auth/users/me/`,data, requestOptions)
     // if (data){
 
-    // }else if (avatar){
-    //   return this.http.patch<any>(`${environment.apiUrl}/auth/users/me/`, avatar, requestOptions)
-    // }else{
-    //   return console.log("err");
-      
+    // return this.http.patch<any>(`${environment.apiUrl}/auth/users/me/`, 
+    // {first_name:data.first_name,last_name:data.last_name,address:data.address,mobile:data.mobile,birthdate:data.birthdate} 
+    // , requestOptions)
+    // }
+    // else if(avatar) {
+    //   return this.http.patch<any>(`${environment.apiUrl}/auth/users/me/`,avatar, requestOptions)
+    // }
+    // else {
+    //   return console.log("error")
     // }
 
   }
+
+
+  // first_name:string , last_name:string  , mobile:string ,address:string,birthdate:string,avatar:File
+  // {first_name:first_name,last_name:last_name,address:address,mobile:mobile,birthdate:birthdate,avatar:avatar}
 
 }

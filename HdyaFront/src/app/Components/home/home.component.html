@@ -15,7 +15,7 @@
     <input type="hidden" #selection>
     <div class="card-container">
         <div *ngFor="let cat of categoryList" class="card card-small border border-dark" (click)="selection.value = 'component'" tabindex="0">
-            <a routerLink="/search">{{cat.title}} </a>
+            <a (click)="catSearch(cat.id)" routerLink="/search">{{cat.title}} </a>
         </div>
         <!-- <div class="card card-small-rd" (click)="selection.value = 'component'" tabindex="0">
             <a routerLink="/search">Tailoring</a>
@@ -100,7 +100,7 @@
 <!-- ****** Top Catagory Area Start ****** -->
 <section class="top_catagory_area d-md-flex clearfix" style="width: 97%; padding-left: 40px;">
     <!-- Single Catagory -->
-    <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url(../../../assets/images/hand4.jpg);" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1000">
+    <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url(../../../assets/images/hand4.jpg);" data-aos="fade-right" data-wow-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="500">
         <div class="catagory-content ">
             <h6>On Accesories</h6>
             <h2>Sale 30%</h2>
@@ -108,7 +108,7 @@
         </div>
     </div>
     <!-- Single Catagory -->
-    <div class="single_catagory_area  d-flex align-items-center bg-img" style="background-image: url(../../../assets/images/hand5.jpg);" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1000">
+    <div class="single_catagory_area  d-flex align-items-center bg-img" style="background-image: url(../../../assets/images/hand5.jpg);" data-aos="fade-left" data-aos-easing="ease-in-sine" data-aos-duration="500">
         <div class="catagory-content col-12 col-sm-6 col-md-4">
             <h6>in Bags excepting the new collection</h6>
             <h2>Designer bags</h2>
@@ -196,13 +196,15 @@
 
     <div class="karl-projects-menu mb-100">
         <div class="text-center portfolio-menu">
-            <button class="btn" data-filter="*">ALL</button>
-            <button class="btn" data-filter=".women">WOODEN PRODUCTS</button>
+            <button class="btn" data-filter="*" (click)="showCategories()">ALL</button>
             <button class="btn" data-filter=".man">LEATHER PRODUCTS</button>
             <button class="btn" data-filter=".access">GLASS PRODUCTS</button>
             <button class="btn" data-filter=".shoes">WICKER PRODUCTS</button>
             <button class="btn" data-filter=".kids">ACCESSORIES</button>
         </div>
+        <div *ngFor="let cat of allproducts">{{cat.name}}</div>
+
+
     </div>
 
     <div class="container new_deals text-center">

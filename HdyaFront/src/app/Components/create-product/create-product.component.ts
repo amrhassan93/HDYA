@@ -16,11 +16,26 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./create-product.component.scss']
 })
 export class CreateProductComponent implements OnInit {
+  url =  new Array<string>()
   categories:Category[] = []
   occassions:Occassion[] = []
   relationships:RelationShip[] = []
   newproduct:Product;
   images:File [] = [] 
+  newavatar:File 
+  // name:string = "";
+  // price:number = 0;
+  // details:string = "";
+  // age_from:number = 0;
+  // age_to:number = 0;
+  // gender:string = "";
+  // occassions:Array<number> = [];
+  // category:number = 0;
+  // relationships:Array<number> = [];
+  // is_featured:boolean;
+  // created_at:string;
+  // updated_at:string;
+  // productpicture_set:Array<object>;
   edit:boolean = false
 
   avatar:File[] = []
@@ -71,12 +86,41 @@ export class CreateProductComponent implements OnInit {
 
   }
   changeImageInput(event:any){
-   
+    // console.log(event);
+    this.images = []
     let incoming_images =  event.target.files
     for (let i=0; i<incoming_images.length; i++){
 
       this.images.push(incoming_images[i])
     }
+
+    //  if (event.target.files){
+      this.url = [];
+      let files = event.target.files;
+      if (files) {
+        for (let file of files) {
+          let reader = new FileReader();
+          reader.onload = (e: any) => {
+            this.url.push(e.target.result);
+          }
+          reader.readAsDataURL(file);
+        }
+      }
+        // var reader = new FileReader()
+        // for (let i in event.target.files){
+        //   reader.readAsDataURL(event.target.files[i])
+        //   // reader.onload = (event:any) =>{
+        //   //   this.url.push(event.target.result) 
+        //   //   console.log(event);
+        //   // }
+        // }
+        
+
+        // console.log(this.url);
+        
+      // }
+
+
   }
   addNewProduct(){
     if (this.images.length >= 3){
@@ -106,13 +150,12 @@ export class CreateProductComponent implements OnInit {
    
   }
 
-
     
   
  
   editProduct(){
 
-    let prd_id:number = this.newproduct.id
+    let prd_id:any = this.newproduct.id
     this._productservisec.editProduct(prd_id , this.newproduct).subscribe(
       (data)=>{
         console.log(data);
@@ -175,6 +218,7 @@ export class CreateProductComponent implements OnInit {
 
   }
 }
+
 
 
 
