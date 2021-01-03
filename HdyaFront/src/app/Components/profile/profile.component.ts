@@ -5,7 +5,7 @@ import { Profile } from '../../models/interfaces/profile'
 import { ProductsService } from '../../services/products.service'
 import { Product } from 'src/app/models/interfaces/product';
 import { Orders } from 'src/app/models/interfaces/orders';
-//
+
 
 @Component({
   selector: 'app-profile',
@@ -185,21 +185,9 @@ export class ProfileComponent implements OnInit {
       },
       (err)=>console.log(err)
     )
-    
-   
-
   }
- 
-
   cancelOrder(order_id:number){
     this._productService.deleteOrder(order_id).subscribe(console.log,console.log)
     
-  }
-  
-  
-  
-
-
+  } 
 }
-  
-

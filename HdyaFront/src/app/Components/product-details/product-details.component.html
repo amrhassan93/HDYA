@@ -4,12 +4,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <!-- <ol class="breadcrumb d-flex align-items-center">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Wooden Products</a></li>
-                        <li class="breadcrumb-item active">{{product.name}}</li>
-                    </ol> -->
-                    <!-- btn -->
                     <a [routerLink]="['/search']" class="backToHome d-block"><i class="fa fa-angle-double-left"></i> Back to Category</a>
                 </div>
             </div>
@@ -20,7 +14,7 @@
     <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area Start >>>>>>>>>>>>>>>>>>>>>>>>> -->
 
 
-    <section *ngIf="productdetails.images[0]" class="single_product_details_area section_padding_0_100" data-aos="fade-down" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1000">
+    <section *ngIf="productdetails.name.length > 2" class="single_product_details_area section_padding_0_100" data-aos="fade-down" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1000">
         <div class="container">
             <div class="row">
 
@@ -71,10 +65,13 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
+                    </div><br><br>
+                    <div class="text-center">
+                        <button type="submit" class="btn karl-checkout" id="button1" (click)="editPrd(productdetails.id)">Edit Your Product</button>
+                       <br><button type="submit" class="btn karl-checkout" id="button2" (click)="openDialog()">Report Product</button>
                     </div>
-                    <button type="submit" class="btn karl-checkout" (click)="editPrd(productdetails.id)">Edit Your Product</button>
-                    <br><button type="submit" class="btn karl-checkout" (click)="openDialog()">Report Product</button>
                 </div>
+                <br>
                 <!-- <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
                  -->
@@ -358,47 +355,65 @@
     <section class="you_may_like_area clearfix">
         <div class="container text-center">
             <div class="section_heading text-center">
+                <h1>Related Products</h1>
+            </div>
+            <div class="row">
+                <owl-carousel-o [options]="customOptions">
+                    <ng-template carouselSlide *ngFor="let product of filteredList" class="relprd col-md-4">
+                        <div class="product-img">
+                            <img src="{{product.images[0].image}}" alt="{{product.name}}">
+                            <div class="product-quicview">
+                                <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
+                            </div>
+                        </div>
+                        <!-- Product Description -->
+                        <div class="product-description">
+                            <h4 class="product-price">{{product.price}}</h4>
+                            <p>{{product.name}}</p>
+                            <!-- Add to Cart -->
+                            <a class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
+                        </div>
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+        </div>
+    </section>
+    <!-- ------------------------------------------------------------------------------------ -->
+    <!-- <section class="you_may_like_area clearfix">
+        <div class="container text-center">
+            <div class="section_heading text-center">
                 <h2>Related Products</h2>
             </div>
             <div class="row">
-
-                <!-- Single gallery Item -->
                 <div *ngFor="let product of filteredList" class="relprd col-md-4">
-                    <!-- Product Image -->
                     <div class="product-img">
                         <img src="../../../assets/images/hand15.jpg" alt="hand15">
                         <div class="product-quicview">
                             <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
                         </div>
                     </div>
-                    <!-- Product Description -->
                     <div class="product-description">
                         <h4 class="product-price">{{product.price}}</h4>
                         <p>{{product.name}}</p>
-                        <!-- Add to Cart -->
                         <a class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </section>
 </div>
 
-
-<!-- 
-        <select #selCat [(ngModel)]="selCatID" >
+    <select #selCat [(ngModel)]="selCatID" >
     <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
     </select>
-    -->
+    
 
-<!-- <p>review</p> -->
-<!-- <select [(ngModel)]="review" >
+<p>review</p>
+<select [(ngModel)]="review" >
             <option *ngFor="let re of review">{{re.rate}}</option>
-        </select> -->
+        </select>
 
-<!-- <div class="container text-center">
+<div class="container text-center">
         <h3 *ngIf="countOfReviews != 0">Count Of Reviews : {{countOfReviews}}</h3>
         <h3 *ngIf="avrOfReviews != 0">avr Of Reviews : {{avrOfReviews}}</h3>
 
@@ -408,10 +423,10 @@
             <h4>user: {{rev.user}}</h4>
             <hr>
         </div>
-    </div> -->
+    </div>
 
 
-<!-- <select #preview>
+ <select #preview>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -430,5 +445,5 @@
     </select> 
     <textarea #pcomment>write </textarea>
     <button type="submit" (click)="reviewFun(pcomment.value,preview.value)">ok</button> -->
-<textarea #preport></textarea>
-<button type="submit" (click)="reportproduct(preport.value)">Report</button>
+    <textarea #preport></textarea>
+    <button type="submit" (click)="reportproduct(preport.value)">Report</button>

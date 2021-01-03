@@ -12,9 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
-  // cart:Product[] = [] ;
-  // total:Array<number> = [] ;
-  // totalPrice:number = 0 ;
+
   orders:Array<object> = [] ;
   checkout:object = {} 
   editparams: {[k: string]: any} = {}
@@ -33,16 +31,6 @@ export class CheckoutComponent implements OnInit {
               private _auth:AuthenticationService,
               private route:Router
     ) {
-      // this.myProfile={
-      //   username:"",
-      //   first_name :"",
-      //   last_name :"",
-      //   address :"",
-      //   mobile : "" ,
-      //   birth_date : "" , 
-      //   email: "" 
-
-      // }
 
     }
 
@@ -93,12 +81,9 @@ export class CheckoutComponent implements OnInit {
     for(let i =0 ; i < this.orders.length ; i++){
       this._products.order(this.orders[i].product ,  this.orders[i].quantaty ).subscribe(
         (data)=>{
-          alert("Thanks For Your Orders")
           localStorage.removeItem("cart")
           localStorage.removeItem("orders")
           localStorage.removeItem("checkout")
-          console.log(data)
-          this.route.navigate(['/search'])
       },
 
         (err)=> console.log(err)
@@ -110,6 +95,9 @@ export class CheckoutComponent implements OnInit {
     if(this.myProfile.first_name.length > 2 && this.myProfile.last_name.length > 2 && this.myProfile.mobile.length == 11 && this.myProfile.address.length > 3){
       this.updateprofile()
       this.placeOrder()
+      alert("Thanks For Your Orders")
+      this.route.navigate(['/search'])
+
     }else{
       alert('Please Fill Valid Data')
     }

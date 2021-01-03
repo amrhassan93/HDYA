@@ -34,6 +34,7 @@ import { AboutComponent } from './Components/about/about.component';
 import { AlertModule } from './_alert';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from './Components/popup/popup.component';
+import { LoaderComponent } from './Components/loader/loader.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { PopupComponent } from './Components/popup/popup.component';
     DollartoegpPipe,
     AboutComponent,
     PopupComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,7 @@ import { PopupComponent } from './Components/popup/popup.component';
     CustomFormsModule,
     ReactiveValidationModule,
     AlertModule,
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents:[ProductDetailsComponent]

@@ -29,6 +29,7 @@ export class AddToCartService {
         console.log(finaldetails);
         this.cart.push(finaldetails)
         localStorage.setItem("cart" , JSON.stringify(this.cart))
+        this.cart = []
         this.alertService.success('Success!!', this.options)
       },
       (err)=>console.log(err)
