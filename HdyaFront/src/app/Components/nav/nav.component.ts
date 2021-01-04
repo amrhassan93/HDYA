@@ -76,7 +76,10 @@ export class NavComponent implements OnInit {
 
   logout(){
     this.auth.logout().subscribe(
-      (data)=>localStorage.removeItem('token'),
+      (data)=>{
+        localStorage.removeItem('token')
+        this.route.navigate(['/login'])
+      },
       (err)=>console.log(err)
     )
   }
