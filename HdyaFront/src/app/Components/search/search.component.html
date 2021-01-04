@@ -89,7 +89,7 @@
                             <label for="minpricefilter">Min price</label>
                             <p>{{minprice}}</p>
                             <input #filterminprice (change)="minPrice(filterminprice.value)" [(ngModel)]="minprice" type="range" max="10000" min="0" step="1" value="0" id="minpricefilter">
-
+                            <br>
                             <label for="maxpricefilter">Max price</label>
                             <p>{{maxprice}}</p>
                             <input #filtermaxprice (change)="maxPrice(filtermaxprice.value)" [(ngModel)]="maxprice" type="range" max="10000" min="0" step="1" value="1000" id="maxpricefilter">
@@ -116,7 +116,7 @@
                             <label for="minrangefilter">Min Age</label>
                             <p>{{minrange}}</p>
                             <input #filterminage (change)="minAge(filterminage.value)" [(ngModel)]="minrange" type="range" max="100" min="0" step="1" value="10" id="minrangefilter">
-
+                            <br> 
                             <label for="maxrangefilter">Max Age</label>
                             <p>{{maxrange}}</p>
                             <input #filtermaxage (change)="maxAge(filtermaxage.value)" [(ngModel)]="maxrange" type="range" max="100" min="0" step="1" value="70" id="maxrangefilter">
