@@ -1,4 +1,4 @@
-<app-loader *ngIf="saleList.length > 0"></app-loader>
+<app-loader *ngIf="!saleList.length > 0"></app-loader>
 
 <!-- ******* Start of Categories********** -->
 <div class="container-fluid">
@@ -159,20 +159,17 @@
 
     <div class="container new_deals text-center">
         <div class="row karl-new-arrivals">
-
             <!-- Single gallery Item Start -->
-            <div *ngFor="let prd of saleList" class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1000">
+            <div *ngFor="let prd of saleList" class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig m-2 mb-3" style="width: 30%; text-align: center;" data-wow-delay="0.2s" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1000">
                 <!-- Product Image -->
                 <div class="product-img">
-                    <img *ngIf="prd.images[0]" src="{{prd.images[0].image}}" alt="hand6" style="width:250px;height:250px;">
-                    <!-- <div class="product-quicview">
-                        <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                    </div> -->
+                    <!-- <a (click)="orderNow()" class="btn karl-checkout text-white">Place Order</a> -->
+                    <img *ngIf="prd.images[0]" src="{{prd.images[0].image}}" alt="hand6" style="width:250px;height:200px;">
                 </div>
                 <!-- Product Description -->
                 <div class="product-description">
                     <!-- Add to Cart -->
-                    <a routerLink="#" class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
+                    <a class="add-to-cart-btn" (click)="add(prd.id)" style="cursor: pointer;">ADD TO CART</a>
                 </div>
             </div>
         </div>

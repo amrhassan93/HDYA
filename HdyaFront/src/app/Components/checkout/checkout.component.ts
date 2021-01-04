@@ -29,7 +29,7 @@ export class CheckoutComponent implements OnInit {
 
   options = {
     autoClose: true,
-    keepAfterRouteChange: false
+    keepAfterRouteChange: true
 };
 
   constructor(private _products:ProductsService,
@@ -92,11 +92,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   orderNow(){
-    if(this.myProfile.first_name.length > 2 && this.myProfile.last_name.length > 2 && this.myProfile.mobile.length == 11 && this.myProfile.address.length > 3){
+    if(this.myProfile.first_name.length > 2 && this.myProfile.last_name.length > 2 &&  this.myProfile.mobile && this.myProfile.mobile.length == 11 && this.myProfile.address && this.myProfile.address.length > 3){
       this.updateprofile()
       this.placeOrder()
-      
-      alert("Thanks For using HDYA :)")
+
+      this.alertService.success('Thanks For using HDYA :)', this.options)          
       this.route.navigate(['/search'])
 
     }else{

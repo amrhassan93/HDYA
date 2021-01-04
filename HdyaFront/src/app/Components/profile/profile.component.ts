@@ -195,7 +195,11 @@ export class ProfileComponent implements OnInit {
     )
   }
   cancelOrder(order_id:number){
-    this._productService.deleteOrder(order_id).subscribe(console.log,console.log)
+    this._productService.deleteOrder(order_id).subscribe(
+     (data)=>{
+       location.reload()
+     } ,
+     (err)=> console.log(err))
     
   } 
 }

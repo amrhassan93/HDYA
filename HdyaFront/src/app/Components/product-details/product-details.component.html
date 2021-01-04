@@ -19,29 +19,6 @@
             <div class="row">
 
                 <div class="col-12 col-md-6">
-                    <!-- <div class="single_product_thumb">
-                        <div id="product_details_slider" class="carousel slide" data-ride="carousel">
-
-                            <ol class="carousel-indicators">
-                                <li *ngFor="let image of productdetails.images" class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url({{image.image}});">
-                                </li>
-                            </ol>
-
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <a class="gallery_img" href="{{productdetails.images[0].image}}">
-                                        <img class="d-block w-100" src="{{productdetails.images[0].image}}" alt="First slide">
-                                    </a>
-                                </div>
-
-                                <div *ngFor="let image of productdetails.images" class="carousel-item">
-                                    <a class="gallery_img" href={{image.image}}>
-                                        <img class="d-block w-100" src={{image.image}} alt="Second slide">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
@@ -72,44 +49,25 @@
                     </div>
                 </div>
                 <br>
-                <!-- <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-                 -->
-                <!-- Modal content-->
-                <!-- <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-                      <p>Some text in the modal.</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
+
 
                 <div class="col-12 col-md-6">
                     <div class="single_product_desc pl-5">
-                        <h4 class="title"><a>{{productdetails.name}}</a></h4>
-                        <!-- <select style="background-color:#f4f2f8;" #preview> -->
-                        <!-- <h6>Reviews</h6> -->
-                        <!-- <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option> -->
-                        <!-- </select> -->
+                        <p *ngIf="onSale == true" class="animate__flash">Sale</p>
 
-                        <p *ngIf="countOfReviews != 0">count of Rates {{countOfReviews}}</p>
-                        <h3 *ngIf="avrOfReviews != 0"> Average Rate: {{avrOfReviews}}</h3>
+                        <h4 class="title" style="font-weight: 600;"><a>{{productdetails.name}}</a></h4>
+
+
+                        <p *ngIf="countOfReviews != 0" style="font-weight: 600;">count of Rates {{countOfReviews}}</p>
+                        <div>
+                            <i *ngFor="let star of avrOfReviewsList" class="fa fa-star fa-lg" style="color: rgb(210, 57, 59);" aria-hidden="true"></i>
+                            <i *ngIf="halfStar == true" class="fas fa-star-half-alt fa-lg" style="color: rgb(210, 57, 59);" aria-hidden="true"></i>
+                        </div>
                         <br>
 
                         <h4 class="price">{{ productdetails.price | currency:'EGP ' }}</h4>
 
-                        <p class="available">Available: <span class="text-muted">In Stock</span></p>
+
                         <div class="widget size mb-50">
                             <h6 class="widget-title m-2">Age</h6>
                             <div class="widget-desc">
@@ -256,15 +214,7 @@
                                             <a><i class="fas fa-chart-line"></i></a>
                                         </div>
                                     </form>
-                                    <div class="share_wf mt-30">
-                                        <p>Share With Friend</p>
-                                        <div class="_icon">
-                                            <a href="#"> <i class="fab fa-facebook" style="color:rgb(66,103,178);"> </i> </a>
-                                            <a href="#"><i class="fab fa-twitter" style="color:rgb(29,161,242)"> </i> </a>
-                                            <a href="#"> <i class="fab fa-pinterest" style="color:rgb(221, 75, 57)"> </i> </a>
-                                            <a href="#"> <i class="fab fa-google-plus-square" style="color:rgb(189,8,28)"> </i> </a>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -333,72 +283,3 @@
             </div>
         </div>
     </section>
-    <!-- ------------------------------------------------------------------------------------ -->
-    <!-- <section class="you_may_like_area clearfix">
-        <div class="container text-center">
-            <div class="section_heading text-center">
-                <h2>Related Products</h2>
-            </div>
-            <div class="row">
-                <div *ngFor="let product of filteredList" class="relprd col-md-4">
-                    <div class="product-img">
-                        <img src="../../../assets/images/hand15.jpg" alt="hand15">
-                        <div class="product-quicview">
-                            <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-description">
-                        <h4 class="product-price">{{product.price}}</h4>
-                        <p>{{product.name}}</p>
-                        <a class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-    <select #selCat [(ngModel)]="selCatID" >
-    <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
-    </select>
-    
-
-<p>review</p>
-<select [(ngModel)]="review" >
-            <option *ngFor="let re of review">{{re.rate}}</option>
-        </select>
-
-<div class="container text-center">
-        <h3 *ngIf="countOfReviews != 0">Count Of Reviews : {{countOfReviews}}</h3>
-        <h3 *ngIf="avrOfReviews != 0">avr Of Reviews : {{avrOfReviews}}</h3>
-
-        <div *ngFor="let rev of reviewList">
-            <h4>rate: {{rev.rate}}</h4>
-            <h4>body: {{rev.body}}</h4>
-            <h4>user: {{rev.user}}</h4>
-            <hr>
-        </div>
-    </div>
-
-
- <select #preview>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-
-</select>
-<textarea #pcomment>write </textarea>
-<button type="submit" (click)="reviewFun(pcomment.value,preview.value)">ok</button>
-<button type="submit" [disabled]="">report review</button>
-
-<br> <br> -
-
-
-
-    </select> 
-    <textarea #pcomment>write </textarea>
-    <button type="submit" (click)="reviewFun(pcomment.value,preview.value)">ok</button> -->
-    <!-- <textarea #preport></textarea>
-    <button type="submit" (click)="reportproduct(preport.value)">Report</button> -->

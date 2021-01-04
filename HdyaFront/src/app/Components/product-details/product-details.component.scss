@@ -68,6 +68,16 @@
     width: 100%;
 }
 
+.animate__flash {
+    background-color: rgb(210, 57, 59);
+    color: whitesmoke;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 30px;
+    padding: 15px;
+    font-style: italic;
+}
+
 .single_product_thumb .carousel-indicators li {
     background-position: center center;
     background-size: cover;
@@ -395,4 +405,3 @@
     padding-left: 7px;
     padding-right: 7px;
 }
-

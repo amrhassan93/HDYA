@@ -24,6 +24,8 @@ import { pid } from 'process';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
+  onSale:boolean = false
+
   myID:number = 0
   orders:Array<object> = []
   occassionList:Occassion[] = [];
@@ -37,8 +39,8 @@ export class ProductDetailsComponent implements OnInit {
   productList:Product[] = [] ;
   filteredList:Product[]=[] ;
   reatValue:number = 0
-
-
+  avrOfReviewsList = []
+  halfStar:boolean = false
   productdetails:Product = {id : 0 ,
                         name : "" ,
                         price: 0,
@@ -121,6 +123,10 @@ export class ProductDetailsComponent implements OnInit {
     this._products.viewProductById(id).subscribe(
       (data)=>{
         this.productdetails=data
+        if(this.productdetails.category == 1){
+          this.onSale = true
+        }
+
         if(this.productdetails.gender == 'f'){
           this.productdetails.gender = "Female"
         }else if(this.productdetails.gender == 'm'){
@@ -162,6 +168,15 @@ export class ProductDetailsComponent implements OnInit {
         }, 0);
         if (sum!=0){
         this.avrOfReviews = sum / onlyReviews.length;
+        
+          for (let i=0 ; i<parseInt(this.avrOfReviews) ; i++){
+            this.avrOfReviewsList.push(this.avrOfReviews[i])
+          }
+
+        if (this.avrOfReviewsList.length < this.avrOfReviews){
+          this.halfStar = true
+        }
+
         }
       },
       (err)=> console.log(err),
@@ -179,6 +194,10 @@ export class ProductDetailsComponent implements OnInit {
       )
 
       
+
+
+        
+
   }
   popUpProduct(product_id:number){
     this.productPopUp =  this.productList.find((product)=>{ 

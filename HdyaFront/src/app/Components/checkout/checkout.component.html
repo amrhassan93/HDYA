@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+            <div class="col-12 col-md-6 col-lg-5 ml-lg-auto" style="background-color:#E3EBF9 ;">
                 <div class="order-details-confirmation" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1000">
 
                     <div class="cart-page-heading">
@@ -55,7 +55,9 @@
                         <li><span>Shipping</span> <span>Free</span></li>
                         <li><span>Total</span> <span>{{checkout.totalPrice | currency:'EGP ' }}</span></li>
                     </ul>
+                    <img src="../../../assets/images/Order-Button-to-Top-Down-View-Delivery-Truck-on-Road-Animation.gif" (click)="orderNow()" style="height: 200px;width: 100%; cursor: pointer;" alt="">
                     <a (click)="orderNow()" class="btn karl-checkout text-white">Place Order</a>
+
                 </div>
             </div>
         </div>

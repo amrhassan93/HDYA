@@ -14,6 +14,8 @@
                                 <div class="quickview_pro_img">
                                     <img *ngIf="productPopUp.images && fromsearch == false" src="{{productPopUp.images[0].image}}" alt="{{productPopUp.name}}">
                                     <img *ngIf="productPopUp.images && fromsearch == true" src="http://127.0.0.1:8000{{productPopUp.images[0].image}}" alt="{{productPopUp.name}}">
+                                    <img *ngIf="!productPopUp.images" src="../../../assets/images/productunknown.png" style="width: 150px; height:150px;" alt="{{productPopUp.name}}">
+
                                 </div>
                             </div>
                             <div class="col-12 col-lg-7">

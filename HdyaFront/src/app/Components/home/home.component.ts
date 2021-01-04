@@ -3,7 +3,7 @@ import * as AOS from 'aos';
 import { ProductsService } from '../../services/products.service'
 import { Category } from '../../models/interfaces/category'
 import { Product } from '../../models/interfaces/product'
-
+import { AddToCartService } from '../../services/add-to-cart.service'
 
 declare var jQuery: any;
 
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   productparams: {[k: string]: any} = {}
 
 
-  constructor(private _products:ProductsService) { }
+  constructor(private _products:ProductsService , private _addCart:AddToCartService)   { }
 
   ngOnInit(){
     AOS.init();
@@ -42,6 +42,10 @@ export class HomeComponent implements OnInit {
   }
   catSearch(catId:number){
     localStorage.setItem('catsearch' ,JSON.stringify(catId) )
+  }
+
+  add(product_id:number){
+    this._addCart.addCart(product_id)
   }
 
 }
