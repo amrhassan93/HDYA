@@ -35,6 +35,7 @@ import { AlertModule } from './_alert';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from './Components/popup/popup.component';
 import { LoaderComponent } from './Components/loader/loader.component';
+import { ForgetpasswordComponent } from './Components/forgetpassword/forgetpassword.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { LoaderComponent } from './Components/loader/loader.component';
     AboutComponent,
     PopupComponent,
     LoaderComponent,
+    ForgetpasswordComponent,
   ],
   imports: [
     BrowserModule,

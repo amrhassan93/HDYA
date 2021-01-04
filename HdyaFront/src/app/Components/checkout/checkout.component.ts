@@ -71,7 +71,7 @@ export class CheckoutComponent implements OnInit {
    
 
     this._auth.editprofile(this.editparams).subscribe(
-      (data)=>console.log(data),
+      (data)=>console.log("Ok"),
       (err)=>console.log(err) 
     )
   }
