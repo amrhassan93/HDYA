@@ -1,246 +1,11 @@
 <app-loader *ngIf="loaderStatus == false"></app-loader>
 <!-- <app-loader *ngIf="!myProducts && !myProducts.length > 0"></app-loader> -->
-<br><br>
+
+<br> <br> <br>
+ 
 <div class="container">
     <form>
         <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    <img *ngIf="myprofile.avatar" src="{{myprofile.avatar}}" alt="" />
-                    <img *ngIf="!myprofile.avatar" src="../../../assets/images/icon.jpeg" alt="" />
-                    <!-- <img *ngIf="myprofile.avatar && myprofile.gender == f" src="../../../assets/images/avatar-4_ozhrib.png" alt="" /> -->
-                    <!-- <div class="file btn btn-lg btn-primary"> -->
-                    <!-- Change Photo
-                        <input type="file" name="file" /> -->
-                    <!-- </div> -->
-                    <br><br>
-                    <h4 style="color: rgb(37,42,51);">{{myprofile.username}}</h4>
-                </div>
-            </div>
-            <div class="col-md-6 p-4">
-                <div class="profile-head">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" *ngIf="myProducts.length > 0" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" *ngIf="incomingOrdersToHandle.length > 0" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false">Orders To Handle</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" *ngIf="myOrders.length > 0" id="orders-tab" data-toggle="tab" href="#myorders" role="tab" aria-controls="myorders" aria-selected="false">My Orders</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" routerLink='./edit' />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>User Name</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{myprofile.username}}</p>
-                            </div>
-                        </div><br>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>First Name</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{myprofile.first_name}}</p>
-                            </div>
-                        </div><br>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Last Name</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{myprofile.last_name}}</p>
-                            </div>
-                        </div><br>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Email</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{myprofile.email}}</p>
-                            </div>
-                        </div><br>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Phone</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{myprofile.mobile}}</p>
-                            </div>
-                        </div><br>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Address</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{myprofile.address}}</p>
-                            </div>
-                        </div><br>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Bithday</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{myprofile.birth_date}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="row">
-                            <div class="col-12 ml-1 mb-5">
-                                <table class="table table-responsive ">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th class="col-md-3">Product Name</th>
-                                            <th class="col-md-3">Price</th>
-                                            <th class="col-md-3">Created At</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let prd of myProducts  | paginate: { id: 'product_pagination',
-                                            itemsPerPage: 6,
-                                            currentPage: productpage,
-                                            totalItems: totalProductsRecords} ; let i=index">
-                                            <td>{{i+1}}</td>
-                                            <td class="cart_product_img text-center" class="col-md-3">
-                                                <h6><a [routerLink]="['/productdetails',prd.id]">{{prd.name}}</a></h6>
-                                            </td>
-                                            <td class="price" class="col-md-3"><span>{{prd.price}}</span></td>
-                                            <td class="qty" class="col-md-3">
-                                                <div class="quantity">
-                                                    <span>{{prd.created_at}}</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                                <div>
-                                    <pagination-controls responsive="true" id="product_pagination" maxSize="5" directionLinks="true" (pageChange)="productpage = $event"></pagination-controls>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-                        <div class="row">
-                            <div class="col-12 ml-1 mb-5">
-                                <table class="table table-responsive ">
-                                    <thead>
-                                        <tr>
-                                            <th class="col-md-3">No.</th>
-                                            <th class="col-md-3">Product</th>
-                                            <th class="col-md-3">Quantity</th>
-                                            <th class="col-md-3">Date</th>
-                                            <th class="col-md-3">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let order of incomingOrdersToHandle  | paginate: { id: 'incoming_pagination',
-                                            itemsPerPage: 6,
-                                            currentPage: incommingorderspage,
-                                            totalItems: totaloncomingOrdersRecords} ; let i=index">
-
-                                            <td>
-                                                {{i+1}}
-                                            </td>
-                                            <td class="cart_product_img text-center" class="col-md-3">
-                                                <h6><a [routerLink]="['/productdetails',order.product_id]">{{order.product_name}}</a></h6>
-                                            </td>
-                                            <td class="qty" class="col-md-3">
-                                                <div class="quantity">
-                                                    <span>{{order.Quantity}}</span>
-                                                </div>
-                                            </td>
-                                            <td class="total_price" class="col-md-3"><span>{{order.created_at}}</span></td>
-                                            <td class="total_price" class="col-md-3"><span>{{order.status}}</span></td>
-                                            <td class="total_price" class="col-md-3"><span><i class="far fa-trash-alt" (click)="cancelOrder(order.order_id)"></i></span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <br>
-                                <div>
-                                    <pagination-controls responsive="true" id="incoming_pagination" maxSize="5" directionLinks="true" (pageChange)="incommingorderspage = $event"></pagination-controls>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="myorders" role="tabpanel" aria-labelledby="MyOrders-tab">
-                        <div class="row">
-                            <div class="col-12 ml-1 mb-5">
-                                <table class="table table-responsive ">
-                                    <thead>
-                                        <tr>
-                                            <th class="col-md-3">No.</th>
-                                            <th class="col-md-3">Product</th>
-                                            <th class="col-md-3">Price</th>
-                                            <th class="col-md-3">Quantity</th>
-                                            <th class="col-md-3">Total</th>
-                                            <th class="col-md-3">Date</th>
-                                            <th class="col-md-3">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let order of myOrders  | paginate: { id: 'orders_pagination',
-                                            itemsPerPage: 6,
-                                            currentPage: orderpage,
-                                            totalItems: totalOrdersRecords} ; let i=index">
-
-                                            <td>
-                                                {{i+1}}
-                                            </td>
-                                            <td class="cart_product_img text-center" class="col-md-3">
-                                                <h6><a [routerLink]="['/productdetails',order.product_id]">{{order.product_name}}</a></h6>
-                                            </td>
-                                            <td class="price" class="col-md-3"><span>{{order.product_price}}</span></td>
-                                            <td class="qty" class="col-md-3">
-                                                <div class="quantity">
-                                                    <span>{{order.Quantity}}</span>
-                                                </div>
-                                            </td>
-                                            <td class="total_price" class="col-md-3"><span>{{order.Total}}</span></td>
-                                            <td class="total_price" class="col-md-3"><span>{{order.created_at}}</span></td>
-                                            <td class="total_price" class="col-md-3"><span>{{order.status}}</span></td>
-                                            <td class="total_price" class="col-md-3"><span><i class="far fa-trash-alt" (click)="cancelOrder(order.order_id)"></i></span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <br>
-                                <div>
-                                    <pagination-controls responsive="true" id="orders_pagination" maxSize="5" directionLinks="true" (pageChange)="orderpage = $event"></pagination-controls>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-</div> -->
-<div class="container">
-    <form>
-        <div class="row">
-
-
-
-
 
             <div class="col-md-4">
                 <div class="profile-img">
@@ -281,208 +46,202 @@
                 <div class="row">
                     <!-- <div class="col"> -->
 
-                    <div class="col">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>User Name</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{myprofile.username}}</p>
-                                    </div>
-                                </div><br>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>First Name</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{myprofile.first_name}}</p>
-                                    </div>
-                                </div><br>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Last Name</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{myprofile.last_name}}</p>
-                                    </div>
-                                </div><br>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Email</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{myprofile.email}}</p>
-                                    </div>
-                                </div><br>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Phone</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{myprofile.mobile}}</p>
-                                    </div>
-                                </div><br>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Address</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{myprofile.address}}</p>
-                                    </div>
-                                </div><br>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Bithday</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{myprofile.birth_date}}</p>
+                        <div class="col">
+                            <div class="tab-content profile-tab" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>User Name</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{myprofile.username}}</p>
+                                        </div>
+                                    </div><br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>First Name</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{myprofile.first_name}}</p>
+                                        </div>
+                                    </div><br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Last Name</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{myprofile.last_name}}</p>
+                                        </div>
+                                    </div><br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Email</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{myprofile.email}}</p>
+                                        </div>
+                                    </div><br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Phone</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{myprofile.mobile}}</p>
+                                        </div>
+                                    </div><br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Address</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{myprofile.address}}</p>
+                                        </div>
+                                    </div><br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Bithday</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{myprofile.birth_date}}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <div class="row">
-                                    <div class="col-12 ml-1 mb-5">
-                                        <table class="table table-responsive ">
-                                            <thead>
-                                                <tr>
-                                                    <th>No.</th>
-                                                    <th class="col-md-3">Product Name</th>
-                                                    <th class="col-md-3">Price</th>
-                                                    <th class="col-md-3">Created At</th>
-                                                    <!-- <th class="col-md-3">Total</th> -->
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let prd of myProducts  | paginate: { id: 'listing_pagination',
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="row">
+                                        <div class="col-12 ml-1 mb-5">
+                                            <table class="table table-responsive ">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th class="col-md-3">Product Name</th>
+                                                        <th class="col-md-3">Price</th>
+                                                        <th class="col-md-3">Created At</th>
+                                                        <!-- <th class="col-md-3">Total</th> -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let prd of myProducts  | paginate: { id: 'listing_pagination',
                                                         itemsPerPage: 6,
                                                         currentPage: productpage,
                                                         totalItems: totalProductsRecords} ; let i=index">
-                                                    <td>{{i+1}}</td>
-                                                    <td class="cart_product_img text-center" class="col-md-3">
-                                                        <h6><a [routerLink]="['/productdetails',prd.id]">{{prd.name}}</a></h6>
-                                                    </td>
-                                                    <td class="price" class="col-md-3"><span>{{prd.price}}</span></td>
-                                                    <td class="qty" class="col-md-3">
-                                                        <div class="quantity">
-                                                            <span>{{prd.created_at}}</span>
-                                                        </div>
-                                                    </td>
-                                                    <!-- <td class="total_price" class="col-md-3"><span>120 EGP</span></td> -->
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                        <div>
-                                            <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                                                        <td>{{i+1}}</td>
+                                                        <td class="cart_product_img text-center" class="col-md-3">
+                                                            <h6><a [routerLink]="['/productdetails',prd.id]">{{prd.name}}</a></h6>
+                                                        </td>
+                                                        <td class="price" class="col-md-3"><span>{{prd.price}}</span></td>
+                                                        <td class="qty" class="col-md-3">
+                                                            <div class="quantity">
+                                                                <span>{{prd.created_at}}</span>
+                                                            </div>
+                                                        </td>
+                                                        <!-- <td class="total_price" class="col-md-3"><span>120 EGP</span></td> -->
+                                                    </tr>
+            
+                                                </tbody>
+                                            </table>
+                                            <div>
+                                                <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-                                <div class="row">
-                                    <div class="col-12 ml-1 mb-5">
-                                        <table class="table table-responsive ">
-                                            <thead>
-                                                <tr>
-                                                    <th class="col-md-3">No.</th>
-                                                    <th class="col-md-3">Product</th>
-                                                    <th class="col-md-3">Quantity</th>
-                                                    <th class="col-md-3">Date</th>
-                                                    <th class="col-md-3">Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let order of incomingOrdersToHandle  | paginate: { id: 'listing_pagination',
+                                <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                                    <div class="row">
+                                        <div class="col-12 ml-1 mb-5">
+                                            <table class="table table-responsive ">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="col-md-3">No.</th>
+                                                        <th class="col-md-3">Product</th>
+                                                        <th class="col-md-3">Quantity</th>
+                                                        <th class="col-md-3">Date</th>
+                                                        <th class="col-md-3">Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let order of incomingOrdersToHandle  | paginate: { id: 'listing_pagination',
                                                         itemsPerPage: 6,
                                                         currentPage: incommingorderspage,
                                                         totalItems: totaloncomingOrdersRecords} ; let i=index">
-
-                                                    <td>
-                                                        {{i+1}}
-                                                    </td>
-                                                    <td class="cart_product_img text-center" class="col-md-3">
-                                                        <h6><a [routerLink]="['/productdetails',order.product_id]">{{order.product_name}}</a></h6>
-                                                    </td>
-                                                    <td class="qty" class="col-md-3">
-                                                        <div class="quantity">
-                                                            <span>{{order.Quantity}}</span>
-                                                        </div>
-                                                    </td>
-                                                    <td class="total_price" class="col-md-3"><span>{{order.created_at}}</span></td>
-                                                    <td class="total_price" class="col-md-3"><span>{{order.status}}</span></td>
-                                                    <td class="total_price" class="col-md-3"><span><i class="far fa-trash-alt" (click)="cancelOrder(order.order_id)"></i></span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <br>
-                                        <div>
-                                            <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+            
+                                                        <td>
+                                                            {{i+1}}
+                                                        </td>
+                                                        <td class="cart_product_img text-center" class="col-md-3">
+                                                            <h6><a [routerLink]="['/productdetails',order.product_id]">{{order.product_name}}</a></h6>
+                                                        </td>
+                                                        <td class="qty" class="col-md-3">
+                                                            <div class="quantity">
+                                                                <span>{{order.Quantity}}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td class="total_price" class="col-md-3"><span>{{order.created_at}}</span></td>
+                                                        <td class="total_price" class="col-md-3"><span>{{order.status}}</span></td>
+                                                        <td class="total_price" class="col-md-3"><span><i class="far fa-trash-alt" (click)="cancelOrder(order.order_id)"></i></span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <br>
+                                            <div>
+                                                <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="myorders" role="tabpanel" aria-labelledby="MyOrders-tab">
-                                <div class="row">
-                                    <div class="col-12 ml-1 mb-5">
-                                        <table class="table table-responsive ">
-                                            <thead>
-                                                <tr>
-                                                    <th class="col-md-3">No.</th>
-                                                    <th class="col-md-3">Product</th>
-                                                    <th class="col-md-3">Price</th>
-                                                    <th class="col-md-3">Quantity</th>
-                                                    <th class="col-md-3">Total</th>
-                                                    <th class="col-md-3">Date</th>
-                                                    <th class="col-md-3">Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let order of myOrders  | paginate: { id: 'listing_pagination',
+            
+                                <div class="tab-pane fade" id="myorders" role="tabpanel" aria-labelledby="MyOrders-tab">
+                                    <div class="row">
+                                        <div class="col-12 ml-1 mb-5">
+                                            <table class="table table-responsive ">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="col-md-3">No.</th>
+                                                        <th class="col-md-3">Product</th>
+                                                        <th class="col-md-3">Price</th>
+                                                        <th class="col-md-3">Quantity</th>
+                                                        <th class="col-md-3">Total</th>
+                                                        <th class="col-md-3">Date</th>
+                                                        <th class="col-md-3">Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let order of myOrders  | paginate: { id: 'listing_pagination',
                                                         itemsPerPage: 6,
                                                         currentPage: orderpage,
                                                         totalItems: totalOrdersRecords} ; let i=index">
-
-                                                    <td>
-                                                        {{i+1}}
-                                                    </td>
-                                                    <td class="cart_product_img text-center" class="col-md-3">
-                                                        <h6><a [routerLink]="['/productdetails',order.product_id]">{{order.product_name}}</a></h6>
-                                                    </td>
-                                                    <td class="price" class="col-md-3"><span>{{order.product_price}}</span></td>
-                                                    <td class="qty" class="col-md-3">
-                                                        <div class="quantity">
-                                                            <span>{{order.Quantity}}</span>
-                                                        </div>
-                                                    </td>
-                                                    <td class="total_price" class="col-md-3"><span>{{order.Total}}</span></td>
-                                                    <td class="total_price" class="col-md-3"><span>{{order.created_at}}</span></td>
-                                                    <td class="total_price" class="col-md-3"><span>{{order.status}}</span></td>
-                                                    <td class="total_price" class="col-md-3"><span><i class="far fa-trash-alt" (click)="cancelOrder(order.order_id)"></i></span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <br>
-                                        <div>
-                                            <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+            
+                                                        <td>
+                                                            {{i+1}}
+                                                        </td>
+                                                        <td class="cart_product_img text-center" class="col-md-3">
+                                                            <h6><a [routerLink]="['/productdetails',order.product_id]">{{order.product_name}}</a></h6>
+                                                        </td>
+                                                        <td class="price" class="col-md-3"><span>{{order.product_price}}</span></td>
+                                                        <td class="qty" class="col-md-3">
+                                                            <div class="quantity">
+                                                                <span>{{order.Quantity}}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td class="total_price" class="col-md-3"><span>{{order.Total}}</span></td>
+                                                        <td class="total_price" class="col-md-3"><span>{{order.created_at}}</span></td>
+                                                        <td class="total_price" class="col-md-3"><span>{{order.status}}</span></td>
+                                                        <td class="total_price" class="col-md-3"><span><i class="far fa-trash-alt" (click)="cancelOrder(order.order_id)"></i></span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <br>
+                                            <div>
+                                                <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-
-
-
-
-
 
                     <!-- </div> -->
                 </div>
-
+                
 
             </div>
 
