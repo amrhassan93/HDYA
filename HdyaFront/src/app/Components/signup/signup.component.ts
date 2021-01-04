@@ -60,7 +60,7 @@ export class SignupComponent implements OnInit {
 
         if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
 
-            return;
+            return; 
 
         }
 

@@ -1,5 +1,5 @@
     section {
-        background-image: url(../../../assets/images/signupbg.jpg);
+        background-image: url(../../../assets/images/register.webp);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -114,8 +114,12 @@
         }
     }
 
-.ng-valid[required],.ng-valid.required  {
-        border-left: 5px solid #42A948; /* green */
+// .ng-valid[required],.ng-valid.required  {
+//         border-left: 5px solid #42A948; /* green */
+//       }
+
+ .ng-valid:not(form) {
+       border-left: 5px solid #42A948; /* green */
       }
       
       .ng-invalid:not(form)  {
