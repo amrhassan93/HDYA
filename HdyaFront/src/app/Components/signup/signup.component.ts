@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service'
-import { FormControl,FormGroup ,FormArray,Validators} from '@angular/forms';
+import { FormGroup ,Validators} from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import {ConfirmedpasswordService} from '../../services/confirmedpassword.service'
 import { Router } from '@angular/router'

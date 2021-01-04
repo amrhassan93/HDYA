@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service'
+import { AlertService } from 'src/app/_alert';
 
 
 @Component({
@@ -9,14 +10,18 @@ import { AuthenticationService } from '../../services/authentication.service'
 })
 export class ForgetpasswordComponent implements OnInit {
   email:string = ""
-  constructor(private _auth:AuthenticationService) { }
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+};
+  constructor(private _auth:AuthenticationService,protected alertService: AlertService) { }
 
   ngOnInit(): void {
   }
 
   reset(){
     this._auth.resetPassword(this.email).subscribe(
-      (data)=>{alert("Check Your Email") }, console.log)
+      (data)=>{this.alertService.info('Check Your Email !!', this.options) }, console.log)
   }
 
 }

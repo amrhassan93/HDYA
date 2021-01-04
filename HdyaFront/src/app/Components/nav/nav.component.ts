@@ -3,8 +3,8 @@ import { AuthenticationService } from '../../services/authentication.service'
 import { ProductsService } from '../../services/products.service'
 import { Product } from '../../models/interfaces/product'
 import { Category } from '../../models/interfaces/category'
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AlertService } from 'src/app/_alert';
 
 @Component({
   selector: 'app-nav',
@@ -18,9 +18,14 @@ export class NavComponent implements OnInit {
 
   categoryList:Category[]=[];
   cart:Product[] = []
+ 
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: true
+};
 
-
-  constructor(private auth:AuthenticationService,private _products:ProductsService,private route:Router) {}
+  constructor(private auth:AuthenticationService,private _products:ProductsService,private route:Router,
+    protected alertService: AlertService) {}
 
   ngOnInit(): void {
     this._products.viewProducts().subscribe(
@@ -36,35 +41,13 @@ export class NavComponent implements OnInit {
       this.cart = JSON.parse(localStorage.getItem("cart") || '{}') 
 
     }
-    // console.log(this.cart.length);
 
   }
 
   search(searchKey:string){
 
     localStorage.setItem('searchKey' , searchKey)
-    // let id = this.activerouter.snapshot.params['id']
-    // if(this.activerouter.snapshot.routeConfig ){
-
-    // }
-    // this._products.viewProducts().subscribe(
-    //   (data)=>this.productList=data.results,
-    //   (err)=> console.log(err) 
-    // )   
-
-    // for (let i = 0 ; i < this.productList.length ; i++){
-    //   if (this.productList[i].name.toLowerCase().includes(searchKey.toLowerCase())){
-    //     this.filteredProductList.push(this.productList[i])
-    //   }else{
-    //     console.log('this is not in products');
-    //   }
-    // }
-
-    // this.productList = this.filteredProductList
-    // this.filteredProductList = []
-    // console.log(this.productList)
-    // localStorage.setItem('products' ,  JSON.stringify(this.productList))
-    // return this.route.navigate(['/search'] )
+    
   }
   ngDoCheck(): void {
     //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
@@ -76,7 +59,12 @@ export class NavComponent implements OnInit {
 
   logout(){
     this.auth.logout().subscribe(
-      (data)=>localStorage.removeItem('token'),
+      (data)=>{
+        localStorage.removeItem('token')
+        this.route.navigate(['/login'])
+        this.alertService.info('See you soon :)', this.options)
+
+      },
       (err)=>console.log(err)
     )
   }

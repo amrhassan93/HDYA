@@ -12,9 +12,8 @@
                         <label for="Name">Product Name <span>*</span></label>
                         <input #pname [(ngModel)]="newproduct.name" type="text" pattern="(^[a-zA-Z0-9\s]{3,30})" class="form-control" name="Name" id="Name" value="" #NameField="ngModel" required minlength="3" maxlength="30" [class.is-valid]="NameField.valid" [class.is-invaild]="NameField.invalid && NameField.touched">
                         <div class="alert alert-danger mt-2 p-3" *ngIf="NameField.invalid && NameField.touched">
-                            <div *ngIf="NameField.hasError('required')">Product Name Is Required</div>
-                            <div *ngIf="NameField.hasError('pattern')">Product Name Must be Characters and not less than 5</div>
-                            <!-- <div *ngIf="NameField.hasError('minlength')">Product Name must be 5 letters At least </div> -->
+                            <div *ngIf="NameField.hasError('required')">Product Name is Required</div>
+                            <div *ngIf="NameField.hasError('pattern')">Product Name Must be Characters and not less than 2</div>
                             <div *ngIf="NameField.hasError('maxlength')">Product Name must be 30 Characters or less</div>
                         </div>
                     </div>
@@ -25,20 +24,17 @@
                         <div class="alert alert-danger mt-2 p-3" *ngIf="priceField.invalid && priceField.touched">
                             <div *ngIf="priceField.hasError('required')">Price Is Required</div>
                             <div *ngIf="!priceField.hasError('min')">Price Must not equal zero </div>
-                            <!-- <div *ngIf="priceField.hasError('max')">Price must be 3 numbers only </div>  -->
-                            <div *ngIf="priceField.hasError('pattern')">Price Must Be Number & not exceed 7 numbers</div>
-                            <!-- pattern="^[1-9]{1,3}[0-9]*"  start without zero -->
+                            <div *ngIf="priceField.hasError('pattern')">Price Must Be Number & not more than 7 numbers</div>
                         </div>
                     </div>
                     <div class="col-12 mb-4">
                         <div class="form-group">
                             <label for="comment">Details</label>
-                            <textarea #pdetails [(ngModel)]="newproduct.details" class="form-control" name="details" rows="5" id="comment" style="resize: none;" #detailsField="ngModel" minlength="5" maxlength="300" required pattern="(^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};.,':/?\s]{5,300})" [class.is-valid]="detailsField.valid"
-                                [class.is-invaild]="detailsField.invalid && detailsField.touched"></textarea>
+                            <textarea #pdetails [(ngModel)]="newproduct.details" class="form-control" name="details" rows="5" id="comment" style="resize: none;" #detailsField="ngModel" minlength="5" maxlength="300" required pattern="(^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};.,':/?\s]{5,300})"
+                                [class.is-valid]="detailsField.valid" [class.is-invaild]="detailsField.invalid && detailsField.touched"></textarea>
                             <div class="alert alert-danger mt-2 p-3" *ngIf="detailsField.invalid && detailsField.touched">
-                                <div *ngIf="detailsField.hasError('required')">Product Details Is Required</div>
+                                <div *ngIf="detailsField.hasError('required')">Product Details is Required</div>
                                 <div *ngIf="detailsField.hasError('pattern')">Product Details Must be Characters and not less than 5</div>
-                                <!-- <div *ngIf="NameField.hasError('minlength')">Product Name must be 5 letters At least </div> -->
                                 <div *ngIf="detailsField.hasError('maxlength')">Product Details must not exceed 300 Characters</div>
                             </div>
                         </div>
@@ -47,13 +43,6 @@
                         <label for="image">Image <span>*</span></label>
                         <input #pimages type="file" name="img" multiple required (change)="changeImageInput($event)" class="form-control" id="customFile" />
                     </div>
-                    <!-- <div *ngIf="edit == false"  class="col-12 mb-4">
-                                <ul *ngFor="let img of images">
-                                    <li style="display: inline;">
-                                        <img src="{{img}}" alt="" width="100" height="100"><i class="far fa-trash-alt" (click)="delimg(img.id)"></i>
-                                    </li>
-                                </ul>
-                            </div> -->
 
                     <div class="col-12 mb-4">
                         <ul *ngFor="let img of url ; let i=index">
@@ -79,9 +68,7 @@
                             <div class="alert alert-danger mt-2 p-3" *ngIf="ageFromField.invalid && ageFromField.touched">
                                 <div *ngIf="ageFromField.hasError('required')">Age Is Required</div>
                                 <div *ngIf="!ageFromField.hasError('min')">Age Must not equal zero </div>
-                                <!-- <div *ngIf="priceField.hasError('max')">Price must be 5 numbers only </div> -->
                                 <div *ngIf="ageFromField.hasError('pattern')">Price Must Be Number & not exceed 2 numbers</div>
-                                <!-- pattern="^[1-9]{1,3}[0-9]*"  start without zero -->
                             </div>
                         </div>
                     </div>
@@ -96,9 +83,7 @@
 
                                 <div *ngIf="ageToField.hasError('required')">Age Is Required</div>
                                 <div *ngIf="!ageToField.hasError('min')">Age Must not equal zero </div>
-                                <!-- <div *ngIf="priceField.hasError('max')">Price must be 5 numbers only </div>  -->
                                 <div *ngIf="ageToField.hasError('pattern')">Price Must Be Number & not exceed 2 numbers</div>
-                                <!-- pattern="^[1-9]{1,3}[0-9]*"  start without zero -->
                             </div>
                         </div>
                     </div>
@@ -136,12 +121,10 @@
                                     </select>
                         </div>
                     </div>
-                    <!-- <h1>{{newproduct.relationships}}</h1> -->
 
                     <button *ngIf="edit == false" (click)="addNewProduct()" class="btn karl-checkout" [disabled]="myForm.invalid">ADD</button><br><br>
                     <button *ngIf="edit == false" class="btn karl-checkout" (click)="myForm.resetForm({})">Reset</button>
 
-                    <!-- <button  (click)="addNewProduct()" class="btn btn-primary">ADD</button><br><br> -->
                     <button *ngIf="edit == true" (click)="editProduct()" class="btn karl-checkout">Save Edit</button><br><br>
                     <button *ngIf="edit == true" (click)="cancel()" class="btn karl-checkout">Cancel</button><br><br>
                 </div>
@@ -149,7 +132,7 @@
         </div>
         <div class="col-md-1 sub"></div>
         <div class="col-md-5 rules p-3">
-            <h4 style="text-align:center;">PLEASE CARFULLY! READ THIS NOTES BEFORE YOU ADD YOUR PRODUCT</h4><br>
+            <h4 style="text-align:center;">PLEASE CARFULLY! READ THIS NOTES BEFORE ADD YOUR PRODUCT</h4><br>
             <hr>
             <hr>
             <hr><br>
@@ -216,6 +199,3 @@
     </div>
 </div>
 <br>
-
-<!-- (click)="addNewProduct(pname,pprice,pdetails,pimages)" -->
-<!-- pname,pprice,pdetails,pagefrom,pageto,poccassions , pgender , prelationship ,pcategory  -->

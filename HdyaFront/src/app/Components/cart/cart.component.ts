@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { ProductsService } from '../../services/products.service'
-import { Product } from '../../models/interfaces/product'
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/_alert';
 
@@ -51,8 +50,6 @@ export class CartComponent implements OnInit {
       if(this.cart[i].productDetails.id == prd_id){
 
         this.cart[i].quantity = quantaty
-        console.log(this.cart[i].quantity);
-        console.log(this.cart); 
         localStorage.setItem('cart' ,JSON.stringify(this.cart))
       }
     }
@@ -80,13 +77,9 @@ export class CartComponent implements OnInit {
     }
     else{
       this.orders.push({product : prd_id , quantaty : quantaty})
-      
     }
-    // console.log(this.orders);
   }
-
-
-           
+    
   toCheckout(){
     let sumtotalQuantity:[] = [] ;
     for (let i in this.cart){
@@ -104,8 +97,6 @@ export class CartComponent implements OnInit {
 
   }
 
-
-
   emptyCart(){
     localStorage.removeItem("cart")
     this.alertService.warn('Cart is Empty!!', this.options)
@@ -117,5 +108,6 @@ export class CartComponent implements OnInit {
       this.cart.splice(i,1)
     }
     localStorage.setItem('cart',JSON.stringify(this.cart))
+    this.alertService.info('Removed !!', this.options)
   }
 }
