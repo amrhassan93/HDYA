@@ -120,7 +120,6 @@ export class ProductDetailsComponent implements OnInit {
 
     this._products.viewProductById(id).subscribe(
       (data)=>{
-      // console.log(this.occassionList);
         this.productdetails=data
         if(this.productdetails.gender == 'f'){
           this.productdetails.gender = "Female"
@@ -153,7 +152,6 @@ export class ProductDetailsComponent implements OnInit {
     this._products.showreviews(id).subscribe(
       (data)=> {
         this.reviewList = data
-        // console.log(this.reviewList);
         this.countOfReviews = this.reviewList.length
         let onlyReviews = []
         for(let i=0 ; i<this.reviewList.length ; i++){
@@ -162,12 +160,6 @@ export class ProductDetailsComponent implements OnInit {
         var sum = onlyReviews.reduce(function(a, b){
           return a + b;
         }, 0);
-
-        // console.log(sum);
-        
-        // console.log(this.reviewList);
-        // console.log(onlyReviews);
-        // console.log(onlyReviews);
         if (sum!=0){
         this.avrOfReviews = sum / onlyReviews.length;
         }
@@ -291,7 +283,6 @@ export class ProductDetailsComponent implements OnInit {
 ngDoCheck(): void {
   //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
   //Add 'implements DoCheck' to the class.
-  // console.log(this.productList);
   this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category)
 } 
 
@@ -348,5 +339,3 @@ openDialog(){
     nav: true
   }
 }
-
-
