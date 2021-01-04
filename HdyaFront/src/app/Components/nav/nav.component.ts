@@ -59,12 +59,21 @@ export class NavComponent implements OnInit {
 
   logout(){
     this.auth.logout().subscribe(
+<<<<<<< HEAD
       (data)=>{
         localStorage.removeItem('token')
         this.route.navigate(['/login'])
         this.alertService.info('See you soon :)', this.options)
 
       },
+||||||| 9435ba9a
+      (data)=>localStorage.removeItem('token'),
+=======
+      (data)=>{
+        localStorage.removeItem('token')
+        this.route.navigate(['/login'])
+      },
+>>>>>>> 78a5fd4cc31db860ae260378ca314582975ba14b
       (err)=>console.log(err)
     )
   }
