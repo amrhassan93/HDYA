@@ -207,7 +207,7 @@ export class ProductDetailsComponent implements OnInit {
         )
       }else{
         for(let i in this.reportProduct){
-          if(this.reviewList[i].user != this.myID){
+          if(this.reportProduct[i].user != this.myID){
               this._products.Report(body ,this.productdetails.id).subscribe(
               (data)=>  console.log(data),
               (err) => console.log(err)
