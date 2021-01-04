@@ -33,7 +33,7 @@ export class NavComponent implements OnInit {
       (err)=> console.log(err) 
     )      
     this._products.showcategories().subscribe(
-      (data)=>this.categoryList = data.results,
+      (data)=>this.categoryList = data,
       (err) => console.log(err) 
     )
 

@@ -25,7 +25,7 @@ import { pid } from 'process';
 })
 export class ProductDetailsComponent implements OnInit {
   onSale:boolean = false
-
+  is_Owner = false
   myID:number = 0
   orders:Array<object> = []
   occassionList:Occassion[] = [];
@@ -110,12 +110,12 @@ export class ProductDetailsComponent implements OnInit {
     )
 
     this._products.showoccassions().subscribe(
-      (data)=>this.occassionList=data.results,
+      (data)=>this.occassionList=data,
       (err)=>this.occassionList=err
     )
       
     this._products.showrelations().subscribe(
-      (data)=>this.relList=data.results,
+      (data)=>this.relList=data,
       (err)=>console.log(err)
     )
     
@@ -123,8 +123,12 @@ export class ProductDetailsComponent implements OnInit {
     this._products.viewProductById(id).subscribe(
       (data)=>{
         this.productdetails=data
-        if(this.productdetails.category == 1){
+        if(this.productdetails.category == 5){
           this.onSale = true
+        }
+
+        if(this.productdetails.user == this.myID){
+          this.is_Owner = true
         }
 
         if(this.productdetails.gender == 'f'){

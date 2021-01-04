@@ -5,6 +5,7 @@ import { FormBuilder } from '@angular/forms';
 import {ConfirmedpasswordService} from '../../services/confirmedpassword.service'
 import { Router } from '@angular/router'
 import * as AOS from 'aos';
+import { AlertService } from 'src/app/_alert';
 
 
 @Component({
@@ -15,7 +16,10 @@ import * as AOS from 'aos';
 export class SignupComponent implements OnInit {
 
   errors:any = []
-
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: true
+};
 
   profileForm = this.fb.group({
     firstname: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(15)]],
@@ -33,7 +37,8 @@ export class SignupComponent implements OnInit {
   constructor(private auth:AuthenticationService ,
               private route:Router ,
               private fb: FormBuilder,
-              private confirmedPassword:ConfirmedpasswordService
+              private confirmedPassword:ConfirmedpasswordService,
+              protected alertService: AlertService
               ) { 
     if (localStorage.getItem('token')){
       this.route.navigate(['/home'])
@@ -47,7 +52,7 @@ export class SignupComponent implements OnInit {
   UserRegester(username:string , email:string , password:string ,re_password:string, first_name:string , last_name:string  , mobile:string) {
     this.auth.register(username , email,password , re_password , first_name , last_name , mobile).subscribe(
       (data)=>  {
-        alert('thanks for regester please login now')
+        this.alertService.success('Thanks for register please login now', this.options)
         this.route.navigate(['/login'])
       },
       (err) => {

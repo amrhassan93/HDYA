@@ -52,16 +52,16 @@ export class SearchComponent implements OnInit {
     }
 
     this._products.showcategories().subscribe(
-      (data)=>this.categoryList = data.results,
+      (data)=>this.categoryList = data,
       (err) => console.log(err) 
     )
     this._products.showrelations().subscribe(
-      (data)=>this.relationships=data.results,
+      (data)=>this.relationships=data,
       (err)=>console.log(err) 
     )
 
     this._products.showoccassions().subscribe(
-      (data)=>this.occassions=data.results,
+      (data)=>this.occassions=data,
       (err)=>console.log(err) 
     )
   }
@@ -69,7 +69,7 @@ export class SearchComponent implements OnInit {
   showAll(){
     this._products.viewProducts().subscribe(
       (data)=>{
-        this.productList=data.results;
+        this.productList=data;
         this.moreData = data
 
       },

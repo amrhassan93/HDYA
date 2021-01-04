@@ -29,7 +29,7 @@ export class CreateProductComponent implements OnInit {
 
   options = {
     autoClose: true,
-    keepAfterRouteChange: false
+    keepAfterRouteChange: true
 };
 
   constructor(private _productservisec:ProductsService ,  private route:Router , protected alertService: AlertService) { 
@@ -56,17 +56,17 @@ export class CreateProductComponent implements OnInit {
 
 
     this._productservisec.showcategories().subscribe(
-      (data)=>this.categories=data.results,
+      (data)=>this.categories=data,
       (err)=>console.log(err) 
     )
 
     this._productservisec.showrelations().subscribe(
-      (data)=>this.relationships=data.results,
+      (data)=>this.relationships=data,
       (err)=>console.log(err) 
     )
 
     this._productservisec.showoccassions().subscribe(
-      (data)=>this.occassions=data.results,
+      (data)=>this.occassions=data,
       (err)=>console.log(err) 
     )
 
@@ -120,7 +120,9 @@ export class CreateProductComponent implements OnInit {
             )
           };
           this.ageError = false
-          alert('Your Product Was submitted successfully');
+          
+          this.alertService.success('Your Product Was submitted successfully', this.options)
+
 
           this.route.navigate([`/productdetails/${data.id}`]) 
         },
@@ -162,7 +164,7 @@ export class CreateProductComponent implements OnInit {
         (err)=>console.log(err),
       )
     };
-    alert('Your Product Was submitted successfully');
+    this.alertService.success('Your Product Was submitted successfully', this.options)
     this.route.navigate([`/productdetails/${prd_id}`]) 
     localStorage.removeItem('editprd')
   }

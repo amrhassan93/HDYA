@@ -22,22 +22,29 @@ export class HomeComponent implements OnInit {
 
 
   constructor(private _products:ProductsService , private _addCart:AddToCartService)   { }
+  // searchparams: {[k: string]: any} = {featured:true}
 
   ngOnInit(){
     AOS.init();
     this._products.showcategories().subscribe(
-      (data)=>this.categoryList = data.results,
+      (data)=>this.categoryList = data,
       (err) => console.log(err) 
     )
 
-    let list = [1,2,3,4,5,6]
+    let list = [44,46,51,58,50,53]
     for (let i in list){
       this._products.viewProductById(list[i]).subscribe(
         (data)=>this.saleList.push(data),
         (err)=>console.log(err)
-
       )
     }
+
+    // this._products.searchProducts(this.searchparams).subscribe(
+    //   (data)=>console.log(data),
+    //   (err) => console.log(err)
+      
+    // )
+
 
   }
   catSearch(catId:number){
