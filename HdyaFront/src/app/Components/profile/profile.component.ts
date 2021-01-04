@@ -31,8 +31,6 @@ export class ProfileComponent implements OnInit {
   orderpage:number=1
   incommingorderspage:number=1
 
-
-  
   incomingOrders:Array<object> = []
   incomingOrdersToHandle:Array<object> = []
   usersList:Array<object> =[]
