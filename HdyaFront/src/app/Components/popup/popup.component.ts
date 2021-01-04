@@ -25,25 +25,7 @@ export class PopupComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.data);
     
-
-    
-
-    // this._auth.userProfile().subscribe(
-    //   (data)=>{
-    //     this.myID = data.id
-    //     // console.log(this.myID);
-        
-    //   },
-    //   (err)=>console.log(err))
-
-    // this._products.showorders().subscribe(
-    //   (data)=>console.log(data),
-    //   (err)=>console.log(err))
-
-
-
   }
 
 
@@ -59,7 +41,6 @@ export class PopupComponent implements OnInit {
           },
         (err) => console.log(err)
       )
-    // localStorage.setItem('errmsg' , this.msgBody)
   }
 
   // reportproduct(body:string){
