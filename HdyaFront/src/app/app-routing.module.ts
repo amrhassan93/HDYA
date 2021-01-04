@@ -1,3 +1,4 @@
+import { ForgetpasswordComponent } from './Components/forgetpassword/forgetpassword.component';
 import { CreateProductComponent } from './Components/create-product/create-product.component';
 import { SearchComponent } from './Components/search/search.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
@@ -12,9 +13,10 @@ import { SignupComponent } from './Components/signup/signup.component';
 import { EditComponent } from './Components/edit/edit.component'
 import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.component';
 import { AboutComponent } from './Components/about/about.component';
+import { LoaderComponent } from './Components/loader/loader.component';
 
 const routes: Routes = [
-  {path:'',redirectTo:'/search',pathMatch:'full'},
+  {path:'',redirectTo:'/home',pathMatch:'full'},
   {path:'profile',component:ProfileComponent},
   {path:'about',component:AboutComponent},
   {path:'profile/edit',component:EditComponent},
@@ -26,6 +28,7 @@ const routes: Routes = [
   {path:'checkout',component:CheckoutComponent},
   {path:'productdetails/:id',component:ProductDetailsComponent},
   {path:'search',component:SearchComponent},
+  {path:'forgetpassword',component:ForgetpasswordComponent},
   {path:'**',component:PagenotfoundComponent},
 ];
 

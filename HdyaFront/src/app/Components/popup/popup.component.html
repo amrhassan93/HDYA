@@ -1,0 +1,14 @@
+<div class="container">
+    <h1 mat-dialog-title>Report Form</h1>
+    <div mat-dialog-content>
+        <textarea #preport [(ngModel)]="msgBody" placeholder="Write reasons for reporting this product"></textarea>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close>Close</button>
+        <button (click)="sendmsg()" mat-button>Send</button>
+    </div>
+</div>
+
+<!-- 
+<textarea #preport></textarea>
+<button type="submit" (click)="reportproduct(preport.value)">Report</button> -->

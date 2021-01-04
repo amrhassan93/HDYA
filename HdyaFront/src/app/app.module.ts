@@ -32,7 +32,10 @@ import { CustomFormsModule } from 'ng2-validation'
 import { DollartoegpPipe } from './Pipes/dollartoegp.pipe';
 import { AboutComponent } from './Components/about/about.component';
 import { AlertModule } from './_alert';
-import { SpinnerComponent } from './spinner/spinner.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PopupComponent } from './Components/popup/popup.component';
+import { LoaderComponent } from './Components/loader/loader.component';
+import { ForgetpasswordComponent } from './Components/forgetpassword/forgetpassword.component';
 
 
 @NgModule({
@@ -53,7 +56,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
     PagenotfoundComponent,
     DollartoegpPipe,
     AboutComponent,
-    SpinnerComponent,
+    PopupComponent,
+    LoaderComponent,
+    ForgetpasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +72,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     MatInputModule,
     MatSelectModule,
     MatIconModule,
+    MatDialogModule,
     ValidateEqualModule,
     BrowserAnimationsModule,
     AnimateOnScrollModule.forRoot(),
@@ -75,6 +81,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     AlertModule,
     ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[ProductDetailsComponent]
 })
 export class AppModule { }

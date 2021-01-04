@@ -205,7 +205,7 @@ export class ProductsService {
     }
     
     const requestOptions = {                                                                                                                                                                                 
-      headers: new HttpHeaders(headerDict), 
+      headers: new HttpHeaders(headerDict),
     };
 
     return this.http.post<Product>(`${environment.apiUrl}/reviewreport/` ,{body:body,review:review} , requestOptions) 

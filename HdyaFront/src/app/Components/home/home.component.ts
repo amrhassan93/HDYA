@@ -20,6 +20,11 @@ declare var jQuery: any;
 
 
 export class HomeComponent implements OnInit {
+  // loader:boolean = true
+
+
+  saleList:Product[] = []
+
   categoryList:Category[]=[];
   products:Product[]=[];
   allproducts:Product[]=[]
@@ -36,20 +41,36 @@ export class HomeComponent implements OnInit {
       (err) => console.log(err) 
     )
 
-    this._products.viewProducts().subscribe(
-      (data)=>this.products = data.results,
-      (err) => console.log(err) 
-    )
+    // this._products.viewProducts().subscribe(
+    //   (data)=>this.products = data.results,
+    //   (err) => console.log(err) 
+    // )
+    let list = [1,2,3,4,5,6]
+    for (let i in list){
+      this._products.viewProductById(list[i]).subscribe(
+        (data)=>this.saleList.push(data),
+        (err)=>console.log(err)
 
+      )
+    }
+    
+
+    
+
+    // setTimeout(()=>{
+    //   this.loader = false
+    // },3000)
   }
 
+  
 
-  showCategories(){
-    this._products.viewProducts().subscribe(
-      (data)=>this.allproducts = data.results,
-      (err) => console.log(err) 
-    )
-  }
+
+  // showCategories(){
+  //   this._products.viewProducts().subscribe(
+  //     (data)=>this.allproducts = data.results,
+  //     (err) => console.log(err) 
+  //   )
+  // }
 
  
   catSearch(catId:number){

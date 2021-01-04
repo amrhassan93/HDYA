@@ -1,3 +1,4 @@
+import { PopupComponent } from './../popup/popup.component';
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 declare var jQuery: any;
@@ -11,7 +12,10 @@ import {  Review } from '../../models/interfaces/review'
 import { AddToCartService } from '../../services/add-to-cart.service'
 import { AuthenticationService } from '../../services/authentication.service'
 import { stringify } from '@angular/compiler/src/util';
-import {  Report } from '../../models/interfaces/report'
+import {  Report } from '../../models/interfaces/report';
+import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+import { pid } from 'process';
+
 
 
 @Component({
@@ -83,7 +87,8 @@ export class ProductDetailsComponent implements OnInit {
               private activerouter:ActivatedRoute,
               private _addCart:AddToCartService,
               private _auth:AuthenticationService,
-              private route:Router
+              private route:Router,
+              public dialog:MatDialog
             
       ) { }
 
@@ -117,6 +122,14 @@ export class ProductDetailsComponent implements OnInit {
       (data)=>{
       // console.log(this.occassionList);
         this.productdetails=data
+        if(this.productdetails.gender == 'f'){
+          this.productdetails.gender = "Female"
+        }else if(this.productdetails.gender == 'm'){
+          this.productdetails.gender = "Male"
+        }else if(this.productdetails.gender == 'b'){
+          this.productdetails.gender = "Both"
+        }
+
         for (let i =0; i < this.productdetails.occassions.length ; i++){
           this.filterdoccassionList.push(this.occassionList.find((occ)=>occ.id == this.productdetails.occassions[i]));
           
@@ -140,7 +153,7 @@ export class ProductDetailsComponent implements OnInit {
     this._products.showreviews(id).subscribe(
       (data)=> {
         this.reviewList = data
-        console.log(this.reviewList);
+        // console.log(this.reviewList);
         this.countOfReviews = this.reviewList.length
         let onlyReviews = []
         for(let i=0 ; i<this.reviewList.length ; i++){
@@ -246,17 +259,13 @@ export class ProductDetailsComponent implements OnInit {
 
     if (found == true){
       if (this.reportProduct.length == 0){
-        this._products.Report(this.myID,body,id).subscribe(
-          (data)=> {
-            alert('Thanks for your report ')
-             location.reload()
-           },
-          (err) => console.log(err)
-        )
+        console.log(this.reportProduct);
+      
+        this.openDialog()
       }else{
         let userFound = false 
+        console.log(this.reportProduct);
 
-        // 2 => 50  
 
         for(let i in this.reportProduct){
           if(this.reportProduct[i].user == this.myID){
@@ -266,13 +275,8 @@ export class ProductDetailsComponent implements OnInit {
         }
 
         if (userFound == false){
-          this._products.Report(this.myID,body ,id).subscribe(
-            (data)=> {
-               alert('Thanks for your report ')
-                location.reload()
-              },
-            (err) => console.log(err)
-          )
+          
+          this.openDialog()
         }else{
           alert("You can't report again")
         } 
@@ -305,7 +309,18 @@ editPrd(prd_id:number){
   this.route.navigate(['/product/createproduct'])
 }
 
+openDialog(){
+  let id = this.activerouter.snapshot.params['id']
 
+  this.dialog.open(PopupComponent , {
+    // width: '330px',
+    // height: '400px',
+    data: {
+      id: id , 
+      myID:this.myID
+    }})
+    
+}
 
 
   customOptions: OwlOptions = {
