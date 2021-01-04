@@ -245,56 +245,47 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
-  // reportproduct(body:string){
-  //   console.log(this.reportProduct);
+  reportproduct(body:string){
+    console.log(this.reportProduct);
     
-  //   let id = this.activerouter.snapshot.params['id']
-  //   let found = false
-  //   for(let i in this.orders ){
-  //     if(this.orders[i].product == id){
-  //       found = true ;
-  //       break;
-  //     }
-  //   }
+    let id = this.activerouter.snapshot.params['id']
+    let found = false
+    for(let i in this.orders ){
+      if(this.orders[i].product == id){
+        found = true ;
+        break;
+      }
+    }
 
-  //   if (found == true){
-  //     if (this.reportProduct.length == 0){
-  //       this._products.Report(this.myID,body,id).subscribe(
-  //         (data)=> {
-  //           alert('Thanks for your report ')
-  //            location.reload()
-  //          },
-  //         (err) => console.log(err)
-  //       )
-  //     }else{
-  //       let userFound = false 
+    if (found == true){
+      if (this.reportProduct.length == 0){
+        console.log(this.reportProduct);
+      
+        this.openDialog()
+      }else{
+        let userFound = false 
+        console.log(this.reportProduct);
 
-  //       // 2 => 50  
 
-  //       for(let i in this.reportProduct){
-  //         if(this.reportProduct[i].user == this.myID){
-  //           userFound = true
-  //           break;
-  //         }
-  //       }
+        for(let i in this.reportProduct){
+          if(this.reportProduct[i].user == this.myID){
+            userFound = true
+            break;
+          }
+        }
 
-  //       if (userFound == false){
-  //         this._products.Report(this.myID,body ,id).subscribe(
-  //           (data)=> {
-  //              alert('Thanks for your report ')
-  //               location.reload()
-  //             },
-  //           (err) => console.log(err)
-  //         )
-  //       }else{
-  //         alert("You can't report again")
-  //       } 
-  //     } 
-  //   }
-  //   else{
-  //     alert("You Can't Report Product You didn't Try ")
-  //   }
-  // }
+        if (userFound == false){
+          
+          this.openDialog()
+        }else{
+          alert("You can't report again")
+        } 
+      } 
+    }
+    else{
+      alert("You Can't Report Product You didn't Try ")
+    }
+  }
 
   
 ngDoCheck(): void {
@@ -325,7 +316,8 @@ openDialog(){
     // width: '330px',
     // height: '400px',
     data: {
-      id: id
+      id: id , 
+      myID:this.myID
     }})
     
 }
