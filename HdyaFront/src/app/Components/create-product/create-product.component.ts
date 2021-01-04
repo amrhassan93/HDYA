@@ -23,22 +23,12 @@ export class CreateProductComponent implements OnInit {
   newproduct:Product;
   images:File [] = [] 
   newavatar:File 
-  // name:string = "";
-  // price:number = 0;
-  // details:string = "";
-  // age_from:number = 0;
-  // age_to:number = 0;
-  // gender:string = "";
-  // occassions:Array<number> = [];
-  // category:number = 0;
-  // relationships:Array<number> = [];
-  // is_featured:boolean;
-  // created_at:string;
-  // updated_at:string;
-  // productpicture_set:Array<object>;
+ 
   edit:boolean = false
 
   avatar:File[] = []
+
+  ageError:boolean = false
 
   constructor(private _productservisec:ProductsService ,  private route:Router) { 
     this.newproduct = {
@@ -56,6 +46,13 @@ export class CreateProductComponent implements OnInit {
     
   }
   ngOnInit(): void {
+
+    if(!localStorage.getItem('token')){
+      alert('Please Log in To create Your product')
+      this.route.navigate(['/login'])
+    }
+
+
     this._productservisec.showcategories().subscribe(
       (data)=>this.categories=data.results,
       (err)=>console.log(err) 
@@ -86,7 +83,6 @@ export class CreateProductComponent implements OnInit {
 
   }
   changeImageInput(event:any){
-    // console.log(event);
     this.images = []
     let incoming_images =  event.target.files
     for (let i=0; i<incoming_images.length; i++){
@@ -94,7 +90,6 @@ export class CreateProductComponent implements OnInit {
       this.images.push(incoming_images[i])
     }
 
-    //  if (event.target.files){
       this.url = [];
       let files = event.target.files;
       if (files) {
@@ -106,24 +101,10 @@ export class CreateProductComponent implements OnInit {
           reader.readAsDataURL(file);
         }
       }
-        // var reader = new FileReader()
-        // for (let i in event.target.files){
-        //   reader.readAsDataURL(event.target.files[i])
-        //   // reader.onload = (event:any) =>{
-        //   //   this.url.push(event.target.result) 
-        //   //   console.log(event);
-        //   // }
-        // }
-        
-
-        // console.log(this.url);
-        
-      // }
-
-
   }
+
   addNewProduct(){
-    if (this.images.length >= 3){
+    if (this.images.length >= 3 && this.newproduct.age_from < this.newproduct.age_to ){
       this._productservisec.createProduct(this.newproduct).subscribe(
         (data)=>{
           const fd : FormData = new FormData()
@@ -132,10 +113,11 @@ export class CreateProductComponent implements OnInit {
             fd.append('image' , this.images[i] , this.images[i].name)
             fd.append('product' , data.id)
             this._productservisec.createProductImages(fd).subscribe(
-              (data)=>console.log(data),
+              (data)=>console.log("Ok"),
               (err)=>console.log(err),
             )
           };
+          this.ageError = false
           alert('Your Product Was submitted successfully');
           this.route.navigate([`/productdetails/${data.id}`]) 
         },
@@ -143,15 +125,19 @@ export class CreateProductComponent implements OnInit {
       )
     }
     else{
-      alert('please upload more than 3 images')
+      alert('Wrong data')
+      this.ageError = true
     }
-   
-  
-   
   }
 
     
-  
+  ageCheck(age_from:number , age_to:number){
+    if (age_from > age_to){
+      this.ageError = true
+    }else{
+      this.ageError = false
+    }
+  }
  
   editProduct(){
 
@@ -176,7 +162,7 @@ export class CreateProductComponent implements OnInit {
     };
     alert('Your Product Was submitted successfully');
     this.route.navigate([`/productdetails/${prd_id}`]) 
-    
+    localStorage.removeItem('editprd')
   }
 
   delimg(img_id:number){ 

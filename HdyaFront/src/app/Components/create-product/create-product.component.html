@@ -88,9 +88,12 @@
                     <div class="col-12 mb-4">
                         <div class="form-group row">
                             <label for="example-number-input" class="col-2 col-form-label">Age To<span>*</span></label>
-                            <input #pageto [(ngModel)]="newproduct.age_to" class="form-control" name="ageto" type="number" id="example-date-input" min="0" pattern="^((?!(0))[0-9]{1,2})$" #ageToField="ngModel" [class.is-valid]="ageToField.valid" [class.is-invaild]="ageToField.invalid && ageToField.touched"
-                                required>
+                            <input #pageto (change)="ageCheck(ageFromField.value , ageToField.value)" [(ngModel)]="newproduct.age_to" class="form-control" name="ageto" type="number" id="example-date-input" min="0" pattern="^((?!(0))[0-9]{1,2})$" #ageToField="ngModel" [class.is-valid]="ageToField.valid"
+                                [class.is-invaild]="ageToField.invalid && ageToField.touched" required>
+                            <div class="alert alert-danger mt-2 p-3" *ngIf="ageError == true">error age</div>
+
                             <div class="alert alert-danger mt-2 p-3" *ngIf="ageToField.invalid && ageToField.touched">
+
                                 <div *ngIf="ageToField.hasError('required')">Age Is Required</div>
                                 <div *ngIf="!ageToField.hasError('min')">Age Must not equal zero </div>
                                 <!-- <div *ngIf="priceField.hasError('max')">Price must be 5 numbers only </div>  -->

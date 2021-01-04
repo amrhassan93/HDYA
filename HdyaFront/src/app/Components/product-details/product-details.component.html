@@ -68,7 +68,7 @@
                     </div><br><br>
                     <div class="text-center">
                         <button type="submit" class="btn karl-checkout" id="button1" (click)="editPrd(productdetails.id)">Edit Your Product</button>
-                       <br><button type="submit" class="btn karl-checkout" id="button2" (click)="openDialog()">Report Product</button>
+                        <br><button type="submit" class="btn karl-checkout" id="button2" (click)="openDialog()">Report Product</button>
                     </div>
                 </div>
                 <br>
@@ -103,8 +103,8 @@
                             <option value="5">5</option> -->
                         <!-- </select> -->
 
-                        <p *ngIf="countOfReviews != 0">count of Reviews {{countOfReviews}}</p>
-                        <h3 *ngIf="avrOfReviews != 0"> Average Reviews:{{avrOfReviews}}</h3>
+                        <p *ngIf="countOfReviews != 0">count of Rates {{countOfReviews}}</p>
+                        <h3 *ngIf="avrOfReviews != 0"> Average Rate: {{avrOfReviews}}</h3>
                         <br>
 
                         <h4 class="price">{{ productdetails.price | currency:'EGP ' }}</h4>
@@ -282,71 +282,26 @@
                     <i class="fas fa-comments"></i> Recent Comments</h3>
             </div><br>
 
-            <!-- <div *ngIf="reviewList.length > 0" class="recent">
-                <div *ngFor="let rev of reviewList" class="rev">
-                    <h6>{{rev.body}}</h6>
-                    <h6>{{rev.rate}}</h6>
-                </div>
-            </div> -->
+
 
             <div class="panel-body">
                 <ul *ngIf="reviewList.length > 0" class="list-group">
                     <li *ngFor="let rev of reviewList" class="list-group-item">
                         <div class="row">
-                            <!-- <div class="col-xs-2 col-md-1"> -->
-                            <!-- <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />USER1</div> -->
+
                             <div class="col-xs-10 col-md-11">
                                 <div>
                                     <h5>{{rev.body}}</h5>
-                                    <!-- <div class="mic-info">
-                                        By: <a href="#">Amr Hassan</a> on 2 Jan 2021
-                                    </div> -->
+
                                 </div>
                                 <div class="comment-text">
                                     {{rev.rate}}
                                 </div>
-                                <!-- <div class="action">
-                                    <button type="button" class="btn btn-primary btn-xs" title="Edit">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-xs" title="report">
-                                        <img src="../../../assets/images/report.jpg" style="width:20px;height:20px;">
-                                    </button>
-                                    <button type="button" class="btn btn-xs" title="Delete">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </div> -->
+
                             </div>
                         </div>
                     </li>
-                    <!-- <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-2 col-md-1">
-                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /> User2</div>
-                            <div class="col-xs-10 col-md-11">
-                                <div>
-                                    <h5>Admin Panel Quick Shortcuts</h5>
-                                    <div class="mic-info">
-                                        By: <a href="#">Moomen</a> on 29 Dec 2020
-                                    </div>
-                                </div>
-                                <div class="comment-text">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
-                                </div>
-                                <div class="action">
-                                    <button type="button" class="btn btn-primary btn-xs" title="Edit">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button type="button" class="btn  btn-xs" title="report">
-                                     <img src="../../../assets/images/report.jpg" style="width:20px;height:20px;">
-                                    </button>
-                                    <button type="button" class="btn  btn-xs" title="Delete">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </li> -->
+
                 </ul>
             </div>
         </div>
@@ -445,5 +400,5 @@
     </select> 
     <textarea #pcomment>write </textarea>
     <button type="submit" (click)="reviewFun(pcomment.value,preview.value)">ok</button> -->
-    <textarea #preport></textarea>
-    <button type="submit" (click)="reportproduct(preport.value)">Report</button>
+    <!-- <textarea #preport></textarea>
+    <button type="submit" (click)="reportproduct(preport.value)">Report</button> -->
