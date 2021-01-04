@@ -1,3 +1,4 @@
+import { ForgetpasswordComponent } from './Components/forgetpassword/forgetpassword.component';
 import { CreateProductComponent } from './Components/create-product/create-product.component';
 import { SearchComponent } from './Components/search/search.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path:'checkout',component:CheckoutComponent},
   {path:'productdetails/:id',component:ProductDetailsComponent},
   {path:'search',component:SearchComponent},
+  {path:'forgetpassword',component:ForgetpasswordComponent},
   {path:'**',component:PagenotfoundComponent},
 ];
 

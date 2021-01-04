@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-md-12 mb-4 ">
                         <label for="Name">Product Name <span>*</span></label>
-                        <input #pname [(ngModel)]="newproduct.name" type="text" pattern="(^[a-zA-Z\s]{3,30})" class="form-control" name="Name" id="Name" value="" #NameField="ngModel" required minlength="3" maxlength="30" [class.is-valid]="NameField.valid" [class.is-invaild]="NameField.invalid && NameField.touched">
+                        <input #pname [(ngModel)]="newproduct.name" type="text" pattern="(^[a-zA-Z0-9\s]{3,30})" class="form-control" name="Name" id="Name" value="" #NameField="ngModel" required minlength="3" maxlength="30" [class.is-valid]="NameField.valid" [class.is-invaild]="NameField.invalid && NameField.touched">
                         <div class="alert alert-danger mt-2 p-3" *ngIf="NameField.invalid && NameField.touched">
                             <div *ngIf="NameField.hasError('required')">Product Name Is Required</div>
                             <div *ngIf="NameField.hasError('pattern')">Product Name Must be Characters and not less than 5</div>
@@ -20,20 +20,20 @@
                     </div>
                     <div class="col-md-12 mb-4">
                         <label for="last_name">Price <span>*</span></label>
-                        <input #pprice [(ngModel)]="newproduct.price" type="number" id="number" class="form-control" min="0" name="price" value="" pattern="^((?!(0))[0-9]{1,3})$" #priceField="ngModel" [class.is-valid]="priceField.valid" [class.is-invaild]="priceField.invalid && priceField.touched"
+                        <input #pprice [(ngModel)]="newproduct.price" type="number" id="number" class="form-control" min="0" name="price" value="" pattern="^((?!(0))[0-9]{1,7})$" #priceField="ngModel" [class.is-valid]="priceField.valid" [class.is-invaild]="priceField.invalid && priceField.touched"
                             required>
                         <div class="alert alert-danger mt-2 p-3" *ngIf="priceField.invalid && priceField.touched">
                             <div *ngIf="priceField.hasError('required')">Price Is Required</div>
                             <div *ngIf="!priceField.hasError('min')">Price Must not equal zero </div>
                             <!-- <div *ngIf="priceField.hasError('max')">Price must be 3 numbers only </div>  -->
-                            <div *ngIf="priceField.hasError('pattern')">Price Must Be Number & not exceed 3 numbers</div>
+                            <div *ngIf="priceField.hasError('pattern')">Price Must Be Number & not exceed 7 numbers</div>
                             <!-- pattern="^[1-9]{1,3}[0-9]*"  start without zero -->
                         </div>
                     </div>
                     <div class="col-12 mb-4">
                         <div class="form-group">
                             <label for="comment">Details</label>
-                            <textarea #pdetails [(ngModel)]="newproduct.details" class="form-control" name="details" rows="5" id="comment" style="resize: none;" #detailsField="ngModel" minlength="5" maxlength="250" required pattern="(^[a-zA-Z0-9\s]{5,300})" [class.is-valid]="detailsField.valid"
+                            <textarea #pdetails [(ngModel)]="newproduct.details" class="form-control" name="details" rows="5" id="comment" style="resize: none;" #detailsField="ngModel" minlength="5" maxlength="300" required pattern="(^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};.,':/?\s]{5,300})" [class.is-valid]="detailsField.valid"
                                 [class.is-invaild]="detailsField.invalid && detailsField.touched"></textarea>
                             <div class="alert alert-danger mt-2 p-3" *ngIf="detailsField.invalid && detailsField.touched">
                                 <div *ngIf="detailsField.hasError('required')">Product Details Is Required</div>
@@ -138,9 +138,6 @@
                     <button *ngIf="edit == false" (click)="addNewProduct()" class="btn karl-checkout" [disabled]="myForm.invalid">ADD</button><br><br>
                     <button *ngIf="edit == false" class="btn karl-checkout" (click)="myForm.resetForm({})">Reset</button>
 
-                    <div class="submitted-message" *ngIf="myForm.submitted">
-                        <p> Congratulation You've Successfully submitted your Product => {{ myForm.value.Name }}!</p>
-                    </div>
                     <!-- <button  (click)="addNewProduct()" class="btn btn-primary">ADD</button><br><br> -->
                     <button *ngIf="edit == true" (click)="editProduct()" class="btn karl-checkout">Save Edit</button><br><br>
                     <button *ngIf="edit == true" (click)="cancel()" class="btn karl-checkout">Cancel</button><br><br>
@@ -158,7 +155,6 @@
                     <ul>
                         <li> Must Be at least 3 Characters </li>
                         <li> Must Not EXCEED 30 Characters </li>
-                        <li>Must Not contain Numbers </li>
                     </ul>
                 </li><br>
                 <hr>
@@ -168,7 +164,7 @@
                     <ul>
                         <li> Must Be Numbers Only </li>
                         <li> Must Not Equal ZERO </li>
-                        <li>Must Not EXCEED 2 Numbers </li>
+                        <li>Must Not EXCEED 7 Numbers </li>
                     </ul>
                 </li><br>
                 <hr>
@@ -212,7 +208,7 @@
             <hr>
             <hr>
             <hr><br>
-            <div style="font-size:20px;"> PLEASE MAKE SURE TO SELECT OCCASION , GENDER , RELATIONSHIP , CATEGORIES FROM THE AVAILABLE CHOICES<br><br> PLEASE NOTE YOU CAN SELECT MULTIPLE RELATIONSHIP FOR PRODUCT</div>
+            <div style="font-size:20px;"> PLEASE MAKE SURE TO SELECT OCCASION , GENDER , RELATIONSHIP , CATEGORIES FROM THE AVAILABLE CHOICES<br><br> PLEASE NOTE YOU CAN SELECT MULTIPLE OCCASSIONS & RELATIONSHIPS FOR PRODUCT</div>
         </div>
     </div>
 </div>

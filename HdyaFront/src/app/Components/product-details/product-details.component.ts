@@ -268,7 +268,7 @@ export class ProductDetailsComponent implements OnInit {
       }else{
         let userFound = false 
 
-        // 2 => 50  
+        // 2 => 50
 
         for(let i in this.reportProduct){
           if(this.reportProduct[i].user == this.myID){
