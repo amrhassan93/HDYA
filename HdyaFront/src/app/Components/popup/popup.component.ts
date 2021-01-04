@@ -11,15 +11,11 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
   styleUrls: ['./popup.component.scss']
 })
 export class PopupComponent implements OnInit {
-  // reportProduct:Report[]=[]
   myID:number = 0
-  // orders:Array<object> = []
   msgBody:string = ""
 
 
   constructor(private _products:ProductsService ,
-             private activerouter:ActivatedRoute ,
-             private _auth:AuthenticationService,
              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
 
@@ -42,67 +38,4 @@ export class PopupComponent implements OnInit {
         (err) => console.log(err)
       )
   }
-
-  // reportproduct(body:string){
-    
-    
-  //   let id = parseInt(this.data.id)
-
-  //   console.log(id);
-
-  //   let found = false
-  //   for(let i in this.orders ){
-  //     if(this.orders[i].product == id){
-  //       found = true ;
-  //       break;
-  //     }
-  //   }
-
-  //   console.log(found);
-    
-
-
-
-
-  //   if (found == true){
-  //     if (this.reportProduct.length == 0){
-  //       this._products.Report(this.myID,body,id).subscribe(
-  //         (data)=> {
-  //           alert('Thanks for your report ')
-  //            location.reload()
-  //          },
-  //         (err) => console.log(err)
-  //       )
-  //     }else{
-  //       let userFound = false 
-
-  //       // 2 => 50  
-
-  //       for(let i in this.reportProduct){
-  //         if(this.reportProduct[i].user == this.myID){
-  //           userFound = true
-  //           break;
-  //         }
-  //       }
-
-  //       if (userFound == false){
-  //         this._products.Report(this.myID,body ,id).subscribe(
-  //           (data)=> {
-  //              alert('Thanks for your report ')
-  //               location.reload()
-  //             },
-  //           (err) => console.log(err)
-  //         )
-  //       }else{
-  //         alert("You can't report again")
-  //       } 
-  //     } 
-  //   }
-  //   else{
-  //     alert("You Can't Report Product You didn't Try ")
-  //   }
-  // }
-
-
-
 }

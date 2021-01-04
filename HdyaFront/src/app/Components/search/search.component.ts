@@ -105,7 +105,7 @@ export class SearchComponent implements OnInit {
     this.showAll();
     this.searchparams = {}
     this.fromsearch = false
-
+    location.reload()
   }
   
 
