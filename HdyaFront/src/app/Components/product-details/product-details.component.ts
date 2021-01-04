@@ -210,7 +210,9 @@ export class ProductDetailsComponent implements OnInit {
 
     console.log(this.productPopUp);
   }
-
+  reload(){
+    location.reload()
+  }
 
   reviewFun(body:string  ){
     let id = this.activerouter.snapshot.params['id']
