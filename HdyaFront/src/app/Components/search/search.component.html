@@ -89,7 +89,7 @@
                             <label for="minpricefilter">Min price</label>
                             <p>{{minprice}}</p>
                             <input #filterminprice (change)="minPrice(filterminprice.value)" [(ngModel)]="minprice" type="range" max="10000" min="0" step="1" value="0" id="minpricefilter">
-
+                            <br>
                             <label for="maxpricefilter">Max price</label>
                             <p>{{maxprice}}</p>
                             <input #filtermaxprice (change)="maxPrice(filtermaxprice.value)" [(ngModel)]="maxprice" type="range" max="10000" min="0" step="1" value="1000" id="maxpricefilter">
@@ -116,7 +116,7 @@
                             <label for="minrangefilter">Min Age</label>
                             <p>{{minrange}}</p>
                             <input #filterminage (change)="minAge(filterminage.value)" [(ngModel)]="minrange" type="range" max="100" min="0" step="1" value="10" id="minrangefilter">
-
+                            <br>
                             <label for="maxrangefilter">Max Age</label>
                             <p>{{maxrange}}</p>
                             <input #filtermaxage (change)="maxAge(filtermaxage.value)" [(ngModel)]="maxrange" type="range" max="100" min="0" step="1" value="70" id="maxrangefilter">
@@ -155,6 +155,7 @@
 
                                 <img *ngIf="product.images[0] && fromsearch == false" src="{{product.images[0].image}}" style="width: 150px; height:150px;" alt="{{product.name}}">
                                 <img *ngIf="product.images[0] && fromsearch == true" src="http://127.0.0.1:8000{{product.images[0].image}}" style="width: 150px; height:150px;" alt="{{product.name}}">
+                                <img *ngIf="!product.images[0]" src="../../../assets/images/productunknown.png" style="width: 150px; height:150px;" alt="{{product.name}}">
                                 <div class="product-quicview">
                                     <a data-toggle="modal" (click)="popUpProduct(product.id)" data-target="#quickview"><i class="far fa-plus"></i></a>
                                 </div>

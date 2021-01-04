@@ -238,44 +238,40 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   reportproduct(body:string){
-    console.log(this.reportProduct);
-    
+
     let id = this.activerouter.snapshot.params['id']
-    let found = false
-    for(let i in this.orders ){
+    let found = false 
+    let myreports = []
+    let reportfound = false
+
+
+    for (let i in this.orders){
       if(this.orders[i].product == id){
-        found = true ;
+        found = true
         break;
       }
     }
-
     if (found == true){
-      if (this.reportProduct.length == 0){
-        console.log(this.reportProduct);
-      
+      for (let i in this.reportProduct){
+        if(this.reportProduct[i].user == this.myID){
+          myreports.push(this.reportProduct[i])
+        }
+      }
+  
+      for (let i in myreports){
+        if (myreports[i].product == id){
+          reportfound = true
+        }
+      }
+
+      if (reportfound == false){
         this.openDialog()
       }else{
-        let userFound = false 
-        console.log(this.reportProduct);
+        alert("You can't report again")
+      }
 
-
-        for(let i in this.reportProduct){
-          if(this.reportProduct[i].user == this.myID){
-            userFound = true
-            break;
-          }
-        }
-
-        if (userFound == false){
-          
-          this.openDialog()
-        }else{
-          alert("You can't report again")
-        } 
-      } 
-    }
-    else{
-      alert("You Can't Report Product You didn't Try ")
+    }else{
+      alert("You Can't Report Product You didn't Try")
     }
   }
 

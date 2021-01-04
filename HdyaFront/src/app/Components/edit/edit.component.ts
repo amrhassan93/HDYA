@@ -19,7 +19,6 @@ export class EditComponent implements OnInit {
   // profileList:Profile[]= [];
   
 
-
   
   toggledispayed(){
     this.isdisplayed = !this.isdisplayed
@@ -46,12 +45,18 @@ export class EditComponent implements OnInit {
   
   }
  
-  constructor(private auth:AuthenticationService,private activerouter:ActivatedRoute) { 
+  constructor(private auth:AuthenticationService,private activerouter:ActivatedRoute, private route:Router) { 
 
   }
 
   ngOnInit(): void {
     
+
+    if(!localStorage.getItem('token')){
+      this.route.navigate(['/search'])
+    }
+
+
     this.auth.userProfile().subscribe(
       (data)=> {
         this.profileList=data
@@ -85,6 +90,7 @@ export class EditComponent implements OnInit {
       }
     }
 
+  
 
 
     updateprofile( first_name:string , last_name:string  , mobile:string,address:string,birthdate:string){

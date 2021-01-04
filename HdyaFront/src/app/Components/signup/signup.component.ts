@@ -13,13 +13,17 @@ import * as AOS from 'aos';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+
+  errors = []
+
+
   profileForm = this.fb.group({
     firstname: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(15)]],
     lastname: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(15)]],
     email: ['',[Validators.required,Validators.email,Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$")]],
     username:['',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]],
     mobile:['',[Validators.required,Validators.pattern("^01[0-2]{1}[0-9]{8}")]],
-    password:['',[Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
+    password:['',[Validators.required,Validators.minLength(8),Validators.maxLength(30)]],
     confirmpassword:['',Validators.required] },
     { 
     validator:this.confirmedPassword.passwordMatchValidator("password","confirmpassword")
@@ -46,7 +50,16 @@ export class SignupComponent implements OnInit {
         alert('thanks for regester please login now')
         this.route.navigate(['/login'])
       },
-      (err) => console.log(err)
+      (err) => {
+        console.log(err);
+        for (let i in err.error){
+          // console.log(err.error[i])
+          for (let e in err.error[i]){
+            this.errors.push(err.error[i][e])
+          }
+
+        }
+      }
     );
   }
 
@@ -60,7 +73,7 @@ export class SignupComponent implements OnInit {
 
         if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
 
-            return;
+            return; 
 
         }
 
