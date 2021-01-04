@@ -16,3 +16,14 @@ button{
     border:solid 1px rgb(37, 42, 51);
     color: rgb(37, 42, 51);
 }
+
+@media (max-width:768px){
+    textarea{
+        width:45%;
+        height:100%;
+        resize:none;
+        font-size:18px;
+        color: rgb(37, 42, 51);
+        box-shadow: 10px 10px 30px 5px rgba(0, 0, 0, 0.15);
+    }
+}
