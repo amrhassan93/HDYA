@@ -32,6 +32,10 @@ export class SearchComponent implements OnInit {
     keepAfterRouteChange: true
 };
 
+totalRecords:Number=0
+page:Number=1
+
+
   constructor(private _products:ProductsService,
               protected alertService: AlertService ,
               private _addCart:AddToCartService) {}
@@ -71,6 +75,8 @@ export class SearchComponent implements OnInit {
       (data)=>{
         this.productList=data;
         this.moreData = data
+         //pagination
+         this.totalRecords = this.productList.length
 
       },
       (err)=> console.log(err) 
@@ -196,7 +202,7 @@ export class SearchComponent implements OnInit {
         (data)=>{
           console.log(data)
           this.moreData = data
-          this.productList=data.results
+          this.productList=data
           console.log(this.productList);
         },
         (err)=>console.log(err)

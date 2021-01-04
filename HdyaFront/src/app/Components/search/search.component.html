@@ -143,7 +143,10 @@
                 <div class="shop_grid_product_area d-block p-4 m-4 text-center">
                     <div *ngIf="productList.length > 0" class="row">
                         <!-- Single gallery Item -->
-                        <div *ngFor="let product of productList " class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig mb-4" data-wow-delay="0.2s" data-aos="fade-up" data-aos-duration="1300">
+                        <div *ngFor="let product of productList | paginate: { id: 'incoming_pagination',
+                        itemsPerPage: 9,
+                        currentPage: page,
+                        totalItems: totaloncomingOrdersRecords} " class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig mb-4" data-wow-delay="0.2s" data-aos="fade-up" data-aos-duration="1300">
                             <!-- Product Image -->
                             <div class="product-img">
 
@@ -166,11 +169,14 @@
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <pagination-controls responsive="true" id="incoming_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                    </div>
                 </div>
-                <div class="text-center">
+                <!-- <div class="text-center">
                     <button (click)="showless()" class="btn btn-light m-2"><i class="fas fa-arrow-circle-left fa-2x"></i></button>
                     <button (click)="showMore()" class="btn btn-light"><i class="fas fa-arrow-circle-right fa-2x"></i></button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

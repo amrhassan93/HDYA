@@ -154,7 +154,7 @@ export class ProductDetailsComponent implements OnInit {
 
     this._products.viewProducts().subscribe(
       (data)=> {
-        this.productList=data.results
+        this.productList=data
 
       },
       (err)=> console.log(err),
@@ -193,7 +193,7 @@ export class ProductDetailsComponent implements OnInit {
 
 
       this._products.showReports().subscribe(
-        (data)=> this.reportProduct = data.results,
+        (data)=> this.reportProduct = data,
         (err)=>console.log(err)
       )
 

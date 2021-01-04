@@ -187,7 +187,7 @@
 
                                 </div>
                                 <div class="comment-text">
-                                    {{rev.rate}}
+                                    Rate: {{rev.rate}}
                                 </div>
 
                             </div>
@@ -206,19 +206,19 @@
             </div>
             <div class="row">
                 <owl-carousel-o [options]="customOptions">
-                    <ng-template carouselSlide *ngFor="let product of filteredList" class="relprd col-md-4">
-                        <div class="product-img">
-                            <img src="{{product.images[0].image}}" alt="{{product.name}}">
-                            <div class="product-quicview">
-                                <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
+                    <ng-template carouselSlide *ngFor="let product of filteredList" class="relprd col-md-4 m-2">
+                        <div style="width: 50% !important;">
+                            <div class="product-img">
+                                <img src="{{product.images[0].image}}" alt="{{product.name}}">
+
                             </div>
-                        </div>
-                        <!-- Product Description -->
-                        <div class="product-description">
-                            <h4 class="product-price">{{product.price}}</h4>
-                            <p>{{product.name}}</p>
-                            <!-- Add to Cart -->
-                            <a class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
+                            <!-- Product Description -->
+                            <div class="product-description">
+                                <h4 class="product-price">{{product.price}}</h4>
+                                <p>{{product.name}}</p>
+                                <!-- Add to Cart -->
+                                <a class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
+                            </div>
                         </div>
                     </ng-template>
                 </owl-carousel-o>
