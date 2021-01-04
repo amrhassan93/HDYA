@@ -107,7 +107,6 @@
                                             <th class="col-md-3">Product Name</th>
                                             <th class="col-md-3">Price</th>
                                             <th class="col-md-3">Created At</th>
-                                            <!-- <th class="col-md-3">Total</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -125,13 +124,11 @@
                                                     <span>{{prd.created_at}}</span>
                                                 </div>
                                             </td>
-                                            <!-- <td class="total_price" class="col-md-3"><span>120 EGP</span></td> -->
                                         </tr>
-
                                     </tbody>
                                 </table>
                                 <div>
-                                    <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                                    <pagination-controls id="listing_pagination" maxSize="10" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +197,6 @@
                                             itemsPerPage: 6,
                                             currentPage: orderpage,
                                             totalItems: totalOrdersRecords} ; let i=index">
-
                                             <td>
                                                 {{i+1}}
                                             </td>
@@ -222,7 +218,7 @@
                                 </table>
                                 <br>
                                 <div>
-                                    <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                                    <pagination-controls id="listing_pagination" maxSize="10" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
                                 </div>
                             </div>
                         </div>

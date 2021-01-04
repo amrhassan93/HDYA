@@ -3,6 +3,7 @@ import { AuthenticationService } from '../../services/authentication.service'
 import {FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import * as AOS from 'aos';
+import { AlertService } from 'src/app/_alert';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,13 @@ import * as AOS from 'aos';
 
 })
 export class LoginComponent implements OnInit {
-  // email: string;
   password: string;
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+};  
 
   getErrorMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :
@@ -22,8 +26,7 @@ export class LoginComponent implements OnInit {
             '';
   }
 
-  constructor(private auth:AuthenticationService, private route:Router) { 
-    // this.email = ''
+  constructor(private auth:AuthenticationService, private route:Router,protected alertService: AlertService,) { 
     this.password = ''
     if (localStorage.getItem('token')){
       this.route.navigate(['/home'])
@@ -40,7 +43,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("token" , data.auth_token) 
         this.route.navigate(['/home'])
     },
-      (err) => alert("Wrong User name or password")
+      (err) =>  this.alertService.error('Wrong Email or Password', this.options)
     );
   }
 

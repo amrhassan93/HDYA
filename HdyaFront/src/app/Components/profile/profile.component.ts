@@ -23,13 +23,13 @@ export class ProfileComponent implements OnInit {
   myOrders:Array<object> = []
 
   //pagination
-  totalOrdersRecords: number = 0
-  totalProductsRecords: number = 0
-  totaloncomingOrdersRecords: number = 0
+  totalOrdersRecords:Number
+  totalProductsRecords:Number 
+  totaloncomingOrdersRecords:Number
 
-  productpage:number=1
-  orderpage:number=1
-  incommingorderspage:number=1
+  productpage:Number=1
+  orderpage:Number=1
+  incommingorderspage:Number=1
 
   incomingOrders:Array<object> = []
   incomingOrdersToHandle:Array<object> = []
@@ -80,7 +80,6 @@ export class ProfileComponent implements OnInit {
       (err)=>console.log(err)
     )
 
-    // this.auth.showUserById(2).subscribe(console.log,console.log)
 
     this._productService.showorders().subscribe(
       (data)=>{ 
@@ -131,7 +130,6 @@ export class ProfileComponent implements OnInit {
     this._productService.showIncomingOrders().subscribe(
       (data)=>{
         this.incomingOrders = data
-        // console.log(this.incomingOrders);
         for (let i=0 ; i <this.incomingOrders.length ; i++){
           this._productService.viewProductById(this.incomingOrders[i].product).subscribe(
             (data)=>{
@@ -162,7 +160,6 @@ export class ProfileComponent implements OnInit {
                   this.incomingOrdersToHandle[i].status = 'cancelled'
                 }
               }
-              // console.log(this.incomingOrdersToHandle);
               
             },
             (err)=>console.log(err)
