@@ -14,7 +14,7 @@ import * as AOS from 'aos';
 })
 export class SignupComponent implements OnInit {
 
-  errors = []
+  errors:any = []
 
 
   profileForm = this.fb.group({
