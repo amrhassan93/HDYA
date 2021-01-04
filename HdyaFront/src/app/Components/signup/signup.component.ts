@@ -13,6 +13,10 @@ import * as AOS from 'aos';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+
+  errors = []
+
+
   profileForm = this.fb.group({
     firstname: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(15)]],
     lastname: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(15)]],
@@ -46,7 +50,16 @@ export class SignupComponent implements OnInit {
         alert('thanks for regester please login now')
         this.route.navigate(['/login'])
       },
-      (err) => console.log(err)
+      (err) => {
+        console.log(err);
+        for (let i in err.error){
+          // console.log(err.error[i])
+          for (let e in err.error[i]){
+            this.errors.push(err.error[i][e])
+          }
+
+        }
+      }
     );
   }
 

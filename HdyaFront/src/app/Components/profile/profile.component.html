@@ -1,14 +1,18 @@
+<app-loader *ngIf="loaderStatus == false"></app-loader>
+<!-- <app-loader *ngIf="!myProducts && !myProducts.length > 0"></app-loader> -->
 <br><br>
 <div class="container">
     <form>
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="{{myprofile.avatar}}" alt="" />
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="file" />
-                    </div>
+                    <img *ngIf="myprofile.avatar" src="{{myprofile.avatar}}" alt="" />
+                    <img *ngIf="!myprofile.avatar" src="../../../assets/images/icon.jpeg" alt="" />
+                    <!-- <img *ngIf="myprofile.avatar && myprofile.gender == f" src="../../../assets/images/avatar-4_ozhrib.png" alt="" /> -->
+                    <!-- <div class="file btn btn-lg btn-primary"> -->
+                    <!-- Change Photo
+                        <input type="file" name="file" /> -->
+                    <!-- </div> -->
                     <br><br>
                     <h4 style="color: rgb(37,42,51);">{{myprofile.username}}</h4>
                 </div>
@@ -111,7 +115,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let prd of myProducts  | paginate: { id: 'listing_pagination',
+                                        <tr *ngFor="let prd of myProducts  | paginate: { id: 'product_pagination',
                                             itemsPerPage: 6,
                                             currentPage: productpage,
                                             totalItems: totalProductsRecords} ; let i=index">
@@ -131,7 +135,7 @@
                                     </tbody>
                                 </table>
                                 <div>
-                                    <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                                    <pagination-controls responsive="true" id="product_pagination" maxSize="5" directionLinks="true" (pageChange)="productpage = $event"></pagination-controls>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +154,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let order of incomingOrdersToHandle  | paginate: { id: 'listing_pagination',
+                                        <tr *ngFor="let order of incomingOrdersToHandle  | paginate: { id: 'incoming_pagination',
                                             itemsPerPage: 6,
                                             currentPage: incommingorderspage,
                                             totalItems: totaloncomingOrdersRecords} ; let i=index">
@@ -174,7 +178,7 @@
                                 </table>
                                 <br>
                                 <div>
-                                    <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                                    <pagination-controls responsive="true" id="incoming_pagination" maxSize="5" directionLinks="true" (pageChange)="incommingorderspage = $event"></pagination-controls>
                                 </div>
                             </div>
                         </div>
@@ -196,7 +200,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let order of myOrders  | paginate: { id: 'listing_pagination',
+                                        <tr *ngFor="let order of myOrders  | paginate: { id: 'orders_pagination',
                                             itemsPerPage: 6,
                                             currentPage: orderpage,
                                             totalItems: totalOrdersRecords} ; let i=index">
@@ -222,7 +226,7 @@
                                 </table>
                                 <br>
                                 <div>
-                                    <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                                    <pagination-controls responsive="true" id="orders_pagination" maxSize="5" directionLinks="true" (pageChange)="orderpage = $event"></pagination-controls>
                                 </div>
                             </div>
                         </div>

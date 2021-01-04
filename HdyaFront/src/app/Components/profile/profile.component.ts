@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
   incomingOrdersToHandle:Array<object> = []
   usersList:Array<object> =[]
 
-
+  loaderStatus:boolean = false
 
   toggledispayed(){
     this.isdisplayed = !this.isdisplayed
@@ -133,6 +133,18 @@ export class ProfileComponent implements OnInit {
     this._productService.showIncomingOrders().subscribe(
       (data)=>{
         this.incomingOrders = data
+        if(this.incomingOrders.length > 0){
+          this.loaderStatus = true
+        }else if(this.myOrders.length > 0){
+          this.loaderStatus = true
+        }else if(this.myProducts.length > 0){
+          this.loaderStatus = true
+        }else if(this.myprofile.id > 0){
+          this.loaderStatus = true
+        }else{
+          this.loaderStatus = false
+        }
+
         // console.log(this.incomingOrders);
         for (let i=0 ; i <this.incomingOrders.length ; i++){
           this._productService.viewProductById(this.incomingOrders[i].product).subscribe(

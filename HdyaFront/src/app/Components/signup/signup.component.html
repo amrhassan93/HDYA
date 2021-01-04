@@ -35,7 +35,7 @@
                             <input type="text" #username class="form-control ng-untouched ng-pristine ng-valid" placeholder="username" aria-label="username" aria-describedby="basic-addon1" formControlName="username" required>
 
                         </div>
-       
+
 
                         <p *ngIf="! profileForm.controls.username.pristine && profileForm.controls.username.errors?.minlength" class="alert alert-danger">Username should be greater than 2 character!</p>
                         <p *ngIf="!profileForm.controls.username.pristine && profileForm.controls.username.errors?.required" class="alert alert-danger">Username is required!</p>
@@ -95,7 +95,10 @@
 
 
 
-
+                        <ul>
+                            <li *ngFor="let err of errors" style="color: red;">{{err}}
+                            </li>
+                        </ul>
 
 
                         <div class="d-grid gap-2">
@@ -112,6 +115,8 @@
                         <p class="btn-text"><b>Sign in with Google</b></p>
                     </div>
                 </div>  -->
+
+
 
                     <div class="to_login">
                         Already have an account? <a routerLink="/login">Sign in</a>
