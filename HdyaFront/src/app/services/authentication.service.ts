@@ -61,6 +61,11 @@ export class AuthenticationService {
     
   }
 
+  resetPassword(email:string):Observable<any>{
+    return this.http.post<any>(`${environment.apiUrl}/auth/users/reset_password/` , {email:email})
+  }
+
+
   // getDataForuser():Observable<any>{
   //   const headerDict = {
   //     'Authorization':'Token ' +  localStorage.getItem('token')
