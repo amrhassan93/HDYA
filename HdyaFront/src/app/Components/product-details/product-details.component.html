@@ -54,7 +54,7 @@
                 <div class="col-12 col-md-6">
                     <div class="single_product_desc pl-5">
                         <p *ngIf="onSale == true" class="animate__flash animate_animated animateflash animate_infinite">Sale 10% </p>
-                        <p *ngIf="onSale == true" class="animate__flash animate_animated animateflash animate_infinite">{{productdetails.price + productdetails.price * 0.1}} EGP</p>
+
                         <h4 class="title" style="font-weight: 600;"><a>{{productdetails.name}}</a></h4>
 
 
@@ -64,8 +64,8 @@
                             <i *ngIf="halfStar == true" class="fas fa-star-half-alt fa-lg" style="color: rgb(210, 57, 59);" aria-hidden="true"></i>
                         </div>
                         <br>
-
-                        <h4 class="price">{{ productdetails.price | currency:'EGP ' }}</h4>
+                        <h4 *ngIf="onSale == true" class="title" style="font-weight: 600;"><a><span style="text-decoration-line: line-through; ">{{productdetails.price + productdetails.price * 0.1}} EGP</span> {{productdetails.price | currency:'EGP '}}</a></h4>
+                        <h4 *ngIf="onSale == false" class="price">{{ productdetails.price | currency:'EGP ' }}</h4>
 
 
                         <div class="widget size mb-50">
