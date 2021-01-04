@@ -24,7 +24,6 @@ import {MatIconModule} from '@angular/material/icon';
 import { ValidateEqualModule } from 'ng-validate-equal';
 import { CreateProductComponent } from './Components/create-product/create-product.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
-import {trigger,state,style,animate,transition,} from '@angular/animations';
 import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
 import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.component';
 import { ReactiveValidationModule } from 'angular-reactive-validation';

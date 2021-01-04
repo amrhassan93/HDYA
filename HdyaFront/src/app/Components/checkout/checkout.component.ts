@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
-import { Product } from '../../models/interfaces/product'
 import { ProductsService } from '../../services/products.service'
 import { AuthenticationService } from '../../services/authentication.service'
 import { Profile } from '../../models/interfaces/profile'
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/_alert';
 
 @Component({
   selector: 'app-checkout',
@@ -25,11 +25,16 @@ export class CheckoutComponent implements OnInit {
     mobile : "" ,
     birth_date : "" , 
     email: "" 
-
   }
+
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+};
+
   constructor(private _products:ProductsService,
               private _auth:AuthenticationService,
-              private route:Router
+              private route:Router,protected alertService: AlertService
     ) {
 
     }
@@ -38,7 +43,7 @@ export class CheckoutComponent implements OnInit {
     AOS.init();
 
     if(!localStorage.getItem('token')){
-      alert('Please Log in To Place your Order')
+      this.alertService.warn('Please Login First To Place your Order !!', this.options)
       this.route.navigate(['/login'])
     }
 
@@ -46,9 +51,6 @@ export class CheckoutComponent implements OnInit {
       (data)=> this.myProfile = data,
       (err)=> console.log(err),
        )
-
-
-
     
     if (localStorage.getItem("orders")){
       this.orders = JSON.parse(localStorage.getItem("orders") || '{}') 
@@ -62,7 +64,6 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-
   updateprofile(){
       this.editparams.first_name = this.myProfile.first_name
       this.editparams.last_name = this.myProfile.last_name
@@ -75,7 +76,6 @@ export class CheckoutComponent implements OnInit {
       (err)=>console.log(err) 
     )
   }
-
 
   placeOrder(){
     for(let i =0 ; i < this.orders.length ; i++){
@@ -95,14 +95,11 @@ export class CheckoutComponent implements OnInit {
     if(this.myProfile.first_name.length > 2 && this.myProfile.last_name.length > 2 && this.myProfile.mobile.length == 11 && this.myProfile.address.length > 3){
       this.updateprofile()
       this.placeOrder()
-      alert("Thanks For Your Orders")
+      
+      alert("Thanks For using HDYA :)")
       this.route.navigate(['/search'])
 
     }else{
-      alert('Please Fill Valid Data')
-    }
-    
-
-  
+     this.alertService.error('Please Fill a Valid Data !', this.options)    }
   }
 }

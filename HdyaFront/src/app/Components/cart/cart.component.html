@@ -13,7 +13,6 @@
             <div class="col-12">
                 <div class="cart-table clearfix">
                     <table class="table table-responsive">
-                        <!-- <thead> -->
                         <tr>
                             <th style="width: 10%;">NO</th>
                             <th style="width: 10%;">Product Image</th>
@@ -34,10 +33,7 @@
                             <td class="price"><span>{{product.productDetails.price}}</span></td>
                             <td class="qty">
                                 <div class="quantity">
-                                    <!-- <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) && qty > 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span> -->
                                     <input (change)="changeQntty(product.productDetails.id , product.productDetails.price , pquantity.value , i)" #pquantity type="number" class="qty-text" id="qty" step="1" min="0" max="99" name="quantity" value="{{product.quantity}}">
-                                    <!-- <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span> -->
-
                                 </div>
                             </td>
                             <td class="total_price"><span>{{total[i]}}</span></td>
@@ -59,6 +55,8 @@
         </div>
 
         <div class="row">
+            <!-- ---------------------------------------promo code-----------------------------------------  -->
+
             <!-- <div class="col-12 col-md-6 col-lg-4 col-sm-4">
                 <div class="coupon-code-area mt-70">
                     <div class="cart-page-heading">
@@ -71,6 +69,7 @@
                     </form>
                 </div>
             </div> -->
+            <!-- ------------------------------------------------------------------------------------------- -->
 
             <div class="col-12 col-lg-4 col-sm-8 cart_total">
                 <div class="cart-total-area mt-70">

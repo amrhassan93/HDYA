@@ -36,15 +36,9 @@
 
                         </div>
 
-
                         <p *ngIf="! profileForm.controls.username.pristine && profileForm.controls.username.errors?.minlength" class="alert alert-danger">Username should be greater than 2 character!</p>
                         <p *ngIf="!profileForm.controls.username.pristine && profileForm.controls.username.errors?.required" class="alert alert-danger">Username is required!</p>
                         <p *ngIf="!profileForm.controls.username.pristine && profileForm.controls.username.errors?.maxlength" class="alert alert-danger">Username should be less than 15 character!</p>
-
-
-                        <!-- </div> -->
-
-
 
 
                         <div class="input-group mb-3">
@@ -75,15 +69,9 @@
 
                         </div>
 
-
-
-
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i> </span>
                             <input #mobile type="text" class="form-control ng-untouched ng-pristine ng-valid" placeholder="Phone Number" aria-label="Mobile Phone" aria-describedby="basic-addon1" formControlName="mobile" required>
-
-
-                            <!-- ng-untouched ng-pristine ng-valid -->
 
                         </div>
                         <p *ngIf="! profileForm.controls.mobile.pristine && profileForm.controls.mobile.errors?.pattern" class="alert alert-danger help-block">Mobil PHone should be like 01234567890!</p>
@@ -106,7 +94,7 @@
                         </div>
                     </form>
 
-                    <!-- google -->
+                    <!----------------------------------------------- google------------------------------------------------------ -->
                     <!-- <div class="g">
                     <div class="google-btn">
                         <div class="google-icon-wrapper">
@@ -115,7 +103,7 @@
                         <p class="btn-text"><b>Sign in with Google</b></p>
                     </div>
                 </div>  -->
-
+                    <!-- --------------------------------------------------------------------------------------------------------- -->
 
 
                     <div class="to_login">
@@ -125,8 +113,5 @@
             </div>
         </div>
     </div>
-
-
-
     <br>
 </section>

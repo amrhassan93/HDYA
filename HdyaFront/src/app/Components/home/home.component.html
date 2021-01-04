@@ -1,18 +1,5 @@
-<app-loader *ngIf="!saleList.length > 0"></app-loader>
+<app-loader *ngIf="saleList.length > 0"></app-loader>
 
-
-<!-- <div class="animate__animated animate__flash  animate__infinite animate__slow">
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="flash_image col-2">
-            <img src="../../assets/images/happy_new_year.webp" width="30%">
-        </div>
-        <div class="flash_image col-6 pt-3">HDYA Wishes You a Happy New Year!</div>
-
-    </div>
-    <div class="col-2"></div>
-
-</div> -->
 <!-- ******* Start of Categories********** -->
 <div class="container-fluid">
     <input type="hidden" #selection>
@@ -170,19 +157,6 @@
         <h2 class="animate__heartBeat" data-aos="zoom-in-up" data-aos-duration="1000">NEW DEALS</h2>
     </div>
 
-    <!-- <div class="karl-projects-menu mb-100">
-        <div class="text-center portfolio-menu">
-            <button class="btn" data-filter="*" (click)="showCategories()">ALL</button>
-            <button class="btn" data-filter=".man">LEATHER PRODUCTS</button>
-            <button class="btn" data-filter=".access">GLASS PRODUCTS</button>
-            <button class="btn" data-filter=".shoes">WICKER PRODUCTS</button>
-            <button class="btn" data-filter=".kids">ACCESSORIES</button>
-        </div>
-        <div *ngFor="let cat of allproducts">{{cat.name}}</div>
-
-
-    </div> -->
-
     <div class="container new_deals text-center">
         <div class="row karl-new-arrivals">
 
@@ -197,14 +171,10 @@
                 </div>
                 <!-- Product Description -->
                 <div class="product-description">
-                    <!-- <h4 class="product-price">$20</h4>
-                    <p>Accesories Dish with Rings</p> -->
                     <!-- Add to Cart -->
                     <a routerLink="#" class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
                 </div>
             </div>
-
-
         </div>
     </div>
 </section>

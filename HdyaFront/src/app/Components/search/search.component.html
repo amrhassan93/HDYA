@@ -21,7 +21,6 @@
                                     <h4 class="title">{{productPopUp.name}}</h4>
                                     <h5 class="price">{{productPopUp.price | currency:'EGP '}}</h5>
                                     <p>{{productPopUp.details}}</p>
-                                    <!-- <a [routerLink]="['/productdetails',productPopUp.id]">View Full Product Details</a> -->
                                 </div>
                                 <!-- Add to Cart Form -->
                                 <form class="cart" method="post">
@@ -47,10 +46,6 @@
         </div>
     </div>
 </div>
-<!-- <select  [(ngModel)]="productID" ngDefaultControl >
-    <option *ngFor="let product of productList" [value]="product.id">{{product.name}}</option>
-  </select>
-<app-poduct-details-popup [productPopupID]="productID"></app-poduct-details-popup> -->
 <!-- ****** Quick View Modal Area End ****** -->
 
 <section class="shop_grid_area section_padding_100 ">
@@ -166,7 +161,7 @@
                                 <p>{{product.name}}</p>
                                 <!-- <p>{{product.images[0].image}}</p> -->
                                 <!-- More Details -->
-                                <a class="add-to-cart-btn" [routerLink]="['/productdetails',product.id]">More Details</a>
+                                <button class="btn btn-link" [routerLink]="['/productdetails',product.id]">More Details</button>
                                 <!-- Add to Cart -->
                                 <a class="add-to-cart-btn" (click)="addToCart(product.id)">ADD TO CART</a>
                             </div>
@@ -177,14 +172,7 @@
                     <button (click)="showless()" class="btn btn-light m-2"><i class="fas fa-arrow-circle-left fa-2x"></i></button>
                     <button (click)="showMore()" class="btn btn-light"><i class="fas fa-arrow-circle-right fa-2x"></i></button>
                 </div>
-
             </div>
         </div>
     </div>
 </section>
-<!-- <select  [(ngModel)]="productID" >
-    <option *ngFor="let product of productList" [value]="product.id">{{product.name}}</option>
-  </select>
-
- 
-<app-poduct-details-popup [productPopupID]="productID"></app-poduct-details-popup> -->

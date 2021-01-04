@@ -5,6 +5,7 @@ import { Product } from '../../models/interfaces/product'
 import { Category } from '../../models/interfaces/category'
 import { AlertService } from 'src/app/_alert';
 import { AddToCartService } from '../../services/add-to-cart.service'
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -28,9 +29,8 @@ export class SearchComponent implements OnInit {
 
   options = {
     autoClose: true,
-    keepAfterRouteChange: false
+    keepAfterRouteChange: true
 };
-
 
   constructor(private _products:ProductsService,
               protected alertService: AlertService ,
@@ -38,15 +38,6 @@ export class SearchComponent implements OnInit {
   
   ngOnInit(): void {
     AOS.init();
-
-    // if(localStorage.getItem('products')){
-    //   let searchProducts = localStorage.getItem('products')
-    //   this.productList = JSON.parse(searchProducts || '{}')
-    //   localStorage.removeItem('products')
-    // }
-    // else {
-    //   this.showAll() 
-    // }
 
     if(localStorage.getItem('searchKey')){
       this.searchparams.name = localStorage.getItem('searchKey') ; 
@@ -59,8 +50,6 @@ export class SearchComponent implements OnInit {
     }else{
       this.showAll() 
     }
-
-
 
     this._products.showcategories().subscribe(
       (data)=>this.categoryList = data.results,
@@ -75,7 +64,6 @@ export class SearchComponent implements OnInit {
       (data)=>this.occassions=data.results,
       (err)=>console.log(err) 
     )
-
   }
 
   showAll(){
@@ -89,7 +77,6 @@ export class SearchComponent implements OnInit {
     )    
   }
   
-
   ngDoCheck(): void {
   
     if(localStorage.getItem('searchKey')){
@@ -97,7 +84,6 @@ export class SearchComponent implements OnInit {
       this.searchNow()
       localStorage.removeItem('searchKey')
     }   
-    
     
   }
 
@@ -111,93 +97,35 @@ export class SearchComponent implements OnInit {
 
   showProductsbyID(catId:number){
     this.searchparams.category = catId ; 
-    console.log(this.searchparams);
-
-    // for (let i=0 ; i<this.productList.length ; i++){
-    //    if (this.productList[i].category == catId){
-    //       this.filterdProducts.push(this.productList[i])
-    //    }
-    //    else{
-    //      console.log('not in this cat')
-    //    }
-    // }
-    // this.productList = this.filterdProducts
-    // this.filterdProducts = []
-
+   
   }
-
-
   getproductsbygender(gender:string){
 
     this.searchparams.gender = gender
-    console.log(this.searchparams);
-
-
-    //   for (let i=0 ; i<this.productList.length ; i++){
-    //     if (this.productList[i].gender == gender){
-    //        this.filterdProducts.push(this.productList[i])
-    //     }
-    //     else{
-    //       console.log('not in this cat')
-    //     }
-    //  }
-    //  this.productList = this.filterdProducts
-    //  this.filterdProducts = []
   }
 
   maxPrice(maxprice:number){
     this.searchparams.max_price = maxprice
-
-    console.log(this.searchparams);
   }
   minPrice(minprice:number){
-     
-    // this.searchparams.push({'price':minprice})
     this.searchparams.min_price = minprice
-    // this.searchparams.max_price = maxprice
-
-    console.log(this.searchparams);
-
-  //   for (let i=0 ; i<this.productList.length ; i++){
-  //     if (this.productList[i].price >= minprice && this.productList[i].price <= maxprice){
-  //        this.filterdProducts.push(this.productList[i])
-  //     }
-  //     else{
-  //       console.log('not in this cat')
-  //     }
-  //  }
-  //  this.productList = this.filterdProducts
-  //  this.filterdProducts = []
-
   }
 
   minAge(minage:number){
     this.searchparams.min_age = minage
-
-    console.log(this.searchparams);
   }
 
   maxAge(maxage:number){
     this.searchparams.max_age = maxage
-
-    console.log(this.searchparams);
   }
 
   occassionSearch(){
-    this.searchparams.occassions = this.filteredoccassions
-    console.log(this.searchparams);
-    
+    this.searchparams.occassions = this.filteredoccassions    
   }
 
   relationSearch(){
-
-
     this.searchparams.relationships = this.filteredrelations
-    console.log(this.searchparams);
-    
   }
-
-  
 
   searchNow(){
     this._products.searchProducts(this.searchparams).subscribe(
@@ -209,7 +137,7 @@ export class SearchComponent implements OnInit {
           this.moreData = []
           this.fromsearch = true
         }else{
-          alert("NO Results Found")
+          this.alertService.error('NO Results Found!!', this.options)
           this.showAll()
         }
        
@@ -218,8 +146,6 @@ export class SearchComponent implements OnInit {
       
     )  
   }
-
-  
 
   // search(searchKey:string){
 
@@ -245,9 +171,8 @@ export class SearchComponent implements OnInit {
     this.productPopUp =  this.productList.find((product)=>{ 
       return product.id == product_id
       })
-
   }
-  
+
   showMore(){
 
     if (this.moreData.next){
@@ -255,19 +180,14 @@ export class SearchComponent implements OnInit {
         (data)=>{
           console.log(data)
           this.moreData = data
-          // for (let i in data.results){
-          //   this.productList.push(data.results[i])
-          // }
           this.productList=data.results
           console.log(this.productList);
         },
         (err)=>console.log(err)
       )
     }else {
-      alert('there is no more')
+      this.alertService.warn('There is no more !!', this.options)
     }
-
-    
   }
 
   showless(){
@@ -276,9 +196,6 @@ export class SearchComponent implements OnInit {
         (data)=>{
           console.log(data)
           this.moreData = data
-          // for (let i in data.results){
-          //   this.productList.push(data.results[i])
-          // }
           this.productList=data.results
           console.log(this.productList);
         },
@@ -286,8 +203,7 @@ export class SearchComponent implements OnInit {
       )
     }
     else{
-      alert('there is no previous')
-
+      this.alertService.warn('There is no previous !!', this.options)
     }
     
   }

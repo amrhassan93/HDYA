@@ -5,10 +5,7 @@ import { Category } from '../../models/interfaces/category'
 import { RelationShip } from '../../models/interfaces/relation-ship'
 import { Occassion } from '../../models/interfaces/occassion'
 import { Router } from '@angular/router';
-
-import { ProductPicture } from '../../models/interfaces/product-picture'
-import { from } from 'rxjs';
-import { FormGroup } from '@angular/forms';
+import { AlertService } from 'src/app/_alert';
 
 @Component({
   selector: 'app-create-product',
@@ -30,7 +27,12 @@ export class CreateProductComponent implements OnInit {
 
   ageError:boolean = false
 
-  constructor(private _productservisec:ProductsService ,  private route:Router) { 
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+};
+
+  constructor(private _productservisec:ProductsService ,  private route:Router , protected alertService: AlertService) { 
     this.newproduct = {
       gender:"",
       details:"",
@@ -119,13 +121,14 @@ export class CreateProductComponent implements OnInit {
           };
           this.ageError = false
           alert('Your Product Was submitted successfully');
+
           this.route.navigate([`/productdetails/${data.id}`]) 
         },
         (err)=>console.log(err)
       )
     }
     else{
-      alert('Wrong data')
+      this.alertService.error('Wrong data, Please check your data again', this.options)
       this.ageError = true
     }
   }
@@ -144,7 +147,6 @@ export class CreateProductComponent implements OnInit {
     let prd_id:any = this.newproduct.id
     this._productservisec.editProduct(prd_id , this.newproduct).subscribe(
       (data)=>{
-        console.log(data);
         localStorage.removeItem('editprd')
         this.edit = false
       },
@@ -168,8 +170,6 @@ export class CreateProductComponent implements OnInit {
   delimg(img_id:number){ 
     this._productservisec.deletimg(img_id).subscribe(
       (data) => {
-        console.log(data)
-
         let prdId =JSON.parse(localStorage.getItem('editprd') || '{}')
         this._productservisec.viewProductById(prdId).subscribe(
         data => {
@@ -183,7 +183,6 @@ export class CreateProductComponent implements OnInit {
 
     )
   }
-
 
   cancel(){
     let id = this.newproduct.id
