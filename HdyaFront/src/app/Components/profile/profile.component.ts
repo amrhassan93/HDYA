@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Profile } from '../../models/interfaces/profile'
 import { ProductsService } from '../../services/products.service'
 import { Product } from 'src/app/models/interfaces/product';
-//
+import { Orders } from 'src/app/models/interfaces/orders';
+
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,7 @@ import { Product } from 'src/app/models/interfaces/product';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  orders:Array<object> = []
+  orders:Orders[] = []
 
   url="../../../assets/images/login.jpg"
   isdisplayed = false
@@ -20,11 +21,18 @@ export class ProfileComponent implements OnInit {
   myProducts:Product[] = []
   // onlyOrders:Product[] = []
   myOrders:Array<object> = []
+
   //pagination
   totalOrdersRecords: number = 0
   totalProductsRecords: number = 0
   totaloncomingOrdersRecords: number = 0
-  page:number=1
+
+  productpage:number=1
+  orderpage:number=1
+  incommingorderspage:number=1
+
+
+  
   incomingOrders:Array<object> = []
   incomingOrdersToHandle:Array<object> = []
   usersList:Array<object> =[]
@@ -58,9 +66,15 @@ export class ProfileComponent implements OnInit {
   }
   constructor(private _productService:ProductsService ,
               private auth:AuthenticationService ,
-              private activerouter:ActivatedRoute) {}
+              private activerouter:ActivatedRoute,
+              private route:Router) {}
 
   ngOnInit(): void {
+
+    if(!localStorage.getItem('token')){
+      this.route.navigate(['/search'])
+    }
+
     // let id = this.activerouter.snapshot.params['id']
     let usertoken = localStorage.getItem('token')
     this.auth.userProfile().subscribe(
@@ -89,7 +103,7 @@ export class ProfileComponent implements OnInit {
                 'product_id':data.id,
               })
                 //pagination
-              this.totaloncomingOrdersRecords = this.myOrders.length
+              this.totalOrdersRecords = this.myOrders.length
               
               for (let i in this.myOrders){
                 if(this.myOrders[i].status == 'p'){
@@ -116,63 +130,49 @@ export class ProfileComponent implements OnInit {
 
 
 
-    // this._productService.showIncomingOrders().subscribe(
-    //   (data)=>{
-    //     this.incomingOrders = data
-    //     console.log(this.incomingOrders);
-    //     for (let i=0 ; i <this.incomingOrders.length ; i++){
-    //       this._productService.viewProductById(this.incomingOrders[i].product).subscribe(
-    //         (data)=>{
-
-    //           // let user ;
-    //           // this.auth.showUserById(this.incomingOrders[i].user).subscribe(
-    //           //   (data)=>{
-    //           //     user=data
-    //           //     console.log(data)
-    //           //     console.log(user)
-    //           //   },
-    //           //   (err)=>console.log(err)
-    //           // )
-
-    //           this.incomingOrdersToHandle.push({
-    //             'No':i+1,
-    //             'product_name' : data.name,
-    //             'product_price' : data.price,
-    //             'Quantity' : this.incomingOrders[i].quantity,
-    //             'created_at' :this.incomingOrders[i].created_at,
-    //             'Total':data.price * this.incomingOrders[i].quantity,
-    //             'status':this.incomingOrders[i].status,
-    //             'order_id':this.incomingOrders[i].id,
-    //             'product_id':data.id,
-    //             'user':this.incomingOrders[i].user
-    //           })
+    this._productService.showIncomingOrders().subscribe(
+      (data)=>{
+        this.incomingOrders = data
+        // console.log(this.incomingOrders);
+        for (let i=0 ; i <this.incomingOrders.length ; i++){
+          this._productService.viewProductById(this.incomingOrders[i].product).subscribe(
+            (data)=>{
+              this.incomingOrdersToHandle.push({
+                'No':i+1,
+                'product_name' : data.name,
+                'Quantity' : this.incomingOrders[i].quantity,
+                'created_at' :this.incomingOrders[i].created_at,
+                'status':this.incomingOrders[i].status,
+                'order_id':this.incomingOrders[i].id,
+                'product_id':data.id,
+              })
 
 
-    //             //pagination
-    //           this.totalOrdersRecords = this.incomingOrdersToHandle.length
+                //pagination
+              this.totaloncomingOrdersRecords = this.incomingOrdersToHandle.length
               
-    //           for (let i in this.incomingOrdersToHandle){
-    //             if(this.incomingOrdersToHandle[i].status == 'p'){
-    //               this.incomingOrdersToHandle[i].status = 'in processing'
-    //             }else if (this.incomingOrdersToHandle[i].status == 's'){
-    //               this.incomingOrdersToHandle[i].status = 'shipped'
-    //             }else if (this.incomingOrdersToHandle[i].status == 'e'){
-    //               this.incomingOrdersToHandle[i].status = 'delivered'
-    //             }else if (this.incomingOrdersToHandle[i].status == 'r'){
-    //               this.incomingOrdersToHandle[i].status = 'returned'
-    //             }else if (this.incomingOrdersToHandle[i].status == 'c'){
-    //               this.incomingOrdersToHandle[i].status = 'cancelled'
-    //             }
-    //           }
-    //           // console.log(this.incomingOrdersToHandle);
+              for (let i in this.incomingOrdersToHandle){
+                if(this.incomingOrdersToHandle[i].status == 'p'){
+                  this.incomingOrdersToHandle[i].status = 'in processing'
+                }else if (this.incomingOrdersToHandle[i].status == 's'){
+                  this.incomingOrdersToHandle[i].status = 'shipped'
+                }else if (this.incomingOrdersToHandle[i].status == 'e'){
+                  this.incomingOrdersToHandle[i].status = 'delivered'
+                }else if (this.incomingOrdersToHandle[i].status == 'r'){
+                  this.incomingOrdersToHandle[i].status = 'returned'
+                }else if (this.incomingOrdersToHandle[i].status == 'c'){
+                  this.incomingOrdersToHandle[i].status = 'cancelled'
+                }
+              }
+              // console.log(this.incomingOrdersToHandle);
               
-    //         },
-    //         (err)=>console.log(err)
-    //       )
-    //     }
-    //   } ,
-    //   (err) => console.log(err)
-    // )
+            },
+            (err)=>console.log(err)
+          )
+        }
+      } ,
+      (err) => console.log(err)
+    )
 
 
 
@@ -185,21 +185,9 @@ export class ProfileComponent implements OnInit {
       },
       (err)=>console.log(err)
     )
-    
-   
-
   }
- 
-
   cancelOrder(order_id:number){
     this._productService.deleteOrder(order_id).subscribe(console.log,console.log)
     
-  }
-  
-  
-  
-
-
+  } 
 }
-  
-

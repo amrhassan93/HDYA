@@ -5,7 +5,6 @@ import { Product } from '../../models/interfaces/product'
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/_alert';
 
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -23,7 +22,8 @@ export class CartComponent implements OnInit {
 };  
   checkout:{[k:string]:any } = {}
 
-  constructor(private _products:ProductsService,private route:Router,protected alertService: AlertService) { }
+  constructor(private _products:ProductsService,private route:Router,
+    protected alertService: AlertService,) { }
 
   ngOnInit(): void {
     AOS.init();

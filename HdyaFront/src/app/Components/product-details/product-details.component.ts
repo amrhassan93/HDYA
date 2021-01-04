@@ -1,3 +1,4 @@
+import { PopupComponent } from './../popup/popup.component';
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 declare var jQuery: any;
@@ -7,11 +8,13 @@ import { Product } from '../../models/interfaces/product'
 import { Occassion } from '../../models/interfaces/occassion'
 import { RelationShip } from '../../models/interfaces/relation-ship'
 import { ActivatedRoute, Router } from '@angular/router';
-import {  Review} from '../../models/interfaces/review'
+import {  Review } from '../../models/interfaces/review'
 import { AddToCartService } from '../../services/add-to-cart.service'
 import { AuthenticationService } from '../../services/authentication.service'
 import { stringify } from '@angular/compiler/src/util';
-import {  Report} from '../../models/interfaces/report'
+import {  Report } from '../../models/interfaces/report';
+import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+
 
 
 @Component({
@@ -32,6 +35,9 @@ export class ProductDetailsComponent implements OnInit {
   avrOfReviews:number=0
   productList:Product[] = [] ;
   filteredList:Product[]=[] ;
+  reatValue:number = 0
+
+
   productdetails:Product = {id : 0 ,
                         name : "" ,
                         price: 0,
@@ -47,13 +53,41 @@ export class ProductDetailsComponent implements OnInit {
                         updated_at: "" ,
                         images:[]
                       };
-  reportProduct:Report[]=[]
+                      //owlcarosel
+                      title = 'angularowlslider';
+                      customOptions: any = {
+                        loop: true,
+                        mouseDrag: false,
+                        touchDrag: false,
+                        pullDrag: false,
+                        dots: false,
+                        navSpeed: 700,
+                        navText: ['', ''],
+                        responsive: {
+                          0: {
+                            items: 1
+                          },
+                          400: {
+                            items: 2
+                          },
+                          740: {
+                            items: 3
+                          },
+                          940: {
+                            items: 4
+                          }
+                        },
+                        nav: true
+                      }
                            
+  reportProduct:Report[]=[]
+                    
   constructor(private _products:ProductsService ,
               private activerouter:ActivatedRoute,
               private _addCart:AddToCartService,
               private _auth:AuthenticationService,
-              private route:Router
+              private route:Router,
+              public dialog:MatDialog
             
       ) { }
 
@@ -65,7 +99,7 @@ export class ProductDetailsComponent implements OnInit {
     this._auth.userProfile().subscribe(
       (data)=>{
         this.myID = data.id
-        console.log(this.myID);
+        // console.log(this.myID);
         
       },
       (err)=>console.log(err)
@@ -87,6 +121,14 @@ export class ProductDetailsComponent implements OnInit {
       (data)=>{
       // console.log(this.occassionList);
         this.productdetails=data
+        if(this.productdetails.gender == 'f'){
+          this.productdetails.gender = "Female"
+        }else if(this.productdetails.gender == 'm'){
+          this.productdetails.gender = "Male"
+        }else if(this.productdetails.gender == 'b'){
+          this.productdetails.gender = "Both"
+        }
+
         for (let i =0; i < this.productdetails.occassions.length ; i++){
           this.filterdoccassionList.push(this.occassionList.find((occ)=>occ.id == this.productdetails.occassions[i]));
           
@@ -95,7 +137,6 @@ export class ProductDetailsComponent implements OnInit {
           this.filterdrelList.push(this.relList.find((rel)=>rel.id == this.productdetails.relationships[i]));
           
         }
-        // console.log(this.filterdoccassionList);
       },
       (err)=> console.log(err) 
     ) 
@@ -104,16 +145,14 @@ export class ProductDetailsComponent implements OnInit {
     this._products.viewProducts().subscribe(
       (data)=> {
         this.productList=data.results
-        // console.log(this.productList);
 
       },
       (err)=> console.log(err),
     )
     this._products.showreviews(id).subscribe(
       (data)=> {
-        // console.log(data);
         this.reviewList = data
-        // console.log(this.reviewList);
+        console.log(this.reviewList);
         this.countOfReviews = this.reviewList.length
         let onlyReviews = []
         for(let i=0 ; i<this.reviewList.length ; i++){
@@ -123,7 +162,7 @@ export class ProductDetailsComponent implements OnInit {
           return a + b;
         }, 0);
 
-        console.log(sum);
+        // console.log(sum);
         
         // console.log(this.reviewList);
         // console.log(onlyReviews);
@@ -131,15 +170,18 @@ export class ProductDetailsComponent implements OnInit {
         if (sum!=0){
         this.avrOfReviews = sum / onlyReviews.length;
         }
-        // console.log(this.avrOfReviews);
-        // console.log(sum);
-
       },
       (err)=> console.log(err),
        )
       
       this._products.showorders().subscribe(
         (data)=> this.orders = data,
+        (err)=>console.log(err)
+      )
+
+
+      this._products.showReports().subscribe(
+        (data)=> this.reportProduct = data.results,
         (err)=>console.log(err)
       )
 
@@ -154,34 +196,47 @@ export class ProductDetailsComponent implements OnInit {
   }
 
 
-  reviewFun(body:string , rate:number ){
+  reviewFun(body:string  ){
     let id = this.activerouter.snapshot.params['id']
     let found = false
     for(let i in this.orders ){
       if(this.orders[i].product == id){
-        found = true ;
+        found = true
         break;
       }
     }
 
     if (found == true){
       if (this.reviewList.length == 0){
-        this._products.ReviewProduct(body , rate ,this.productdetails.id).subscribe(
-          (data)=>  console.log(data),
+        this._products.ReviewProduct(body , this.reatValue ,this.productdetails.id).subscribe(
+          (data)=> {
+            alert('Thanks for your review ')
+             location.reload()
+           },
           (err) => console.log(err)
         )
       }else{
+        let userFound = false
         for(let i in this.reviewList){
-          if(this.reviewList[i].user != this.myID){
-              this._products.ReviewProduct(body , rate ,this.productdetails.id).subscribe(
-              (data)=>  console.log(data),
-              (err) => console.log(err)
-            )
+          if(this.reviewList[i].user == this.myID){
+            userFound = true
+            break;
           }
         }
-        alert("You can't review again")
+        
+        if (userFound == false){
+          this._products.ReviewProduct(body , this.reatValue ,this.productdetails.id).subscribe(
+            (data)=>  {
+              alert('Thanks for your review ')
+               location.reload()
+             },
+            (err) => console.log(err)
+          )
+        }else{
+          alert("you can't review again")
+        }
+       
       }
-
       
     }
     else{
@@ -190,6 +245,8 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   reportproduct(body:string){
+    console.log(this.reportProduct);
+    
     let id = this.activerouter.snapshot.params['id']
     let found = false
     for(let i in this.orders ){
@@ -201,48 +258,49 @@ export class ProductDetailsComponent implements OnInit {
 
     if (found == true){
       if (this.reportProduct.length == 0){
-        this._products.Report(body,this.productdetails.id).subscribe(
-          (data)=>  console.log(data),
+        this._products.Report(this.myID,body,id).subscribe(
+          (data)=> {
+            alert('Thanks for your report ')
+             location.reload()
+           },
           (err) => console.log(err)
         )
       }else{
+        let userFound = false 
+
+        // 2 => 50  
+
         for(let i in this.reportProduct){
-          if(this.reportProduct[i].user != this.myID){
-              this._products.Report(body ,this.productdetails.id).subscribe(
-              (data)=>  console.log(data),
-              (err) => console.log(err)
-            )
+          if(this.reportProduct[i].user == this.myID){
+            userFound = true
+            break;
           }
         }
-        alert("You can't report again")
-      }
 
-      
+        if (userFound == false){
+          this._products.Report(this.myID,body ,id).subscribe(
+            (data)=> {
+               alert('Thanks for your report ')
+                location.reload()
+              },
+            (err) => console.log(err)
+          )
+        }else{
+          alert("You can't report again")
+        } 
+      } 
     }
     else{
       alert("You Can't Report Product You didn't Try ")
     }
   }
 
-  // showProductsbyID(catId:number){
-  //   for (let i=0 ; i<this.productList.length ; i++){
-  //      if (this.productList[i].category == catId){
-  //         this.filterdProducts.push(this.productList[i])
-  //      }
-  //      else{
-  //        console.log('not in this cat')
-  //      }
-  //   }
-  //   this.productList = this.filterdProducts
-  //   this.filterdProducts = []
-  // }
   
 ngDoCheck(): void {
   //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
   //Add 'implements DoCheck' to the class.
   // console.log(this.productList);
   this.filteredList = this.productList.filter((product)=> product.category == this.productdetails.category)
-  
 } 
 
 addToCart(qntty:number){
@@ -259,6 +317,9 @@ editPrd(prd_id:number){
   this.route.navigate(['/product/createproduct'])
 }
 
+openDialog(){
+  this.dialog.open(PopupComponent)
+}
 
 
   customOptions: OwlOptions = {

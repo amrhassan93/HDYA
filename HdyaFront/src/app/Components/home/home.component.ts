@@ -20,6 +20,9 @@ declare var jQuery: any;
 
 
 export class HomeComponent implements OnInit {
+  loader:boolean = true
+
+
   categoryList:Category[]=[];
   products:Product[]=[];
   allproducts:Product[]=[]
@@ -41,7 +44,13 @@ export class HomeComponent implements OnInit {
       (err) => console.log(err) 
     )
 
+
+    setTimeout(()=>{
+      this.loader = false
+    },3000)
   }
+
+  
 
 
   showCategories(){
@@ -52,7 +61,9 @@ export class HomeComponent implements OnInit {
   }
 
  
-
+  catSearch(catId:number){
+    localStorage.setItem('catsearch' ,JSON.stringify(catId) )
+  }
 
   // latestFiveProducts(){
   //   this.products.sort()

@@ -12,24 +12,42 @@ import { Router } from '@angular/router';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
-  // cart:Product[] = [] ;
-  // total:Array<number> = [] ;
-  // totalPrice:number = 0 ;
+
   orders:Array<object> = [] ;
   checkout:object = {} 
+  editparams: {[k: string]: any} = {}
 
-  myProfile:Profile
+  myProfile:Profile ={
+    username:"",
+    first_name :"",
+    last_name :"",
+    address :"",
+    mobile : "" ,
+    birth_date : "" , 
+    email: "" 
+
+  }
   constructor(private _products:ProductsService,
               private _auth:AuthenticationService,
               private route:Router
-    ) {}
+    ) {
+
+    }
 
   ngOnInit(): void {
     AOS.init();
+
+    if(!localStorage.getItem('token')){
+      alert('Please Log in To Place your Order')
+      this.route.navigate(['/login'])
+    }
+
     this._auth.userProfile().subscribe(
       (data)=> this.myProfile = data,
       (err)=> console.log(err),
        )
+
+
 
     
     if (localStorage.getItem("orders")){
@@ -44,20 +62,47 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  orderNow(){
+
+  updateprofile(){
+      this.editparams.first_name = this.myProfile.first_name
+      this.editparams.last_name = this.myProfile.last_name
+      this.editparams.address = this.myProfile.address
+      this.editparams.mobile = this.myProfile.mobile
+   
+
+    this._auth.editprofile(this.editparams).subscribe(
+      (data)=>console.log(data),
+      (err)=>console.log(err) 
+    )
+  }
+
+
+  placeOrder(){
     for(let i =0 ; i < this.orders.length ; i++){
       this._products.order(this.orders[i].product ,  this.orders[i].quantaty ).subscribe(
         (data)=>{
-          alert("Thanks For Your Orders")
           localStorage.removeItem("cart")
           localStorage.removeItem("orders")
           localStorage.removeItem("checkout")
-          console.log(data)
-          this.route.navigate(['/search'])
       },
 
         (err)=> console.log(err)
         )
     }
+  }
+
+  orderNow(){
+    if(this.myProfile.first_name.length > 2 && this.myProfile.last_name.length > 2 && this.myProfile.mobile.length == 11 && this.myProfile.address.length > 3){
+      this.updateprofile()
+      this.placeOrder()
+      alert("Thanks For Your Orders")
+      this.route.navigate(['/search'])
+
+    }else{
+      alert('Please Fill Valid Data')
+    }
+    
+
+  
   }
 }

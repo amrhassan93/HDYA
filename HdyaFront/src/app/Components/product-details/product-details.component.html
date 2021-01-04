@@ -4,12 +4,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <!-- <ol class="breadcrumb d-flex align-items-center">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Wooden Products</a></li>
-                        <li class="breadcrumb-item active">{{product.name}}</li>
-                    </ol> -->
-                    <!-- btn -->
                     <a [routerLink]="['/search']" class="backToHome d-block"><i class="fa fa-angle-double-left"></i> Back to Category</a>
                 </div>
             </div>
@@ -20,7 +14,7 @@
     <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area Start >>>>>>>>>>>>>>>>>>>>>>>>> -->
 
 
-    <section class="single_product_details_area section_padding_0_100" data-aos="fade-down" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1000">
+    <section *ngIf="productdetails.name.length > 2" class="single_product_details_area section_padding_0_100" data-aos="fade-down" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1000">
         <div class="container">
             <div class="row">
 
@@ -71,10 +65,13 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
+                    </div><br><br>
+                    <div class="text-center">
+                        <button type="submit" class="btn karl-checkout" id="button1" (click)="editPrd(productdetails.id)">Edit Your Product</button>
+                       <br><button type="submit" class="btn karl-checkout" id="button2" (click)="openDialog()">Report Product</button>
                     </div>
-                    <button type="submit" class="btn karl-checkout" (click)="editPrd(productdetails.id)">Edit Your Product</button>
-                    <br><button type="submit" class="btn karl-checkout" (click)="editPrd(productdetails.id)">Report Product</button>
                 </div>
+                <br>
                 <!-- <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
                  -->
@@ -96,16 +93,20 @@
 
                 <div class="col-12 col-md-6">
                     <div class="single_product_desc pl-5">
-                        <h4 class="title"><a>{{productdetails.name}} &nbsp;<select style="background-color:#f4f2f8;" #preview>
-                            <h6>Reviews</h6>
-                            <p *ngIf="countOfReviews != 0"> {{countOfReviews}}</p>
-                            <!-- <option value="1">1</option>
+                        <h4 class="title"><a>{{productdetails.name}}</a></h4>
+                        <!-- <select style="background-color:#f4f2f8;" #preview> -->
+                        <!-- <h6>Reviews</h6> -->
+                        <!-- <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option> -->
-                        </select> </a></h4>
-                        <h3 *ngIf="avrOfReviews != 0"> Average Reviews:{{avrOfReviews}}</h3><br>
+                        <!-- </select> -->
+
+                        <p *ngIf="countOfReviews != 0">count of Reviews {{countOfReviews}}</p>
+                        <h3 *ngIf="avrOfReviews != 0"> Average Reviews:{{avrOfReviews}}</h3>
+                        <br>
+
                         <h4 class="price">{{ productdetails.price | currency:'EGP ' }}</h4>
 
                         <p class="available">Available: <span class="text-muted">In Stock</span></p>
@@ -194,15 +195,15 @@
                         <br>
                         <h5><i class="fas fa-comment-alt-smile"></i> Add Your FeedBack</h5>
                         <div class="rating">
-                            <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-                            <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
-                            <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
-                            <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
-                            <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                            <input [(ngModel)]="reatValue" type="radio" name="rating" value="5" id="1"><label for="1">☆</label>
+                            <input [(ngModel)]="reatValue" type="radio" name="rating" value="4" id="2"><label for="2">☆</label>
+                            <input [(ngModel)]="reatValue" type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                            <input [(ngModel)]="reatValue" type="radio" name="rating" value="2" id="4"><label for="4">☆</label>
+                            <input [(ngModel)]="reatValue" type="radio" name="rating" value="1" id="5"><label for="5">☆</label>
                         </div>
                     </div><br>
                 </div>
-                <button type="submit" class="btn karl-checkout" (click)="reviewFun(pcomment.value,preview.value)" style="width:50%;margin:auto;padding:auto;">ok</button>
+                <button type="submit" class="btn karl-checkout" (click)="reviewFun(pcomment.value)" style="width:50%;margin:auto;padding:auto;">ok</button>
             </div>
         </div>
     </div><br>
@@ -280,23 +281,31 @@
                 <h3 class="panel-title">
                     <i class="fas fa-comments"></i> Recent Comments</h3>
             </div><br>
+
+            <!-- <div *ngIf="reviewList.length > 0" class="recent">
+                <div *ngFor="let rev of reviewList" class="rev">
+                    <h6>{{rev.body}}</h6>
+                    <h6>{{rev.rate}}</h6>
+                </div>
+            </div> -->
+
             <div class="panel-body">
-                <ul class="list-group">
-                    <li class="list-group-item">
+                <ul *ngIf="reviewList.length > 0" class="list-group">
+                    <li *ngFor="let rev of reviewList" class="list-group-item">
                         <div class="row">
-                            <div class="col-xs-2 col-md-1">
-                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />USER1</div>
+                            <!-- <div class="col-xs-2 col-md-1"> -->
+                            <!-- <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />USER1</div> -->
                             <div class="col-xs-10 col-md-11">
                                 <div>
-                                    <h5>Google Style Login Page Design Using Bootstrap</h5>
-                                    <div class="mic-info">
+                                    <h5>{{rev.body}}</h5>
+                                    <!-- <div class="mic-info">
                                         By: <a href="#">Amr Hassan</a> on 2 Jan 2021
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="comment-text">
-                                    Awesome design
+                                    {{rev.rate}}
                                 </div>
-                                <div class="action">
+                                <!-- <div class="action">
                                     <button type="button" class="btn btn-primary btn-xs" title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </button>
@@ -306,11 +315,11 @@
                                     <button type="button" class="btn btn-xs" title="Delete">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </li>
-                    <li class="list-group-item">
+                    <!-- <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-2 col-md-1">
                                 <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /> User2</div>
@@ -337,7 +346,7 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -346,47 +355,65 @@
     <section class="you_may_like_area clearfix">
         <div class="container text-center">
             <div class="section_heading text-center">
+                <h1>Related Products</h1>
+            </div>
+            <div class="row">
+                <owl-carousel-o [options]="customOptions">
+                    <ng-template carouselSlide *ngFor="let product of filteredList" class="relprd col-md-4">
+                        <div class="product-img">
+                            <img src="{{product.images[0].image}}" alt="{{product.name}}">
+                            <div class="product-quicview">
+                                <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
+                            </div>
+                        </div>
+                        <!-- Product Description -->
+                        <div class="product-description">
+                            <h4 class="product-price">{{product.price}}</h4>
+                            <p>{{product.name}}</p>
+                            <!-- Add to Cart -->
+                            <a class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
+                        </div>
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+        </div>
+    </section>
+    <!-- ------------------------------------------------------------------------------------ -->
+    <!-- <section class="you_may_like_area clearfix">
+        <div class="container text-center">
+            <div class="section_heading text-center">
                 <h2>Related Products</h2>
             </div>
             <div class="row">
-
-                <!-- Single gallery Item -->
                 <div *ngFor="let product of filteredList" class="relprd col-md-4">
-                    <!-- Product Image -->
                     <div class="product-img">
                         <img src="../../../assets/images/hand15.jpg" alt="hand15">
                         <div class="product-quicview">
                             <a routerLink="#" data-toggle="modal" data-target="#quickview"><i class="far fa-plus"></i></a>
                         </div>
                     </div>
-                    <!-- Product Description -->
                     <div class="product-description">
                         <h4 class="product-price">{{product.price}}</h4>
                         <p>{{product.name}}</p>
-                        <!-- Add to Cart -->
                         <a class="add-to-cart-btn" routerLink="/cart">ADD TO CART</a>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </section>
 </div>
 
-
-<!-- 
-        <select #selCat [(ngModel)]="selCatID" >
+    <select #selCat [(ngModel)]="selCatID" >
     <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
     </select>
-    -->
+    
 
-<!-- <p>review</p> -->
-<!-- <select [(ngModel)]="review" >
+<p>review</p>
+<select [(ngModel)]="review" >
             <option *ngFor="let re of review">{{re.rate}}</option>
-        </select> -->
+        </select>
 
-<!-- <div class="container text-center">
+<div class="container text-center">
         <h3 *ngIf="countOfReviews != 0">Count Of Reviews : {{countOfReviews}}</h3>
         <h3 *ngIf="avrOfReviews != 0">avr Of Reviews : {{avrOfReviews}}</h3>
 
@@ -396,10 +423,10 @@
             <h4>user: {{rev.user}}</h4>
             <hr>
         </div>
-    </div> -->
+    </div>
 
 
-<!-- <select #preview>
+ <select #preview>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>

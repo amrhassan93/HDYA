@@ -14,20 +14,20 @@
                         <div class="row">
                             <div class="col-md-6 mb-2 pr-4">
                                 <label for="first_name">First Name <span>*</span></label>
-                                <input type="text" class="form-control" id="first_name" value="{{myProfile.first_name}}" required>
+                                <input [(ngModel)]="myProfile.first_name" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="first_name" value="{{myProfile.first_name}}" required>
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="last_name">Last Name <span>*</span></label>
-                                <input type="text" class="form-control" id="last_name" value="{{myProfile.last_name}}" required>
+                                <input [(ngModel)]="myProfile.last_name" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="last_name" value="{{myProfile.last_name}}" required>
                             </div>
 
                             <div class="col-12 mb-2">
                                 <label for="country">Country <span>*</span></label>
-                                <input type="text" class="form-control" id="country" value="Egypt" readonly>
+                                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" id="country" value="Egypt" readonly>
                             </div>
                             <div class="col-12 mb-2">
                                 <label for="street_address">Address <span>*</span></label>
-                                <input type="text" class="form-control mb-3" id="street_address" value="{{myProfile.address}}" required>
+                                <input [(ngModel)]="myProfile.address" [ngModelOptions]="{standalone: true}" type="text" class="form-control mb-3" id="street_address" value="{{myProfile.address}}" required>
                             </div>
                             <!-- <div class="col-12 mb-2">
                                 <label for="postcode">Postcode <span>*</span></label>
@@ -43,11 +43,11 @@
                             </div>-->
                             <div class="col-12 mb-3">
                                 <label for="phone_number">Phone No <span>*</span></label>
-                                <input type="number" class="form-control" id="phone_number" min="0" value="{{myProfile.mobile}}" required>
+                                <input [(ngModel)]="myProfile.mobile" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="phone_number" min="0" value="{{myProfile.mobile}}" required>
                             </div>
                             <div class="col-12 mb-4">
                                 <label for="email_address">Email Address <span>*</span></label>
-                                <input type="email" class="form-control" id="email_address" value="{{myProfile.email}}" required>
+                                <input type="email" class="form-control" id="email_address" value="{{myProfile.email}}" readonly>
                             </div>
                         </div>
                     </form>
