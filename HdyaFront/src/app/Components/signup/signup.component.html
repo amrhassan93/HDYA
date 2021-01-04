@@ -61,7 +61,7 @@
 
 
                         </div>
-                        <p *ngIf="! profileForm.controls.password.pristine && profileForm.controls.password.errors?.minlength" class="alert alert-danger help-block">Password should be greater than 6 character or numbers!</p>
+                        <p *ngIf="! profileForm.controls.password.pristine && profileForm.controls.password.errors?.minlength" class="alert alert-danger help-block">Password should be greater than 8 character or numbers!</p>
                         <p *ngIf="!profileForm.controls.password.pristine && profileForm.controls.password.errors?.required" class="alert alert-danger help-block">Password is require!</p>
                         <p *ngIf="!profileForm.controls.password.pristine && profileForm.controls.password.errors?.maxlength" class="alert alert-danger help-block">Password should be less than 30 character!</p>
 
