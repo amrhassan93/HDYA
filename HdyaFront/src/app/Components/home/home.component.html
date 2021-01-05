@@ -166,8 +166,11 @@
                     <!-- <a (click)="orderNow()" class="btn karl-checkout text-white">Place Order</a> -->
                     <img *ngIf="prd.images[0]" src="{{prd.images[0].image}}" alt="hand6" style="width:250px;height:200px;">
                 </div>
+
                 <!-- Product Description -->
                 <div class="product-description">
+                    <a class="add-to-cart-btn" [routerLink]="['/productdetails',prd.id]">More Details</a>
+
                     <!-- Add to Cart -->
                     <a class="add-to-cart-btn" (click)="add(prd.id)" style="cursor: pointer;">ADD TO CART</a>
                 </div>
